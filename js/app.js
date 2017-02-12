@@ -21,8 +21,6 @@ function compareZones(zones, operator) {
 	});
 }
 
-
-
 function maxZone(zones) {	
 	return compareZones(zones, Math.max);
 }
@@ -49,9 +47,6 @@ function flatten(arr) {
 }
   
 getStations().then(function(stations) {
-	var stations = stations;
-
-	// compareZones([1, 4, 6,], stations);
 
 	getJourney('1000029', '1000138').then(function(journey) {
 		var journey = journey.journeys[0];
@@ -81,17 +76,21 @@ getStations().then(function(stations) {
 		var dualZoneStations = filterZonesByNumber(2, zones);
 
 		if (dualZoneStations.length) {
-
 			dualZoneStations.forEach(function(zones) {
-				var selectedZone = null;
 
-				if (getDifference(zones[0], singleMin) < getDifference(zones[1], singleMin)){
-					selectedZone = zones[0];
-				} else {
-					selectedZone = zones[1];
-				};
+				var selectedZone = zones.reduce(function(a, b) {
+					if (getDifference(a, singleMin) < getDifference(b, singleMin)) {
+						return a;
+					}
+
+					return b;
+				});
+
+				// check if selectedZone is outside of the range of min to max
+
 
 				if (singleMax >= selectedZone && selectedZone >= singleMin) {
+
 				} else {
 					if (selectedZone > singleMax) {
 						singleMax = selectedZone;
@@ -99,20 +98,8 @@ getStations().then(function(stations) {
 						singleMin = selectedZone;
 					}
 				}
-
 			});
 		}
 
-		console.log(singleMin);
-		console.log(singleMax);
-
-		// 	console.log(dualZoneStations);
-		// 	dualZoneStations.forEach(function(zones) {
-		// 		// console.log(zones);
-		// 		// dualZoneStations.zones[0] - maxZone 
-		// 		// dualZoneStations.zones[1] - maxZone 	
-		// 		// });
-		// 	});
-		// }
 	});
 });

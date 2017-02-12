@@ -1,18 +1,18 @@
 {
 	"940GZZLUBWR": {
 		"name": "Bow Road Underground Station",
-		"zones": [2]
+		"zones": [4]
 	},
 	"940GZZLUMED": {
 		"name": "Mile End",
-		"zones": [3, 4]
+		"zones": [2, 3]
 	},
 	"940GZZLUBLG": {
 		"name": "Bethenal Green",
-		"zones": [2]
+		"zones": [4]
 	},
 	"940GZZLULVT": {
 		"name": "Liverpool St",
-		"zones": [1, 2]
+		"zones": [5, 6]
 	}
 }
