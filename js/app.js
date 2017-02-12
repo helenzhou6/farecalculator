@@ -88,6 +88,7 @@ function flatten(arr) {
 
 //The complete function in order to get the minimum and maximum zones of that journey (taking into consideration dual zones)
 // stations is the .json file from getStations() function
+// Need to make it so that it generates it after each journey
 getStations().then(function(stations) {
 
 	getJourney('1000029', '1000138').then(function(journey) {
@@ -116,7 +117,6 @@ getStations().then(function(stations) {
 		}));
 
 		//Filters all the stations and split them into zonesFromSingleStations and zonesFromDualStations
-		// Calls 
 		var zonesFromSingleStations = flatten(filterZonesByNumber(1, allZones));  
 		var zonesFromDualStations = filterZonesByNumber(2, allZones); //NB this is an array within an array
 
@@ -138,7 +138,108 @@ getStations().then(function(stations) {
 		var finalMaxZone = maxZone([singleMax].concat(dualZones));
 		var finalMinZone = minZone([singleMin].concat(dualZones));
 
-		console.log(finalMaxZone);
-		console.log(finalMinZone);
+		// console.log(finalMaxZone);
+		// console.log(finalMinZone);
 	});
+
 });
+
+// Formulate array? Journey 1 object: with zones travelled (array), , time, off-peak or on-peak and single price.
+
+//--------------------------------------------
+// Global functions > compareZones (can reduce to the maxZone and minZone of an array) & getDifference bw 2 numbers
+
+/**
+ * Gets fares.json file
+ */
+function getFares() {
+	return fetch('/js/fares.json').then(function(resp) {
+		return resp.json();
+	});
+}
+
+/**
+ * Sort an array of 2 zones chronologically and adds '-'
+ * @function
+ * @param {array} journey - the array of the 2 zones of that journey
+ * @returns {string} - 'x-y'
+ * @description - used to get the fares from the json file
+ */
+function journeyToKey(journey) {
+	return journey.sort().join('-');
+}
+
+/**
+ * Gets the daily cap cost
+ * @function
+ * @param {number} - the (maximum) zone
+ * @param {object} dailyCaps - looks at the dailyCaps object in the fares.json file
+ * @returns {number} - gets the daily cap between zones 1 and the zone parameter (as daily caps always starts at zone 1)
+ * @description
+ */
+function getDailyCap(maxZonesofar, dailyCaps) {
+	return dailyCaps[journeyToKey([1, maxZonesofar])];
+}
+
+/**
+ * Gets the single fare
+ * @function
+ * @param {array} journey - the array of the 2 zones travelling between
+ * @param {object} singleFares - looks at the singleFares object in the fares.json file
+ * @returns {number} - gets the single fare between those two zones
+ * @description
+ */
+function getSingleFare(journey, singleFares) {
+	return singleFares[journeyToKey(journey)];
+}
+
+
+// - OYSTER Cheapest Fare
+getFares().then(function(fareData) {
+	var dailyCaps = fareData.dailyCaps;
+	var singleFares = fareData.singleFares;
+
+//An array of all the journeys with their max and min zones travelled
+	var journeys = [
+		[2, 1],
+		[1, 2],
+		[1, 2],
+		[2, 1],
+		[1, 6]
+	];
+
+//cumTotal = the total that updates and becomes the final oyster fare
+	var cumTotal = 0;
+//maxZonessofar for each journey updates and is the array of all the zones travelled in so far
+	var maxZonesofar = journeys[0];
+
+	journeys.forEach(function(journey) {
+		//Gets the maximum zones of all the zones travelled in so far
+		maxZonesofar = maxZone(journey.concat(maxZonesofar));
+
+		//Gets the relevant daily cap to that max zone & single fare for that journey
+		var maxZoneDailyCap = getDailyCap(maxZonesofar, dailyCaps);
+		var single = getSingleFare(journey, singleFares);
+	
+		//adds the single fare to the cumulative total
+		cumTotal += single;
+
+		//if the daily cap for the current maximum zone is reached, then the cum total is overriden by the relevant maximum zone daily cap fare
+		if (cumTotal >= maxZoneDailyCap) {
+			cumTotal = maxZoneDailyCap;
+		}
+	});
+	//This is the final oyster daily fare calculated:
+	console.log(cumTotal);
+});
+
+// - CONTACTLESS Cheapest Fare = 
+// 	1. If maximum Zone <= 2, then apply a Zone 1-2 Anytime cap.
+// 		Extension fares for anything out of those zones (since all daily cap start at zone 1, just latter)
+// 	Then for each Zone range (from Zone 1-3 until Zone 1 to max) repeat same calculation.
+// 	---> Compare all the possibilities and select the cheapest (including total single). 
+
+
+
+
+
