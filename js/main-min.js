@@ -1,0 +1,1 @@
+$(document).ready(function(){var e=$(".day");e.on("click",".day-remove",function(e){e.preventDefault()})});

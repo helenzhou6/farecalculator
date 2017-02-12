@@ -1,0 +1,99 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <h1>Travelcard Fare Calculator</h1>
+
+        <form action="">
+            <fieldset class="day">
+                <legend><h3>Monday</h3></legend>
+                <fieldset class="day-journey">
+                    <label>From Zone
+                        <select name="mon-one-from">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </label>
+
+                    <label>to Zone
+                        <select name="mon-one-to">                    
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </label>
+
+                    <label>Peak
+                        <input type="radio" value="true" name="mon-one-peak" checked>
+                    </label>
+                    <label>Off Peak
+                        <input  type="radio" value="true" name="mon-one-peak">
+                    </label>
+                    <span>
+                        <button class="day-remove">x Remove</button>
+                    </span>
+                </fieldset>
+
+                <div>
+                    <button class="add-journey">Add a journey</button>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend><h3>Tuesday</h3></legend>
+                <div>
+                    <button class="add-journey">Add a journey</button>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend><h3>Wednesday</h3></legend>
+                <div>
+                    <button class="add-journey">Add a journey</button>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend><h3>Thursday</h3></legend>
+                <div>
+                    <button class="add-journey">Add a journey</button>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend><h3>Friday</h3></legend>
+                <div>
+                    <button class="add-journey">Add a journey</button>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend><h3>Saturday</h3></legend>
+                <div>
+                    <button class="add-journey">Add a journey</button>
+                </div>
+            </fieldset>     
+            <fieldset>
+                <legend><h3>Sunday</h3></legend>
+                <div>
+                    <button class="add-journey">Add a journey</button>
+                </div>
+            </fieldset> 
+        </form>
+
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="js/ui.js"></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>
