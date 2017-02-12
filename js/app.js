@@ -21,7 +21,9 @@ function compareZones(zones, operator) {
 	});
 }
 
-function maxZone(zones) {
+
+
+function maxZone(zones) {	
 	return compareZones(zones, Math.max);
 }
 
@@ -34,9 +36,22 @@ function filterZonesByNumber(num, zones) {
 		return zone.length === num;
 	});
 }
+
+function getDifference(a, b) {
+	return Math.abs(a - b);
+	// return a - b;
+}
+
+function flatten(arr) {
+	return arr.reduce(function(a, b) {
+		return a.concat(b);
+	});
+}
   
 getStations().then(function(stations) {
 	var stations = stations;
+
+	// compareZones([1, 4, 6,], stations);
 
 	getJourney('1000029', '1000138').then(function(journey) {
 		var journey = journey.journeys[0];
@@ -60,35 +75,36 @@ getStations().then(function(stations) {
 
 		var singleZoneStations = filterZonesByNumber(1, zones);
 
-		var max = maxZone(singleZoneStations);
-		var min = minZone(singleZoneStations);
+		var singleMax = maxZone(flatten(singleZoneStations));
+		var singleMin = minZone(flatten(singleZoneStations));
 
 		var dualZoneStations = filterZonesByNumber(2, zones);
 
 		if (dualZoneStations.length) {
-			dualZoneStations.forEach(function(zones) {
 
-				var selectedZone = 1;
-				if ((zones[0] - max) < (zones[1] - max)){
+			dualZoneStations.forEach(function(zones) {
+				var selectedZone = null;
+
+				if (getDifference(zones[0], singleMin) < getDifference(zones[1], singleMin)){
 					selectedZone = zones[0];
 				} else {
 					selectedZone = zones[1];
 				};
 
-				if (max >= selectedZone && selectedZone >= min) {
-					console.log('hi');
+				if (singleMax >= selectedZone && selectedZone >= singleMin) {
 				} else {
-					if (selectedZone > max) {
-						max = selectedZone;
+					if (selectedZone > singleMax) {
+						singleMax = selectedZone;
 					} else {
-						min = selectedZone;
+						singleMin = selectedZone;
 					}
 				}
 
 			});
 		}
-		console.log(min);
-		console.log(max);
+
+		console.log(singleMin);
+		console.log(singleMax);
 
 		// 	console.log(dualZoneStations);
 		// 	dualZoneStations.forEach(function(zones) {
