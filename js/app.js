@@ -50,30 +50,32 @@ getStations().then(function(stations) {
 
 	getJourney('1000029', '1000138').then(function(journey) {
 		var journey = journey.journeys[0];
-		var legs = journey.legs;
-		
-		var zones = [];
+		var legs = journey.legs;	
+		var zones = flatten(legs.map(function(leg) {
+			var filteredZones = [];
 
-		legs.forEach(function(leg) {
 			if (leg.departurePoint && leg.departurePoint.naptanId) {
-				zones.push(getZones(leg.departurePoint.naptanId, stations));
+				filteredZones.push(getZones(leg.departurePoint.naptanId, stations));
 			}
 
 			if (leg.path.stopPoints && leg.path.stopPoints.length > 0) {
 				leg.path.stopPoints.forEach(function(stopPoint) {
 					if (stopPoint.id) {
-						zones.push(getZones(stopPoint.id, stations));
+						filteredZones.push(getZones(stopPoint.id, stations));
 					}
 				});
 			}
-		});
+
+			return filteredZones;
+		}));
 
 		var singleZoneStations = filterZonesByNumber(1, zones);
+		var dualZoneStations = filterZonesByNumber(2, zones);
 
 		var singleMax = maxZone(flatten(singleZoneStations));
 		var singleMin = minZone(flatten(singleZoneStations));
 
-		var dualZoneStations = filterZonesByNumber(2, zones);
+		var dualZones = [];
 
 		if (dualZoneStations.length) {
 			dualZoneStations.forEach(function(zones) {
@@ -84,22 +86,18 @@ getStations().then(function(stations) {
 					}
 
 					return b;
-				});
+				}); 
 
-				// check if selectedZone is outside of the range of min to max
-
-
-				if (singleMax >= selectedZone && selectedZone >= singleMin) {
-
-				} else {
-					if (selectedZone > singleMax) {
-						singleMax = selectedZone;
-					} else {
-						singleMin = selectedZone;
-					}
-				}
+				dualZones.push(selectedZone);
 			});
 		}
+
+
+		var max = maxZone([singleMax].concat(dualZones));
+		var min = minZone([singleMin].concat(dualZones));
+
+		console.log(max);
+		console.log(min);
 
 	});
 });
