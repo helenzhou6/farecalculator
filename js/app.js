@@ -1,12 +1,12 @@
 // Gets station.json - listing what zones each station is
-function getStations() {
+function fetchStationsData() {
 	return fetch('/js/stations.json').then(function(e) {
 		return e.json();
 	});
 }
 
 //Fetches the json file from TFL API
-function getJourney(from, to) {
+function fetchJourneyData(from, to) {
 	return fetch('https://api.tfl.gov.uk/journey/journeyresults/' + from + '/to/' + to + '?app_id=8acd79a9&app_key=d433a2d6d9a9c8e8b1b4a6dd4371c69b').then(function(e) {
 		return e.json();
 	});
@@ -39,26 +39,26 @@ function filterZonesByNumber(num, zones) {
 }
 
 /**
- * Compares the Zones
+ * Compares Numbers
  * @function
- * @param {array} zones - the array of zone(s)
+ * @param {array} numbers - the array of number(s)
  * @param {object} operator - what javascript operator passing through (e.g. Math.max)
- * @returns {number} - the single zone after all calculations (reduces to one number)
+ * @returns {number} - the single number after all calculations (reduces to one number)
  * @description Associated with minZone and maxZone: where arrayZones refers to zonesFromSingleStations.
  	 Loops through the array of zones and applies the operator
  */
-function compareZones(arrayZones, operator) {
-	return arrayZones.reduce(function(a, b) {
+function compareNumbers(arrayNumbers, operator) {
+	return arrayNumbers.reduce(function(a, b) {
 		return operator(a, b);
 	});
 }
 
 function maxZone(arrayZones) {	
-	return compareZones(arrayZones, Math.max);
+	return compareNumbers(arrayZones, Math.max);
 }
 
 function minZone(arrayZones) {
-	return compareZones(arrayZones, Math.min);
+	return compareNumbers(arrayZones, Math.min);
 }
 
 /**
@@ -74,7 +74,7 @@ function getDifference(a, b) {
 }
 
 /**
- * Get difference between 2 numbers
+ * Flattens a nested array
  * @function
  * @param {array} array that is an array within another array 
  * @returns {number} - flattens the array so just one array
@@ -87,11 +87,11 @@ function flatten(arr) {
 }
 
 //The complete function in order to get the minimum and maximum zones of that journey (taking into consideration dual zones)
-// stations is the .json file from getStations() function
+// stations is the .json file from fetchStationsData() function
 // Need to make it so that it generates it after each journey
-getStations().then(function(stations) {
+fetchStationsData().then(function(stations) {
 
-	getJourney('1000029', '1000138').then(function(journey) {
+	fetchJourneyData('1000029', '1000138').then(function(journey) {
 		var journey = journey.journeys[0]; // selecting only the first journey from the API
 		var legs = journey.legs; //To look at each leg of the journey
 
@@ -116,47 +116,74 @@ getStations().then(function(stations) {
 			return tempZones;
 		}));
 
+		// console.log(filterZonesByNumber(1, allZones));
+		// debugger;
+
 		//Filters all the stations and split them into zonesFromSingleStations and zonesFromDualStations
-		var zonesFromSingleStations = flatten(filterZonesByNumber(1, allZones));  
+		// var zonesFromSingleStations = flatten(filterZonesByNumber(1, allZones));
+
+
+		var zonesFromSingleStations = filterZonesByNumber(1, allZones);
 		var zonesFromDualStations = filterZonesByNumber(2, allZones); //NB this is an array within an array
+		var finalMaxZone = null;
+		var finalMinZone = null;
 
-		//Calculates the max and min Zones of all the zones that are from stations without any dual zones.
-		var singleMax = maxZone(zonesFromSingleStations);
-		var singleMin = minZone(zonesFromSingleStations);
+		if (zonesFromSingleStations.length === 0) { //for dual zones to dual zones **ASSUMING CAN ONLY TRAVEL FROM THE SAME DUAL ZONES (2/3 to 2/3 and not 2/3 to 3/4)**
+			finalMaxZone = minZone(flatten(zonesFromDualStations));
+			finalMinZone = minZone(flatten(zonesFromDualStations));
+		//**NEED TO ADD A FLAG HERE to say that it is dual to dual zone & what zones (so that can manipulate and pick zones from closest to weekly capped zone rather than min zone)
+		} else {
+			zonesFromSingleStations = flatten(filterZonesByNumber(1, allZones));
+			
 
-		//For each zonesFromDualStations: picks the most appropriate zone and appends to dualZones array 
-		var dualZones = zonesFromDualStations.map(function(z) {
-			return z.reduce(function(a, b) {
-				if (getDifference(a, singleMin) < getDifference(b, singleMin)) {
-					return a;
-				}
-				return b;
+			//Calculates the max and min Zones of all the zones that are from stations without any dual zones.
+			var singleMax = maxZone(zonesFromSingleStations);
+			var singleMin = minZone(zonesFromSingleStations);
+
+			//For each zonesFromDualStations: picks the most appropriate zone and appends to dualZones array 
+			// --> Going from 2/3 to 2/3 —> charges same single 2, 3 or 2-3 (1.70) but should pick zone based on weekly (could be 3) or cap (always smallest: 2)
+			var dualZones = zonesFromDualStations.map(function(z) {
+				return z.reduce(function(a, b) {
+					if (getDifference(a, singleMin) < getDifference(b, singleMin)) {
+						return a;
+					}
+					return b;
+				});
 			});
-		});
 
-		//Adds dualZones to singleMax into an array and calculates the max and min zone of both
-		var finalMaxZone = maxZone([singleMax].concat(dualZones));
-		var finalMinZone = minZone([singleMin].concat(dualZones));
+			//Adds dualZones to singleMax into an array and calculates the max and min zone of both
+			finalMaxZone = maxZone([singleMax].concat(dualZones));
+			finalMinZone = minZone([singleMin].concat(dualZones));
+		}
 
 		// console.log(finalMaxZone);
 		// console.log(finalMinZone);
 	});
-
 });
 
-// Formulate array? Journey 1 object: with zones travelled (array), , time, off-peak or on-peak and single price.
+// Formulate array? Journey 1 object: with zones travelled (array: min and max), time, off-peak or on-peak, single price, flag for dual to dual (and what zones).
 
 //--------------------------------------------
-// Global functions > compareZones (can reduce to the maxZone and minZone of an array) & getDifference bw 2 numbers
+// Global functions > compareNumbers (can reduce to the maxZone and minZone of an array) & getDifference bw 2 numbers
 
 /**
  * Gets fares.json file
  */
-function getFares() {
-	return fetch('/js/fares.json').then(function(resp) {
-		return resp.json();
-	});
-}
+var fetchFareData = (function () {
+	var data = null;
+
+	return function() {
+		if (data) {
+			console.log('oh! we are getting the cached data!');
+			return Promise.resolve(data);
+		}
+
+		return fetch('/js/fares.json').then(function(resp) {
+			data = resp.json();
+			return data;
+		});
+	}
+}());
 
 /**
  * Sort an array of 2 zones chronologically and adds '-'
@@ -194,8 +221,11 @@ function getSingleFare(journey, singleFares) {
 }
 
 
+//SINGLE FARES NEED TO BE ALTERED TO OFF PEAK OR ON PEAK & preferably a counter on whether a cap was reached
+// what about zone 1 to zone 1 exception for off peak>?
+
 // - OYSTER Cheapest Fare
-getFares().then(function(fareData) {
+fetchFareData().then(function(fareData) {
 	var dailyCaps = fareData.dailyCaps;
 	var singleFares = fareData.singleFares;
 
@@ -209,7 +239,7 @@ getFares().then(function(fareData) {
 	];
 
 //cumTotal = the total that updates and becomes the final oyster fare
-	var cumTotal = 0;
+	var oyCumTotal = null;
 //maxZonessofar for each journey updates and is the array of all the zones travelled in so far
 	var maxZonesofar = journeys[0];
 
@@ -222,22 +252,82 @@ getFares().then(function(fareData) {
 		var single = getSingleFare(journey, singleFares);
 	
 		//adds the single fare to the cumulative total
-		cumTotal += single;
+		oyCumTotal += single;
 
 		//if the daily cap for the current maximum zone is reached, then the cum total is overriden by the relevant maximum zone daily cap fare
-		if (cumTotal >= maxZoneDailyCap) {
-			cumTotal = maxZoneDailyCap;
+		if (oyCumTotal >= maxZoneDailyCap) {
+			oyCumTotal = maxZoneDailyCap;
 		}
 	});
 	//This is the final oyster daily fare calculated:
-	console.log(cumTotal);
-});
+	console.log(oyCumTotal);
+
 
 // - CONTACTLESS Cheapest Fare = 
-// 	1. If maximum Zone <= 2, then apply a Zone 1-2 Anytime cap.
 // 		Extension fares for anything out of those zones (since all daily cap start at zone 1, just latter)
 // 	Then for each Zone range (from Zone 1-3 until Zone 1 to max) repeat same calculation.
 // 	---> Compare all the possibilities and select the cheapest (including total single). 
+
+	var conFares = null;
+	var conFinalFare = null;
+	var conMaxZone = maxZone(flatten(journeys));
+
+	journeys.forEach(function(journey) {
+		conSingle = getSingleFare(journey, singleFares);
+		conFares += conSingle;
+	});
+
+	if (conFares > getDailyCap(2, dailyCaps)){
+
+		var conAllComboFares = [];
+		for (i = 2; i <= conMaxZone; i++) {
+			var conCumTotal = getDailyCap(i, dailyCaps);
+			journeys.forEach(function(journey) {
+				//somehow look at all journeys, remove section covered by the daily cap, and charge for that single
+			});
+			conAllComboFares.push(conCumTotal);
+		}
+		conFinalFare = minZone(conAllComboFares, Math.min);
+
+	} else {
+		conFinalFare = conFares;
+	}
+});
+
+
+fetchFareData().then(function(fareData) {
+	var singleFares = fareData.singleFares;	
+
+	/**
+	 * Calculates the extension fare (or none) of a journey
+	 * @function
+	 * @param {array} minmaxTravelcard - the min and max zone of the travelcard covered zones, in an array
+	 * @param {array} minmaxJourney - the min and max zone of the single journey, in an array
+	 * @returns {number} - returns the fare
+	 * @description
+	 */
+	
+	var minmaxTravelcard = [3, 4];
+	var minmaxJourney = [1, 4];
+	
+	function extensionFares(minmaxTravelcard, minmaxJourney) {
+		var minTravelcard = minmaxTravelcard[0];
+		var maxTravelcard = minmaxTravelcard[1];
+		var minSingle = minmaxJourney[0];
+		var maxSingle = minmaxJourney[1];
+		var journeyFare = null;
+	
+		if (!(minTravelcard <= minSingle && minSingle <= maxTravelcard) && (minTravelcard <= maxSingle && maxSingle <= maxTravelcard)) {
+			var y = getDifference(maxSingle, minTravelcard);
+			var journey = [minSingle, maxSingle - (y+1)];
+			journeyFare = getSingleFare(journey, singleFares);
+			console.log(journeyFare);
+	 	} 
+	};
+	
+	extensionFares(minmaxTravelcard, minmaxJourney);
+});
+
 
 
 
