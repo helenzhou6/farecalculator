@@ -9,6 +9,18 @@
 	],
 "creatorBuild": "25504",
 "files": {
+	"\/.gitignore": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/.gitignore",
+		"oF": 0
+		},
+	"\/__tests__": {
+		"ft": 65536,
+		"oA": 1,
+		"oAP": "\/build\/__tests__",
+		"oF": 0
+		},
 	"\/css\/main-min.css": {
 		"aP": 1,
 		"bl": 0,
@@ -96,6 +108,26 @@
 		"oF": 1,
 		"sC": 0,
 		"tS": 0
+		},
+	"\/node_modules": {
+		"ft": 65536,
+		"oA": 2,
+		"oAP": "\/build\/node_modules",
+		"oF": 0
+		},
+	"\/package.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/package-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/yarn.lock": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/yarn.lock",
+		"oF": 0
 		}
 	},
 "hooks": [
@@ -2024,7 +2056,7 @@
 	"languageDefaultsUserDefined": [
 		],
 	"previewPathAddition": "",
-	"skippedFoldersString": "log, _logs, logs, _cache, cache, \/storage\/framework\/sessions, node_modules",
+	"skippedFoldersString": "log, _logs, logs, _cache, cache, \/storage\/framework\/sessions, node_modules, \/__tests__",
 	"sourceFolderName": "source",
 	"uglifyDefinesString": "",
 	"uglifyFlags2": {
