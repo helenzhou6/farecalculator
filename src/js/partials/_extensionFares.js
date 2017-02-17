@@ -1,10 +1,16 @@
+/**
+ * Calculates the extension fare (or none) of a journey
+ * @function
+ * @param {array} minmaxTravelcard - the min and max zone of the travelcard covered zones, in an array
+ * @param {array} minmaxJourney - the min and max zone of the single journey, in an array
+ * @returns {number} - returns the fare
+ * @description
+ */
+
 import {
 	getDifference,
 	getSingleFare,
-	// getZones,
-	// filterZonesByNumber,
 	minNum,
-	// maxNum
 } from '../utility/_utility';
 
 export default function extensionFares(minmaxTravelcard, minmaxJourney, singleFares) {
@@ -13,9 +19,6 @@ export default function extensionFares(minmaxTravelcard, minmaxJourney, singleFa
 	var minSingle = minmaxJourney[0];
 	var maxSingle = minmaxJourney[1];
 	var journeyFare = null;
-
-	
-
 	
 	//CONTACTLESS only uses adult fares
 	//FOR DAILY CAPS: ALWAYS START AT 1 SO MOST OF THIS CODE TOO COMPLEX: but would still work

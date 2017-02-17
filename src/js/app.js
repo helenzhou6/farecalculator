@@ -34,18 +34,17 @@ getData.stations().then(function(stations) {
 getData.fares().then(function(fareData) {
 	var singleFares = fareData.singleFares;	
 
-	/**
-	 * Calculates the extension fare (or none) of a journey
-	 * @function
-	 * @param {array} minmaxTravelcard - the min and max zone of the travelcard covered zones, in an array
-	 * @param {array} minmaxJourney - the min and max zone of the single journey, in an array
-	 * @returns {number} - returns the fare
-	 * @description
-	 */
-	
+
+
+
+	// EXAMPLE
 	var minmaxTravelcard = [3, 4];
 	var minmaxJourney = [1, 6];
 	extensionFares(minmaxTravelcard, minmaxJourney, singleFares);
+
+
+
+
 
 //SINGLE FARES NEED TO BE ALTERED TO OFF PEAK OR ON PEAK & preferably a counter on whether a cap was reached
 // what about zone 1 to zone 1 exception for off peak>?
