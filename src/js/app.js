@@ -6,7 +6,7 @@
 
 // Gets station.json - listing what zones each station is
 function fetchStationsData() {
-	return fetch('/js/stations.json').then(function(e) {
+	return fetch('/data/stations.json').then(function(e) {
 		return e.json();
 	});
 }
@@ -184,7 +184,7 @@ var fetchFareData = (function () {
 			return Promise.resolve(data);
 		}
 
-		return fetch('/js/fares.json').then(function(resp) {
+		return fetch('/data/fares.json').then(function(resp) {
 			data = resp.json();
 			return data;
 		});
