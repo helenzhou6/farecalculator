@@ -9,6 +9,7 @@
     "webpack": "^2.2.1"
   },
   "scripts": {
+    "watch": "webpack -w",
     "test": "jest",
     "precommit": "jest"
   }

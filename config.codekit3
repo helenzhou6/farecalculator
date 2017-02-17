@@ -9,10 +9,34 @@
 	],
 "creatorBuild": "25504",
 "files": {
+	"\/.babelrc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/.babelrc",
+		"oF": 0
+		},
 	"\/.gitignore": {
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/.gitignore",
+		"oF": 0
+		},
+	"\/.idea\/FareCalculator.iml": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/.idea\/FareCalculator.iml",
+		"oF": 0
+		},
+	"\/.idea\/modules.xml": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/.idea\/modules.xml",
+		"oF": 0
+		},
+	"\/.idea\/workspace.xml": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/.idea\/workspace.xml",
 		"oF": 0
 		},
 	"\/__tests__": {
@@ -51,63 +75,36 @@
 		"oF": 0,
 		"oS": 0
 		},
+	"\/data\/fares.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/data\/fares-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/data\/stations.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/data\/stations-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/dist\/js\/app.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/dist\/js\/app-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
 	"\/index.html": {
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/index.html",
 		"oF": 0
-		},
-	"\/js\/app-min.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/js\/app-min-min.js",
-		"oF": 0,
-		"sC": 1,
-		"tS": 0
-		},
-	"\/js\/app.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "\/js\/app-min.js",
-		"oF": 1,
-		"sC": 0,
-		"tS": 0
-		},
-	"\/js\/fares.json": {
-		"ft": 524288,
-		"oA": 1,
-		"oAP": "\/js\/fares-min.json",
-		"oF": 0,
-		"oO": 0,
-		"oS": 1
-		},
-	"\/js\/main-min.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/js\/main-min-min.js",
-		"oF": 0,
-		"sC": 1,
-		"tS": 0
-		},
-	"\/js\/stations.json": {
-		"ft": 524288,
-		"oA": 1,
-		"oAP": "\/js\/stations-min.json",
-		"oF": 0,
-		"oO": 0,
-		"oS": 1
-		},
-	"\/js\/ui.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "\/js\/ui-min.js",
-		"oF": 1,
-		"sC": 0,
-		"tS": 0
 		},
 	"\/node_modules": {
 		"ft": 65536,
@@ -122,6 +119,42 @@
 		"oF": 0,
 		"oO": 0,
 		"oS": 1
+		},
+	"\/src\/js\/app.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/src\/js\/app-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/src\/js\/ui.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/src\/js\/ui-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/src\/js\/utility\/_utility.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/js\/utility\/_utility-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/webpack.config.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/webpack.config-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
 		},
 	"\/yarn.lock": {
 		"ft": 8192,
