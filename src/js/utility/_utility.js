@@ -18,7 +18,7 @@ export function getZones(napTan, stations) {
  * @returns {array} - array of all the zones from stations that only have one zone associated with it (if num = 1) or...
  * @description - zones refers to global allZones
  */
-function filterZonesByNumber(num, zones) {
+export function filterZonesByNumber(num, zones) {
   return zones.filter(function(zone) {
     return zone.length === num;
   });
@@ -39,11 +39,11 @@ function compareNumbers(arrayNumbers, operator) {
   });
 }
 
-function maxZone(arrayZones) {
+export function maxZone(arrayZones) {
   return compareNumbers(arrayZones, Math.max);
 }
 
-function minZone(arrayZones) {
+export function minZone(arrayZones) {
   return compareNumbers(arrayZones, Math.min);
 }
 
@@ -54,7 +54,7 @@ function minZone(arrayZones) {
  * @returns {number} - the difference between the 2 numbers (discarding negative numbers)
  * @description
  */
-function getDifference(a, b) {
+export function getDifference(a, b) {
   return Math.abs(a - b);
   // return a - b;
 }
@@ -66,7 +66,7 @@ function getDifference(a, b) {
  * @returns {number} - flattens the array so just one array
  * @description
  */
-function flatten(arr) {
+export function flatten(arr) {
   return arr.reduce(function(a, b) {
     return a.concat(b);
   });

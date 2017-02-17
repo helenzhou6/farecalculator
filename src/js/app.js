@@ -1,3 +1,5 @@
+import {getZones, filterZonesByNumber, maxZone, minZone, getDifference, flatten} from './utility/_utility';
+
 //TO DO
 //Off peak vs on peak singles (esp including out of zone 1 to zone 1 in evening is offpeak exception)
 //Offpeak daily cap discounts - keep track when daily cap reached but only travelled off peak (if going to do off peak oyster cum totals then would know this)
@@ -261,6 +263,7 @@ fetchFareData().then(function(fareData) {
 
 	// for without any daily caps, only singles added together
 	var conFares = null;
+	var conSingle = null;
 	journeys.forEach(function(journey) {
 		conSingle = getSingleFare(journey, singleFares);
 		conFares += conSingle;
