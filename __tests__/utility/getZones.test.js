@@ -1,4 +1,4 @@
-import {getZones} from './../src/js/utility/_utility';
+import {getZones} from './../../src/js/utility/_utility';
 
 test('gets the zone(s) of a station based on a napTan ID', () => {
   const zone = getZones('sd8skws1', {

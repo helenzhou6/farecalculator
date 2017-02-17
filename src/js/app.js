@@ -1,4 +1,16 @@
-import {getZones, filterZonesByNumber, maxZone, minZone, getDifference, flatten} from './utility/_utility';
+import {
+	getZones, 
+	filterZonesByNumber,
+	maxNum,
+	minNum,
+	getDifference,
+	flatten,
+	journeyToKey,
+	getDailyCap,
+	getSingleFare
+} from './utility/_utility';
+
+import getData from './utility/_getData';
 
 //TO DO
 //Off peak vs on peak singles (esp including out of zone 1 to zone 1 in evening is offpeak exception)
@@ -6,26 +18,12 @@ import {getZones, filterZonesByNumber, maxZone, minZone, getDifference, flatten}
 //possibility of altering oyster so reflects off peak -- then could add  the Railcard or Gold card discount to your Oyster and 1-8  zones or to 9 without watford
 //CAN DO APPRENTICE, 18+ STUDENT, 16+ ZIP, JOB CENTRE ON OYSTER - as no diff bw off peak / on peak daily caps
 
-// Gets station.json - listing what zones each station is
-function fetchStationsData() {
-	return fetch('/data/stations.json').then(function(e) {
-		return e.json();
-	});
-}
-
-//Fetches the json file from TFL API
-function fetchJourneyData(from, to) {
-	return fetch('https://api.tfl.gov.uk/journey/journeyresults/' + from + '/to/' + to + '?app_id=8acd79a9&app_key=d433a2d6d9a9c8e8b1b4a6dd4371c69b').then(function(e) {
-		return e.json();
-	});
-}
-
 //The complete function in order to get the minimum and maximum zones of that journey (taking into consideration dual zones)
 // stations is the .json file from fetchStationsData() function
 // Need to make it so that it generates it after each journey
-fetchStationsData().then(function(stations) {
+getData.stations().then(function(stations) {
 
-	fetchJourneyData('1000029', '1000138').then(function(journey) {
+	getData.journey('1000029', '1000138').then(function(journey) {
 		var journey = journey.journeys[0]; // selecting only the first journey from the API
 		var legs = journey.legs; //To look at each leg of the journey
 
@@ -50,6 +48,8 @@ fetchStationsData().then(function(stations) {
 			return tempZones;
 		}));
 
+		//console.log('ALL ZONES:', allZones);
+
 		// console.log(filterZonesByNumber(1, allZones));
 		// debugger;
 
@@ -63,16 +63,16 @@ fetchStationsData().then(function(stations) {
 		var finalMinZone = null;
 
 		if (zonesFromSingleStations.length === 0) { //for dual zones to dual zones **ASSUMING CAN ONLY TRAVEL FROM THE SAME DUAL ZONES (2/3 to 2/3 and not 2/3 to 3/4)**
-			finalMaxZone = minZone(flatten(zonesFromDualStations));
-			finalMinZone = minZone(flatten(zonesFromDualStations));
+			finalMaxZone = minNum(flatten(zonesFromDualStations));
+			finalMinZone = minNum(flatten(zonesFromDualStations));
 		//**NEED TO ADD A FLAG HERE to say that it is dual to dual zone & what zones (so that can manipulate and pick zones from closest to weekly capped zone rather than min zone)
 		} else {
 			zonesFromSingleStations = flatten(filterZonesByNumber(1, allZones));
 			
 
 			//Calculates the max and min Zones of all the zones that are from stations without any dual zones.
-			var singleMax = maxZone(zonesFromSingleStations);
-			var singleMin = minZone(zonesFromSingleStations);
+			var singleMax = maxNum(zonesFromSingleStations);
+			var singleMin = minNum(zonesFromSingleStations);
 
 			//For each zonesFromDualStations: picks the most appropriate zone and appends to dualZones array 
 			// --> Going from 2/3 to 2/3 —> charges same single 2, 3 or 2-3 (1.70) but should pick zone based on weekly (could be 3) or cap (always smallest: 2)
@@ -86,8 +86,8 @@ fetchStationsData().then(function(stations) {
 			});
 
 			//Adds dualZones to singleMax into an array and calculates the max and min zone of both
-			finalMaxZone = maxZone([singleMax].concat(dualZones));
-			finalMinZone = minZone([singleMin].concat(dualZones));
+			finalMaxZone = maxNum([singleMax].concat(dualZones));
+			finalMinZone = minNum([singleMin].concat(dualZones));
 		}
 
 		// console.log(finalMaxZone);
@@ -98,63 +98,9 @@ fetchStationsData().then(function(stations) {
 // Formulate array? Journey 1 object: with zones travelled (array: min and max), time, off-peak or on-peak, single price, flag for dual to dual (and what zones).
 
 //--------------------------------------------
-// Global functions > compareNumbers (can reduce to the maxZone and minZone of an array) & getDifference bw 2 numbers
+// Global functions > compareNumbers (can reduce to the maxNum and minNum of an array) & getDifference bw 2 numbers
 
-/**
- * Gets fares.json file
- */
-var fetchFareData = (function () {
-	var data = null;
-
-	return function() {
-		if (data) {
-			console.log('oh! we are getting the cached data!');
-			return Promise.resolve(data);
-		}
-
-		return fetch('/data/fares.json').then(function(resp) {
-			data = resp.json();
-			return data;
-		});
-	}
-}());
-
-/**
- * Sort an array of 2 zones chronologically and adds '-'
- * @function
- * @param {array} journey - the array of the 2 zones of that journey
- * @returns {string} - 'x-y'
- * @description - used to get the fares from the json file
- */
-function journeyToKey(journey) {
-	return journey.sort().join('-');
-}
-
-/**
- * Gets the daily cap cost
- * @function
- * @param {number} - the (maximum) zone
- * @param {object} dailyCaps - looks at the dailyCaps object in the fares.json file
- * @returns {number} - gets the daily cap between zones 1 and the zone parameter (as daily caps always starts at zone 1)
- * @description
- */
-function getDailyCap(maxZonesofar, dailyCaps) {
-	return dailyCaps[journeyToKey([1, maxZonesofar])];
-}
-
-/**
- * Gets the single fare
- * @function
- * @param {array} journey - the array of the 2 zones travelling between
- * @param {object} singleFares - looks at the singleFares object in the fares.json file
- * @returns {number} - gets the single fare between those two zones
- * @description
- */
-function getSingleFare(journey, singleFares) {
-	return singleFares[journeyToKey(journey)];
-}
-
-fetchFareData().then(function(fareData) {
+getData.fares().then(function(fareData) {
 	var singleFares = fareData.singleFares;	
 
 	/**
@@ -199,7 +145,7 @@ fetchFareData().then(function(fareData) {
 	 		fares.push(cost);
 			var journey = [minSingle, maxSingle];
 			fares.push(getSingleFare(journey, singleFares));
-			journeyFare = minZone(fares)
+			journeyFare = minNum(fares)
 		//both single zones within travelcard zones
 	 	} else if ((minTravelcard <= minSingle && minSingle <= maxTravelcard) && (minTravelcard <= maxSingle && maxSingle <= maxTravelcard)) {
 	 		journeyFare = 0;
@@ -239,7 +185,7 @@ fetchFareData().then(function(fareData) {
 
 	journeys.forEach(function(journey) {
 		//Gets the maximum zones of all the zones travelled in so far
-		maxZonesofar = maxZone(journey.concat(maxZonesofar));
+		maxZonesofar = maxNum(journey.concat(maxZonesofar));
 
 		//Gets the relevant daily cap to that max zone & single fare for that journey
 		var maxZoneDailyCap = getDailyCap(maxZonesofar, dailyCaps);
@@ -271,7 +217,7 @@ fetchFareData().then(function(fareData) {
 	conAllFares.push(conFares);
 
 	// 	Then for each Zone range (from Zone 1-3 until Zone 1 to max) repeat same calculation.
-	 var conMaxZone = maxZone(flatten(journeys));
+	 var conMaxZone = maxNum(flatten(journeys));
 	 for (var i = 2; i <= conMaxZone; i++) {
 	 	console.log('for daily cap 1 to ' + i);
 	 	var conCumTotal = getDailyCap(i, dailyCaps);
@@ -286,7 +232,7 @@ fetchFareData().then(function(fareData) {
 
 	// 	---> Compare all the possibilities and select the cheapest (including total single). 
 	var conFinalFare = null;
-	conFinalFare = minZone(conAllFares);
+	conFinalFare = minNum(conAllFares);
 	// console.log(conFinalFare);
 });
 
@@ -294,7 +240,6 @@ fetchFareData().then(function(fareData) {
 
 //THIS METHOD RELIES ON THE FACT THAT:
 //- zone x to x fare is the same as zone x-1 to zone x fare
-//- If the difference between the min and max gap zones are > 1, breaks since assuming fare for x to x and x-1 to x are the same.
 //- Assumes daily caps always start at zone 1 (else need min single < capped zone IFs)
 
 // Most combos (without a gap between the 2 travelcards) - extension fare as just between:
@@ -310,12 +255,12 @@ fetchFareData().then(function(fareData) {
 
 //IF min single <= min gap zone && max single >= max gap zone but max single <= max weekly zone
 // then charge min to max gap fare
-//IF min single zone <= min gap zone && max single > max weely zone
+//IF min single zone <= min gap zone && max single > max weekly zone
 // then charge cheapest: full fare or max weekly + 1 to max single zone& & gap fare
-//IF min single and max single both > max weekly zone (or both < min daily)
+//IF min single and max single both > max weekly zone (or both < min daily) OR min single zone > min gap zone && max single zone < max gap zone
 // then charge single min to single max fare
 //ELSE (IF both min and max singles within min and max daily / both min and max singles within min and max weekly)
-// then charge 0
+// then charge 0 - should swap with above
 
 // Remember calculate without any daily caps - should be similar to daily calculations
 
