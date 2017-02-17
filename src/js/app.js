@@ -7,12 +7,13 @@ import {
 	flatten,
 	journeyToKey,
 	getDailyCap,
-	getSingleFare
+	getSingleFare,
 } from './utility/_utility';
 
 import getData from './utility/_getData';
 import getSingleJourneyZones from './partials/_getSingleJourneyZones';
 import extensionFares from './partials/_extensionFares';
+// import splitOrFullFare from './partials/_splitOrFullFare';
 
 //TO DO
 //Off peak vs on peak singles (esp including out of zone 1 to zone 1 in evening is offpeak exception)
@@ -34,17 +35,10 @@ getData.stations().then(function(stations) {
 getData.fares().then(function(fareData) {
 	var singleFares = fareData.singleFares;	
 
-
-
-
 	// EXAMPLE
 	var minmaxTravelcard = [3, 4];
 	var minmaxJourney = [1, 6];
-	extensionFares(minmaxTravelcard, minmaxJourney, singleFares);
-
-
-
-
+	console.log(extensionFares(minmaxTravelcard, minmaxJourney, singleFares));
 
 //SINGLE FARES NEED TO BE ALTERED TO OFF PEAK OR ON PEAK & preferably a counter on whether a cap was reached
 // what about zone 1 to zone 1 exception for off peak>?
@@ -105,13 +99,13 @@ getData.fares().then(function(fareData) {
 	// 	Then for each Zone range (from Zone 1-3 until Zone 1 to max) repeat same calculation.
 	 var conMaxZone = maxNum(flatten(journeys));
 	 for (var i = 2; i <= conMaxZone; i++) {
-	 	console.log('for daily cap 1 to ' + i);
+	 	//console.log('for daily cap 1 to ' + i);
 	 	var conCumTotal = getDailyCap(i, dailyCaps);
 	 	 for (var x = 0; x < journeys.length; x++) {
 	 	 	//adding extension fares to cumTotal
 	 		conCumTotal += extensionFares([1, i], journeys[x], singleFares);
 	 	 };
-	 	console.log(conCumTotal);
+	 	//console.log(conCumTotal);
 
 	 	conAllFares.push(conCumTotal);
 	 }
@@ -142,7 +136,7 @@ getData.fares().then(function(fareData) {
 //IF min single <= min gap zone && max single >= max gap zone but max single <= max weekly zone
 // then charge min to max gap fare
 //IF min single zone <= min gap zone && max single > max weekly zone
-// then charge cheapest: full fare or max weekly + 1 to max single zone& & gap fare
+// then charge cheapest: full fare or max weekly + 1 to max single zone& & gap fare (splitOrFullFare but min single zone would be min gap zone)
 //IF min single and max single both > max weekly zone (or both < min daily) OR min single zone > min gap zone && max single zone < max gap zone
 // then charge single min to single max fare
 //ELSE (IF both min and max singles within min and max daily / both min and max singles within min and max weekly)
