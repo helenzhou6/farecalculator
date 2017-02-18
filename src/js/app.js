@@ -12,8 +12,7 @@ import {
 
 import getData from './utility/_getData';
 import getSingleJourneyZones from './partials/_getSingleJourneyZones';
-import extensionFaresDaily from './partials/_extensionFares';
-// import splitOrFullFare from './partials/_splitOrFullFare';
+import extensionFares from './partials/_extensionFares';
 
 //TO DO
 //Off peak vs on peak singles (esp including out of zone 1 to zone 1 in evening is offpeak exception)
@@ -38,7 +37,7 @@ getData.fares().then(function(fareData) {
 	// EXAMPLE
 	var minmaxTravelcard = [3, 4];
 	var minmaxJourney = [1, 6];
-	console.log(extensionFaresDaily(minmaxJourney[0], minmaxJourney[1], minmaxTravelcard[0], minmaxTravelcard[1], singleFares));
+	console.log(extensionFares(minmaxJourney[0], minmaxJourney[1], minmaxTravelcard[0], minmaxTravelcard[1], singleFares));
 
 //SINGLE FARES NEED TO BE ALTERED TO OFF PEAK OR ON PEAK & preferably a counter on whether a cap was reached
 // what about zone 1 to zone 1 exception for off peak>?
@@ -99,10 +98,8 @@ getData.fares().then(function(fareData) {
 	 	var conCumTotal = getDailyCap(i, dailyCaps);
 	 	 for (var x = 0; x < journeys.length; x++) {
 	 	 	//adding extension fares to cumTotal
-	 		conCumTotal += extensionFaresDaily(1, i, journeys[x][0], journeys[x][1], singleFares);
+	 		conCumTotal += extensionFares(1, i, journeys[x][0], journeys[x][1], singleFares);
 	 	 };
-	 	//console.log(conCumTotal);
-
 	 	conAllFares.push(conCumTotal);
 	 }
 
@@ -110,6 +107,11 @@ getData.fares().then(function(fareData) {
 	var conFinalFare = null;
 	conFinalFare = minNum(conAllFares);
 	
-	//conFinalFare is final oyster daily fare
+	//conFinalFare is final contactless daily fare
 });
+
+//CONTACTLESS WEEKLY
+//IF difference between min weekly and max daily cap > 1 -- THEN THERE ARE GAP ZONES AND SO USE extensionFaresWeekly
+// otherwise use extensionFares and set min travelcard = 1, max travecard = max zone of either daily or weekly cap.
+
 

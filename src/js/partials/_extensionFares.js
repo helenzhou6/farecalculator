@@ -1,25 +1,27 @@
+import {
+	getSingleFare,
+	minNum,
+} from '../utility/_utility';
+
+import splitOrFullFare from './_splitOrFullFare';
+
 /**
  * Calculates the extension fare (or none) of a journey
  * @function
  * @param {number} see below
  * @returns {number} - returns the fare
  * @description
+ 	//CONTACTLESS only uses adult fares
+	//FOR DAILY CAPS: ALWAYS START AT 1 SO MOST OF THIS CODE TOO COMPLEX: but would still work
+	//FOR WEEKLY CAPS: this works out fare without any daily caps or mix daily and weekly where there are no gap zones (so between 1 and max zone of either daily or weekly cap)
  */
 
-
-
-export default function extensionFaresDaily(
+export default function extensionFares(
 	minSingle, maxSingle, //the min and max zones travelled in this single journey
 	minTravelcard, maxTravelcard, //min and max zones of the travelcard zones concerned
 	singleFares) { // to get from single fares json) 
 
 	var journeyFare = null;
-	//IF difference between min weekly and max daily cap > 1
-//-- if min single <= max daily cap, then min chargeable zone is = max daily cap + 1, else min chargeable zone = min single 4?,
-	
-	//CONTACTLESS only uses adult fares
-	//FOR DAILY CAPS: ALWAYS START AT 1 SO MOST OF THIS CODE TOO COMPLEX: but would still work
-	//FOR WEEKLY CAPS: this works out fare without any daily caps OR extension fares with DAILY CAPS
 
 	//if min single isnt within travelcard zones but max single is(NB not needed for daily cap) - charge front
 	if ((minSingle < minTravelcard) && (minTravelcard <= maxSingle && maxSingle <= maxTravelcard)) {
