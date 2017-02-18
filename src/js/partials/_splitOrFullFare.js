@@ -12,9 +12,12 @@ import {
 	minNum,
 } from '../utility/_utility';
 
-export default function splitOrFullFare(minChargedZone, maxChargedZone, minTravelcard, maxTravelcard, singleFares) {
+export default function splitOrFullFare(
+	minChargedZone, maxSingle,
+	minTravelcard, maxTravelcard,
+	singleFares) {
 	return minNum([
-		getSingleFare([minChargedZone, maxChargedZone], singleFares),
-		getSingleFare([minChargedZone, (minTravelcard - 1)], singleFares) + getSingleFare([(maxTravelcard + 1), maxChargedZone], singleFares)
+		getSingleFare([minChargedZone, maxSingle], singleFares),
+		getSingleFare([minChargedZone, (minTravelcard - 1)], singleFares) + getSingleFare([(maxTravelcard + 1), maxSingle], singleFares)
 	]);
 }
