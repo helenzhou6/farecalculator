@@ -18,6 +18,6 @@ export default function splitOrFullFare(
 	singleFares) {
 	return minNum([
 		getSingleFare([minChargedZone, maxSingle], singleFares),
-		getSingleFare([minChargedZone, (minTravelcard - 1)], singleFares) + getSingleFare([(maxTravelcard + 1), maxSingle], singleFares)
+		(getSingleFare([minChargedZone, (minTravelcard - 1)], singleFares) + getSingleFare([(maxTravelcard + 1), maxSingle], singleFares))
 	]);
 }

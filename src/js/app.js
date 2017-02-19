@@ -15,7 +15,7 @@ import extensionFares from './partials/_extensionFares';
 //Offpeak daily cap discounts - keep track when daily cap reached but only travelled off peak (if going to do off peak oyster cum totals then would know this)
 //possibility of altering oyster so reflects off peak -- then could add  the Railcard or Gold card discount to your Oyster and 1-8  zones or to 9 without watford
 //CAN DO APPRENTICE, 18+ STUDENT, 16+ ZIP, JOB CENTRE ON OYSTER - as no diff bw off peak / on peak daily caps
-//NB Weekly capping is always anytime
+//NB Weekly capping is always anytime & daily capping always starts at zone 1
 
 getData.stations().then(function(stations) {
 	getSingleJourneyZones('1000029', '1000138', stations).then((resp) => {
@@ -23,47 +23,16 @@ getData.stations().then(function(stations) {
 	});
 });
 
-// Formulate array? Journey 1 object: with zones travelled (array: min and max), time, off-peak or on-peak, single price, flag for dual to dual (and what zones).
-
-//--------------------------------------------
-// Global functions > compareNumbers (can reduce to the maxNum and minNum of an array) & getDifference bw 2 numbers
-
 getData.fares().then(function(fareData) {
-	var singleFares = fareData.singleFares;
+  var singleFares = fareData.singleFares;
+  var dailyCaps = fareData.dailyCaps;
 
-	// EXAMPLE
-	var minmaxTravelcard = [3, 4];
-	var minmaxJourney = [1, 6];
-
-  console.log(
-    extensionFares({
-      minSingle: minmaxJourney[0],
-      maxSingle: minmaxJourney[1],
-      maxDaily: 2,
-      minTravelcard: minmaxTravelcard[0],
-      maxTravelcard: minmaxTravelcard[1],
-    }, singleFares)
-  );
-
-  console.log(
-    extensionFares({
-      minSingle: minmaxJourney[0],
-      maxSingle: minmaxJourney[1],
-      // maxDaily: 2,
-      minTravelcard: minmaxTravelcard[0],
-      maxTravelcard: minmaxTravelcard[1],
-    }, singleFares)
-  );
-
-// - OYSTER Daily Caps
-	var dailyCaps = fareData.dailyCaps;
-
-	const journeys = [
-		{
-			zones: [2, 1],
+  const journeys = [
+    {
+      zones: [2, 1],
       dualZoneOverlap: false,
       peak: true,
-		},
+    },
     {
       zones: [3, 2],
       dualZoneOverlap: false,
@@ -89,8 +58,9 @@ getData.fares().then(function(fareData) {
       dualZoneOverlap: false,
       peak: true,
     }
-	];
+  ];
 
+	//OYSTER DAILY CAPS
 	var oyCumPeakTotal = 0;
 	var oyCumOffTotal = 0;
   var oyCumTotal = 0;
@@ -99,7 +69,6 @@ getData.fares().then(function(fareData) {
 	journeys.forEach(function(journey) {
 
     //Gets the maximum zones of alls the zones travelled in so far
-    // maxZoneSoFar = (journey.zones.max > maxZoneSoFar ? journey.zones.max : maxZoneSoFar);
     maxZoneSoFar = maxNum([].concat(journey.zones, maxZoneSoFar));
 
     if (journey.peak) {
@@ -139,14 +108,16 @@ getData.fares().then(function(fareData) {
 	});
 	//oyCumTotal is the final oyster daily fare calculated:
 
-// OYSTER WEEKLY CAP
-	//ALL THE DIFFERENT COMBINATIONS OF WEEKLY CAPS with extension fares -- weekly always anytime
+// OYSTER
+  // For daily capping: use the formula above for the daily capping.
 	// Oyster deals with whole journeys when mixing daily cap and weekly - cuts off weekly part but not daily & cum total calc
 
 	// For each possible weekly cap:
 	// for each journey, use extension fares to calculate the single fare (off peak or on peak).
-	// If max zone travelled so far <= max weekly cap && max zone so far => min weekly -1 , then set zone X to min weekly - 1 / else if max zone so far < min weekly - 2 or max zone so fare > max weekly, set zone X as max zone so far
-	// Then use similar to daily capping: add this single fare to cum total peak or off peak, compare to daily cap of max zone X and cap where needed
+	// If max zone travelled so far <= max weekly cap && max zone so far => min weekly -1 , then set zone X to min weekly - 1
+  // --> (ie only compares against daily cap of minSingle to zone X - removes overlap with weekly)
+  //  -----> ELSE (IF max zone so far < min weekly - 1 or max zone so fare > max weekly), set zone X as max zone so far
+	// Then use similar to daily capping: add this single fare to cum total peak or off peak, compare to daily anytime or off peak cap of max zone X and cap where needed
 	//Need set an alert for when reach a Zones 1-4 or Zones 1-6 daily cap, but only travel at off-peak times.
 
 	// To generate possible weekly caps (! remember to do without any weekly caps too)
@@ -186,10 +157,10 @@ getData.fares().then(function(fareData) {
 	//conFinaFare is final contactless daily fare
 });
 
-//CONTACTLESS WEEKLY
-//IF difference between min weekly and max daily cap > 1 -- THEN THERE ARE GAP ZONES AND SO USE extensionFaresWeekly
-// otherwise use extensionFares and set min travelcard = 1, max travecard = max zone of either daily or weekly cap.
-
+//CONTACTLESS
+//For just daily caps OR weekly cap without daily cap: use extension fares without max daily
+//For combo of daily cap and weekly cap: use extension fares with max daily cap
+//
 // OFF PEAK DAILY and WEEKLY: For off peak daily cap combos: if off peak, use extension fares to calculate using both daily and weekly caps
 // --- whilst if peak travel then use extension fares with only weekly travel card caps and add to total
 // ANYTIME DAILY and WEEKLY: use the extension fare to calculate all fares with daily anytime cap and weekly cap (current set up)
