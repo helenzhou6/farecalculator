@@ -1,11 +1,7 @@
 import {
-	getZones, 
-	filterZonesByNumber,
 	maxNum,
 	minNum,
-	getDifference,
 	flatten,
-	journeyToKey,
 	getDailyCap,
 	getSingleFare,
 } from './utility/_utility';
@@ -13,7 +9,6 @@ import {
 import getData from './utility/_getData';
 import getSingleJourneyZones from './partials/_getSingleJourneyZones';
 import extensionFares from './partials/_extensionFares';
-import extensionFaresGap from './partials/_extensionFaresGap';
 
 //TO DO
 //Off peak vs on peak singles (esp including out of zone 1 to zone 1 in evening is offpeak exception)
@@ -24,7 +19,7 @@ import extensionFaresGap from './partials/_extensionFaresGap';
 
 getData.stations().then(function(stations) {
 	getSingleJourneyZones('1000029', '1000138', stations).then((resp) => {
-		console.log(resp);
+		// console.log(resp);
 	});
 });
 
@@ -39,9 +34,27 @@ getData.fares().then(function(fareData) {
 	// EXAMPLE
 	var minmaxTravelcard = [3, 4];
 	var minmaxJourney = [1, 6];
-	console.log(extensionFares(minmaxJourney[0], minmaxJourney[1], minmaxTravelcard[0], minmaxTravelcard[1], singleFares));
 
-	console.log(extensionFaresGap(minmaxJourney[0], minmaxJourney[1], 2, minmaxTravelcard[0], minmaxTravelcard[1], singleFares));
+  console.log(
+    extensionFares({
+      minSingle: minmaxJourney[0],
+      maxSingle: minmaxJourney[1],
+      maxDaily: 2,
+      minTravelcard: minmaxTravelcard[0],
+      maxTravelcard: minmaxTravelcard[1],
+    }, singleFares)
+  );
+
+  console.log(
+    extensionFares({
+      minSingle: minmaxJourney[0],
+      maxSingle: minmaxJourney[1],
+      // maxDaily: 2,
+      minTravelcard: minmaxTravelcard[0],
+      maxTravelcard: minmaxTravelcard[1],
+    }, singleFares)
+  );
+
 // - OYSTER Daily Caps
 	var dailyCaps = fareData.dailyCaps;
 
@@ -80,7 +93,7 @@ getData.fares().then(function(fareData) {
 
 	var oyCumPeakTotal = 0;
 	var oyCumOffTotal = 0;
-	var oyCumTotal = 0;
+  var oyCumTotal = 0;
 	var maxZoneSoFar = null;
 
 	journeys.forEach(function(journey) {
