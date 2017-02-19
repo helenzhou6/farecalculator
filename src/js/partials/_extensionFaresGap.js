@@ -30,31 +30,35 @@ export default function extensionFaresGap(
 	} else {
 		var minChargedZone = minSingle;
 	}
-
+console.log('minChargedZone = ' + minChargedZone);
 	//if min single isnt within travelcard zones but max single is(NB not needed for daily cap) - charge front
 	if ((minSingle < minTravelcard) && (minTravelcard <= maxSingle && maxSingle <= maxTravelcard)) {
 		journeyFare = getSingleFare([minChargedZone, (minTravelcard - 1)], singleFares);
+		console.log('1');
 
 	//if min single within travelcard zones but max single isnt - charge end
  	} else if ((minTravelcard <= minSingle && minSingle <= maxTravelcard) && (maxSingle > maxTravelcard)) {
  		journeyFare = getSingleFare([(maxTravelcard + 1), maxSingle], singleFares);
-
+    console.log('2');
  	//if min single less than min travelcard and max single more than max travelcard (NB not needed for daily cap) - charge front and end
  	} else if (minSingle < minTravelcard && maxSingle > maxTravelcard) {
  		journeyFare = splitOrFullFare(
  			minChargedZone, maxSingle,
  			minTravelcard, maxTravelcard,
  			singleFares);
-
+    console.log('3');
 	//both single zones within travelcard zones
  	} else if ((minTravelcard <= minSingle && minSingle <= maxTravelcard) && (minTravelcard <= maxSingle && maxSingle <= maxTravelcard)
  		|| (minSingle <= maxDaily && maxSingle <= maxDaily)) {
  		journeyFare = 0;
-
+    console.log('4');
  	//both single zones are outside travelcard zones
  	} else {
  		journeyFare = getSingleFare([minChargedZone, maxSingle], singleFares);
+    console.log('5');
  	} //ELSE min single and max single both > max weekly zone (or both < min daily) OR min single zone > min gap zone && max single zone < max gap zone
-
+	console.log(journeyFare);
+	debugger;
+	debugger;
  	return journeyFare;
 };

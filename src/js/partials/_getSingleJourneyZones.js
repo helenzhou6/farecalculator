@@ -73,13 +73,6 @@ export default function getSingleJourneyZones(from, to, stations) {
 			finalMinZone = minNum([singleMin].concat(dualZones));
 		}
 
-		return {
-			max: {
-				zones: finalMaxZone,
-			},
-			min: {
-				zones: finalMinZone,
-			}
-		};
+		return [finalMinZone, finalMaxZone];
 	});
 }
