@@ -24,8 +24,8 @@ getData.stations().then(function(stations) {
 });
 
 getData.fares().then(function(fareData) {
-  var singleFares = fareData.singleFares;
-  var dailyCaps = fareData.dailyCaps;
+  let singleFares = fareData.singleFares;
+  let dailyCaps = fareData.dailyCaps;
 
   const journeys = [
     {
@@ -61,50 +61,28 @@ getData.fares().then(function(fareData) {
   ];
 
 	//OYSTER DAILY CAPS
-	var oyCumPeakTotal = 0;
-	var oyCumOffTotal = 0;
-  var oyCumTotal = 0;
-	var maxZoneSoFar = null;
+  //Need to be semi global to update
+	let oyCumPeakTotal = 0;
+	let oyCumOffTotal = 0;
+  let oyCumTotal = 0;
+	let maxZoneSoFar = null;
 
 	journeys.forEach(function(journey) {
-
     //Gets the maximum zones of alls the zones travelled in so far
     maxZoneSoFar = maxNum([].concat(journey.zones, maxZoneSoFar));
 
-    if (journey.peak) {
-      //Gets the relevant daily cap to that max zone & single fare for that journey
-      var maxZoneAnyDailyCap = getDailyCap(maxZoneSoFar, dailyCaps);
-      var single = getSingleFare(journey.zones, singleFares); //FOR PEAK PAYG RATES
-
-      //adds the single fare to the cumulative total
-      oyCumPeakTotal += single;
-      oyCumOffTotal += single;
-
-      //if the daily cap for the current maximum zone is reached, then the cum total is overriden by the relevant maximum zone daily cap fare
-      if (oyCumPeakTotal >= maxZoneAnyDailyCap) {
-        oyCumPeakTotal = maxZoneAnyDailyCap;
-      }
-			oyCumTotal += minNum([oyCumPeakTotal, oyCumOffTotal]);
-    } else {
-      //Gets the relevant daily cap to that max zone & single fare for that journey
-      var maxZoneOffDailyCap = getDailyCap(maxZoneSoFar, dailyCaps);
-      var maxZoneAnyDailyCap = getDailyCap(maxZoneSoFar, dailyCaps);
-      var single = getSingleFare(journey.zones, singleFares); //FOR OFF PEAK PAYG rates
-
-      //adds the single fare to the cumulative total
-      oyCumPeakTotal += single;
-      oyCumOffTotal += single;
-
-      //if the daily cap for the current maximum zone is reached, then the cum total is overriden by the relevant maximum zone daily cap fare
-      if (oyCumPeakTotal >= maxZoneAnyDailyCap) {
-        oyCumPeakTotal = maxZoneAnyDailyCap;
-      }
-      if (oyCumOffTotal >= maxZoneOffDailyCap) {
-        oyCumOffTotal = maxZoneOffDailyCap; //and set an alert to say off daily cap reached????!!! (but could be overridden after)
-			}
-      oyCumTotal += minNum([oyCumPeakTotal, oyCumOffTotal]);
-		}
-
+    //adds the single fare to the cumulative total
+    oyCumPeakTotal += getSingleFare(journey.zones, singleFares); //FOR PEAK PAYG RATES;
+    oyCumOffTotal += getSingleFare(journey.zones, singleFares); //FOR PEAK PAYG RATES
+    //if OFF peak travel and the OFF PEAK daily cap for current maximum zone is reached, then the cum total is overriden by the relevant maximum zone daily cap fare
+    if (!journey.peak && oyCumOffTotal >= getDailyCap(maxZoneSoFar, dailyCaps)) {
+      oyCumOffTotal = getDailyCap(maxZoneSoFar, dailyCaps); //and set an alert to say off daily cap reached????!!! (but could be overridden after)
+    }
+    //if the daily cap for the current maximum zone is reached, then the cum total is overriden by the relevant maximum zone daily cap fare
+    if (oyCumPeakTotal >= getDailyCap(maxZoneSoFar, dailyCaps)) {
+      oyCumPeakTotal = getDailyCap(maxZoneSoFar, dailyCaps);
+    }
+    oyCumTotal += minNum([oyCumPeakTotal, oyCumOffTotal]);
 	});
 	//oyCumTotal is the final oyster daily fare calculated:
 
@@ -128,24 +106,26 @@ getData.fares().then(function(fareData) {
 	// 	}
   // };
 
+
+
+//---------------------------------
 // - CONTACTLESS Cheapest Fare = with daily caps
 	//The array of all combination prices to be reduce to cheapest one
-	var conAllFares = [];
+	let conAllFares = [];
 
 	// for without any daily caps, only singles added together
-	var conFares = null;
+	let conFares = null;
 	journeys.forEach(function(journey) {
-		var conSingle = getSingleFare(journey.zones, singleFares);
-		conFares += conSingle;
+		conFares += getSingleFare(journey.zones, singleFares);
 	});
 	conAllFares.push(conFares);
 
 	// 	Then for each Zone range (from Zone 1-3 until Zone 1 to max) repeat same calculation.
-	 var conMaxZone = maxNum(flatten(journeys.map(j => j.zones)));
-	 for (var i = 2; i <= conMaxZone; i++) {
+	 let conMaxZone = maxNum(flatten(journeys.map(j => j.zones)));
+	 for (let i = 2; i <= conMaxZone; i++) {
 	 	//console.log('for daily cap 1 to ' + i);
-	 	var conCumTotal = getDailyCap(i, dailyCaps);
-	 	 for (var x = 0; x < journeys.length; x++) {
+	 	let conCumTotal = getDailyCap(i, dailyCaps);
+	 	 for (let x = 0; x < journeys.length; x++) {
 	 	 	//adding extension fares to cumTotal
 	 		conCumTotal += extensionFares(1, i, journeys[x][0], journeys[x][1], singleFares);
 	 	 };
@@ -153,8 +133,8 @@ getData.fares().then(function(fareData) {
 	 }
 
 	// 	---> Compare all the possibilities and select the cheapest (including total single).
-	var conFinalFare = minNum(conAllFares);
-	//conFinaFare is final contactless daily fare
+	return minNum(conAllFares);
+	//this returns the final contactless daily fare
 });
 
 //CONTACTLESS
