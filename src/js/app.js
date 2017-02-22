@@ -9,6 +9,7 @@ import {
 import getData from './utility/_getData';
 import getSingleJourneyZones from './partials/_getSingleJourneyZones';
 import extensionFares from './partials/_extensionFares';
+import oysterDayTotals from './partials/_oysterDayTotal';
 
 //TO DO
 //Off peak vs on peak singles (esp including out of zone 1 to zone 1 in evening is offpeak exception)
@@ -29,62 +30,110 @@ getData.fares().then(function(fareData) {
 
   const journeys = [
     {
-      zones: [2, 1],
-      dualZoneOverlap: false,
-      peak: true,
-    },
-    {
-      zones: [3, 2],
+      zones: [1, 6],
       dualZoneOverlap: false,
       peak: false,
     },
     {
-      zones: [2, 1],
+      zones: [1, 2],
       dualZoneOverlap: false,
       peak: false,
     },
     {
-      zones: [2, 1],
+      zones: [1, 2],
       dualZoneOverlap: false,
       peak: false,
     },
     {
-      zones: [4, 2],
+      zones: [1, 2],
       dualZoneOverlap: false,
       peak: false,
     },
     {
-      zones: [1, 3],
+      zones: [1, 2],
       dualZoneOverlap: false,
-      peak: true,
+      peak: false,
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      peak: false,
     }
   ];
 
+  // Object.keys(response.dailyCaps).forEach((key) => {
+  //   key.split('-');
+  //
+  //   [1, 2]
+  // });
+
+  // minTravelCard
+  // maxTravelCard
+
 	//OYSTER DAILY CAPS
   //Need to be semi global to update
-	let oyCumPeakTotal = 0;
-	let oyCumOffTotal = 0;
-  let oyCumTotal = 0;
-	let maxZoneSoFar = null;
+  console.log(oysterDayTotals({journeys, singleFares, dailyCaps}));
+  // console.log(oysterDayTotals(journeys, singleFares, dailyCaps));
 
-	journeys.forEach(function(journey) {
-    //Gets the maximum zones of alls the zones travelled in so far
-    maxZoneSoFar = maxNum([].concat(journey.zones, maxZoneSoFar));
-
-    //adds the single fare to the cumulative total
-    oyCumPeakTotal += getSingleFare(journey.zones, singleFares); //FOR PEAK PAYG RATES;
-    oyCumOffTotal += getSingleFare(journey.zones, singleFares); //FOR PEAK PAYG RATES
-    //if OFF peak travel and the OFF PEAK daily cap for current maximum zone is reached, then the cum total is overriden by the relevant maximum zone daily cap fare
-    if (!journey.peak && oyCumOffTotal >= getDailyCap(maxZoneSoFar, dailyCaps)) {
-      oyCumOffTotal = getDailyCap(maxZoneSoFar, dailyCaps); //and set an alert to say off daily cap reached????!!! (but could be overridden after)
-    }
-    //if the daily cap for the current maximum zone is reached, then the cum total is overriden by the relevant maximum zone daily cap fare
-    if (oyCumPeakTotal >= getDailyCap(maxZoneSoFar, dailyCaps)) {
-      oyCumPeakTotal = getDailyCap(maxZoneSoFar, dailyCaps);
-    }
-    oyCumTotal += minNum([oyCumPeakTotal, oyCumOffTotal]);
-	});
 	//oyCumTotal is the final oyster daily fare calculated:
+
+
+  // OYSTER WEEKLY
+// Oyster deals with whole journeys when mixing daily cap and weekly - cuts off weekly part but not daily & cum total calc
+
+// For each possible weekly cap:
+
+// To generate possible weekly caps (! remember to do without any weekly caps too)
+// var possWeeklyCombos =[];
+// for (m = 1, m < 7, m++) {
+//   for (x = 2, x < 7, x++) {
+  //    possWeeklyCombos.push([m, x]);
+//   }
+  // };
+
+  // [[1,3], [1,2]]
+
+//
+//
+//
+//
+//   let maxZoneSoFar = null;
+//   let oyCumTotal = 0;
+//   journeys.forEach(function(journey) { //AND FOR EACH DAY
+//     let singleFare = extensionFare({minSingle, maxSingle, minTravelcard, maxTravelcard}, singleFares); //OFF PEAK OR ON PEAK
+//     //adds the single fare to the cumulative total
+//     oyCumPeakTotal += singleFare;
+//     oyCumOffTotal += singleFare;
+//     //SINGLE FARE
+// //Gets the maximum zones of all zones travelled in so far
+//     maxZoneSoFar = maxNum([].concat(journey.zones, maxZoneSoFar));
+//     if ((maxZoneSoFar <= maxTravelcard) && (maxZoneSoFar >= (minTravelcard – 1))) {
+//       let zoneDaily = minTravelcard -1; //(ie only compares against daily cap of minSingle to zoneDaily - removes overlap with weekly)
+//     } else
+//     let zoneDaily = maxZoneSoFar;
+//     }
+//
+// THE REST OF THIS IS BASICALLY A DUPLICATE OF THE DAILY FORMULA
+//   if OFF peak travel and the OFF PEAK daily cap for current maximum zone is reached, then the cum total is overriden by the relevant maximum zone daily cap fare
+//   if (!journey.peak && oyCumOffTotal >= getDailyCap(zoneDaily, dailyCaps)) {
+//     oyCumOffTotal = getDailyCap(zoneDaily, dailyCaps); //and set an alert to say off daily cap reached????!!! (but could be overridden after)
+//   }
+//   //if the daily cap for the current maximum zone is reached, then the cum total is overriden by the relevant maximum zone daily cap fare
+//   if (oyCumPeakTotal >= getDailyCap(zoneDaily, dailyCaps)) {
+//     oyCumPeakTotal = getDailyCap(zoneDaily, dailyCaps);
+//   }
+//   oyCumTotal += minNum([oyCumPeakTotal, oyCumOffTotal]);
+// });
+// oyCumTotal is the final oyster daily fare calculated for each day with a weekly cap.
+
+
+
+
+
+
+
+
+
 
 // OYSTER
   // For daily capping: use the formula above for the daily capping.
