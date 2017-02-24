@@ -15,9 +15,9 @@ import {
 export default function splitOrFullFare(
 	minChargedZone, maxSingle,
 	minTravelcard, maxTravelcard,
-	singleFares) {
+	singleFares, type) {
 	return minNum([
-		getSingleFare([minChargedZone, maxSingle], singleFares),
-		(getSingleFare([minChargedZone, (minTravelcard - 1)], singleFares) + getSingleFare([(maxTravelcard + 1), maxSingle], singleFares))
+		getSingleFare([minChargedZone, maxSingle], singleFares, type),
+		(getSingleFare([minChargedZone, (minTravelcard - 1)], singleFares, type) + getSingleFare([(maxTravelcard + 1), maxSingle], singleFares, type))
 	]);
 }

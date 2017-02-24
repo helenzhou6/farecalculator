@@ -97,8 +97,8 @@ function zoneToJourney(zone) {
  * @returns {number} - gets the daily cap between zones 1 and the zone parameter (as daily caps always starts at zone 1)
  * @description
  */
-export function getDailyCap(maxZonesofar, dailyCaps) {
-  return dailyCaps[journeyToKey([1, maxZonesofar])];
+export function getDailyCap(maxZonesofar, dailyCaps, type) {
+  return dailyCaps[journeyToKey([1, maxZonesofar])][type];
 }
 
 export const getCap = _.curry((zone, caps) => caps[zoneToJourney(zone)]);
@@ -111,8 +111,9 @@ export const getCap = _.curry((zone, caps) => caps[zoneToJourney(zone)]);
  * @returns {number} - gets the single fare between those two zones
  * @description
  */
-export function getSingleFare(journey, singleFares) {
-  return singleFares[journeyToKey(journey)];
+export function getSingleFare(journey, singleFares, type) {
+  //debugger;
+  return singleFares[journeyToKey(journey)][type];
 }
 
 /**
