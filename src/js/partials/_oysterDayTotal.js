@@ -1,8 +1,11 @@
+import _ from 'lodash/fp';
+
 import {
   minNum,
   maxNum,
-  getDailyCap,
+  getCap,
   getSingleFare,
+  met,
 } from './../utility/_utility';
 
 export default function oysterDayTotal(data) {
@@ -68,36 +71,39 @@ export default function oysterDayTotal(data) {
   //   return current;
 // }
 
+  // var t = getDailyCap(2);
+  //
+  // debugger;
 
-  function met(cap) {
-    return function(value) {
-      return value >= cap;
-    }
-  }
+  const getDailyCap = getCap(_, dailyCaps);
+  const capMet = _.compose(met, getDailyCap);
 
   const totals = journeys.reduce(function (a, b) {
     const singleFare = getSingleFare(b.zones, singleFares);
     const maxZone = maxNum([].concat(a.maxZone, b.zones));
-    const metDailyCap = met(getDailyCap(maxZone, dailyCaps));
+    const metDailyCap = capMet(maxZone);
+
+    console.log(metDailyCap);
+    debugger;
 
     let peakTotal = a.peakTotal + singleFare;
     let offPeakTotal = a.offPeakTotal + singleFare;
 
     //if OFF peak travel and the OFF PEAK daily cap for current maximum zone is reached, then the cum total is overriden by the relevant maximum zone daily cap fare
     if (!a.peak && metDailyCap(offPeakTotal)) {
-      offPeakTotal = getDailyCap(maxZone, dailyCaps); //and set an alert to say off daily cap reached????!!! (but could be overridden after)
+      offPeakTotal = getDailyCap(maxZone); //and set an alert to say off daily cap reached????!!! (but could be overridden after)
     }
+
 
     //if the daily cap for the current maximum zone is reached, then the cum total is overriden by the relevant maximum zone daily cap fare
     if (metDailyCap(peakTotal)) {
-      peakTotal = getDailyCap(maxZone, dailyCaps);
+      peakTotal = getDailyCap(maxZone);
     }
 
     return {
       peakTotal,
       offPeakTotal,
       maxZone,
-      zones: b.zones
     };
   }, {
     peakTotal: 0,

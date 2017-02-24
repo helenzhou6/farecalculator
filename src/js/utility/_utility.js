@@ -1,3 +1,5 @@
+import _ from 'lodash/fp';
+
 /**
  * Gets Zones
  * @function
@@ -83,6 +85,10 @@ export function journeyToKey(journey) {
   return journey.sort().join('-');
 }
 
+function zoneToJourney(zone) {
+  return journeyToKey([1, zone]);
+}
+
 /**
  * Gets the daily cap cost
  * @function
@@ -95,6 +101,8 @@ export function getDailyCap(maxZonesofar, dailyCaps) {
   return dailyCaps[journeyToKey([1, maxZonesofar])];
 }
 
+export const getCap = _.curry((zone, caps) => caps[zoneToJourney(zone)]);
+
 /**
  * Gets the single fare
  * @function
@@ -106,3 +114,12 @@ export function getDailyCap(maxZonesofar, dailyCaps) {
 export function getSingleFare(journey, singleFares) {
   return singleFares[journeyToKey(journey)];
 }
+
+/**
+ * Determines if a numeric target has been met or surpassed
+ * @function
+ * @param {number} target - target value to compare against
+ * @param {number} value - the value to compare against the target
+ * @description
+ */
+export const met = _.curry((target, value) => value >= target);

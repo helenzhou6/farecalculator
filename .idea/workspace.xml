@@ -14,104 +14,52 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.44375">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="extensionFares.test.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/__tests__/utility/extensionFares.test.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="186">
-                  <caret line="194" column="10" lean-forward="false" selection-start-line="194" selection-start-column="10" selection-end-line="194" selection-end-column="10" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="splitOrFullFare.test.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/__tests__/utility/splitOrFullFare.test.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="414">
-                  <caret line="18" column="15" lean-forward="false" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="_extensionFares.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/js/partials/_extensionFares.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="508">
-                  <caret line="44" column="5" lean-forward="false" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
-                  <folding>
-                    <element signature="e#0#63#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/js/app.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="736">
-                  <caret line="72" column="20" lean-forward="false" selection-start-line="72" selection-start-column="20" selection-end-line="72" selection-end-column="20" />
-                  <folding>
-                    <element signature="e#0#95#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="_extensionFares.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/js/partials/_extensionFares.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="393">
-                  <caret line="39" column="27" lean-forward="false" selection-start-line="39" selection-start-column="27" selection-end-line="39" selection-end-column="27" />
-                  <folding>
-                    <element signature="e#0#63#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="_utility.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/js/utility/_utility.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="347">
-                  <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="fares.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/data/fares.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="46">
-                  <caret line="2" column="8" lean-forward="false" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="_oysterDayTotal.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/js/partials/_oysterDayTotal.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="508">
-                  <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#0#92#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="_extensionFares.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/partials/_extensionFares.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+              <folding>
+                <element signature="e#0#63#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fares.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/fares.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="46">
+              <caret line="2" column="8" lean-forward="false" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_oysterDayTotal.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/js/partials/_oysterDayTotal.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="669">
+              <caret line="91" column="116" lean-forward="false" selection-start-line="91" selection-start-column="116" selection-end-line="91" selection-end-column="116" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_utility.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/utility/_utility.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="82" column="2" lean-forward="false" selection-start-line="82" selection-start-column="2" selection-end-line="82" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -146,7 +94,6 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/__tests__/getZones.test.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/js/utility/_utility.js" />
         <option value="$PROJECT_DIR$/src/js/partials/_getSingleJourneyZones.js" />
         <option value="$PROJECT_DIR$/src/js/partials/_extensionFaresGap.js" />
         <option value="$PROJECT_DIR$/src/js/partials/_splitOrFullFare.js" />
@@ -154,8 +101,9 @@
         <option value="$PROJECT_DIR$/__tests__/utility/extensionFares.test.js" />
         <option value="$PROJECT_DIR$/src/js/partials/_extensionFares.js" />
         <option value="$PROJECT_DIR$/src/js/app.js" />
-        <option value="$PROJECT_DIR$/src/js/partials/_oysterDayTotal.js" />
         <option value="$PROJECT_DIR$/data/fares.json" />
+        <option value="$PROJECT_DIR$/src/js/utility/_utility.js" />
+        <option value="$PROJECT_DIR$/src/js/partials/_oysterDayTotal.js" />
       </list>
     </option>
   </component>
@@ -176,9 +124,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
+    <option name="x" value="1272" />
     <option name="y" value="23" />
-    <option name="width" value="2560" />
+    <option name="width" value="1287" />
     <option name="height" value="1338" />
   </component>
   <component name="ProjectView">
@@ -267,6 +215,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="partials" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FareCalculator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FareCalculator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="node_modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FareCalculator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FareCalculator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="node_modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lodash" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -568,15 +548,15 @@
       <workItem from="1487458507938" duration="716000" />
       <workItem from="1487495025109" duration="23000" />
       <workItem from="1487495059027" duration="3984000" />
-      <workItem from="1487499204211" duration="38516000" />
+      <workItem from="1487499204211" duration="48904000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44721000" />
+    <option name="totallyTimeSpent" value="55109000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="23" width="2560" height="1338" extended-state="6" />
+    <frame x="1272" y="23" width="1287" height="1338" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -586,7 +566,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11992188" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11965812" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -634,14 +614,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1311">
-          <caret line="57" column="28" lean-forward="false" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/stations.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -733,9 +705,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#95#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -799,9 +769,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#95#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -942,26 +910,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/utility/extensionFares.test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="194" column="10" lean-forward="false" selection-start-line="194" selection-start-column="10" selection-end-line="194" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/__tests__/utility/getZones.test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/utility/_utility.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -974,31 +926,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/utility/splitOrFullFare.test.js">
+    <entry file="file://$PROJECT_DIR$/src/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="18" column="15" lean-forward="false" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
+        <state relative-caret-position="759">
+          <caret line="73" column="35" lean-forward="false" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/partials/_extensionFares.js">
+    <entry file="file://$PROJECT_DIR$/__tests__/utility/splitOrFullFare.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="39" column="27" lean-forward="false" selection-start-line="39" selection-start-column="27" selection-end-line="39" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#63#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="713">
+          <caret line="31" column="2" lean-forward="false" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/app.js">
+    <entry file="file://$PROJECT_DIR$/__tests__/utility/extensionFares.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="72" column="20" lean-forward="false" selection-start-line="72" selection-start-column="20" selection-end-line="72" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#95#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="186">
+          <caret line="194" column="10" lean-forward="false" selection-start-line="194" selection-start-column="10" selection-end-line="194" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/lodash/function.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="16" column="26" lean-forward="true" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1010,12 +966,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/partials/_extensionFares.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/utility/_utility.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="82" column="2" lean-forward="false" selection-start-line="82" selection-start-column="2" selection-end-line="82" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/partials/_oysterDayTotal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+        <state relative-caret-position="669">
+          <caret line="91" column="116" lean-forward="false" selection-start-line="91" selection-start-column="116" selection-end-line="91" selection-end-column="116" />
           <folding>
-            <element signature="e#0#92#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
