@@ -101,7 +101,7 @@ export function getDailyCap(maxZonesofar, dailyCaps, type) {
   return dailyCaps[journeyToKey([1, maxZonesofar])][type];
 }
 
-export const getCap = _.curry((zone, caps) => caps[zoneToJourney(zone)]);
+export const getCap = _.curry((zone, type, caps) => caps[zoneToJourney(zone)][type]);
 
 /**
  * Gets the single fare
@@ -112,7 +112,7 @@ export const getCap = _.curry((zone, caps) => caps[zoneToJourney(zone)]);
  * @description
  */
 export function getSingleFare(journey, singleFares, type) {
-  //debugger;
+  // debugger;
   return singleFares[journeyToKey(journey)][type];
 }
 

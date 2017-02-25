@@ -4,12 +4,14 @@ import {
 	flatten,
 	getDailyCap,
 	getSingleFare,
+	getCap,
+	met,
 } from './utility/_utility';
 
 import getData from './utility/_getData';
 import getSingleJourneyZones from './partials/_getSingleJourneyZones';
 import extensionFares from './partials/_extensionFares';
-import oysterDayTotals from './partials/_oysterDayTotal';
+import oysterDayTotal from './partials/_oysterDayTotal';
 
 // TO DO
 // Off peak vs on peak singles (esp including out of zone 1 to zone 1 in evening is offpeak exception)
@@ -24,45 +26,54 @@ import oysterDayTotals from './partials/_oysterDayTotal';
 // 	});
 // });
 
-// getData.fares().then(function(fareData) {
-//   let singleFares = fareData.singleFares;
-//   let dailyCaps = fareData.dailyCaps;
+getData.fares().then(function(fareData) {
+  let singleFares = fareData.singleFares;
+  let dailyCaps = fareData.dailyCaps;
 
-//   const journeys = [
-//     {
-//       zones: [1, 6],
-//       dualZoneOverlap: false,
-//       peak: false,
-//     },
-//     {
-//       zones: [1, 2],
-//       dualZoneOverlap: false,
-//       peak: false,
-//     },
-//     {
-//       zones: [1, 2],
-//       dualZoneOverlap: false,
-//       peak: false,
-//     },
-//     {
-//       zones: [1, 2],
-//       dualZoneOverlap: false,
-//       peak: false,
-//     },
-//     {
-//       zones: [1, 2],
-//       dualZoneOverlap: false,
-//       peak: false,
-//     },
-//     {
-//       zones: [1, 2],
-//       dualZoneOverlap: false,
-//       peak: false,
-//     },
-//   ];
-// });
+  const journeys = [
+    {
+      zones: [1, 6],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
+  ];
+
+	console.log(
+        oysterDayTotal({
+    		journeys,
+    		dailyCaps, //JSON
+    		minTravelcard: 2,
+    		maxTravelcard: 3,
+    	}, singleFares)
+    );
 
 
+});
 // //---------------------------------
 // // - CONTACTLESS Cheapest Fare = with daily caps
 // 	//The array of all combination prices to be reduce to cheapest one
