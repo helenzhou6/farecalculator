@@ -1,5 +1,3 @@
-import _ from 'ramda';
-
 /**
  * Gets Zones
  * @function
@@ -47,6 +45,7 @@ export function maxNum(arrayZones) {
 
 export function minNum(arrayZones) {
   return compareNumbers(arrayZones, Math.min);
+  debugger;
 }
 
 /**
@@ -97,6 +96,14 @@ export function zoneToJourney(zone) {
   return journeyToKey([1, zone]);
 }
 
+export function keyToJourney(key) {
+  return key.split('-').sort().map(num => parseInt(num));
+}
+
+export function keysToJourney(weeklyCaps) {
+  return Object.keys(weeklyCaps).map((cap) => keyToJourney(cap));
+}
+
 /**
  * Gets the daily cap cost
  * @function
@@ -105,24 +112,14 @@ export function zoneToJourney(zone) {
  * @returns {number} - gets the daily cap between zones 1 and the zone parameter (as daily caps always starts at zone 1)
  * @description
  */
-export function getDailyCap(maxZonesofar, dailyCaps, type) {
-  return dailyCaps[journeyToKey([1, maxZonesofar])][type];
-}
+// export function getDailyCap(maxZonesofar, dailyCaps, type) {
+//   return dailyCaps[journeyToKey([1, maxZonesofar])][type];
+// }
 
-export const getCap = _.curry((key, type, caps) => caps[typeof key == "array" ? journeyToKey(key) : zoneToJourney(key)][type]);
-
-/**
- * Gets the single fare
- * @function
- * @param {array} journey - the array of the 2 zones travelling between
- * @param {object} singleFares - looks at the singleFares object in the fares.json file
- * @returns {number} - gets the single fare between those two zones
- * @description
- */
-export function getSingleFare(journey, singleFares, type) {
-  // debugger;
-  return singleFares[journeyToKey(journey)][type];
-}
+export const getFare = (key, type, caps) => {
+  const fare = caps[key.constructor === Array ? journeyToKey(key) : zoneToJourney(key)];
+  return type ? fare[type] : fare;
+};
 
 /**
  * Determines if a numeric target has been met or surpassed
@@ -131,4 +128,4 @@ export function getSingleFare(journey, singleFares, type) {
  * @param {number} value - the value to compare against the target
  * @description
  */
-export const met = _.curry((target, value) => value >= target);
+export const met = (value, target) => value >= target;

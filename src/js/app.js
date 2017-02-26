@@ -2,23 +2,20 @@ import {
 	maxNum,
 	minNum,
 	flatten,
-	getDailyCap,
-	getSingleFare,
-	getCap,
+  getFare,
 	met,
+  keyToJourney
 } from './utility/_utility';
 
 import getData from './utility/_getData';
 import getSingleJourneyZones from './partials/_getSingleJourneyZones';
 import extensionFares from './partials/_extensionFares';
-import oysterDayTotal from './partials/_oysterDayTotal';
+import oyster from './partials/_oyster';
 
 // TO DO
-// Off peak vs on peak singles (esp including out of zone 1 to zone 1 in evening is offpeak exception)
 // Offpeak daily cap discounts - keep track when daily cap reached but only travelled off peak (if going to do off peak oyster cum totals then would know this)
-// possibility of altering oyster so reflects off peak -- then could add  the Railcard or Gold card discount to your Oyster and 1-8  zones or to 9 without watford
+// Add the Railcard or Gold card discount to your Oyster
 // CAN DO APPRENTICE, 18+ STUDENT, 16+ ZIP, JOB CENTRE ON OYSTER - as no diff bw off peak / on peak daily caps
-// NB Weekly capping is always anytime & daily capping always starts at zone 1
 
 // getData.stations().then(function (stations) {
 // 	getSingleJourneyZones('1000029', '1000138', stations).then((resp) => {
@@ -30,7 +27,13 @@ getData.fares().then(function(fareData) {
   let singleFares = fareData.singleFares;
   let dailyCaps = fareData.dailyCaps;
 
-  const journeys = [
+const days = [
+  [
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
     {
       zones: [1, 2],
       dualZoneOverlap: false,
@@ -56,28 +59,212 @@ getData.fares().then(function(fareData) {
       dualZoneOverlap: false,
       type: "anytime",
     },
+  ],
+  [
     {
       zones: [1, 2],
       dualZoneOverlap: false,
       type: "anytime",
     },
-  ];
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
+  ],
+  [
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
+  ],
+  [
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
+  ],
+  [
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
+  ],
+  [
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
+  ],
+  [
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [1, 2],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
+  ],
+];
 
-	console.log(
-      oysterDayTotal({
-    		minTravelcard: 3,
-    		maxTravelcard: 4,
-    	}, {
-        journeys,
-        dailyCaps, //JSON
-        singleFares,
-      })
-    );
+  console.log(
+    oyster(days, fareData)
+  );
 });
-// //---------------------------------
-// // - CONTACTLESS Cheapest Fare = with daily caps
-// 	//The array of all combination prices to be reduce to cheapest one
-// 	let conAllFares = [];
+
+
+
+
+//---------------------------------
+// - CONTACTLESS Cheapest Fare = with daily caps
+	//The array of all combination prices to be reduce to cheapest one
 
 // 	// for without any daily caps, only singles added together
 // 	let conFares = null;
@@ -103,7 +290,6 @@ getData.fares().then(function(fareData) {
 // 	//this returns the final contactless daily fare
 // });
 
-//CONTACTLESS
 //For just daily caps OR weekly cap without daily cap: use extension fares without max daily
 //For combo of daily cap and weekly cap: use extension fares with max daily cap
 //

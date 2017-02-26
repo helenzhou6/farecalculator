@@ -183,11 +183,11 @@ import oysterDayTotal from './../../src/js/partials/_oysterDayTotal';
     }
   };
 
-const journeys = [
+const journeysMix = [
   {
     zones: [1, 2],
     dualZoneOverlap: false,
-    type: "offPeak",
+    type: "anytime",
   },
   {
     zones: [1, 2],
@@ -216,14 +216,195 @@ const journeys = [
   },
 ];
 
+const journeys = [
+  {
+    zones: [1, 2],
+    dualZoneOverlap: false,
+    type: "anytime",
+  },
+  {
+    zones: [1, 2],
+    dualZoneOverlap: false,
+    type: "offPeak",
+  },
+  {
+    zones: [1, 2],
+    dualZoneOverlap: false,
+    type: "offPeak",
+  },
+  {
+    zones: [1, 2],
+    dualZoneOverlap: false,
+    type: "offPeak",
+  },
+  {
+    zones: [1, 2],
+    dualZoneOverlap: false,
+    type: "offPeak",
+  },
+  {
+    zones: [1, 2],
+    dualZoneOverlap: false,
+    type: "anytime",
+  },
+];
+
+
+const journeysZ6 = [
+  {
+    zones: [1, 6],
+    dualZoneOverlap: false,
+    type: "anytime",
+  },
+  {
+    zones: [1, 2],
+    dualZoneOverlap: false,
+    type: "anytime",
+  },
+  {
+    zones: [1, 2],
+    dualZoneOverlap: false,
+    type: "anytime",
+  },
+  {
+    zones: [1, 2],
+    dualZoneOverlap: false,
+    type: "anytime",
+  },
+  {
+    zones: [1, 2],
+    dualZoneOverlap: false,
+    type: "anytime",
+  },
+  {
+    zones: [1, 2],
+    dualZoneOverlap: false,
+    type: "anytime",
+  },
+];
+
+
+const journeysZ6last = [
+  {
+    zones: [1, 2],
+    dualZoneOverlap: false,
+    type: "anytime",
+  },
+  {
+    zones: [1, 2],
+    dualZoneOverlap: false,
+    type: "anytime",
+  },
+  {
+    zones: [1, 2],
+    dualZoneOverlap: false,
+    type: "offPeak",
+  },
+  {
+    zones: [1, 2],
+    dualZoneOverlap: false,
+    type: "anytime",
+  },
+  {
+    zones: [1, 2],
+    dualZoneOverlap: false,
+    type: "anytime",
+  },
+  {
+    zones: [1, 6],
+    dualZoneOverlap: false,
+    type: "anytime",
+  },
+];
+
   describe('Oyster Day Total', () => {
     test('1', () => {
       expect(
-        oysterDayTotal({
-    		journeys,
-    		dailyCaps, //JSON
-    		minTravelcard: 3,
-    		maxTravelcard: 4,
-    	}, singleFares)).toEqual(6.6);
-  });
+        oysterDayTotal(
+          journeysMix,
+      {
+    	 	minTravelcard: 3,
+    	 	maxTravelcard: 4,
+    	 }, {
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual(6.6);
+    });
+    test('2', () => {
+      expect(
+        oysterDayTotal(
+          journeys,
+        {
+        minTravelcard: 2,
+        maxTravelcard: 4,
+       }, {
+          
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual(5.8);
+   });
+
+    test('3', () => {
+      expect(
+        oysterDayTotal(
+journeysZ6,
+        {
+        minTravelcard: 4,
+        maxTravelcard: 6,
+       }, {
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual(7.7);
+    });
+
+    test('4', () => {
+      expect(
+        oysterDayTotal(
+          journeysZ6,
+        {
+       }, {
+          
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual(12);
+    });
+
+    test('5', () => {
+      expect(
+        oysterDayTotal(
+          journeysMix,
+        {
+        minTravelcard: 1,
+        maxTravelcard: 4,
+       }, {
+         
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual(0);
+    });
+
+    test('6', () => {
+      expect(
+        oysterDayTotal(
+          journeysZ6last,
+        {
+       }, {
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual(11.7);
+    });
+
+      test('7', () => {
+      expect(
+        oysterDayTotal(
+          journeys,
+        {
+        minTravelcard: 3,
+        maxTravelcard: 4,
+       }, {
+          
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual(6.6);
+   });
 });

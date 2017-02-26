@@ -1,91 +1,73 @@
 /**
  * Calculates the oyster total fare for the day
  * @function
- * @param {journey} zones and off peak or on peak
- * @param {json data} uses the singleFares json data
+  * @param {complex journeys object} journeys - has zones array, dualzones and type (offpeak or anytime)
+ * @param {options object of minTravelcard: num, maxTravelcard: num} const object - minTravelcard and maxTravelcard 
+ * @param {data object of dailyCaps (JSON file), singleFares (JSON file link)
  * @returns {number} - returns the total fare
  * @description
  */
 
-
-// Need set an alert for when reach a Zones 1-4 or Zones 1-6 daily cap, but only travel at off-peak times.
-
-import _ from 'ramda';
-
 import {
   minNum,
   maxNum,
-  getCap,
-  getSingleFare,
+  getFare,
   met,
   zoneToJourney
 } from './../utility/_utility';
 
 import extensionFares from './_extensionFares';
 
-export default function oysterDayTotal(options = {}, data = {}) {
+export default function oysterDayTotal(journeys, options = {}, data = {}) {
+
   const {
     minTravelcard, //if needed for weekly
     maxTravelcard, //if needed for weekly
   } = options;
 
   const {
-    journeys, //JSON
     dailyCaps, //JSON
     singleFares, //JSON
   } = data;
-
-  const getDailyCap = getCap(_.__, _.__, dailyCaps);
-  const capMet = _.compose(met, getDailyCap);
     
-  const totals = journeys.reduce(function (a, b) {
-    let singleFare;
+  return journeys.reduce(function (a, b) {
+    let currentTotal;
+    let singleFare = getFare(b.zones, b.type, singleFares);
+    let offPeakTotal = a.offPeakTotal;
+    let peakTotal = a.peakTotal;
     let maxZone = maxNum([].concat(a.maxZone, b.zones));
-//     FOR WEEKLY
-    if ((maxTravelcard) && (maxZone <= maxTravelcard) && (maxZone >= (minTravelcard - 1))) {
-      maxZone = minTravelcard - 1; //(ie only compares against daily cap of minSingle to zoneDaily - removes overlap with weekly)
- 
-      singleFare = extensionFares({zones: [1, 3], type: "anytime", minTravelcard, maxTravelcard,}, singleFares);
-    } else {
 
-      singleFare = getSingleFare(b.zones, singleFares, b.type); //b.zones = an array
+    // FOR WEEKLY
+    if (maxTravelcard) {
+      singleFare = extensionFares({zones: b.zones, type: b.type, minTravelcard, maxTravelcard}, singleFares);
 
+      if (minTravelcard > 1 && met(maxTravelcard, maxZone) && met(maxZone, minTravelcard - 1)) {
+        maxZone = minTravelcard - 1; //(ie only compares against daily cap of minSingle to maxZone - removes overlap with weekly)
+      }
     }
 
-    // console.log(zoneToJourney(maxZone));
-    // debugger;
-
-    const metPeak = capMet(maxZone, 'anytime'); //true or false
-    
-    const metOffPeak = capMet(maxZone, 'offPeak'); //true or false
-
-    let offPeakTotal;
-    let currentTotal = a.currentTotal + singleFare; 
+    currentTotal = a.currentTotal + singleFare;
 
     if (b.type === 'offPeak') {
-       offPeakTotal = a.offPeakTotal + singleFare;
-
-      if (metOffPeak(offPeakTotal)) {
-        offPeakTotal = getDailyCap(maxZone, 'offPeak'); //and set an alert to say off daily cap reached????!!! (but could be overridden after)
-      }
-
-      currentTotal = minNum([offPeakTotal, currentTotal]);
+      offPeakTotal = minNum([offPeakTotal + singleFare, getFare(maxZone, 'offPeak', dailyCaps)]);
+      currentTotal = minNum([currentTotal, offPeakTotal + peakTotal]);
+    } else {
+      peakTotal += singleFare;
     }
-
-    if (metPeak(currentTotal)) {
-      currentTotal = getDailyCap(maxZone, 'anytime');
-    }
+      
+    currentTotal = minNum([currentTotal, getFare(maxZone, 'anytime', dailyCaps)]);
 
     return {
       currentTotal,
       offPeakTotal,
+      peakTotal,
       maxZone,
     };
+
   }, {
     currentTotal: 0,
     offPeakTotal: 0,
+    peakTotal: 0,
     maxZone: null,
-  });
-
-  return totals.currentTotal;
+  }).currentTotal;
 }

@@ -1,5 +1,5 @@
 import {
-	getSingleFare,
+	getFare,
 	maxNum,
 } from '../utility/_utility';
 
@@ -50,12 +50,12 @@ export default function extensionFares(options = {}, singleFares) {
 	// if min single isnt within travelcard zones but max single is(NB not needed for daily cap) - charge front
 	if ((minSingle < minTravelcard) && (minTravelcard <= maxSingle && maxSingle <= maxTravelcard)) {
 		 // debugger;
-		return getSingleFare([minChargedZone, (minTravelcard - 1)], singleFares, type);
+		return getFare([minChargedZone, (minTravelcard - 1)], type, singleFares);
 
 	//if min single within travelcard zones but max single isnt - charge end
  	} else if ((minTravelcard <= minSingle && minSingle <= maxTravelcard) && (maxSingle > maxTravelcard)) {
  		 // debugger;
- 		return getSingleFare([(maxTravelcard + 1), maxSingle], singleFares, type);
+ 		return getFare([(maxTravelcard + 1), maxSingle], type, singleFares);
 
  	//if min single less than min travelcard and max single more than max travelcard (NB not needed for daily cap) - charge front and end
  	} else if (minSingle < minTravelcard && maxSingle > maxTravelcard) {
@@ -73,6 +73,6 @@ export default function extensionFares(options = {}, singleFares) {
  	}
 
 
-  return getSingleFare([minChargedZone, maxSingle], singleFares, type);
+  return getFare([minChargedZone, maxSingle], type, singleFares);
 // ELSE min single and max single both > max weekly zone (or both < min daily) OR min single zone > min gap zone && max single zone < max gap zone
 }
