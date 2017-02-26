@@ -32,24 +32,24 @@ getData.fares().then(function(fareData) {
 
   const journeys = [
     {
-      zones: [1, 6],
+      zones: [1, 2],
       dualZoneOverlap: false,
-      type: "anytime",
+      type: "offPeak",
     },
     {
       zones: [1, 2],
       dualZoneOverlap: false,
-      type: "anytime",
+      type: "offPeak",
     },
     {
       zones: [1, 2],
       dualZoneOverlap: false,
-      type: "anytime",
+      type: "offPeak",
     },
     {
       zones: [1, 2],
       dualZoneOverlap: false,
-      type: "anytime",
+      type: "offPeak",
     },
     {
       zones: [1, 2],
@@ -64,15 +64,15 @@ getData.fares().then(function(fareData) {
   ];
 
 	console.log(
-        oysterDayTotal({
-    		journeys,
-    		dailyCaps, //JSON
-    		minTravelcard: 2,
-    		maxTravelcard: 3,
-    	}, singleFares)
+      oysterDayTotal({
+    		minTravelcard: 3,
+    		maxTravelcard: 4,
+    	}, {
+        journeys,
+        dailyCaps, //JSON
+        singleFares,
+      })
     );
-
-
 });
 // //---------------------------------
 // // - CONTACTLESS Cheapest Fare = with daily caps

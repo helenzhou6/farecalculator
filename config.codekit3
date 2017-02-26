@@ -15,6 +15,12 @@
 		"oAP": "\/.babelrc",
 		"oF": 0
 		},
+	"\/.eslintrc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/.eslintrc",
+		"oF": 0
+		},
 	"\/.gitignore": {
 		"ft": 8192,
 		"oA": 2,
@@ -147,20 +153,20 @@
 		"sC": 1,
 		"tS": 0
 		},
-	"\/src\/js\/partials\/_extensionFaresWeekly.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "\/src\/js\/partials\/_extensionFaresWeekly-min.js",
-		"oF": 0,
-		"sC": 1,
-		"tS": 0
-		},
 	"\/src\/js\/partials\/_getSingleJourneyZones.js": {
 		"ft": 64,
 		"mi": 1,
 		"oA": 1,
 		"oAP": "\/src\/js\/partials\/_getSingleJourneyZones-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/src\/js\/partials\/_oysterDayTotal.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/js\/partials\/_oysterDayTotal-min.js",
 		"oF": 0,
 		"sC": 1,
 		"tS": 0

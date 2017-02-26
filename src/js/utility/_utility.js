@@ -1,4 +1,4 @@
-import _ from 'lodash/fp';
+import _ from 'ramda';
 
 /**
  * Gets Zones
@@ -85,7 +85,15 @@ export function journeyToKey(journey) {
   return journey.sort().join('-');
 }
 
-function zoneToJourney(zone) {
+/**
+ * Preloads start zone as 1 and changes to 1-x for JSON file reading
+ * @function
+ * @param {number} - zone x
+ * @returns {string} - '1-x'
+ * @description - used to get the fares from the json file
+ */
+export function zoneToJourney(zone) {
+  // debugger;
   return journeyToKey([1, zone]);
 }
 
@@ -101,7 +109,7 @@ export function getDailyCap(maxZonesofar, dailyCaps, type) {
   return dailyCaps[journeyToKey([1, maxZonesofar])][type];
 }
 
-export const getCap = _.curry((zone, type, caps) => caps[zoneToJourney(zone)][type]);
+export const getCap = _.curry((key, type, caps) => caps[typeof key == "array" ? journeyToKey(key) : zoneToJourney(key)][type]);
 
 /**
  * Gets the single fare

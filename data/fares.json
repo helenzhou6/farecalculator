@@ -1,8 +1,12 @@
-{
+ {
 	"dailyCaps": {
+		"1-1": {
+			"anytime": 6.6,
+			"offPeak": 1
+		},
 		"1-2": {
 			"anytime": 6.6,
-			"offPeak": 6.6
+			"offPeak": 1
 		},
 		"1-3": {
 			"anytime": 7.7,
