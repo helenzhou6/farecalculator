@@ -31,6 +31,7 @@ export default function extensionFares(options = {}, singleFares) {
 	} = options;
 	// same as var minSingle = options.minSingle;
 
+// debugger;
   let finalCondition = null;
   let minSingle = zones[0];
   let maxSingle = zones[1];
