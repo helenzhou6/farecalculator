@@ -6,35 +6,37 @@ import {
   getFare,
 } from './../utility/_utility';
 
+import oysterDayTotal from './_oysterDayTotal';
 // NEED TO:
 // Add off peak discount if reached anytime cap twice each week btween 1-4 or 1-6
 // DUAL TO DUAL STATION ZONING ALTERATIONS
 
-import oysterWeekTotal from './_oysterWeekTotal';
+import weekTotal from './_weekTotal';
 
 export default function oyster(days, data) {
-	const caps = keysToJourney(data.weeklyCaps);
+	const weeklyCaps = keysToJourney(data.weeklyCaps);
 
 	const noCapResult = {
-		'noCap': oysterWeekTotal(days, {
+		'noCap': weekTotal(oysterDayTotal, days, {
 			false,
 			data,
 		})
 	};
 
-	const capsResultPre = caps.map((cap) => {
-		const total = oysterWeekTotal(days, {
+	const capsResultPre = weeklyCaps.map((weekCap) => {
+		const total = weekTotal(oysterDayTotal, days, {
 			options: {
-				minTravelcard: minNum(cap),
-				maxTravelcard: maxNum(cap),
+				minTravelcard: minNum(weekCap),
+				maxTravelcard: maxNum(weekCap),
 			},
 			data,
 		});
 
 		return {
-			[journeyToKey(cap)]: total + getFare(cap, false, data.weeklyCaps),
+			[journeyToKey(weekCap)]: total + getFare(weekCap, false, data.weeklyCaps),
 		};
 	});
+
 
 	const allCaps = Object.assign({}, noCapResult, ...capsResultPre);
 	const cheapest = Object.keys(allCaps).reduce((a, b) => allCaps[a] < allCaps[b] ? a : b);

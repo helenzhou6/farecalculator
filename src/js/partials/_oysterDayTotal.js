@@ -18,7 +18,7 @@ import {
 
 import extensionFares from './_extensionFares';
 
-export default function oysterDayTotal(journeys, options = {}, data = {}) {
+export default function oysterDayTotal(day, options = {}, data = {}) {
 
   const {
     minTravelcard, //if needed for weekly
@@ -30,7 +30,7 @@ export default function oysterDayTotal(journeys, options = {}, data = {}) {
     singleFares, //JSON
   } = data;
     
-  return journeys.reduce(function (a, b) {
+  return day.reduce(function (a, b) {
     let currentTotal;
     let singleFare = getFare(b.zones, b.type, singleFares);
     let offPeakTotal = a.offPeakTotal;

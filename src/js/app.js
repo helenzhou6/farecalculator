@@ -11,7 +11,8 @@ import getData from './utility/_getData';
 import getSingleJourneyZones from './partials/_getSingleJourneyZones';
 import extensionFares from './partials/_extensionFares';
 import oyster from './partials/_oyster';
-import conDayTotal from './partials/_contactlessDayTotal';
+import contactless from './partials/_contactless';
+import weekTotal from './partials/_weekTotal';
 
 // TO DO
 // Offpeak daily cap discounts - keep track when daily cap reached but only travelled off peak (if going to do off peak oyster cum totals then would know this)
@@ -132,120 +133,16 @@ const days = [
       type: "anytime",
     },
   ],
-  [
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-  ],
-  [
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-  ],
-  [
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-  ],
+ 
 ];
 
-const weeklyCaps = keysToJourney(fareData.weeklyCaps);
+  console.log(
+    contactless(days, fareData)
+  );
 
-const final = weeklyCaps.map((weekCap) => {
-    const y = conDayTotal(
-      days, minNum(weekCap), maxNum(weekCap), fareData).reduce((a, b) => a + b
-    );
-    return y + getFare(weekCap, false, fareData.weeklyCaps);// 
-})
-  console.log(minNum(final));
+  // final cheapest weekly charge on oyster
+  console.log(
+    oyster(days, fareData)
+  );
 
-  // console.log(
-  //   oyster(days, fareData)
-  // );
-  //   const y = days.map((day) => {
-  //     return conDayTotal(day, fareData);
-  //   });
-
-  // console.log(y);
 });
