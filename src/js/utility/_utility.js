@@ -45,7 +45,6 @@ export function maxNum(arrayZones) {
 
 export function minNum(arrayZones) {
   return compareNumbers(arrayZones, Math.min);
-  debugger;
 }
 
 /**
@@ -92,29 +91,41 @@ export function journeyToKey(journey) {
  * @description - used to get the fares from the json file
  */
 export function zoneToJourney(zone) {
-  // debugger;
   return journeyToKey([1, zone]);
 }
 
+/**
+ * Turns "1-2" into [1, 2]
+ * @function
+ * @param {string} - key: "1-2"
+ * @returns {array} - [1, 2]
+ * @description - Opposite of journeyToKey
+ */
 export function keyToJourney(key) {
   return key.split('-').sort().map(num => parseInt(num));
 }
+
+/**
+ * Gets keys from weeklyCaps, maps over them to generate array
+ * @function
+ * @param {weeklyCaps} - the weeklyCaps data from fares.json
+ * @returns {array} - returns array of arrays [[1, 2], [1, 3] etc]
+ * @description
+ */
 
 export function keysToJourney(weeklyCaps) {
   return Object.keys(weeklyCaps).map((cap) => keyToJourney(cap));
 }
 
 /**
- * Gets the daily cap cost
+ * Gets the fare
  * @function
- * @param {number} - the (maximum) zone
- * @param {object} dailyCaps - looks at the dailyCaps object in the fares.json file
- * @returns {number} - gets the daily cap between zones 1 and the zone parameter (as daily caps always starts at zone 1)
+ * @param {array} - key is an array of two zones
+ * @param {string} type is offPeak or anytime, or nothing if not needed (e.g. for weekly caps)
+ * @param {data} the JSON data file with fare objects
+ * @returns {number} - gets the single fare / weekly cap / daily cap from fares.json
  * @description
  */
-// export function getDailyCap(maxZonesofar, dailyCaps, type) {
-//   return dailyCaps[journeyToKey([1, maxZonesofar])][type];
-// }
 
 export const getFare = (key, type, caps) => {
   const fare = caps[key.constructor === Array ? journeyToKey(key) : zoneToJourney(key)];
