@@ -1,3 +1,4 @@
+// NEED TO ADD OFF PEAK
 import extensionFares from './../../src/js/partials/_extensionFares';
   const singleFares = {
     "1-1": {

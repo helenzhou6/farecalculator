@@ -1,3 +1,4 @@
+// NEED MORE
 import oysterDayTotal from './../../src/js/partials/_oysterDayTotal';
   
   const singleFares = {
@@ -317,6 +318,44 @@ const journeysZ6last = [
   },
 ];
 
+const dualZone = [
+    {
+      zones: [2, 2],
+      dualZoneOverlap: true,
+      type: "anytime",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "anytime",
+    },
+  ];
+  const dualZone2 = [
+    {
+      zones: [2, 2],
+      dualZoneOverlap: true,
+      type: "anytime",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: true,
+      type: "anytime",
+    },
+  ];
+
+  const dualZone3 = [
+    {
+      zones: [2, 2],
+      dualZoneOverlap: true,
+      type: "anytime",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: true,
+      type: "anytime",
+    },
+  ];
+
   describe('Oyster Day Total', () => {
     test('1', () => {
       expect(
@@ -394,7 +433,7 @@ journeysZ6,
         })).toEqual(11.7);
     });
 
-      test('7', () => {
+    test('7', () => {
       expect(
         oysterDayTotal(
           journeys,
@@ -406,5 +445,46 @@ journeysZ6,
           dailyCaps, //JSON
           singleFares
         })).toEqual(6.6);
+   });
+    test('8', () => {
+      expect(
+        oysterDayTotal(
+          dualZone,
+        {
+        minTravelcard: 3,
+        maxTravelcard: 4,
+       }, {
+          
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual(1.7);
+   });
+
+    test('9', () => {
+      expect(
+        oysterDayTotal(
+          dualZone2,
+        {
+        minTravelcard: 3,
+        maxTravelcard: 4,
+       }, {
+          
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual(0);
+   });
+
+    test('10', () => {
+      expect(
+        oysterDayTotal(
+          dualZone3,
+        {
+        minTravelcard: 4,
+        maxTravelcard: 5,
+       }, {
+          
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual(3.4);
    });
 });

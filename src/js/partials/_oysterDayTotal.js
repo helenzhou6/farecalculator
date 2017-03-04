@@ -40,6 +40,15 @@ export default function oysterDayTotal(day, options = {}, data = {}) {
     // FOR WEEKLY
     if (maxTravelcard) {
       singleFare = extensionFares({zones: b.zones, type: b.type, minTravelcard, maxTravelcard}, singleFares);
+      
+      // dual to dual stations: if min weekly travelcard zone =< max dual zone zone
+      // = > then changes dual to dual  stations to min weekly travelcard zone
+      if (b.dualZoneOverlap === true &&
+        (((minNum(b.zones)) + 1) >= minTravelcard) &&
+        (((maxNum(b.zones)) + 1) <= maxTravelcard)
+        ) {
+        singleFare = 0;
+      }
 
       if (minTravelcard > 1 && met(maxTravelcard, maxZone) && met(maxZone, minTravelcard - 1)) {
         maxZone = minTravelcard - 1; //(ie only compares against daily cap of minSingle to maxZone - removes overlap with weekly)
