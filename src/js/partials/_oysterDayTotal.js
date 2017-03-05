@@ -30,12 +30,17 @@ export default function oysterDayTotal(day, options = {}, data = {}) {
     singleFares, //JSON
   } = data;
     
-  return day.reduce(function (a, b) {
+  const p = day.reduce(function (a, b) {
     let currentTotal;
     let singleFare = getFare(b.zones, b.type, singleFares);
     let offPeakTotal = a.offPeakTotal;
     let peakTotal = a.peakTotal;
     let maxZone = maxNum([].concat(a.maxZone, b.zones));
+
+    let offPeakReachedPre = false;
+    let offPeakReached = false;
+    let offPeakMaxZone = a.offPeakMaxZone;
+    let anytimeReached = false;
 
     // FOR WEEKLY
     if (maxTravelcard) {
@@ -58,19 +63,51 @@ export default function oysterDayTotal(day, options = {}, data = {}) {
     currentTotal = a.currentTotal + singleFare;
 
     if (b.type === 'offPeak') {
-      offPeakTotal = minNum([offPeakTotal + singleFare, getFare(maxZone, 'offPeak', dailyCaps)]);
-      currentTotal = minNum([currentTotal, offPeakTotal + peakTotal]);
+      //off peak total gets updated and if needed overridden with offpeak daily cap
+      if ((offPeakTotal + singleFare) >= getFare(maxZone, 'offPeak', dailyCaps)) {
+        offPeakReachedPre = true;
+        offPeakTotal = getFare(maxZone, 'offPeak', dailyCaps);
+      } else {
+        offPeakTotal += singleFare;
+      }
+
+      //offPeakTotal = minNum([offPeakTotal + singleFare, getFare(maxZone, 'offPeak', dailyCaps)]);
+
+      // current total is updated if needed to be off peak total + previous peak total for off peak travel
+      if ((offPeakTotal + peakTotal) <= currentTotal) {
+        //if this condition and the above conditions are both met (ie a current or previousoffpeak daily cap applied to currenttotal), set true
+        if (offPeakReachedPre) {
+          offPeakReached = true;
+          offPeakMaxZone = maxZone;
+          // return the max zone for off peak cap
+        }
+        currentTotal = offPeakTotal + peakTotal;
+      }
+
+      //currentTotal = minNum([currentTotal, offPeakTotal + peakTotal]);
+
+      //otherwise for peak travel the peak total is updated in preparation for next round
     } else {
       peakTotal += singleFare;
     }
-      
-    currentTotal = minNum([currentTotal, getFare(maxZone, 'anytime', dailyCaps)]);
+
+    //if needed current total is totally overridden by anytime daily cap
+    if (currentTotal > (getFare(maxZone, 'anytime', dailyCaps))) {
+      //if this is the case, off peak reached will then be set to false via anytimereached (as anytime applied not off peak cap)
+      anytimeReached = true;
+      currentTotal = getFare(maxZone, 'anytime', dailyCaps);
+    }
+
+    //currentTotal = minNum([currentTotal, getFare(maxZone, 'anytime', dailyCaps)]);
 
     return {
       currentTotal,
       offPeakTotal,
       peakTotal,
       maxZone,
+      offPeakMaxZone,
+      //ensures that previous off peak caps applied previous to future loops - if true, stays true
+      offPeakReached: (a.offPeakReached && !anytimeReached) ? true : offPeakReached,
     };
 
   }, {
@@ -78,5 +115,10 @@ export default function oysterDayTotal(day, options = {}, data = {}) {
     offPeakTotal: 0,
     peakTotal: 0,
     maxZone: null,
-  }).currentTotal;
+  });
+
+  return {
+    value: p.currentTotal,
+    capIsMet: p.offPeakReached ? p.offPeakMaxZone : false,
+  };
 }

@@ -140,3 +140,14 @@ export const getFare = (key, type, caps) => {
  * @description
  */
 export const met = (value, target) => value >= target;
+
+/**
+ * Rounds a number to however many decimal places specified
+ * @function
+ * @param {number} value - target value to round
+ * @param {number} decimals - the number of decimals result should have
+ * @description
+ */
+export function round(value, decimals) {
+   return Number(`${Math.round(`${value}e${decimals}`)}e-${decimals}`);
+}

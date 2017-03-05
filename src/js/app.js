@@ -14,14 +14,27 @@ import oyster from './partials/_oyster';
 import contactless from './partials/_contactless';
 import weekTotal from './partials/_weekTotal';
 
-import contactlessDayTotal from './partials/_contactlessDayTotal';
+import oysterDayTotal from './partials/_oysterDayTotal';
+import conDayTotal from './partials/_contactlessDayTotal';
 
 // TO DO
-// Offpeak daily cap discounts - keep track when daily cap reached but only travelled off peak 
+// do more tests
+
+//MONTHLY - NB is that 4 weeks or 31/30 days or calendar month?
+
+// daily offpeak/anytime capping changes:
+// time of travel to be applied as an arugment: early, morning, afternoon, late
+//Travel weekday early  doesnt count towards off peak cap, only anytime but is off peak single fares
+// travel weekday (peak time) afternoon counts towards and is covered by the off peak/anytime cap, but is peak single fares
+// morning is peak & anytime daily cap / late is off peak & off peak/anytime daily cap
+
+//automatic off peak weekly refunds:
+  // week function to see if off peak cap met and max zone between 4-6: if true for 2+ a week, apply a discount
 
 // Add the Railcard or Gold card discount to your Oyster
 // CAN DO APPRENTICE, 18+ STUDENT, 16+ ZIP, JOB CENTRE ON OYSTER - as no diff bw off peak / on peak daily caps
 
+// API HANDLING
 // getData.stations().then(function (stations) {
 // 	getSingleJourneyZones('1000029', '1000138', stations).then((resp) => {
 // 		// console.log(resp);
@@ -32,11 +45,14 @@ getData.fares().then(function(fareData) {
   let singleFares = fareData.singleFares;
   let dailyCaps = fareData.dailyCaps;
 
+
+
 // const days = [
 //   [
 //     {
 //       zones: [1, 2],
 //       dualZoneOverlap: false,
+//       time: "morning",
 //       type: "anytime",
 //     },
 //     {
@@ -244,7 +260,7 @@ getData.fares().then(function(fareData) {
   //   oyster(days, fareData)
   // );
 
-  const journey = [
+const journey = [
     {
       zones: [2, 2],
       dualZoneOverlap: true,
@@ -258,7 +274,7 @@ getData.fares().then(function(fareData) {
   ];
 
     console.log(
-    contactlessDayTotal(
+    conDayTotal(
       journey,
       {
         minTravelcard: 3,
@@ -269,5 +285,19 @@ getData.fares().then(function(fareData) {
         })
   );
 
-    
+      console.log(
+oysterDayTotal(
+          journey,
+        {
+        minTravelcard: 3,
+        maxTravelcard: 4,
+       }, {
+         
+          dailyCaps, //JSON
+          singleFares
+        })
+  );
+
+
+
 });

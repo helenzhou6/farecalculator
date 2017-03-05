@@ -5,9 +5,12 @@ import {
   minNum,
   getFare,
   flatten,
+  round,
 } from './../utility/_utility';
 
 import extensionFares from './_extensionFares';
+
+// If the offpeak cap is met, return a variable 'capIsMet' + maxZone of that cap
 
 // This calculates the cheapest daily cap or no daily cap for each day taking into consideration any weekly caps passed in
 export default function conDayTotal(day, options = {}, data = {}) {
@@ -62,7 +65,9 @@ export default function conDayTotal(day, options = {}, data = {}) {
 	});
 
 	// for cheapest mix peak journeys + each daily off peak cap
+	// need a flag for off peak cap between 1-4, 1-5 or 1-6
 	const l = allDailyCaps.map((cap) => {
+		const maxZoneInCap = maxNum(cap);
 		
 		const c = day.map(journey => {
 			let conDaily = maxNum(cap);
@@ -97,7 +102,10 @@ export default function conDayTotal(day, options = {}, data = {}) {
 			}
 		}).reduce((a, b) => a + b);
 
-		return c + getFare(cap, 'offPeak', dailyCaps);
+		return {
+			maxZoneInCap,
+			value: c + getFare(cap, 'offPeak', dailyCaps),
+		};
 	});
 
 		// for no daily caps
@@ -123,6 +131,28 @@ export default function conDayTotal(day, options = {}, data = {}) {
 
 	}).reduce((a, b) => a + b);
 
+	// creates an array of the l values (out of the object)
+	const lToValues = l.map((lVal) => lVal.value);
+
+	// cheapest value
+	const minAll = minNum(t.concat([x], lToValues));
+
+	// evaluates if any of the l values is equal to the cheapest value
+	const isEq = l.some(entry => {
+		return entry.value == minAll;
+	});
+
+	// if above is met, then find the max cap within the object that matches with the cheapest value
+	var capVal;
+	if (isEq) {
+		capVal = l.filter((lVal) => lVal.value === minAll);
+	}
+
+	// returns an object: the cheapest value, whether off peak cap is met (if so will be the max off peak zone)
+	return {
+		value: round(minAll, 2),
+		capIsMet: isEq ? capVal[0].maxZoneInCap : false,
+	};
+
 	//finally selects cheapest cheapest daily cap option for each day (in a 7 day array)
-	return minNum(t.concat([x], l));
 }	
