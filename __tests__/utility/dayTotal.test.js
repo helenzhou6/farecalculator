@@ -510,6 +510,46 @@ const offPeakRefund4 = [
     },
 //also tests for all offpeak, all anytime, most anytime 1 offpeak & vice versa, 2-4 zone first and last
   ];
+
+  const offPeakRefund5 = [
+    {
+      zones: [2, 4],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+//also tests for all offpeak, all anytime, most anytime 1 offpeak & vice versa, 2-4 zone first and last
+  ];
+
   describe('Oyster Day Total', () => {
     test('1', () => {
       expect(
@@ -716,6 +756,18 @@ const offPeakRefund4 = [
         value: 9.5,
         capIsMet: false});
    });
+    test('15', () => {
+      expect(
+        oysterDayTotal(
+          offPeakRefund5,
+        {
+       }, {
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual({
+        value: 9.5,
+        capIsMet: 4});
+   });
 });
 
 describe('Contactless Day Total', () => {
@@ -920,5 +972,16 @@ describe('Contactless Day Total', () => {
         value: 6.6,
         capIsMet: 2});
    });
-
+    test('15', () => {
+      expect(
+        conDayTotal(
+          offPeakRefund5,
+        {
+       }, {
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual({
+        value: 8.5,
+        capIsMet: 2});
+   });
 });

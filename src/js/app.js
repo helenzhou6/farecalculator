@@ -18,18 +18,14 @@ import oysterDayTotal from './partials/_oysterDayTotal';
 import conDayTotal from './partials/_contactlessDayTotal';
 
 // TO DO
-// do more tests
 
-//MONTHLY - NB is that 4 weeks or 31/30 days or calendar month?
+//MONTHLY - is calendar month - so do (x * 12 )/52?
 
 // daily offpeak/anytime capping changes:
 // time of travel to be applied as an arugment: early, morning, afternoon, late
 //Travel weekday early  doesnt count towards off peak cap, only anytime but is off peak single fares
 // travel weekday (peak time) afternoon counts towards and is covered by the off peak/anytime cap, but is peak single fares
 // morning is peak & anytime daily cap / late is off peak & off peak/anytime daily cap
-
-//automatic off peak weekly refunds:
-  // week function to see if off peak cap met and max zone between 4-6: if true for 2+ a week, apply a discount
 
 // Add the Railcard or Gold card discount to your Oyster
 // CAN DO APPRENTICE, 18+ STUDENT, 16+ ZIP, JOB CENTRE ON OYSTER - as no diff bw off peak / on peak daily caps
@@ -41,283 +37,374 @@ import conDayTotal from './partials/_contactlessDayTotal';
 // 	});
 // });
 
-getData.fares().then(function(fareData) {
-  let singleFares = fareData.singleFares;
-  let dailyCaps = fareData.dailyCaps;
+getData.fares().then(function(data) {
+  let singleFares = data.singleFares;
+  let dailyCaps = data.dailyCaps;
 
-
-
-const days = [
+ const days = [
   [
     {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      time: "morning",
-      type: "anytime",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-  ],
-    [
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-  ],
-  [
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-  ],
-  [
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-  ],
-  [
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-    ],
-    [
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-  ],
-  [
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
+      zones: [2, 6],
       dualZoneOverlap: true,
       type: "offPeak",
     },
     {
-      zones: [1, 2],
+      zones: [2, 6],
       dualZoneOverlap: false,
-      type: "anytime",
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+        {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+  ],
+  [
+    {
+      zones: [2, 4],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+  ],
+  [
+     {
+      zones: [2, 4],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+  ],
+  [
+    {
+      zones: [2, 4],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+  ],
+  [
+    {
+      zones: [2, 4],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+  ],
+  [
+    {
+      zones: [2, 4],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+  ],
+    [
+    {
+      zones: [2, 4],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
     },
   ],
  
 ];
 
-const offPeakRefund4 = [
-    {
-      zones: [2, 4],
-      dualZoneOverlap: true,
-      type: "anytime",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-//also tests for all offpeak, all anytime, most anytime 1 offpeak & vice versa, 2-4 zone first and last
-  ];
+  // console.log(
+  //   "contactless = " + contactless(days, data)
+  // );
+
+  // // final cheapest weekly charge on oyster
+  // console.log(
+  //   oyster(days, data)
+  // );
+
 
   console.log(
-    "contactless = " + contactless(days, fareData)
-  );
-
-  // final cheapest weekly charge on oyster
-  console.log(
-    oyster(days, fareData)
+    weekTotal(conDayTotal, days, {
+      false,
+      data,
+    })
   );
 
 // const journey = [
 //     {
-//       zones: [2, 2],
+//       zones: [2, 4],
 //       dualZoneOverlap: true,
-//       type: "anytime",
+//       type: "offPeak",
 //     },
 //     {
 //       zones: [2, 2],
 //       dualZoneOverlap: false,
-//       type: "anytime",
+//       type: "offPeak",
 //     },
+//     {
+//       zones: [2, 2],
+//       dualZoneOverlap: false,
+//       type: "offPeak",
+//     },
+//     {
+//       zones: [2, 4],
+//       dualZoneOverlap: false,
+//       type: "offPeak",
+//     },
+//     {
+//       zones: [2, 4],
+//       dualZoneOverlap: false,
+//       type: "offPeak",
+//     },
+//     {
+//       zones: [2, 4],
+//       dualZoneOverlap: false,
+//       type: "offPeak",
+//     },
+//     {
+//       zones: [2, 4],
+//       dualZoneOverlap: false,
+//       type: "offPeak",
+//     },
+// //also tests for all offpeak, all anytime, most anytime 1 offpeak & vice versa, 2-4 zone first and last
 //   ];
 
 //     console.log(
 //     conDayTotal(
 //       journey,
 //       {
-//         minTravelcard: 3,
-//         maxTravelcard: 4,
+
 //       }, {
 //           dailyCaps, //JSON
 //           singleFares
@@ -328,8 +415,7 @@ const offPeakRefund4 = [
 // oysterDayTotal(
 //           journey,
 //         {
-//         minTravelcard: 3,
-//         maxTravelcard: 4,
+
 //        }, {
          
 //           dailyCaps, //JSON

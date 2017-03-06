@@ -129,6 +129,7 @@ export function keysToJourney(weeklyCaps) {
 
 export const getFare = (key, type, caps) => {
   const fare = caps[key.constructor === Array ? journeyToKey(key) : zoneToJourney(key)];
+
   return type ? fare[type] : fare;
 };
 

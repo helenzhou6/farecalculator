@@ -1,6 +1,6 @@
+import oyster from './../../src/js/partials/_oyster';
+import contactless from './../../src/js/partials/_contactless';
 import weekTotal from './../../src/js/partials/_weekTotal';
-import conDayTotal from './../../src/js/partials/_contactlessDayTotal';
-import oysterDayTotal from './../../src/js/partials/_oysterDayTotal';
 
 const data = {
 	"dailyCaps": {
@@ -223,501 +223,6 @@ const data = {
 };
 
 const days = [
-  [
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      time: "morning",
-      type: "anytime",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-  ],
-    [
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-  ],
-  [
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-  ],
-  [
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-  ],
-  [
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-    ],
-    [
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-  ],
-  [
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: true,
-      type: "offPeak",
-    },
-    {
-      zones: [1, 2],
-      dualZoneOverlap: false,
-      type: "anytime",
-    },
-  ],
- 
-];
-
-const days2 = [
-  [
-    {
-      zones: [2, 4],
-      dualZoneOverlap: true,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-  ],
-  [
-    {
-      zones: [2, 4],
-      dualZoneOverlap: true,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-  ],
-  [
-     {
-      zones: [2, 4],
-      dualZoneOverlap: true,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-  ],
-  [
-    {
-      zones: [2, 4],
-      dualZoneOverlap: true,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-  ],
-  [
-    {
-      zones: [2, 4],
-      dualZoneOverlap: true,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-  ],
-  [
-    {
-      zones: [2, 4],
-      dualZoneOverlap: true,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-  ],
-    [
-    {
-      zones: [2, 4],
-      dualZoneOverlap: true,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-  ],
-  ];
- const days3 = [
   [
     {
       zones: [2, 6],
@@ -1019,8 +524,249 @@ const days2 = [
   ],
  
 ];
-
-const none = [
+const days2 = [
+  [
+    {
+      zones: [2, 6],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+        {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+  ],
+   [
+    {
+      zones: [2, 6],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+        {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+  ],
+  [
+     {
+      zones: [2, 4],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+  ],
+  [
+    {
+      zones: [2, 4],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+  ],
+  [
+    {
+      zones: [2, 4],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+  ],
+  [
+    {
+      zones: [2, 4],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+  ],
     [
     {
       zones: [2, 4],
@@ -1061,71 +807,186 @@ const none = [
  
 ];
 
-  describe('week Total', () => {
+const days3 =[
+  [
+    {
+      zones: [1, 6],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+	],
+   [
+
+    {
+      zones: [3, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+   
+  ],
+  [
+     
+    {
+      zones: [3, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    
+  ],
+  [
+     {
+      zones: [1, 6],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [3, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    
+  ],
+  [
+  
+    {
+      zones: [3, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+  ],
+  [
+       {
+      zones: [1, 6],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+  ],
+    [
+     {
+      zones: [1, 6],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [3, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+
+  ],
+ 
+];
+
+const days4 = [
+  [
+    {
+      zones: [1, 6],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+  ],
+   [
+
+    {
+      zones: [3, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+   
+  ],
+  [
+     
+    {
+      zones: [3, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    
+  ],
+  [
+    
+  ],
+  [
+  
+    {
+      zones: [3, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+  ],
+  [
+       {
+      zones: [1, 6],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+  ],
+    [
+     {
+      zones: [1, 6],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [3, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+
+  ],
+ 
+];
+describe('oyster', () => {
     test('1', () => {
 	    expect(
-	        weekTotal(oysterDayTotal, days, {
-				options: {
-					minTravelcard: 1,
-					maxTravelcard: 2,
-				},
-				data,
-			})
-		).toEqual(0);
+	        oyster(days, data)
+		).toEqual({
+			'2-4': 39.3}
+			);
     });
-    
+
     test('2', () => {
 	    expect(
-		    weekTotal(oysterDayTotal, days, {
-		      false,
-		      data,
-		    })
-		).toEqual(42.5);
+	        oyster(days2, data)
+		).toEqual({
+			'3-6': 39.8});
     });
-    
+
+     test('3', () => {
+	    expect(
+	        oyster(days3, data)
+		).toEqual({
+			'noCap': 19.9});
+    });
+    test('4', () => {
+	    expect(
+	        oyster(days4, data)
+		).toEqual({
+			'noCap': 15.3});
+    });
+});
+
+
+describe('contactless', () => {
+    test('1', () => {
+	    expect(
+	        contactless(days, data)
+		).toEqual(39.3);
+    });
+    test('2', () => {
+	    expect(
+	        contactless(days2, data)
+		).toEqual(39.8);
+    });
     test('3', () => {
 	    expect(
-		    weekTotal(oysterDayTotal, days2, {
-		      false,
-		      data,
-		    })
-		).toEqual(63.7);
+	        contactless(days3, data)
+		).toEqual(17.5);
     });
-    
     test('4', () => {
-      expect(
-        weekTotal(oysterDayTotal, days3, {
-          false,
-          data,
-        })
-    ).toEqual(64.5);
+	    expect(
+	        contactless(days4, data)
+		).toEqual(13.5);
     });
 
-    test('5', () => {
-      expect(
-        weekTotal(oysterDayTotal, none, {
-          false,
-          data,
-        })
-    ).toEqual(9.5);
-    });
-
-    test('6', () => {
-      expect(
-        weekTotal(conDayTotal, none, {
-          false,
-          data,
-        })
-    ).toEqual(8.5);
-    });
-
-    test('7', () => {
-      expect(
-        weekTotal(conDayTotal, days3, {
-          false,
-          data,
-        })
-    ).toEqual(61.5);
-    });
-
- });
+});

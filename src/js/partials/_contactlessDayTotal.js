@@ -1,4 +1,14 @@
-import {
+/**
+ * Calculates the contactless total fare for the day
+ * @function
+  * @param { day object} day object containing all the journey objects (that in turn has zones array, dualzones and type (offpeak or anytime))
+ * @param {options object of minTravelcard: num, maxTravelcard: num} const object - minTravelcard and maxTravelcard 
+ * @param {data object of dailyCaps (JSON file), singleFares (JSON file link)
+ * @returns {object} - object containing {value: returns the total fare & capIsMet: if offPeak cap was met, then displays the max zone for the offPeak daily cap, else false.}
+ * @description Works out if it is cheapest to have no daily caps, an off peak daily cap + peak fares or an anytime cap (taking into account weekly travelcards passed in)
+ */
+
+ import {
   journeyToKey,
   keysToJourney,
   maxNum,
@@ -30,7 +40,7 @@ export default function conDayTotal(day, options = {}, data = {}) {
 	let conMin = minTravelcard;
 	let conMax = maxTravelcard;
 
-	const t = allDailyCaps.map((cap) => {
+	const cheapestAnytime = allDailyCaps.map((cap) => {
 
 		const total = day.map(journey => {
 
@@ -66,10 +76,10 @@ export default function conDayTotal(day, options = {}, data = {}) {
 
 	// for cheapest mix peak journeys + each daily off peak cap
 	// need a flag for off peak cap between 1-4, 1-5 or 1-6
-	const l = allDailyCaps.map((cap) => {
-		const maxZoneInCap = maxNum(cap);
+	const cheapestOffPeak = allDailyCaps.map((cap) => {
+		const offPeakMaxZone = maxNum(cap);
 		
-		const c = day.map(journey => {
+		const offPeakDayTotal = day.map(journey => {
 			let conDaily = maxNum(cap);
 
 			if (maxTravelcard) {
@@ -103,13 +113,13 @@ export default function conDayTotal(day, options = {}, data = {}) {
 		}).reduce((a, b) => a + b);
 
 		return {
-			maxZoneInCap,
-			value: c + getFare(cap, 'offPeak', dailyCaps),
+			offPeakMaxZone,
+			value: offPeakDayTotal + getFare(cap, 'offPeak', dailyCaps),
 		};
 	});
 
 		// for no daily caps
-	const x = day.map(journey => {
+	const cheapestNoCap = day.map(journey => {
 
 		if (maxTravelcard) {
 			if (journey.dualZoneOverlap === true &&
@@ -131,27 +141,26 @@ export default function conDayTotal(day, options = {}, data = {}) {
 
 	}).reduce((a, b) => a + b);
 
-	// creates an array of the l values (out of the object)
-	const lToValues = l.map((lVal) => lVal.value);
+	// creates an array of the cheapestOffPeak values (out of the object)
+	const lToValues = cheapestOffPeak.map((lVal) => lVal.value);
 
 	// cheapest value
-	const minAll = minNum(t.concat([x], lToValues));
+	const minAll = minNum(cheapestAnytime.concat([cheapestNoCap], lToValues));
 
-	// evaluates if any of the l values is equal to the cheapest value
-	const isEq = l.some(entry => {
+	// evaluates if any of the cheapestOffPeak values is equal to the cheapest value
+	const isEq = cheapestOffPeak.some(entry => {
 		return entry.value == minAll;
 	});
 
 	// if above is met, then find the max cap within the object that matches with the cheapest value
 	var capVal;
 	if (isEq) {
-		capVal = l.filter((lVal) => lVal.value === minAll);
+		capVal = cheapestOffPeak.filter((lVal) => lVal.value === minAll);
 	}
-
 	// returns an object: the cheapest value, whether off peak cap is met (if so will be the max off peak zone)
 	return {
 		value: round(minAll, 2),
-		capIsMet: isEq ? capVal[0].maxZoneInCap : false,
+		capIsMet: isEq ? capVal[0].offPeakMaxZone : false,
 	};
 
 	//finally selects cheapest cheapest daily cap option for each day (in a 7 day array)
