@@ -48,7 +48,6 @@ export default function extensionFares(options = {}, singleFares) {
 				finalCondition = (minSingle <= maxDaily && maxSingle <= maxDaily);
 			}
 		}
-		debugger;
 	}
 	if (maxDaily && !maxTravelcard) {
 		maxTravelcard = maxDaily;
@@ -81,7 +80,6 @@ export default function extensionFares(options = {}, singleFares) {
  	// both single zones are outside travelcard zones
  	}
 
-debugger;
   return getFare([minChargedZone, maxSingle], type, singleFares);
 // ELSE min single and max single both > max weekly zone (or both < min daily) OR min single zone > min gap zone && max single zone < max gap zone
 }

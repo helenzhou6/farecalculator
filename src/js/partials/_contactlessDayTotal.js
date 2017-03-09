@@ -41,9 +41,6 @@ export default function conDayTotal(day, options = {}, data = {}) {
 	const allDailyCaps = keysToJourney(dailyCaps);
 	// gets cheapest daily anytime cap
 
-	let conMin = minTravelcard;
-	let conMax = maxTravelcard;
-
 	const cheapestAnytime = allDailyCaps.map((cap) => {
 
 		const total = day.map(journey => {
@@ -62,15 +59,10 @@ export default function conDayTotal(day, options = {}, data = {}) {
 					) {
 					return 0;
 				}
-			} else {
-				let conMin = minNum(cap);
-				let conMax = maxNum(cap);
-				let conDaily = false;
 			}
-
 			return extensionFares({
-		 		minTravelcard: conMin,
-		 		maxTravelcard: conMax,
+		 		minTravelcard: minTravelcard,
+		 		maxTravelcard: maxTravelcard,
 		 		maxDaily: conDaily,
 		 		zones: journey.zones,
 		 		type: journeyType,
@@ -82,12 +74,10 @@ export default function conDayTotal(day, options = {}, data = {}) {
 	});
 
 	// for cheapest mix peak journeys + each daily off peak cap
-	// need a flag for off peak cap between 1-4, 1-5 or 1-6
 	const cheapestOffPeak = allDailyCaps.map((cap) => {
 		const offPeakMaxZone = maxNum(cap);
 		
 		const offPeakDayTotal = day.map(journey => {
-			let conDaily = maxNum(cap);
 
 		    //types function deals with early  /afternoon peak/offpeak handling
 		    let journeyType = types(journey.type);
@@ -99,25 +89,23 @@ export default function conDayTotal(day, options = {}, data = {}) {
 					) {
 					return 0;
 				}
-			} else {
-				let conMin = minNum(cap);
-				let conMax = maxNum(cap);
-				let conDaily = false;
+
 			}
-			if(journey.type === 'offPeak' || journey.type === 'afternoon') {
+
+			if (journey.type === 'offPeak' || journey.type === 'afternoon') {
 				return extensionFares({
-			 		minTravelcard: conMin,
-			 		maxTravelcard: conMax,
-			 		maxDaily: conDaily,
+			 		minTravelcard: minTravelcard,// false if nothing passed in
+			 		maxTravelcard: maxTravelcard,// false if nothing passed in
+			 		maxDaily: maxNum(cap),
 			 		zones: journey.zones,
-			 		type: 'offPeak',
+			 		type: journeyType,
 			 	}, singleFares);
 			} else {
 				return extensionFares({
-			 		minTravelcard: conMin,
-			 		maxTravelcard: conMax,
+			 		minTravelcard: minTravelcard,// false if nothing passed in
+			 		maxTravelcard: maxTravelcard,// false if nothing passed in
 			 		zones: journey.zones,
-			 		type: 'anytime',
+			 		type: journeyType,
 				}, singleFares);
 			}
 		}).reduce((a, b) => a + b);
@@ -142,13 +130,10 @@ export default function conDayTotal(day, options = {}, data = {}) {
 				) {
 				return 0;
 			}
-		} else {
-			let conMin = false;
-			let conMax = false;
 		}
 		return extensionFares({
-	 		minTravelcard: conMin,
-	 		maxTravelcard: conMax,
+	 		minTravelcard: minTravelcard,
+	 		maxTravelcard: maxTravelcard,
 			zones: journey.zones,
 			type: journeyType,
 		}, singleFares);

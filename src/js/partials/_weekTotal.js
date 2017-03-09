@@ -48,11 +48,9 @@ export default function weekTotal(paymentFunction, days, info) {
 	  		numOffPeakCapZ5 += 1;
 	  	}
 
-
 	 	return dayObject.value;
 	 //returns the current week total
 	}).reduce((a, b) => a + b);
-	debugger;
   // week function to see if off peak cap met and max zone between 4-6: if true for 2+ a week, apply a discount
 	if ((numOffPeakCapZ4 + numOffPeakCapZ6 + numOffPeakCapZ5) >= 2) {
 	  weekTotalFare -=
@@ -67,7 +65,6 @@ export default function weekTotal(paymentFunction, days, info) {
 		  		getFare([1, 5], false, info.data.autoOffPeakRefund)
 		  	))
 	  	);
-	  	debugger;
 	}
 
 	return weekTotalFare;

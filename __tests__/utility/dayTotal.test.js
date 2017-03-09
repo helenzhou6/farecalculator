@@ -641,7 +641,7 @@ const afternon = [
 const afternon2 = [
     {
       zones: [2, 4],
-      dualZoneOverlap: true,
+      dualZoneOverlap: false,
       type: "afternoon",
     },
     {
@@ -1187,8 +1187,8 @@ describe('Contactless Day Total', () => {
           dailyCaps, //JSON
           singleFares
         })).toEqual({
-        value: 4,
-        capIsMet: 1}
+        value: 4.4,
+        capIsMet: 2}
         );
     });
 });
