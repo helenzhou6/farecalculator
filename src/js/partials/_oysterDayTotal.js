@@ -15,6 +15,8 @@ import {
   met,
   zoneToJourney,
   round,
+  types,
+  dualZone,
 } from './../utility/_utility';
 
 import extensionFares from './_extensionFares';
@@ -30,11 +32,13 @@ export default function oysterDayTotal(day, options = {}, data = {}) {
     dailyCaps, //JSON
     singleFares, //JSON
   } = data;
-    
+
   const dayTotal = day.reduce(function (a, b) {
     let currentTotal;
 
-    let singleFare = getFare(b.zones, b.type, singleFares);
+    //types function deals with early  /afternoon peak/offpeak handling
+    let journeyType = types(b.type);
+    let singleFare = getFare(b.zones, journeyType, singleFares);
 
     // takes the numbers from the previous loop
     let offPeakTotal = a.offPeakTotal;
@@ -53,7 +57,9 @@ export default function oysterDayTotal(day, options = {}, data = {}) {
     if (maxTravelcard) {
       singleFare = extensionFares({
         zones: b.zones,
-        type: b.type, minTravelcard, maxTravelcard},
+        type: b.type,
+        minTravelcard,
+        maxTravelcard},
         singleFares);
       
       // dual to dual stations: if min weekly travelcard zone =< max dual zone zone
@@ -72,8 +78,8 @@ export default function oysterDayTotal(day, options = {}, data = {}) {
 
     currentTotal = a.currentTotal + singleFare;
 
-    // if the current journey made was OFFPEAK
-    if (b.type === 'offPeak') {
+    // if the current journey made was OFFPEAK (or afternoon which is covered by offpeak)
+    if (b.type === 'offPeak' || b.type === 'afternoon') {
       //off peak total gets updated and if needed overridden with offpeak daily cap
       if ((offPeakTotal + singleFare) >= getFare(maxZone, 'offPeak', dailyCaps)) {
         offPeakReachedPre = true;

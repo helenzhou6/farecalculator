@@ -25,7 +25,10 @@ export default function oyster(days, data) {
 	// if no weekly cap
 	const noCapResult = {
 		'noCap': weekTotal(oysterDayTotal, days, {
-			false,
+			options: {
+				minTravelcard: false,
+				maxTravelcard: false,
+			},
 			data,
 		})
 	};
@@ -49,6 +52,7 @@ export default function oyster(days, data) {
 	const cheapest = Object.keys(allCaps).reduce((a, b) => allCaps[a] < allCaps[b] ? a : b);
 	
 	return {
-		[cheapest]: round((allCaps[cheapest]), 2)
+		cap: cheapest,
+		value: round((allCaps[cheapest]), 2)
 	};
 }

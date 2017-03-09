@@ -941,7 +941,8 @@ describe('oyster', () => {
 	    expect(
 	        oyster(days, data)
 		).toEqual({
-			'2-4': 39.3}
+			cap: '2-4',
+      value: 39.3}
 			);
     });
 
@@ -949,20 +950,23 @@ describe('oyster', () => {
 	    expect(
 	        oyster(days2, data)
 		).toEqual({
-			'3-6': 39.8});
+			cap: '3-6',
+      value: 39.8});
     });
 
      test('3', () => {
 	    expect(
 	        oyster(days3, data)
 		).toEqual({
-			'noCap': 19.9});
+      cap: 'noCap',
+      value: 19.9});
     });
     test('4', () => {
 	    expect(
 	        oyster(days4, data)
 		).toEqual({
-			'noCap': 15.3});
+			cap: 'noCap',
+      value: 15.3});
     });
 });
 

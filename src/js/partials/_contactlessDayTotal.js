@@ -1,3 +1,5 @@
+// old
+
 /**
  * Calculates the contactless total fare for the day
  * @function
@@ -16,6 +18,8 @@
   getFare,
   flatten,
   round,
+  types,
+  dualZone,
 } from './../utility/_utility';
 
 import extensionFares from './_extensionFares';
@@ -44,6 +48,9 @@ export default function conDayTotal(day, options = {}, data = {}) {
 
 		const total = day.map(journey => {
 
+		    //types function deals with early  /afternoon peak/offpeak handling
+		    let journeyType = types(journey.type);
+
 			let conDaily = maxNum(cap);
 			if (maxTravelcard) {
 				// dual to dual stations: if min weekly travelcard zone =< max dual zone zone
@@ -66,7 +73,7 @@ export default function conDayTotal(day, options = {}, data = {}) {
 		 		maxTravelcard: conMax,
 		 		maxDaily: conDaily,
 		 		zones: journey.zones,
-		 		type: journey.type,
+		 		type: journeyType,
 		 	}, singleFares);
 
 		}).reduce((a, b) => a + b);
@@ -82,6 +89,9 @@ export default function conDayTotal(day, options = {}, data = {}) {
 		const offPeakDayTotal = day.map(journey => {
 			let conDaily = maxNum(cap);
 
+		    //types function deals with early  /afternoon peak/offpeak handling
+		    let journeyType = types(journey.type);
+
 			if (maxTravelcard) {
 				if (journey.dualZoneOverlap === true &&
 					(((minNum(journey.zones)) + 1) >= minTravelcard) &&
@@ -94,7 +104,7 @@ export default function conDayTotal(day, options = {}, data = {}) {
 				let conMax = maxNum(cap);
 				let conDaily = false;
 			}
-			if(journey.type === 'offPeak') {
+			if(journey.type === 'offPeak' || journey.type === 'afternoon') {
 				return extensionFares({
 			 		minTravelcard: conMin,
 			 		maxTravelcard: conMax,
@@ -120,7 +130,11 @@ export default function conDayTotal(day, options = {}, data = {}) {
 
 		// for no daily caps
 	const cheapestNoCap = day.map(journey => {
+		//weird off peak
+	    //types function deals with early  /afternoon peak/offpeak handling
+   		let journeyType = types(journey.type);
 
+		// fixes dual overlap 
 		if (maxTravelcard) {
 			if (journey.dualZoneOverlap === true &&
 				(((minNum(journey.zones)) + 1) >= minTravelcard) &&
@@ -136,7 +150,7 @@ export default function conDayTotal(day, options = {}, data = {}) {
 	 		minTravelcard: conMin,
 	 		maxTravelcard: conMax,
 			zones: journey.zones,
-			type: journey.type,
+			type: journeyType,
 		}, singleFares);
 
 	}).reduce((a, b) => a + b);

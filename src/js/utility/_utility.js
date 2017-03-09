@@ -152,3 +152,38 @@ export const met = (value, target) => value >= target;
 export function round(value, decimals) {
    return Number(`${Math.round(`${value}e${decimals}`)}e-${decimals}`);
 }
+
+/**
+ * Deals with handlnig early/afternoon type journeys (see below) - so can adjust to offpeak or anytime to work out single fare
+ * @function
+ * @param {type} - the journey type for that: either targeted by b.type in oysterDayTotal or journey.type for contactlessDayTotal
+ * @description
+ // early type = single fare is off peak but only limited by/counts towards anytime daily cap
+// afternoon type = single fare is peak but limited by/counts towards off peak too
+ */
+export function types(type) {
+  if (type === 'early') {
+    return 'offPeak';
+  } else if (type === 'afternoon') {
+    return'anytime';
+  } else {
+    return type;
+  }
+}
+
+/**
+ * Deals with handlnig early/afternoon type journeys (see below) - so can adjust to offpeak or anytime to work out single fare
+ * @function
+ * @param {type} - the journey type for that: either targeted by b.type in oysterDayTotal or journey.type for contactlessDayTotal
+ * @description
+ // early type = single fare is off peak but only limited by/counts towards anytime daily cap
+// afternoon type = single fare is peak but limited by/counts towards off peak too
+ */
+export function dualZones(dualZoneOverlap, zones) {
+  if (dualZoneOverlap === true &&
+    (((minNum(zones)) + 1) >= minTravelcard) &&
+    (((maxNum(zones)) + 1) <= maxTravelcard)
+    ) {
+    return 0;
+  }
+}

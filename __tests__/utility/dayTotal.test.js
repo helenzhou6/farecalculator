@@ -393,7 +393,6 @@ const offPeakRefund = [
       dualZoneOverlap: false,
       type: "offPeak",
     },
-//also tests for all offpeak, all anytime, most anytime 1 offpeak & vice versa, 2-4 zone first and last
   ];
   const offPeakRefund2 = [
     {
@@ -470,7 +469,6 @@ const offPeakRefund = [
       dualZoneOverlap: false,
       type: "offPeak",
     },
-//also tests for all offpeak, all anytime, most anytime 1 offpeak & vice versa, 2-4 zone first and last
   ];
 const offPeakRefund4 = [
     {
@@ -508,7 +506,6 @@ const offPeakRefund4 = [
       dualZoneOverlap: false,
       type: "offPeak",
     },
-//also tests for all offpeak, all anytime, most anytime 1 offpeak & vice versa, 2-4 zone first and last
   ];
 
   const offPeakRefund5 = [
@@ -547,7 +544,111 @@ const offPeakRefund4 = [
       dualZoneOverlap: false,
       type: "offPeak",
     },
-//also tests for all offpeak, all anytime, most anytime 1 offpeak & vice versa, 2-4 zone first and last
+  ];
+
+  const early = [
+    {
+      zones: [2, 4],
+      dualZoneOverlap: true,
+      type: "early",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "early",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "early",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "early",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "early",
+    },
+  ];
+
+const early2 = [
+    {
+      zones: [2, 4],
+      dualZoneOverlap: true,
+      type: "early",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "early",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+  ];
+const afternon = [
+    {
+      zones: [2, 4],
+      dualZoneOverlap: true,
+      type: "afternoon",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "afternoon",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "afternoon",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "afternoon",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "afternoon",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "afternoon",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "afternoon",
+    },
+  ];
+const afternon2 = [
+    {
+      zones: [2, 4],
+      dualZoneOverlap: true,
+      type: "afternoon",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "afternoon",
+    },
   ];
 
   describe('Oyster Day Total', () => {
@@ -734,7 +835,7 @@ const offPeakRefund4 = [
    });
         test('13', () => {
       expect(
-        conDayTotal(
+        oysterDayTotal(
           offPeakRefund3,
         {
        }, {
@@ -768,6 +869,59 @@ const offPeakRefund4 = [
         value: 9.5,
         capIsMet: 4});
    });
+
+    test('16', () => {
+      expect(
+        oysterDayTotal(
+          early,
+      {
+       }, {
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual({
+        value: 9.5,
+        capIsMet: false}
+        );
+    });
+    test('17', () => {
+      expect(
+        oysterDayTotal(
+          early2,
+      {
+       }, {
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual({
+        value: 4.5,
+        capIsMet: false}
+        );
+    });
+    test('18', () => {
+      expect(
+        oysterDayTotal(
+          afternon,
+      {
+       }, {
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual({
+        value: 9.5,
+        capIsMet: 4}
+        );
+    });
+    test('19', () => {
+      expect(
+        oysterDayTotal(
+          afternon2,
+      {
+       }, {
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual({
+        value: 4.8,
+        capIsMet: false}
+        );
+    });
 });
 
 describe('Contactless Day Total', () => {
@@ -984,4 +1138,57 @@ describe('Contactless Day Total', () => {
         value: 8.5,
         capIsMet: 2});
    });
+
+  test('16', () => {
+      expect(
+        conDayTotal(
+          early,
+      {
+       }, {
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual({
+        value: 9.5,
+        capIsMet: false}
+        );
+    });
+    test('17', () => {
+      expect(
+        conDayTotal(
+          early2,
+      {
+       }, {
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual({
+        value: 4.5,
+        capIsMet: false}
+        );
+    });
+    test('18', () => {
+      expect(
+        conDayTotal(
+          afternon,
+      {
+       }, {
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual({
+        value: 9.5,
+        capIsMet: 4}
+        );
+    });
+    test('19', () => {
+      expect(
+        conDayTotal(
+          afternon2,
+      {
+       }, {
+          dailyCaps, //JSON
+          singleFares
+        })).toEqual({
+        value: 4,
+        capIsMet: 1}
+        );
+    });
 });

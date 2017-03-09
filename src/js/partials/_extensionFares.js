@@ -38,15 +38,23 @@ export default function extensionFares(options = {}, singleFares) {
   let minChargedZone = minSingle;
 
 	if (maxDaily) { // If contactless, daily and weekly combo (hence adding in maxDaily as argument_
-	 	if (maxDaily >= (minTravelcard - 1)) { // if no gap zones between max daily and min travelcard
-	  	minTravelcard = 1; // since anytime daily caps always start at zone 1
-	   	maxTravelcard = maxNum([maxDaily, maxTravelcard]); // max travelcard is whichever is largest max daily or max travelcard
-// else if contactless, daily and weekly combo, and there are gap zones between max daily and min travelcard, have a min charged zone (not charge the daily cap - the front)
-		} else { // IF difference bw min weekly and max daily cap > 1 -- THEN THERE ARE GAP ZONES
+		if (maxTravelcard) {
+		 	if (maxDaily >= (minTravelcard - 1)) { // if no gap zones between max daily and min travelcard
+		  	minTravelcard = 1; // since anytime daily caps always start at zone 1
+		   	maxTravelcard = maxNum([maxDaily, maxTravelcard]); // max travelcard is whichever is largest max daily or max travelcard
+	// else if contactless, daily and weekly combo, and there are gap zones between max daily and min travelcard, have a min charged zone (not charge the daily cap - the front)
+			} else { // IF difference bw min weekly and max daily cap > 1 -- THEN THERE ARE GAP ZONES
 				minChargedZone = ((minSingle <= maxDaily) ? maxDaily + 1 : minSingle);
 				finalCondition = (minSingle <= maxDaily && maxSingle <= maxDaily);
+			}
 		}
+		debugger;
 	}
+	if (maxDaily && !maxTravelcard) {
+		maxTravelcard = maxDaily;
+		minTravelcard = 1;
+	}
+
 
 	// if min single isnt within travelcard zones but max single is(NB not needed for daily cap) - charge front
 	if ((minSingle < minTravelcard) && (minTravelcard <= maxSingle && maxSingle <= maxTravelcard)) {
@@ -73,7 +81,7 @@ export default function extensionFares(options = {}, singleFares) {
  	// both single zones are outside travelcard zones
  	}
 
-
+debugger;
   return getFare([minChargedZone, maxSingle], type, singleFares);
 // ELSE min single and max single both > max weekly zone (or both < min daily) OR min single zone > min gap zone && max single zone < max gap zone
 }

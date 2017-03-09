@@ -35,7 +35,10 @@ export default function contactless(days, data) {
 
   // gets the fare for the cheapest daily cap (or no daily cap) with no weekly travelcars
   const noWeekly = weekTotal(conDayTotal, days, {
-	  	false,
+        options: {
+          minTravelcard: false,
+          maxTravelcard: false,
+        },
 	  	data,
 	  });
 
