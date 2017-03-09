@@ -81,184 +81,184 @@ const days = [
       type: "offPeak",
     },
   ],
-  [
-    {
-      zones: [2, 4],
-      dualZoneOverlap: true,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-  ],
-  [
-     {
-      zones: [2, 4],
-      dualZoneOverlap: true,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-  ],
-  [
-    {
-      zones: [2, 4],
-      dualZoneOverlap: true,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-  ],
-  [
-    {
-      zones: [2, 4],
-      dualZoneOverlap: true,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-  ],
+  // [
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: true,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 2],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 2],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 2],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 2],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  // ],
+  // [
+  //    {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: true,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 2],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 2],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  // ],
+  // [
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: true,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 2],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 2],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  // ],
+  // [
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: true,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 2],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 2],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  //   {
+  //     zones: [2, 4],
+  //     dualZoneOverlap: false,
+  //     type: "offPeak",
+  //   },
+  // ],
   [
     {
       zones: [2, 4],
@@ -587,6 +587,15 @@ const journey = [
   //         singleFares
   //       })
   // );
+console.log(
+              weekTotal(oysterDayTotal, days, {
+        options: {
+          minTravelcard: 1,
+          maxTravelcard: 2,
+        },
+        data,
+      })
+              );
 
 //       console.log(
 // oysterDayTotal(
@@ -600,12 +609,12 @@ const journey = [
 //         })
 //   );
 
-console.log(extensionFares({
-        zones: [1, 4],
-        minTravelcard: false,
-        maxTravelcard: false,
-        maxDaily: 1,
-        type: 'anytime',
-      }, singleFares));
+// console.log(extensionFares({
+//         zones: [1, 4],
+//         minTravelcard: false,
+//         maxTravelcard: false,
+//         maxDaily: 1,
+//         type: 'anytime',
+//       }, singleFares));
 
 });

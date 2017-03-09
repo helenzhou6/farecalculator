@@ -26,42 +26,60 @@ import conDayTotal from './_contactlessDayTotal';
 
 //works out the equivalent of no cap
 export default function weekTotal(paymentFunction, days, info) {
-	let numOffPeakCapZ4 = 0;
-	let numOffPeakCapZ6 = 0;
-	let numOffPeakCapZ5 = 0;
+	const offPeakCaps = {
+		'zone-4': 0,
+		'zone-5': 0,
+		'zone-6': 0,
+	};
 
-	let weekTotalFare = days.map(function (day) { 
-		//if day is empty with no journeys
-		if (day === undefined || day.length === 0) {
-			return 0;
+	function incrementCap(zone) {
+		if (offPeakCaps.hasOwnProperty(`zone-${zone}`)) {
+			offPeakCaps[`zone-${zone}`] += 1;
 		}
+	}
+
+	const validDays = days.filter(day => day.length > -1);
+
+	let weekTotalFare = validDays.map((day) => { 
 	  	//for each day add together the total day total
 	  	const dayObject = paymentFunction(day, info.options, info.data);
 	  	const dayCapMet = dayObject.capIsMet;
 
-	  	if (dayCapMet === 4) {
-	  		numOffPeakCapZ4 += 1;
-	  	// What about refunds if the cap is between zones 1-5?? and if does not apply - then cheaper to do discounted zone 1-4 plus extension fares to 5?
-	  	} else if (dayCapMet === 6) {
-	  		numOffPeakCapZ6 += 1;
-	  	} else if (dayCapMet === 5) {
-	  		numOffPeakCapZ5 += 1;
-	  	}
+	  	// offPeakCaps[`zone-${dayCapMet}`] += 1;
+
+	  	// console.log(dayCapMet);
+
+	  	incrementCap(dayCapMet);
+	  	// console.log(offPeakCaps);
+	  	// debugger;
+
+
+	  	// if (dayCapMet === 4) {
+	  	// 	numOffPeakCapZ4 += 1;
+	  	// // What about refunds if the cap is between zones 1-5?? and if does not apply - then cheaper to do discounted zone 1-4 plus extension fares to 5?
+	  	// } else if (dayCapMet === 6) {
+	  	// 	numOffPeakCapZ6 += 1;
+	  	// } else if (dayCapMet === 5) {
+	  	// 	numOffPeakCapZ5 += 1;
+	  	// }
+
+	  	// numOffPeakCap
 
 	 	return dayObject.value;
 	 //returns the current week total
 	}).reduce((a, b) => a + b);
+
   // week function to see if off peak cap met and max zone between 4-6: if true for 2+ a week, apply a discount
-	if ((numOffPeakCapZ4 + numOffPeakCapZ6 + numOffPeakCapZ5) >= 2) {
+	if ((offPeakCaps['zone-4'] + offPeakCaps['zone-5'] + offPeakCaps['zone-6']) >= 2) {
 	  weekTotalFare -=
 	  	(
-	  		(numOffPeakCapZ4 * (
+	  		(offPeakCaps['zone-4'] * (
 	  			getFare([1, 4], false, info.data.autoOffPeakRefund)
 	  		))
-		  	+ (numOffPeakCapZ6 * (
+		  	+ (offPeakCaps['zone-6'] * (
 		  		getFare([1, 6], false, info.data.autoOffPeakRefund)
 		  	))
-		  	+ (numOffPeakCapZ5 * (
+		  	+ (offPeakCaps['zone-5'] * (
 		  		getFare([1, 5], false, info.data.autoOffPeakRefund)
 		  	))
 	  	);

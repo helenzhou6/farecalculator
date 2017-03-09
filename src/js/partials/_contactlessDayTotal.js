@@ -47,16 +47,15 @@ export default function conDayTotal(day, options = {}, data = {}) {
 					(((maxNum(journey.zones)) + 1) <= maxTravelcard);
 	}
 
+	const validDays = day.filter(j => !dualZoneOverlap(j));
+
 	const cheapestAnytime = allDailyCaps.map((cap) => {
-		const total = day.map(journey => {
+		const total = validDays.map(journey => {
 		    //types function deals with early  /afternoon peak/offpeak handling
 
 			// dual to dual stations: if min weekly travelcard zone =< max dual zone zone
 			// = > then changes dual to dual  stations to min weekly travelcard zone
 			// THIS IS DUPLICATED x3 -- refactor
-			if (dualZoneOverlap(journey)) {
-				return 0;
-			}
 
 			return extensionFares({
 		 		minTravelcard,
@@ -66,7 +65,7 @@ export default function conDayTotal(day, options = {}, data = {}) {
 		 		type: types(journey.type),
 		 	}, singleFares);
 
-		}).reduce((a, b) => a + b);
+		}).reduce((a, b) => a + b, 0);
 
 		return total + getFare(cap, 'anytime', dailyCaps);
 	});
@@ -75,14 +74,10 @@ export default function conDayTotal(day, options = {}, data = {}) {
 	// for cheapest mix peak journeys + each daily off peak cap
 	const cheapestOffPeak = allDailyCaps.map((cap) => {
 		
-		const offPeakDayTotal = day.map(journey => {
+		const offPeakDayTotal = validDays.map(journey => {
 		    //types function deals with early  /afternoon peak/offpeak handling
 		    // let journeyType = types(journey.type);
 		    let maxDaily = false;
-			
-			if (dualZoneOverlap(journey)) {
-				return 0;
-			}
 
 			if (journey.type === 'offPeak' || journey.type === 'afternoon') {
 				maxDaily = maxNum(cap);
@@ -96,7 +91,7 @@ export default function conDayTotal(day, options = {}, data = {}) {
 				type: types(journey.type),
 			}, singleFares);
 			
-		}).reduce((a, b) => a + b);
+		}).reduce((a, b) => a + b, 0);
 
 		return {
 			offPeakMaxZone: maxNum(cap),
@@ -105,14 +100,9 @@ export default function conDayTotal(day, options = {}, data = {}) {
 	});
 
 		// for no daily caps
-	const cheapestNoCap = day.map(journey => {
+	const cheapestNoCap = validDays.map(journey => {
 		//weird off peak
 	    //types function deals with early  /afternoon peak/offpeak handling
-
-		// fixes dual overlap 
-		if (dualZoneOverlap(journey)) {
-			return 0;
-		}
 
 		return extensionFares({
 	 		minTravelcard,
@@ -121,7 +111,7 @@ export default function conDayTotal(day, options = {}, data = {}) {
 			type: types(journey.type),
 		}, singleFares);
 
-	}).reduce((a, b) => a + b);
+	}).reduce((a, b) => a + b, 0);
 
 	// creates an array of the cheapestOffPeak values (out of the object)
 	const cheapestOffPeakValues = cheapestOffPeak.map((lVal) => lVal.value);
