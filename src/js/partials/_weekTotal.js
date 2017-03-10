@@ -24,66 +24,42 @@
 import oysterDayTotal from './_oysterDayTotal';
 import conDayTotal from './_contactlessDayTotal';
 
-//works out the equivalent of no cap
 export default function weekTotal(paymentFunction, days, info) {
-	const offPeakCaps = {
-		'zone-4': 0,
-		'zone-5': 0,
-		'zone-6': 0,
-	};
-
-	function incrementCap(zone) {
-		if (offPeakCaps.hasOwnProperty(`zone-${zone}`)) {
-			offPeakCaps[`zone-${zone}`] += 1;
-		}
-	}
-
+	// Filters the days by those with journeys
 	const validDays = days.filter(day => day.length > -1);
 
-	let weekTotalFare = validDays.map((day) => { 
-	  	//for each day add together the total day total
-	  	const dayObject = paymentFunction(day, info.options, info.data);
-	  	const dayCapMet = dayObject.capIsMet;
+	// Uses the paymentFunction passed in (oyster or contactless) to generate an array
+	// -- Array is an object per day (with day total fare and isCapMet)
+	const weekAllCaps = validDays.map((day) => paymentFunction(day, info.options, info.data));
 
-	  	// offPeakCaps[`zone-${dayCapMet}`] += 1;
+	// Loops over the object per day to accumulate the number of off peak zone 1-4, 1-5 and 1-6 daily caps met
+	const offPeakCaps = weekAllCaps.reduce((a, b) => {
+		if (b.hasOwnProperty('capIsMet') && b.capIsMet !== false) {
+			a[b.capIsMet] += 1;
+		}
+		return a;
 
-	  	// console.log(dayCapMet);
+	}, {'4': 0, '5': 0, '6': 0});
 
-	  	incrementCap(dayCapMet);
-	  	// console.log(offPeakCaps);
-	  	// debugger;
+	// Adds together the day total fares to = current week total fare
+  	let weekTotalFare = weekAllCaps.reduce((a, b) => a + b.value, 0);
 
-
-	  	// if (dayCapMet === 4) {
-	  	// 	numOffPeakCapZ4 += 1;
-	  	// // What about refunds if the cap is between zones 1-5?? and if does not apply - then cheaper to do discounted zone 1-4 plus extension fares to 5?
-	  	// } else if (dayCapMet === 6) {
-	  	// 	numOffPeakCapZ6 += 1;
-	  	// } else if (dayCapMet === 5) {
-	  	// 	numOffPeakCapZ5 += 1;
-	  	// }
-
-	  	// numOffPeakCap
-
-	 	return dayObject.value;
-	 //returns the current week total
-	}).reduce((a, b) => a + b);
-
-  // week function to see if off peak cap met and max zone between 4-6: if true for 2+ a week, apply a discount
-	if ((offPeakCaps['zone-4'] + offPeakCaps['zone-5'] + offPeakCaps['zone-6']) >= 2) {
+  	// If off peak daily cap between 4-6 met for 2+ a week, applies the discount(s)
+	if ((offPeakCaps['4'] + offPeakCaps['5'] + offPeakCaps['6']) >= 2) {
 	  weekTotalFare -=
 	  	(
-	  		(offPeakCaps['zone-4'] * (
+	  		(offPeakCaps['4'] * (
 	  			getFare([1, 4], false, info.data.autoOffPeakRefund)
 	  		))
-		  	+ (offPeakCaps['zone-6'] * (
+		  	+ (offPeakCaps['6'] * (
 		  		getFare([1, 6], false, info.data.autoOffPeakRefund)
 		  	))
-		  	+ (offPeakCaps['zone-5'] * (
+		  	+ (offPeakCaps['5'] * (
 		  		getFare([1, 5], false, info.data.autoOffPeakRefund)
 		  	))
 	  	);
 	}
 
+	// Returns the final week total
 	return weekTotalFare;
 }

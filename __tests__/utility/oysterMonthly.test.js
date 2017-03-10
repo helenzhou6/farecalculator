@@ -303,6 +303,160 @@ const days = [
  
 ];
 
+const days2 = [
+  [
+    {
+      zones: [2, 6],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+        {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+  ],
+  [
+    {
+      zones: [2, 4],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+  ],
+    [
+    {
+      zones: [2, 4],
+      dualZoneOverlap: true,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 2],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+    {
+      zones: [2, 4],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+  ],
+];
+
 const data = {
 	"dailyCaps": {
 		"1-1": {
@@ -559,7 +713,12 @@ describe('oysterMonthly', () => {
     test('1', () => {
 	    expect(
 	        oysterMonthly(days, data)
-		).toEqual(24.21);
+		  ).toEqual(36.21);
+    });
+    test('2', () => {
+      expect(
+          oysterMonthly(days2, data)
+      ).toEqual(false);
     });
 
 });

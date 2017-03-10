@@ -3,7 +3,8 @@
  * @function
  * @param {object days} complex object containing array of days, and within each day an object for each journey
  * @param {data object of dailyCaps (JSON file), singleFares (JSON file link)
- * @returns {number} - the cheapest weekly charge rounded to 2 dp
+ * @returns {object} value: - the cheapest weekly charge rounded to 2 dp
+ // and cap: the weekly cap applied (if any)
  * @description calculates whether it is cheapest to have a weekly travelcard or none
  */
 
@@ -22,7 +23,7 @@ import weekTotal from './_weekTotal';
 export default function oyster(days, data) {
 	const weeklyCaps = keysToJourney(data.weeklyCaps);
 
-	// if no weekly cap
+	// 1. If no weekly cap is passed in
 	const noCapResult = {
 		'noCap': weekTotal(oysterDayTotal, days, {
 			options: {
@@ -32,7 +33,7 @@ export default function oyster(days, data) {
 			data,
 		})
 	};
-	// for each weeky cap
+	// 2. For each possible weekly cap
 	const capsResultPre = weeklyCaps.map((weekCap) => {
 		const weekTotl = weekTotal(oysterDayTotal, days, {
 			options: {
@@ -41,16 +42,18 @@ export default function oyster(days, data) {
 			},
 			data,
 		});
-		//returns object: the weekly cap associated and the week total (with weekly cap added)
+		// Returns an object: the weekly cap associated and the week total (with weekly cap added)
 		return {
 			[journeyToKey(weekCap)]: weekTotl + getFare(weekCap, false, data.weeklyCaps),
 		};
 	});
 
-	// returns object: the cheapest weekly cap associated and the cheapest weekly total (rounded to 2 dp)
+	// Adds noCap and each weekly cap object into one object of all possible weekly total fares
 	const allCaps = Object.assign({}, noCapResult, ...capsResultPre);
+	// Loops this object to find the cheapest week total
 	const cheapest = Object.keys(allCaps).reduce((a, b) => allCaps[a] < allCaps[b] ? a : b);
 	
+	// Returns object: the cheapest weekly cap associated and the cheapest weekly total (rounded to 2 dp)
 	return {
 		cap: cheapest,
 		value: round((allCaps[cheapest]), 2)

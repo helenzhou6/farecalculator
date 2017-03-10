@@ -134,13 +134,15 @@ export const getFare = (key, type, caps) => {
 };
 
 /**
- * Determines if a numeric target has been met or surpassed
+ * Determines if a numeric is within two targets (minTarget and maxTarget)
  * @function
  * @param {number} target - target value to compare against
- * @param {number} value - the value to compare against the target
+ * @param {number} minTarget - the minTarget (usually the minTravelcard) 
+ * @param {number} maxTarget - the minTarget (usually the maxTravelcard) 
  * @description
  */
-export const met = (value, target) => value >= target;
+
+ export const isWithin = (minTarget, value, maxTarget) => (minTarget <= value && value <= maxTarget)
 
 /**
  * Rounds a number to however many decimal places specified
