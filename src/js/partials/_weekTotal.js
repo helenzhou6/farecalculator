@@ -17,6 +17,8 @@
         data,
       });
  */
+
+ //SHOULD MAP OVER JSON TO FIND THE ZONES WITH OFF PEAK DISCOUNT rather than add 4, 5 and 6
  import {
   getFare,
 } from './../utility/_utility';

@@ -18,6 +18,7 @@
 } from './../utility/_utility';
 
 import oysterDayTotal from './_oysterDayTotal';
+import oysterMonthly from './_oysterMonthly';
 import weekTotal from './_weekTotal';
 
 export default function oyster(days, data) {
@@ -54,8 +55,11 @@ export default function oyster(days, data) {
 	const cheapest = Object.keys(allCaps).reduce((a, b) => allCaps[a] < allCaps[b] ? a : b);
 	
 	// Returns object: the cheapest weekly cap associated and the cheapest weekly total (rounded to 2 dp)
+	const weeklyValue = round((allCaps[cheapest]), 2);
+
 	return {
 		cap: cheapest,
-		value: round((allCaps[cheapest]), 2)
+		weeklyValue,
+		monthlyValue: oysterMonthly(cheapest, weeklyValue, data),
 	};
 }

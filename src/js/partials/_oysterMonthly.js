@@ -7,30 +7,27 @@
  * @description
  */
 
-
-// SHOULD THIS BE MERGED WITH OYSTER?
-import oyster from './_oyster';
 import { getFare,
 			round,
 			getDifference,
+			keyToJourney,
 		 } from './../utility/_utility';
 
-export default function oysterMonthly(days, data) {
-	const oysterCap = oyster(days, data).cap;
-	if (oysterCap !== "noCap") {
+export default function oysterMonthly(cap, weeklyValue, data) {
+	if (cap !== "noCap") {
 
 		// Monthly is based on each calendar month: *12 months / 52 weeks
 		// Calculates the cost of the week cap based on the monthly cap
-		const weekFromMonthly = ((getFare([oysterCap], false, data.monthlyCaps)) * 12 ) / 52;
+		const weekFromMonthly = ((getFare(keyToJourney(cap), false, data.monthlyCaps)) * 12 ) / 52;
 
-		// Gets the difference between the week cap from weekly caps or week cap from monthly cap
+		// Gets the difference between the week cap from weekly caps and the week cap from monthly cap (a discount)
 		const discount = getDifference(
 							weekFromMonthly,
-							(getFare([oysterCap], false, data.weeklyCaps))
+							(getFare(keyToJourney(cap), false, data.weeklyCaps))
 						);
 
-		// Applies the discount to the oyster week total
-		return round((oyster(days, data).value - discount), 2);
+		// Applies the discount to the oyster week total of that week
+		return round((weeklyValue - discount), 2);
 	} else {
 		return false;
 	}

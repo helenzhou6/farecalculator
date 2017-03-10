@@ -73,7 +73,36 @@ const data = {
     "1-5": 1.3,
     "1-6": 2.1
   },
-
+  "monthlyCaps": {
+    "1-2": 126.8,
+    "1-3": 148.7,
+    "1-4": 181.7,
+    "1-5": 215.9,
+    "1-6": 231.2,
+    "1-7": 251.2,
+    "1-8": 296.9,
+    "2-3": 94.9,
+    "2-4": 104.9,
+    "2-5": 126,
+    "2-6": 158.3,
+    "2-7": 164,
+    "2-8": 223.2,
+    "3-4": 94.9,
+    "3-5": 104.9,
+    "3-6": 126,
+    "3-7": 164,
+    "3-8": 223.2,
+    "4-5": 94.9,
+    "4-6": 104.9,
+    "4-7": 104.9,
+    "4-8": 118.7,
+    "5-6": 94.9,
+    "5-7": 118.7,
+    "5-8": 199.7,
+    "6-7": 118.7,
+    "6-8": 199.7,
+    "7-8": 199.7
+  },
 	"singleFares": {
 		"1-1": {
 			"anytime": 2.4,
@@ -940,34 +969,37 @@ describe('oyster', () => {
     test('1', () => {
 	    expect(
 	        oyster(days, data)
-		).toEqual({
-			cap: '2-4',
-      value: 39.3}
-			);
-    });
+    		).toEqual({
+    			cap: '2-4',
+          weeklyValue: 39.3,
+          monthlyValue: 36.21});
+      });
 
     test('2', () => {
 	    expect(
 	        oyster(days2, data)
-		).toEqual({
-			cap: '3-6',
-      value: 39.8});
-    });
+    		).toEqual({
+    			cap: '3-6',
+          weeklyValue: 39.8,
+          monthlyValue: 36.08});
+      });
 
      test('3', () => {
 	    expect(
 	        oyster(days3, data)
-		).toEqual({
-      cap: 'noCap',
-      value: 19.9});
-    });
+    		).toEqual({
+          cap: 'noCap',
+          weeklyValue: 19.9,
+          monthlyValue: false});
+      });
     test('4', () => {
 	    expect(
 	        oyster(days4, data)
-		).toEqual({
-			cap: 'noCap',
-      value: 15.3});
-    });
+    		).toEqual({
+    			cap: 'noCap',
+          weeklyValue: 15.3,
+          monthlyValue: false});
+      });
 });
 
 

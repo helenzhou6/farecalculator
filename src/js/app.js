@@ -3,7 +3,6 @@ import {
 	minNum,
 	flatten,
   getFare,
-	met,
   keysToJourney,
 } from './utility/_utility';
 
@@ -14,7 +13,6 @@ import oyster from './partials/_oyster';
 import contactless from './partials/_contactless';
 import weekTotal from './partials/_weekTotal';
 import oysterMonthly from './partials/_oysterMonthly';
-
 import oysterDayTotal from './partials/_oysterDayTotal';
 import conDayTotal from './partials/_contactlessDayTotal';
 
@@ -28,6 +26,8 @@ import conDayTotal from './partials/_contactlessDayTotal';
 // 		// console.log(resp);
 // 	});
 // });
+
+// SHOULD MAP OVER JSON TO FIND THE ZONES WITH OFF PEAK DISCOUNT rather than add 4, 5 and 6 for weekTotal
 
 getData.fares().then(function(data) {
   let singleFares = data.singleFares;
@@ -81,69 +81,49 @@ const days = [
       type: "offPeak",
     },
   ],
-  [
+   [
     {
-      zones: [2, 4],
+      zones: [2, 6],
       dualZoneOverlap: true,
       type: "offPeak",
     },
     {
-      zones: [2, 2],
+      zones: [2, 6],
       dualZoneOverlap: false,
       type: "offPeak",
     },
     {
-      zones: [2, 2],
+      zones: [2, 6],
       dualZoneOverlap: false,
       type: "offPeak",
     },
     {
-      zones: [2, 4],
+      zones: [2, 6],
       dualZoneOverlap: false,
       type: "offPeak",
     },
     {
-      zones: [2, 4],
+      zones: [2, 6],
       dualZoneOverlap: false,
       type: "offPeak",
     },
     {
-      zones: [2, 4],
+      zones: [2, 6],
       dualZoneOverlap: false,
       type: "offPeak",
     },
     {
-      zones: [2, 4],
+      zones: [2, 6],
+      dualZoneOverlap: false,
+      type: "offPeak",
+    },
+        {
+      zones: [2, 6],
       dualZoneOverlap: false,
       type: "offPeak",
     },
     {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 2],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
-      dualZoneOverlap: false,
-      type: "offPeak",
-    },
-    {
-      zones: [2, 4],
+      zones: [2, 6],
       dualZoneOverlap: false,
       type: "offPeak",
     },
@@ -333,7 +313,6 @@ const days = [
       type: "offPeak",
     },
   ],
- 
 ];
 
   // console.log(
@@ -342,10 +321,10 @@ const days = [
 
   // // final cheapest weekly charge on oyster
   console.log(
-    oyster(days, data)
+    oysterMonthly("3-6", 39.8, data)
   );
-  console.log(
-    oysterMonthly(days, data)
+   console.log(
+    oyster(days, data)
   );
 
 
