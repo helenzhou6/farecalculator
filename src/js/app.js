@@ -15,10 +15,9 @@ import weekTotal from './partials/_weekTotal';
 import oysterMonthly from './partials/_oysterMonthly';
 import oysterDayTotal from './partials/_oysterDayTotal';
 import conDayTotal from './partials/_contactlessDayTotal';
+import ui from './ui';
 
-// TO DO
-// Add the Railcard or Gold card discount to your Oyster
-// CAN DO APPRENTICE, 18+ STUDENT, 16+ ZIP, JOB CENTRE ON OYSTER - as no diff bw off peak / on peak daily caps
+ui();
 
 // API HANDLING
 // getData.stations().then(function (stations) {
@@ -29,9 +28,11 @@ import conDayTotal from './partials/_contactlessDayTotal';
 
 // SHOULD MAP OVER JSON TO FIND THE ZONES WITH OFF PEAK DISCOUNT rather than add 4, 5 and 6 for weekTotal
 
+//Off-peak fares apply at all other times and if you travel from a station outside Zone 1
+//-- to a station in Zone 1 between 16:00 and 19:00, Mondays to Fridays 
 getData.fares().then(function(data) {
-  let singleFares = data.singleFares;
-  let dailyCaps = data.dailyCaps;
+  let singleFares = data.adult.singleFares;
+  let dailyCaps = data.adult.dailyCaps;
 
 const days = [
   [
@@ -315,16 +316,25 @@ const days = [
   ],
 ];
 
-  // console.log(
-  //   "contactless = " + contactless(days, data)
-  // );
+// JSON that varies: offPeak PAYG, peak PAYG, travelcards
+const dataOyster = data.adult;
+// --> If job centre plus dicounts on adult (adult child-jobless) OR 16+ zip oyster photocard (child-jobless none): data.halfOff
+// --> If adult + national railcards (adult + railcard): Object.assign({}, data.adult, data.thirdOffPeakPAYG);
+// --> If adult + disabled persons (adult + disabled): Object.assign({}, data.adult, data.thirdAnytimePAYG);
+// --> If 18+ student (student + none): thirdTravelcards + adult PAYG : Object.assign({}, data.adult, data.thirdTravelcards);
+// --> If 18+ + national railcards (student + railcard): Object.assign({}, data.thirdOffPeakPAYG, data.thirdTravelcards);
+// --> If 18+ + disabled persons (student + disabled): Object.assign({}, data.thirdAnytimePAYG, data.thirdTravelcards);
+// ELSE data.adult
 
-  // // final cheapest weekly charge on oyster
   console.log(
-    oysterMonthly("3-6", 39.8, data)
+    "contactless = " + contactless(days, data.adult)
   );
+
+  // console.log(
+  //   oysterMonthly("3-6", 39.8, data.adult)
+  // );
    console.log(
-    oyster(days, data)
+    oyster(days, dataOyster)
   );
 
 

@@ -1,0 +1,404 @@
+@import '../../node_modules/normalize.css/normalize';
+@import 'vendor/select-css';
+
+@mixin media($px) {
+	@media (min-width: $px) {
+		@content;
+	}
+}
+
+*,
+*:before,
+*:after {
+	// border: 1px solid lightblue;
+  box-sizing: border-box;
+}
+
+html {
+	background-color: #0422C2;
+	font-size: 1em;
+	line-height: 1.4;
+}
+
+button {
+	padding: 0;
+	cursor: pointer;
+}
+
+body {
+    color: white;
+    font-family: ff-tisa-sans-web-pro;
+    font-weight: 700;
+    margin: 1.2rem;
+
+	@include media(500px) {
+		margin: 4rem;
+	}
+
+	@include media(700px){
+		margin: 7rem;
+	}
+
+	@include media(1000px) {
+		margin: 6rem auto;
+		max-width: 57rem;
+	}
+}
+
+.icon {
+	height: 1.3rem;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+input[type="text"] {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    apperance: none;
+    border-bottom: 2px solid white;
+    padding: .6em 0 .5em 0;
+    width: 100%;
+	font-family: ff-tisa-sans-web-pro;
+	color: white;
+
+	@include media(600px) {
+		padding: 0 0 .9em 0;
+		max-width: 25rem;
+	}
+
+	@include media(1000px) {
+		margin-top: 1rem;
+	}
+
+	&:focus {
+		border-bottom: 2px solid orange;
+		outline: none;
+	}
+}
+
+::-webkit-input-placeholder {
+   	opacity: .4;
+   	color: white;
+}
+
+select {
+	color: white;
+    font-family: ff-tisa-sans-web-pro;
+    background-color: transparent;
+	cursor: pointer;
+    &:active, &:focus{
+    	background-color: rgba(255,255,255, 0.1);
+    	border-radius: 0;
+    }
+}
+
+h3 {
+    font-size: 1.1rem;
+    text-decoration: underline;
+}
+
+.logo {
+    padding-bottom: 1rem;
+
+    h1 {
+	    text-transform: uppercase;
+	    font-size: .9rem;
+	    display: inline;
+    }
+}
+
+.label {
+	margin-bottom: .5rem;
+	margin-top: 1.5rem;
+
+	@include media(600px) {
+		margin-bottom: 1rem;
+		margin-top: 1.8rem;
+	}
+}
+
+.weekend-touchin {
+	border: 2px solid rgba(255,255,255, 0.4);
+	color: rgba(255,255,255, 0.4);
+	padding: .6em 0 .5em 1em;
+	position: relative;
+	width: 100%;
+	cursor: default;
+
+	@include media(600px) {
+		padding: 0.8em 0 0.7em 1em;
+	}
+
+	&:after {
+		content: '▼';
+		position: absolute;
+		top: 50%;
+		color: rgba(255,255,255, 0.4);
+		transform: translateY(-50%);
+		font-size: .8rem;
+		right: 1em;
+	}
+}
+
+.intro {
+	margin-top: 4rem;
+	margin-bottom: 3rem;
+	max-width: 30rem;
+}
+
+.day {
+	margin-top: 3.5rem;
+	margin-bottom: 3.5rem;
+}
+.day-journey {
+	margin-top: 0.5rem;
+	margin-bottom: 1.4rem;
+
+	@include media(1000px) {
+		margin-bottom: 1rem;
+		&:not(:first-of-type) {
+			.label {
+				display: none;
+			}
+		}
+		&:first-of-type {
+			.day-remove {
+				margin-top: 4.2rem;// calculate 
+			}
+		}
+	}
+}
+.day-remove {
+	font-size: 0.95em;
+
+	&:before {
+		content: '×';
+		color: orange;
+		font-weight: 700;
+		padding-right: 0.4em;
+		font-size: 1.1em;
+		display: block;
+
+		@include media(1000px) {
+			font-size: 2.8em;
+			vertical-align: center;
+			padding: 0;
+			font-weight: 100;
+		}
+	}
+	
+	border: 2px solid red;
+
+    &:focus {
+		outline: 0;
+		border-bottom-color: orange;
+	}
+
+	@include media(1000px){
+		line-height: calc(2.9em + 2px); // RECALCULATE
+		float: right;
+
+		&:focus {
+			border-color: orange;
+		}
+	}
+
+}
+
+.journey-touchin {
+	@include media(1000px) {
+		float: left;
+		width: 94.5%;
+	}
+}
+
+.remove-button {
+	margin-top: 1.1rem;
+
+	@include media(700px) {
+		margin-top: 2rem;
+	}
+	@include media(1000px) {
+		float: left; 
+		width: 4.5%;
+		margin-left: 1%;
+		margin-top: 0;
+	}
+}
+
+.add-journey {
+	margin-top: 2rem;
+
+	&:before {
+		content: '+';
+		color: orange;
+		font-weight: 700;
+		padding-right: 0.4em;
+		font-size: 1.1em;
+	}
+
+    &:focus {
+		outline: 0;
+		border-bottom-color: orange;
+	}
+
+	@include media(700px) {
+		margin-top: 2.5rem;
+	}
+
+	@include media(1000px) {
+		margin-top: 1rem;
+	}
+}
+
+.submit {
+    font-family: ff-tisa-sans-web-pro;
+    border: 2px solid orange;
+    color: orange;
+    font-weight: 700;
+	padding: 0.6em;
+	width: 100%;
+	background-color: transparent;
+
+	&:focus {
+		outline: 0;
+    	background-color: rgba(255,255,255, 0.1);
+	}
+}
+
+.text-button {
+	padding-left: 0;
+	background-color: transparent;
+    border: 2px solid transparent;
+   	color: white;
+    font-family: ff-tisa-sans-web-pro;
+    font-weight: 700;
+}
+
+.card-selection {
+	@include media(600px) {
+		width: 100%;
+	}
+}
+
+.oyster-card {
+	select {
+		border: 1px solid white;
+    	-webkit-appearance: none;
+	}
+}
+
+.card {
+	@include media(600px) {
+    	float: left;
+    	width: 48%;
+    	&:first-child {
+			margin-right: 4%;
+    	}
+    	max-width: 17rem;
+    }
+}
+
+.touch-in {
+	@include media(600px) {
+    	float: left;
+    	width: 48%;
+		margin-right: 52%;
+    	max-width: 14rem;
+    }
+    @include media(1000px) {
+		width: 24.5%;
+		margin-left: 3%;
+		margin-right: 0;
+		max-width: initial;
+	}
+
+}
+
+.journey {
+	@include media(1000px) {
+    	float: left;
+    	width: 46%;
+    }
+
+    .label {
+    	margin-top: .9rem;
+    }
+}
+
+.each-journey {
+	@include media(1000px) {
+		float: left;
+		width: 72.5%;
+	}
+}
+
+.is-hidden {
+	@include media(1000px) {
+		visibility: hidden;
+		position: absolute;
+		clip: rect(1px, 1px, 1px, 1px);
+	}
+}
+.is-hidden--mobile {
+	visibility: hidden;
+	position: absolute;
+	clip: rect(1px, 1px, 1px, 1px);
+	@include media(1000px) {
+		visibility: visible;
+		position: relative;
+	}
+}
+.journey-to {
+	display: none;
+
+	@include media(1000px) {
+		display: block;
+		line-height: calc(3.15em + 2px);
+		float: left;
+		width: 8%;
+		text-align: center;
+		vertical-align: bottom;
+	}
+}
+
+.discount-card select {
+    border: 1px solid white;
+    -webkit-appearance: none;
+}
+
+.custom-select {
+	border: 2px solid white;
+	position: relative;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+
+	select {
+		padding: .6em 0 .5em 1em;
+
+		@include media(600px) {
+			padding: 0.8em 0 0.7em 1em;
+		}
+	}
+
+	&:after {
+		content: '▼';
+		color: orange;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		font-size: .8rem;
+	}
+}
+
+fieldset {
+	border: none;
+	padding: 0;
+	margin: 0;
+}

@@ -2,6 +2,7 @@
 // stations is the .json file from fetchStationsData() function
 // Need to make it so that it generates it after each journey
 
+ //Off-peak fares apply at all other times and if you travel from a station outside Zone 1 to a station in Zone 1 between 16:00 and 19:00, Mondays to Fridays 
 import getData from '../utility/_getData';
 import {
 	flatten,

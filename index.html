@@ -3,96 +3,198 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
+        <title>Weekly Fare Calculator</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="dist/css/main.css">
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
+        <script src="https://use.typekit.net/kjz3vlq.js"></script>
+        <script>try{Typekit.load({ async: true });}catch(e){}</script>
     </head>
-    <body>
-        <h1>Travelcard Fare Calculator</h1>
+    <body class="clearfix">
 
-        <form action="">
+        <div class="logo">
+            <img class="icon" src="src/img/tfl.svg" />
+            <h1>Oyster and Contactless Weekly Fare Calculator</h1>
+        </div>
+        <div class="intro">
+            <p>This fare calculator aims to calculate the best weekly fares (using either contactless or an oyster card) for travel between most tube, DLR and London Overground stations within zones 1-9.</p>
+        </div>
+
+        <form action="" autocomplete="off" name="">
+            <div class="card-selection clearfix">
+                <label class="card">
+                    <div class="label">Oyster card</div>
+                    <div class="custom-select">
+                        <select name="oyster-card"> 
+                            <option value="adult">Adult</option>
+                            <option value="student">Apprentice</option>
+                            <option value="student">18+ Student</option>
+                            <option value="child-jobless">16+ Zip</option>
+                        </select>
+                    </div>
+                </label>
+                <label class="card">
+                    <div class="label">Discount card</div>
+                    <div class="custom-select">
+                        <select name="discount-card" class="discount-card">
+                            <option value="none">None</option>
+                            <option value="child-jobless">Job Centre</option>
+                            <option value="disabled">Disabled Persons</option>
+                            <option value="railcard">16-25 Railcard</option>
+                            <option value="railcard">HM Forces</option>
+                            <option value="railcard">Senior Railcard</option>
+                            <option value="railcard">Gold card</option>
+                        </select>
+                    </div>
+                </label>
+            </div>
+
             <fieldset class="day">
                 <legend><h3>Monday</h3></legend>
+
                 <fieldset class="day-journey">
-                    <label>From Zone
-                        <select name="mon-one-from">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                    </label>
+                    <div class="clearfix journey-touchin">
+                        <div class="each-journey">
+                            <div class="label is-hidden--mobile">Journey</div>
+                            <label class="journey">
+                                <div class="label is-hidden">From</div>
+                                <input type="text" name="mon-one-from" placeholder="Station Name" />
+                            </label>
+                            <span class="journey-to">to</span>
+                            <label class="journey">
+                                <div class="label is-hidden">to</div>
+                                <input type="text" name="mon-one-to" placeholder="Station Name" />
+                            </label>
+                        </div>
+                        <label class="touch-in">
+                            <div class="label">Time of touch in</div>
+                            <div class="custom-select">
+                                <select name="mon-one-touchin">
+                                    <option value="early">04:30 - 06:30</option>
+                                    <option value="anytime">06:30 - 09:30</option>
+                                    <option value="offPeak">09:30 - 16:00</option>
+                                    <option value="afternoon">16:00 - 19:00</option>
+                                    <option value="anytime">19:00 - 04:30</option>
+                                </select>
+                            </div>
+                        </label>
+                    </div>
 
-                    <label>to Zone
-                        <select name="mon-one-to">                    
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                    </label>
-
-                    <label>Peak
-                        <input type="radio" value="true" name="mon-one-peak" checked>
-                    </label>
-                    <label>Off Peak
-                        <input  type="radio" value="true" name="mon-one-peak">
-                    </label>
-                    <span>
-                        <button class="day-remove">x Remove</button>
-                    </span>
+                    <div class="remove-button">
+                        <button class="day-remove text-button"><span class="is-hidden">Remove journey</span></button>
+                    </div>
                 </fieldset>
+                
+                <div>
+                    <button class="add-journey text-button">Add another journey</button>
+                </div>
+            </fieldset>
 
-                <div>
-                    <button class="add-journey">Add a journey</button>
-                </div>
-            </fieldset>
-            <fieldset>
+            <fieldset class="day">
                 <legend><h3>Tuesday</h3></legend>
+                <fieldset class="day-journey">
+                    <div class="clearfix journey-touchin">
+                        <div class="each-journey">
+                            <div class="label is-hidden--mobile">Journey</div>
+                            <label class="journey">
+                                <div class="label is-hidden">From</div>
+                                <input type="text" name="mon-one-from" placeholder="Station Name" />
+                            </label>
+                            <span class="journey-to">to</span>
+                            <label class="journey">
+                                <div class="label is-hidden">to</div>
+                                <input type="text" name="mon-one-to" placeholder="Station Name" />
+                            </label>
+                        </div>
+                        <label class="touch-in">
+                            <div class="label">Time of touch in</div>
+                            <div class="custom-select">
+                                <select name="mon-one-touchin">
+                                    <option value="early">04:30 - 06:30</option>
+                                    <option value="anytime">06:30 - 09:30</option>
+                                    <option value="offPeak">09:30 - 16:00</option>
+                                    <option value="afternoon">16:00 - 19:00</option>
+                                    <option value="anytime">19:00 - 04:30</option>
+                                </select>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="remove-button">
+                        <button class="day-remove text-button"><span class="is-hidden">Remove journey</span></button>
+                    </div>
+                </fieldset>
                 <div>
-                    <button class="add-journey">Add a journey</button>
+                    <button class="add-journey text-button">Add another journey</button>
                 </div>
             </fieldset>
-            <fieldset>
-                <legend><h3>Wednesday</h3></legend>
-                <div>
-                    <button class="add-journey">Add a journey</button>
-                </div>
-            </fieldset>
-            <fieldset>
-                <legend><h3>Thursday</h3></legend>
-                <div>
-                    <button class="add-journey">Add a journey</button>
-                </div>
-            </fieldset>
-            <fieldset>
-                <legend><h3>Friday</h3></legend>
-                <div>
-                    <button class="add-journey">Add a journey</button>
-                </div>
-            </fieldset>
-            <fieldset>
+            <fieldset class="day">
                 <legend><h3>Saturday</h3></legend>
+
+                <fieldset class="day-journey">
+                    <div class="clearfix journey-touchin">
+                        <div class="each-journey">
+                            <div class="label is-hidden--mobile">Journey</div>
+                            <label class="journey">
+                                <div class="label is-hidden">From</div>
+                                <input type="text" name="mon-one-from" placeholder="Station Name" />
+                            </label>
+                            <span class="journey-to">to</span>
+                            <label class="journey">
+                                <div class="label is-hidden">to</div>
+                                <input type="text" name="mon-one-to" placeholder="Station Name" />
+                            </label>
+                        </div>
+                        <div class="touch-in">
+                            <div class="label">Time of touch in</div>
+                            <div class="weekend-touchin">Anytime</div>
+                        </div>
+                    </div>
+                    <div class="remove-button">
+                        <button class="day-remove text-button"><span class="is-hidden">Remove journey</span></button>
+                    </div>
+                </fieldset>
                 <div>
-                    <button class="add-journey">Add a journey</button>
+                    <button class="add-journey text-button">Add another journey</button>
                 </div>
-            </fieldset>     
-            <fieldset>
+            </fieldset>
+
+            <fieldset class="day">
                 <legend><h3>Sunday</h3></legend>
+
+                <fieldset class="day-journey">
+                    <div class="clearfix journey-touchin">
+                        <div class="each-journey">
+                            <div class="label is-hidden--mobile">Journey</div>
+                            <label class="journey">
+                                <div class="label is-hidden">From</div>
+                                <input type="text" name="mon-one-from" placeholder="Station Name" />
+                            </label>
+                            <span class="journey-to">to</span>
+                            <label class="journey">
+                                <div class="label is-hidden">to</div>
+                                <input type="text" name="mon-one-to" placeholder="Station Name" />
+                            </label>
+                        </div>
+                        <div class="touch-in">
+                            <div class="label">Time of touch in</div>
+                            <div class="weekend-touchin">Anytime</div>
+                        </div>
+                    </div>
+                    <div class="remove-button">
+                        <button class="day-remove text-button"><span class="is-hidden">Remove journey</span></button>
+                    </div>
+                </fieldset>
                 <div>
-                    <button class="add-journey">Add a journey</button>
+                    <button class="add-journey text-button">Add another journey</button>
                 </div>
-            </fieldset> 
+            </fieldset>
+
+            <button type="submit" class="submit card">Submit</button>
+
         </form>
 	
-        <!--<script src="js/ui.js"></script>-->
         <script src="/dist/js/app.js"></script>
     </body>
 </html>
