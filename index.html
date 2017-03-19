@@ -50,85 +50,26 @@
                 </label>
             </div>
 
-            <fieldset class="day">
+            <fieldset class="js-day day">
                 <legend><h3>Monday</h3></legend>
 
-                <fieldset class="day-journey">
-                    <div class="clearfix journey-touchin">
-                        <div class="each-journey">
-                            <div class="label is-hidden--mobile">Journey</div>
-                            <label class="journey">
-                                <div class="label is-hidden">From</div>
-                                <input type="text" name="mon-one-from" placeholder="Station Name" />
-                            </label>
-                            <span class="journey-to">to</span>
-                            <label class="journey">
-                                <div class="label is-hidden">to</div>
-                                <input type="text" name="mon-one-to" placeholder="Station Name" />
-                            </label>
-                        </div>
-                        <label class="touch-in">
-                            <div class="label">Time of touch in</div>
-                            <div class="custom-select">
-                                <select name="mon-one-touchin">
-                                    <option value="early">04:30 - 06:30</option>
-                                    <option value="anytime">06:30 - 09:30</option>
-                                    <option value="offPeak">09:30 - 16:00</option>
-                                    <option value="afternoon">16:00 - 19:00</option>
-                                    <option value="anytime">19:00 - 04:30</option>
-                                </select>
-                            </div>
-                        </label>
-                    </div>
+                <div class="js-day__journeys" data-day="mon"></div>
 
-                    <div class="remove-button">
-                        <button class="day-remove text-button"><span class="is-hidden">Remove journey</span></button>
-                    </div>
-                </fieldset>
-                
                 <div>
-                    <button class="add-journey text-button">Add another journey</button>
+                    <button class="js-add-journey add-journey text-button">Add another journey</button>
                 </div>
             </fieldset>
 
-            <fieldset class="day">
+            <fieldset class="js-day day">
                 <legend><h3>Tuesday</h3></legend>
-                <fieldset class="day-journey">
-                    <div class="clearfix journey-touchin">
-                        <div class="each-journey">
-                            <div class="label is-hidden--mobile">Journey</div>
-                            <label class="journey">
-                                <div class="label is-hidden">From</div>
-                                <input type="text" name="mon-one-from" placeholder="Station Name" />
-                            </label>
-                            <span class="journey-to">to</span>
-                            <label class="journey">
-                                <div class="label is-hidden">to</div>
-                                <input type="text" name="mon-one-to" placeholder="Station Name" />
-                            </label>
-                        </div>
-                        <label class="touch-in">
-                            <div class="label">Time of touch in</div>
-                            <div class="custom-select">
-                                <select name="mon-one-touchin">
-                                    <option value="early">04:30 - 06:30</option>
-                                    <option value="anytime">06:30 - 09:30</option>
-                                    <option value="offPeak">09:30 - 16:00</option>
-                                    <option value="afternoon">16:00 - 19:00</option>
-                                    <option value="anytime">19:00 - 04:30</option>
-                                </select>
-                            </div>
-                        </label>
-                    </div>
 
-                    <div class="remove-button">
-                        <button class="day-remove text-button"><span class="is-hidden">Remove journey</span></button>
-                    </div>
-                </fieldset>
+                <div class="js-day__journeys"></div>
+
                 <div>
-                    <button class="add-journey text-button">Add another journey</button>
+                    <button class="js-add-journey add-journey text-button">Add another journey</button>
                 </div>
             </fieldset>
+
             <fieldset class="day">
                 <legend><h3>Saturday</h3></legend>
 
@@ -194,6 +135,43 @@
             <button type="submit" class="submit card">Submit</button>
 
         </form>
+
+        <script type="text/html" class="js-journey">
+            <fieldset class="js-day__journey day-journey">
+                <div class="clearfix journey-touchin">
+                    <div class="each-journey">
+                        <div class="label is-hidden--mobile">Journey</div>
+                        <label class="journey">
+                            <div class="label is-hidden">From</div>
+                            <input type="text" data-name="from" placeholder="Station Name" />
+                        </label>
+                        <span class="journey-to">to</span>
+                        <label class="journey">
+                            <div class="label is-hidden">to</div>
+                            <input type="text" data-name="to" placeholder="Station Name" />
+                        </label>
+                    </div>
+                    <label class="touch-in">
+                        <div class="label">Time of touch in</div>
+                        <div class="custom-select">
+                            <select data-name="touchin">
+                                <option value="early">04:30 - 06:30</option>
+                                <option value="anytime">06:30 - 09:30</option>
+                                <option value="offPeak">09:30 - 16:00</option>
+                                <option value="afternoon">16:00 - 19:00</option>
+                                <option value="anytime">19:00 - 04:30</option>
+                            </select>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="remove-button">
+                    <button class="js-remove-journey day-remove text-button">
+                        <span class="is-hidden">Remove journey</span>
+                    </button>
+                </div>
+            </fieldset>
+        </script>
 	
         <script src="/dist/js/app.js"></script>
     </body>

@@ -254,6 +254,14 @@ h3 {
 	@include media(1000px) {
 		margin-top: 1rem;
 	}
+
+	&:disabled, &[disabled] {
+		color: rgba(255,255,255, 0.4);
+		cursor: default;
+		&:before {
+			color: rgba(255,255,255, 0.4);
+		}
+	}
 }
 
 .submit {
