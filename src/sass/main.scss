@@ -7,6 +7,8 @@
 	}
 }
 
+$accent: #f59f00;
+
 *,
 *:before,
 *:after {
@@ -15,7 +17,7 @@
 }
 
 html {
-	background-color: #0422C2;
+	background-color: #011eff;
 	font-size: 1em;
 	line-height: 1.4;
 }
@@ -72,11 +74,11 @@ input[type="text"] {
 	}
 
 	@include media(1000px) {
-		margin-top: 1rem;
+		padding-top: .8em;
 	}
 
 	&:focus {
-		border-bottom: 2px solid orange;
+		border-bottom: 2px solid $accent;
 		outline: none;
 	}
 }
@@ -91,6 +93,8 @@ select {
     font-family: ff-tisa-sans-web-pro;
     background-color: transparent;
 	cursor: pointer;
+	padding: 0;
+	margin: 0;
     &:active, &:focus{
     	background-color: rgba(255,255,255, 0.1);
     	border-radius: 0;
@@ -118,7 +122,7 @@ h3 {
 
 	@include media(600px) {
 		margin-bottom: 1rem;
-		margin-top: 1.8rem;
+		margin-top: 1rem;
 	}
 }
 
@@ -129,9 +133,10 @@ h3 {
 	position: relative;
 	width: 100%;
 	cursor: default;
+	line-height: 1.15;
 
 	@include media(600px) {
-		padding: 0.8em 0 0.7em 1em;
+		padding: .8em 0 calc(.9em - 2px) 1em;
 	}
 
 	&:after {
@@ -178,33 +183,32 @@ h3 {
 
 	&:before {
 		content: '×';
-		color: orange;
+		color: $accent;
 		font-weight: 700;
 		padding-right: 0.4em;
 		font-size: 1.1em;
-		display: block;
-
-		@include media(1000px) {
+		
+		@include media(1000px) { //needs to be centred
 			font-size: 2.8em;
 			vertical-align: center;
 			padding: 0;
 			font-weight: 100;
+			display: block;
+			line-height: 1em;
 		}
 	}
-	
-	border: 2px solid red;
 
     &:focus {
 		outline: 0;
-		border-bottom-color: orange;
+		border-bottom-color: $accent;
 	}
 
 	@include media(1000px){
-		line-height: calc(2.9em + 2px); // RECALCULATE
+		// line-height: 1rem;
+		// line-height: calc(2.9em + 2px); // RECALCULATE
 		float: right;
-
 		&:focus {
-			border-color: orange;
+			border-color: $accent;
 		}
 	}
 
@@ -218,7 +222,7 @@ h3 {
 }
 
 .remove-button {
-	margin-top: 1.1rem;
+	margin-top: 1.5rem;
 
 	@include media(700px) {
 		margin-top: 2rem;
@@ -236,7 +240,7 @@ h3 {
 
 	&:before {
 		content: '+';
-		color: orange;
+		color: $accent;
 		font-weight: 700;
 		padding-right: 0.4em;
 		font-size: 1.1em;
@@ -244,11 +248,11 @@ h3 {
 
     &:focus {
 		outline: 0;
-		border-bottom-color: orange;
+		border-bottom-color: $accent;
 	}
 
 	@include media(700px) {
-		margin-top: 2.5rem;
+		margin-top: 1.5rem;
 	}
 
 	@include media(1000px) {
@@ -266,8 +270,8 @@ h3 {
 
 .submit {
     font-family: ff-tisa-sans-web-pro;
-    border: 2px solid orange;
-    color: orange;
+    border: 2px solid $accent;
+    color: $accent;
     font-weight: 700;
 	padding: 0.6em;
 	width: 100%;
@@ -333,10 +337,6 @@ h3 {
     	float: left;
     	width: 46%;
     }
-
-    .label {
-    	margin-top: .9rem;
-    }
 }
 
 .each-journey {
@@ -384,20 +384,18 @@ h3 {
 	border: 2px solid white;
 	position: relative;
 	width: 100%;
-	padding: 0;
-	margin: 0;
 
 	select {
 		padding: .6em 0 .5em 1em;
 
 		@include media(600px) {
-			padding: 0.8em 0 0.7em 1em;
+			padding: .8em 0 calc(.9em - 2px) 1em;
 		}
 	}
 
 	&:after {
 		content: '▼';
-		color: orange;
+		color: $accent;
 		position: absolute;
 		top: 50%;
 		transform: translateY(-50%);
