@@ -21,7 +21,7 @@
             <p>This fare calculator aims to calculate the best weekly fares (using either contactless or an oyster card) for travel between most tube, DLR and London Overground stations within zones 1-9.</p>
         </div>
 
-        <form action="" autocomplete="off" name="">
+        <form action="" autocomplete="off" name="" class="js-form">
             <div class="card-selection clearfix">
                 <label class="card">
                     <div class="label">Oyster card</div>
@@ -50,7 +50,7 @@
                 </label>
             </div>
 
-            <fieldset class="js-day day">
+            <fieldset class="js-day day" data-day="weekday">
                 <legend><h3>Monday</h3></legend>
 
                 <div class="js-day__journeys" data-day="mon"></div>
@@ -60,97 +60,55 @@
                 </div>
             </fieldset>
 
-            <fieldset class="js-day day">
+            <fieldset class="js-day day" data-day="weekday">
                 <legend><h3>Tuesday</h3></legend>
 
-                <div class="js-day__journeys"></div>
+                <div class="js-day__journeys" data-day="tue"></div>
 
                 <div>
                     <button class="js-add-journey add-journey text-button">Add a journey</button>
                 </div>
             </fieldset>
 
-            <fieldset class="day">
+            <fieldset class="js-day day" data-day="weekend">
                 <legend><h3>Saturday</h3></legend>
 
-                <fieldset class="day-journey">
-                    <div class="clearfix journey-touchin">
-                        <div class="each-journey">
-                            <div class="label is-hidden--mobile">Journey</div>
-                            <label class="journey">
-                                <div class="label is-hidden">From</div>
-                                <input type="text" name="mon-one-from" placeholder="Station Name" />
-                            </label>
-                            <span class="journey-to">to</span>
-                            <label class="journey">
-                                <div class="label is-hidden">to</div>
-                                <input type="text" name="mon-one-to" placeholder="Station Name" />
-                            </label>
-                        </div>
-                        <div class="touch-in">
-                            <div class="label">Time of touch in</div>
-                            <div class="weekend-touchin">Anytime</div>
-                        </div>
-                    </div>
-                    <div class="remove-button">
-                        <button class="day-remove text-button"><span class="is-hidden">Remove journey</span></button>
-                    </div>
-                </fieldset>
+                <div class="js-day__journeys" data-day="sat"></div>
+
                 <div>
-                    <button class="add-journey text-button">Add a journey</button>
+                    <button class="js-add-journey add-journey text-button">Add a journey</button>
                 </div>
             </fieldset>
 
-            <fieldset class="day">
+            <fieldset class="js-day day" data-day="weekend">
                 <legend><h3>Sunday</h3></legend>
 
-                <fieldset class="day-journey">
-                    <div class="clearfix journey-touchin">
-                        <div class="each-journey">
-                            <div class="label is-hidden--mobile">Journey</div>
-                            <label class="journey">
-                                <div class="label is-hidden">From</div>
-                                <input type="text" name="mon-one-from" placeholder="Station Name" />
-                            </label>
-                            <span class="journey-to">to</span>
-                            <label class="journey">
-                                <div class="label is-hidden">to</div>
-                                <input type="text" name="mon-one-to" placeholder="Station Name" />
-                            </label>
-                        </div>
-                        <div class="touch-in">
-                            <div class="label">Time of touch in</div>
-                            <div class="weekend-touchin">Anytime</div>
-                        </div>
-                    </div>
-                    <div class="remove-button">
-                        <button class="day-remove text-button"><span class="is-hidden">Remove journey</span></button>
-                    </div>
-                </fieldset>
+                <div class="js-day__journeys" data-day="sun"></div>
+
                 <div>
-                    <button class="add-journey text-button">Add a journey</button>
+                    <button class="js-add-journey add-journey text-button">Add a journey</button>
                 </div>
             </fieldset>
 
             <button type="submit" class="submit card">Submit</button>
         </form>
 
-        <script type="text/html" class="js-journey">
+        <script type="text/html" class="js-journey-template">
             <fieldset class="js-day__journey day-journey">
                 <div class="clearfix journey-touchin">
                     <div class="each-journey">
                         <div class="label is-hidden--mobile">Journey</div>
-                        <label class="journey">
+                        <label class="js-journey journey">
                             <div class="label is-hidden">From</div>
-                            <input type="text" data-name="from" placeholder="Station Name" />
+                            <input type="text" data-name="from" placeholder="Station Name" class="js-autocomplete-station" />
                         </label>
                         <span class="journey-to">to</span>
-                        <label class="journey">
+                        <label class="js-journey journey">
                             <div class="label is-hidden">to</div>
-                            <input type="text" data-name="to" placeholder="Station Name" />
+                            <input type="text" data-name="to" placeholder="Station Name" class="js-autocomplete-station" />
                         </label>
                     </div>
-                    <label class="touch-in">
+                    <label class="touch-in"  data-if="weekday">
                         <div class="label">Time of touch in</div>
                         <div class="custom-select">
                             <select data-name="touchin">
@@ -162,14 +120,25 @@
                             </select>
                         </div>
                     </label>
+                    <div class="touch-in" data-if="weekend">
+                        <div class="label">Time of touch in</div>
+                        <div class="weekend-touchin">Anytime</div>
+                    </div>
                 </div>
 
                 <div class="remove-button">
+                    <div class="label">Remove</div>
                     <button class="js-remove-journey day-remove text-button">
                         <span class="is-hidden">Remove journey</span>
                     </button>
                 </div>
             </fieldset>
+        </script>
+
+        <script type="text/html" class="js-autocomplete-template">
+            <div class="js-result">
+                <span class="js-result__name"></span>
+            </div>
         </script>
 	
         <script src="/dist/js/app.js"></script>

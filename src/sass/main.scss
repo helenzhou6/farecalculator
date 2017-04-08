@@ -2,9 +2,13 @@
 @import 'vendor/select-css';
 
 @mixin media($px) {
-	@media (min-width: $px) {
-		@content;
-	}
+    @media (min-width: $px) {
+        @content;
+    }
+}
+
+.hide {
+    display: none;
 }
 
 $accent: #f59f00;
@@ -12,19 +16,19 @@ $accent: #f59f00;
 *,
 *:before,
 *:after {
-	// border: 1px solid lightblue;
+    // border: 1px solid lightblue;
   box-sizing: border-box;
 }
 
 html {
-	background-color: #011eff;
-	font-size: 1em;
-	line-height: 1.4;
+    background-color: #011eff;
+    font-size: 1em;
+    line-height: 1.4;
 }
 
 button {
-	padding: 0;
-	cursor: pointer;
+    padding: 0;
+    cursor: pointer;
 }
 
 body {
@@ -33,22 +37,22 @@ body {
     font-weight: 700;
     margin: 1.2rem;
 
-	@include media(500px) {
-		margin: 4rem;
-	}
+    @include media(500px) {
+        margin: 4rem;
+    }
 
-	@include media(700px){
-		margin: 7rem;
-	}
+    @include media(700px){
+        margin: 7rem;
+    }
 
-	@include media(1000px) {
-		margin: 6rem auto;
-		max-width: 57rem;
-	}
+    @include media(1000px) {
+        margin: 6rem auto;
+        max-width: 57rem;
+    }
 }
 
 .icon {
-	height: 1.3rem;
+    height: 1.3rem;
 }
 
 .clearfix:after {
@@ -65,39 +69,39 @@ input[type="text"] {
     border-bottom: 2px solid white;
     padding: .6em 0 .5em 0;
     width: 100%;
-	font-family: ff-tisa-sans-web-pro;
-	color: white;
+    font-family: ff-tisa-sans-web-pro;
+    color: white;
 
-	@include media(600px) {
-		padding: 0 0 .9em 0;
-		max-width: 25rem;
-	}
+    @include media(600px) {
+        padding: 0 0 .9em 0;
+        max-width: 25rem;
+    }
 
-	@include media(1000px) {
-		padding-top: .8em;
-	}
+    @include media(1000px) {
+        padding-top: .8em;
+    }
 
-	&:focus {
-		border-bottom: 2px solid $accent;
-		outline: none;
-	}
+    &:focus {
+        border-bottom: 2px solid $accent;
+        outline: none;
+    }
 }
 
 ::-webkit-input-placeholder {
-   	opacity: .4;
-   	color: white;
+    opacity: .4;
+    color: white;
 }
 
 select {
-	color: white;
+    color: white;
     font-family: ff-tisa-sans-web-pro;
     background-color: transparent;
-	cursor: pointer;
-	padding: 0;
-	margin: 0;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
     &:active, &:focus{
-    	background-color: rgba(255,255,255, 0.1);
-    	border-radius: 0;
+        background-color: rgba(255,255,255, 0.1);
+        border-radius: 0;
     }
 }
 
@@ -110,162 +114,167 @@ h3 {
     padding-bottom: 1rem;
 
     h1 {
-	    text-transform: uppercase;
-	    font-size: .9rem;
-	    display: inline;
+        text-transform: uppercase;
+        font-size: .9rem;
+        display: inline;
     }
 }
 
 .label {
-	margin-bottom: .5rem;
-	margin-top: 1.5rem;
+    margin-bottom: .5rem;
+    margin-top: 1.5rem;
 
-	@include media(600px) {
-		margin-bottom: 1rem;
-		margin-top: 1rem;
-	}
+    @include media(600px) {
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
 }
 
 .weekend-touchin {
-	border: 2px solid rgba(255,255,255, 0.4);
-	color: rgba(255,255,255, 0.4);
-	padding: .6em 0 .5em 1em;
-	position: relative;
-	width: 100%;
-	cursor: default;
-	line-height: 1.15;
+    border: 2px solid rgba(255,255,255, 0.4);
+    color: rgba(255,255,255, 0.4);
+    padding: .6em 0 .5em 1em;
+    position: relative;
+    width: 100%;
+    cursor: default;
+    line-height: 1.15;
 
-	@include media(600px) {
-		padding: .8em 0 calc(.9em - 2px) 1em;
-	}
+    @include media(600px) {
+        padding: .8em 0 calc(.9em - 2px) 1em;
+    }
 
-	&:after {
-		content: '▼';
-		position: absolute;
-		top: 50%;
-		color: rgba(255,255,255, 0.4);
-		transform: translateY(-50%);
-		font-size: .8rem;
-		right: 1em;
-	}
+    &:after {
+        content: '▼';
+        position: absolute;
+        top: 50%;
+        color: rgba(255,255,255, 0.4);
+        transform: translateY(-50%);
+        font-size: .8rem;
+        right: 1em;
+    }
 }
 
 .intro {
-	margin-top: 4rem;
-	margin-bottom: 3rem;
-	max-width: 30rem;
+    margin-top: 4rem;
+    margin-bottom: 3rem;
+    max-width: 30rem;
 }
 
 .day {
-	margin-top: 3.5rem;
-	margin-bottom: 3.5rem;
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
 }
 .day-journey {
-	margin-top: 0.5rem;
-	margin-bottom: 1.4rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.4rem;
 
-	@include media(1000px) {
-		margin-bottom: 1rem;
-		&:not(:first-of-type) {
-			.label {
-				display: none;
-			}
-		}
-		&:first-of-type {
-			.day-remove {
-				margin-top: 4.2rem;// calculate 
-			}
-		}
-	}
+    @include media(1000px) {
+        margin-bottom: 1rem;
+        &:not(:first-of-type) {
+            .label {
+                display: none;
+            }
+        }
+    }
 }
 .day-remove {
-	font-size: 0.95em;
+    font-size: 0.95em;
 
-	&:before {
-		content: '×';
-		color: $accent;
-		font-weight: 700;
-		padding-right: 0.4em;
-		font-size: 1.1em;
-		
-		@include media(1000px) { //needs to be centred
-			font-size: 2.8em;
-			vertical-align: center;
-			padding: 0;
-			font-weight: 100;
-			display: block;
-			line-height: 1em;
-		}
-	}
+    &:before {
+        content: '×';
+        color: $accent;
+        font-weight: 700;
+        padding-right: 0.4em;
+        font-size: 1.1em;
+
+        @include media(1000px) { //needs to be centred
+            display: block;
+            font-size: 2.8em;
+            padding: 0;
+            font-weight: 100;
+            line-height: 1em;
+            margin-top: -0.08em;
+        }
+    }
 
     &:focus {
-		outline: 0;
-		border-bottom-color: $accent;
-	}
+        outline: 0;
+        border-bottom-color: $accent;
+    }
 
-	@include media(1000px){
-		// line-height: 1rem;
-		// line-height: calc(2.9em + 2px); // RECALCULATE
-		float: right;
-		&:focus {
-			border-color: $accent;
-		}
-	}
+    @include media(1000px){
+        // line-height: 1rem;
+        // line-height: calc(2.9em + 2px); // RECALCULATE
+        float: right;
+        &:focus {
+            border-color: $accent;
+        }
+    }
 
 }
 
 .journey-touchin {
-	@include media(1000px) {
-		float: left;
-		width: 94.5%;
-	}
+    @include media(1000px) {
+        float: left;
+        width: 94.5%;
+    }
 }
 
 .remove-button {
-	margin-top: 1.5rem;
+    margin-top: 1.5rem;
 
-	@include media(700px) {
-		margin-top: 2rem;
-	}
-	@include media(1000px) {
-		float: left; 
-		width: 4.5%;
-		margin-left: 1%;
-		margin-top: 0;
-	}
+    @include media(700px) {
+        margin-top: 2rem;
+    }
+
+    @include media(1000px) {
+        float: left;
+        width: 4.5%;
+        margin-left: 1%;
+        margin-top: 0;
+    }
+
+    .label {
+        display: none;
+
+        @include media(1000px) {
+            display: block;
+            visibility: hidden;
+        }
+    }
 }
 
 .add-journey {
-	margin-top: 2rem;
+    margin-top: 2rem;
 
-	&:before {
-		content: '+';
-		color: $accent;
-		font-weight: 700;
-		padding-right: 0.4em;
-		font-size: 1.1em;
-	}
+    &:before {
+        content: '+';
+        color: $accent;
+        font-weight: 700;
+        padding-right: 0.4em;
+        font-size: 1.1em;
+    }
 
     &:focus {
-		outline: 0;
-		border-bottom-color: $accent;
-	}
+        outline: 0;
+        border-bottom-color: $accent;
+    }
 
-	@include media(700px) {
-		margin-top: 1.5rem;
-	}
+    @include media(700px) {
+        margin-top: 1.5rem;
+    }
 
-	@include media(1000px) {
-		margin-top: 1rem;
-	}
+    @include media(1000px) {
+        margin-top: 1rem;
+    }
 
-	&:disabled, &[disabled] {
-		color: rgba(255,255,255, 0.4);
-		cursor: default;
-		&:before {
-			color: rgba(255,255,255, 0.4);
-		}
-	}
+    &:disabled, &[disabled] {
+        color: rgba(255,255,255, 0.4);
+        cursor: default;
+        &:before {
+            color: rgba(255,255,255, 0.4);
+        }
+    }
 }
 
 .submit {
@@ -273,106 +282,106 @@ h3 {
     border: 2px solid $accent;
     color: $accent;
     font-weight: 700;
-	padding: 0.6em;
-	width: 100%;
-	background-color: transparent;
+    padding: 0.6em;
+    width: 100%;
+    background-color: transparent;
 
-	&:focus {
-		outline: 0;
-    	background-color: rgba(255,255,255, 0.1);
-	}
+    &:focus {
+        outline: 0;
+        background-color: rgba(255,255,255, 0.1);
+    }
 }
 
 .text-button {
-	padding-left: 0;
-	background-color: transparent;
+    padding-left: 0;
+    background-color: transparent;
     border: 2px solid transparent;
-   	color: white;
+    color: white;
     font-family: ff-tisa-sans-web-pro;
     font-weight: 700;
 }
 
 .card-selection {
-	@include media(600px) {
-		width: 100%;
-	}
+    @include media(600px) {
+        width: 100%;
+    }
 }
 
 .oyster-card {
-	select {
-		border: 1px solid white;
-    	-webkit-appearance: none;
-	}
+    select {
+        border: 1px solid white;
+        -webkit-appearance: none;
+    }
 }
 
 .card {
-	@include media(600px) {
-    	float: left;
-    	width: 48%;
-    	&:first-child {
-			margin-right: 4%;
-    	}
-    	max-width: 17rem;
+    @include media(600px) {
+        float: left;
+        width: 48%;
+        &:first-child {
+            margin-right: 4%;
+        }
+        max-width: 17rem;
     }
 }
 
 .touch-in {
-	@include media(600px) {
-    	float: left;
-    	width: 48%;
-		margin-right: 52%;
-    	max-width: 14rem;
+    @include media(600px) {
+        float: left;
+        width: 48%;
+        margin-right: 52%;
+        max-width: 14rem;
     }
     @include media(1000px) {
-		width: 24.5%;
-		margin-left: 3%;
-		margin-right: 0;
-		max-width: initial;
-	}
+        width: 24.5%;
+        margin-left: 3%;
+        margin-right: 0;
+        max-width: initial;
+    }
 
 }
 
 .journey {
-	@include media(1000px) {
-    	float: left;
-    	width: 46%;
+    @include media(1000px) {
+        float: left;
+        width: 46%;
     }
 }
 
 .each-journey {
-	@include media(1000px) {
-		float: left;
-		width: 72.5%;
-	}
+    @include media(1000px) {
+        float: left;
+        width: 72.5%;
+    }
 }
 
 .is-hidden {
-	@include media(1000px) {
-		visibility: hidden;
-		position: absolute;
-		clip: rect(1px, 1px, 1px, 1px);
-	}
+    @include media(1000px) {
+        visibility: hidden;
+        position: absolute;
+        clip: rect(1px, 1px, 1px, 1px);
+    }
 }
 .is-hidden--mobile {
-	visibility: hidden;
-	position: absolute;
-	clip: rect(1px, 1px, 1px, 1px);
-	@include media(1000px) {
-		visibility: visible;
-		position: relative;
-	}
+    visibility: hidden;
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+    @include media(1000px) {
+        visibility: visible;
+        position: relative;
+    }
 }
 .journey-to {
-	display: none;
+    display: none;
 
-	@include media(1000px) {
-		display: block;
-		line-height: calc(3.15em + 2px);
-		float: left;
-		width: 8%;
-		text-align: center;
-		vertical-align: bottom;
-	}
+    @include media(1000px) {
+        display: block;
+        line-height: calc(3.15em + 2px);
+        float: left;
+        width: 8%;
+        text-align: center;
+        vertical-align: bottom;
+    }
 }
 
 .discount-card select {
@@ -381,30 +390,30 @@ h3 {
 }
 
 .custom-select {
-	border: 2px solid white;
-	position: relative;
-	width: 100%;
+    border: 2px solid white;
+    position: relative;
+    width: 100%;
 
-	select {
-		padding: .6em 0 .5em 1em;
+    select {
+        padding: .6em 0 .5em 1em;
 
-		@include media(600px) {
-			padding: .8em 0 calc(.9em - 2px) 1em;
-		}
-	}
+        @include media(600px) {
+            padding: .8em 0 calc(.9em - 2px) 1em;
+        }
+    }
 
-	&:after {
-		content: '▼';
-		color: $accent;
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-		font-size: .8rem;
-	}
+    &:after {
+        content: '▼';
+        color: $accent;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: .8rem;
+    }
 }
 
 fieldset {
-	border: none;
-	padding: 0;
-	margin: 0;
+    border: none;
+    padding: 0;
+    margin: 0;
 }

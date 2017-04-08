@@ -1,87 +1,212 @@
 import $ from 'jquery';
+import debounce from 'lodash/debounce';
 
-export default function ui(){	
+// TODO: Refactor labels to not contain Divs
 
-	$(document).ready(function() {
-		const maxJourneys = 3;
-		const $days = $('.js-day');
+export default function ui() {
 
-		var addJourney = (function() {
-			const $dayTemplate = $($.parseHTML($.trim($('.js-journey').html())));
+  $(document).ready(function () {
+    const maxJourneys = 3;
+    const $days = $('.js-day');
 
-			return function ($journeys) {
-				const $newTemplate = $dayTemplate.clone();
-				$newTemplate.attr('data-day', $journeys.data('day'));
-				$newTemplate.appendTo($journeys);
-			};
-		}());
+    var addJourney = (function () {
+      const $dayTemplate = $($.parseHTML($.trim($('.js-journey-template').html())));
 
-		var countJourneys = function($day) {
-			return $day.find('.js-day__journey').length;
-		};
+      return function ($journeys, dayType) {
+        const $newTemplate = $dayTemplate.clone();
+        const $ifs = $newTemplate.find('[data-if]');
+        $newTemplate.attr('data-day', $journeys.data('day'));
 
-		var numberFields = function($form) {
-			const $journeys = $days.find('.js-day__journey');
+        $ifs.each((i, elem) => {
+          const $elem = $(elem);
+          const ifVal = $elem.attr('data-if');
 
-			$journeys.each((journeyNum, journey) => {
-				const $journey = $(journey);
-				const $inputs = $journey.find('input, select');
-				const dataDay = $journey.data('day');
+          if (ifVal !== dayType) {
+            $elem.remove();
+          }
+        });
 
-				$inputs.each((inputNum, input) => {
-					const $input = $(input);
-					const name = $input.data('name');
-	
-					if (!name) return;
-	
-					$input.attr('name', dataDay + '-' + (journeyNum + 1) + '-' + name);
-				});
-			});
-		};
+        // Add to the DOM
+        $newTemplate.appendTo($journeys);
 
-		$days.each((i, day) => {
-			const $day = $(day);
-			const $addBtn = $day.find('.js-add-journey');
-			const $journeys = $day.find('.js-day__journeys');
+        // Focus the first element
+        $newTemplate.find('input').first().focus();
+      };
+    }());
 
-			// Add a journey
-			$day.on('click', '.js-add-journey', (e) => {
-				e.preventDefault();
+    var countJourneys = function ($day) {
+      return $day.find('.js-day__journey').length;
+    };
 
-				// How many would there be if we added one?
-				const nextCount = countJourneys($day) + 1;
+    var numberFields = function ($form) {
+      const $journeys = $days.find('.js-day__journey');
 
-				// Have we reached the max?
-				if (nextCount <= maxJourneys) {
+      $journeys.each((journeyNum, journey) => {
+        const $journey = $(journey);
+        const $inputs = $journey.find('input, select');
+        const dataDay = $journey.data('day');
 
-					// Nope, add a journey
-					addJourney($journeys);
+        $inputs.each((inputNum, input) => {
+          const $input = $(input);
+          const name = $input.data('name');
 
-					// If we're on the cuttoff, disable the button
-					if (nextCount === maxJourneys) {
-						$addBtn.attr('disabled', true);
-					}
-				}
+          if (!name) return;
 
-				// numberFields($('form'));
-			});
+          $input.attr('name', dataDay + '-' + (journeyNum + 1) + '-' + name);
+        });
+      });
+    };
 
-			// Remove a journey
-			$day.on('click', '.js-remove-journey', (e) => {
-				e.preventDefault();
-				$(e.currentTarget).closest('.js-day__journey').remove();
+    $days.each((i, day) => {
+      const $day = $(day);
+      const $addBtn = $day.find('.js-add-journey');
+      const $journeys = $day.find('.js-day__journeys');
+      const dayType = $day.attr('data-day');
 
-				// How many journeys are there?
-				const count = countJourneys($day);
+      // TODO: uncomment
+      // Pre-populate with an empty journey
+      addJourney($journeys, dayType);
 
-				// If we're not full, re-enable the add button
-				if (count < maxJourneys) {
-					$addBtn.attr('disabled', false);
-				}
+      // Add a journey
+      $day.on('click', '.js-add-journey', (e) => {
+        e.preventDefault();
 
-				// numberFields($('form'));
-			});
-		});
-	});
+        // How many would there be if we added one?
+        const nextCount = countJourneys($day) + 1;
 
+        // Have we reached the max?
+        if (nextCount <= maxJourneys) {
+          // Nope, add a journey
+          addJourney($journeys, dayType);
+
+          // If we're on the cuttoff, disable the button
+          if (nextCount === maxJourneys) {
+            $addBtn.attr('disabled', true);
+          }
+        }
+
+        // numberFields($('form'));
+      });
+
+      // Remove a journey
+      $day.on('click', '.js-remove-journey', (e) => {
+        e.preventDefault();
+        $(e.currentTarget).closest('.js-day__journey').remove();
+
+        // How many journeys are there?
+        const count = countJourneys($day);
+
+        // If we're not full, re-enable the add button
+        if (count < maxJourneys) {
+          $addBtn.attr('disabled', false);
+        }
+      });
+    });
+
+    // Form submit
+    const $form = $('.js-form');
+
+    $form.on('submit', (e) => {
+      e.preventDefault();
+
+      // Re-number the fields
+      numberFields($form);
+
+      // Get the form data as an array of Objects
+      const data = $(e.target).serializeArray();
+    });
+
+    // Station autocomplete
+    // https://api.tfl.gov.uk/Stoppoint/Search/Bow?modes=tube,dlr
+
+    var clearResults = function($journey) {
+      $journey.find('.js-completion-results').remove();
+    };
+
+    var hideResults = function($journey, hide) {
+      $journey.find('.js-completion-results')[hide ? 'addClass' : 'removeClass']('hide');
+    };
+
+    var buildResults = (function() {
+      const $resultTemplate = $($.parseHTML($.trim($('.js-autocomplete-template').html())));
+
+      return (matches) => {
+        const $container = $('<div class="js-completion-results"></div>');
+
+        matches.forEach((match) => {
+          const $result = $resultTemplate.clone();
+          const $resultName = $result.find('.js-result__name');
+
+          // TODO: Add mode, but must filter out the Bus
+          $resultName.html(match.name);
+
+          $container.append($result);
+        });
+
+        return $container;
+      };
+    })();
+
+    var updateResults = function(e) {
+      const $target = $(e.currentTarget);
+      const $journey = $target.closest('.js-journey');
+      const val = $target.val();
+
+      if (val.length > 2) {
+        $.ajax(`https://api.tfl.gov.uk/Stoppoint/Search/${val}?modes=tube,dlr`, {
+          beforeSend: () => {
+            // TODO: Spinner?
+            console.log('sending...');
+          },
+        }).done((result) => {
+          console.log('recieved');
+
+          // TODO have the API limit results
+          const matches = result.matches.slice(0, 3);
+
+          const $results = buildResults(matches);
+
+          // Clear old results
+          clearResults($journey);
+
+          // Append the built results to the parent
+          $journey.append($results);
+
+        });
+      } else {
+        // Clear old results
+        clearResults($journey);
+      }
+    };
+
+    var handleFocus = function(e, show) {
+      const $target = $(e.currentTarget);
+      const $journey = $target.closest('.js-journey');
+
+      hideResults($journey, show);
+    };
+
+    // Load autocomplete results
+    $form.on('input', '.js-autocomplete-station', debounce(updateResults, 200));
+    $form.on('blur', '.js-autocomplete-station', e => handleFocus(e, true));
+    $form.on('focus', '.js-autocomplete-station', e => handleFocus(e, false));
+
+    var fillResult = function(e) {
+      const $target = $(e.currentTarget);
+      const stationName = $target.find('.js-result__name').html();
+      const $journey = $target.closest('.js-journey');
+      const $input = $journey.find('.js-autocomplete-station');
+
+      // Populate textbox
+      $input.val(stationName);
+
+      // Remove autocomplete menu
+      clearResults($journey);
+    };
+
+    // Populate
+    // TODO: Mousedown the best way? Click fires too late and conflicts with blur
+    // http://stackoverflow.com/questions/19079264/blur-event-is-triggered-instead-of-click
+    $form.on('mousedown', '.js-result', fillResult);
+  });
 }
