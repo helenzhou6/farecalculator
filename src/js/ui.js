@@ -192,6 +192,8 @@ export default function ui() {
     $form.on('focus', '.js-autocomplete-station', e => handleFocus(e, false));
 
     var fillResult = function(e) {
+      e.preventDefault();
+
       const $target = $(e.currentTarget);
       const stationName = $target.find('.js-result__name').html();
       const $journey = $target.closest('.js-journey');
@@ -202,6 +204,21 @@ export default function ui() {
 
       // Remove autocomplete menu
       clearResults($journey);
+
+      // Focus the next input, if available
+      const $dayJourney = $journey.closest('.js-day__journey');
+      const $inputs = $dayJourney.find('input, select');
+
+      // Find out the position of the current input within all the inputs
+      const pos = $inputs.index($input);
+
+      // If there is an applicable input after this one, focus it
+      if ($inputs[pos + 1]) {
+        $inputs[pos + 1].focus();
+      } else {
+        // Otherwise just blur
+        $input.blur();
+      }
     };
 
     // Populate
