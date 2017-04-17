@@ -17,6 +17,10 @@ import oysterDayTotal from './partials/_oysterDayTotal';
 import conDayTotal from './partials/_contactlessDayTotal';
 import ui from './ui';
 
+// Unrelated
+// fetch('')
+
+// UI
 ui();
 
 // API HANDLING

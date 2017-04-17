@@ -1,11 +1,58 @@
 @import '../../node_modules/normalize.css/normalize';
 @import 'vendor/select-css';
 
+
+// Spinkit spinner
+// http://tobiasahlin.com/spinkit/
+.spinner {
+  width: 35px;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 9px;
+  height: 9px;
+  background-color: white;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+
 @mixin media($px) {
     @media (min-width: $px) {
         @content;
     }
 }
+
+
+// Our CSS
 
 .hide {
     display: none;
@@ -61,6 +108,30 @@ body {
   clear: both;
 }
 
+.completion-results {
+    background-color: #1A34FF; //6778FF
+    position: absolute;
+    top: 100%;
+    margin-top: -3px;
+    z-index: 4;
+    width: 100%;
+    border: 2px solid $accent;
+    box-shadow: 0 6px 0px 0px rgba(0, 0, 0, 0.2);
+}
+
+.result {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+
+    &:not(:first-child) {
+        border-top: 1px solid $accent;
+    }
+}
+
+.result--is-active {
+    background-color: #6778FF; //lighten(#6778FF, 10%); //1A34FF
+}
+
 input[type="text"] {
     background-color: transparent;
     border: none;
@@ -71,10 +142,11 @@ input[type="text"] {
     width: 100%;
     font-family: ff-tisa-sans-web-pro;
     color: white;
+    // line-height: 1.4; g is being cut off - this fixes it but select boxes becomes misaligned
 
     @include media(600px) {
         padding: 0 0 .9em 0;
-        max-width: 25rem;
+        // max-width: 25rem;
     }
 
     @include media(1000px) {
@@ -342,9 +414,43 @@ h3 {
 }
 
 .journey {
+    display: block;
+    position: relative;
+
+    @include media(600px) {
+        max-width: 25rem;
+    }
+
     @include media(1000px) {
         float: left;
         width: 46%;
+    }
+}
+
+.journey__input {
+    position: relative;
+
+    .spinner {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: all .4s;
+        
+        > div {
+            animation-play-state: paused;
+        }
+    }
+}
+
+.journey__input--is-searching {
+    .spinner {
+        opacity: 1;
+
+        > div {
+            animation-play-state: running;
+        }
     }
 }
 
@@ -390,12 +496,14 @@ h3 {
 }
 
 .custom-select {
-    border: 2px solid white;
+    border: 0;
     position: relative;
     width: 100%;
 
     select {
         padding: .6em 0 .5em 1em;
+        border: 2px solid white;
+        border-radius: 0;
 
         @include media(600px) {
             padding: .8em 0 calc(.9em - 2px) 1em;
@@ -409,6 +517,10 @@ h3 {
         top: 50%;
         transform: translateY(-50%);
         font-size: .8rem;
+    }
+
+    select:focus {
+        border-color: $accent;
     }
 }
 

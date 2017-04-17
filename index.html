@@ -56,7 +56,7 @@
                 <div class="js-day__journeys" data-day="mon"></div>
 
                 <div>
-                    <button class="js-add-journey add-journey text-button">Add a journey</button>
+                    <button type="button" class="js-add-journey add-journey text-button">Add a journey</button>
                 </div>
             </fieldset>
 
@@ -66,7 +66,7 @@
                 <div class="js-day__journeys" data-day="tue"></div>
 
                 <div>
-                    <button class="js-add-journey add-journey text-button">Add a journey</button>
+                    <button type="button" class="js-add-journey add-journey text-button">Add a journey</button>
                 </div>
             </fieldset>
 
@@ -76,7 +76,7 @@
                 <div class="js-day__journeys" data-day="sat"></div>
 
                 <div>
-                    <button class="js-add-journey add-journey text-button">Add a journey</button>
+                    <button type="button" class="js-add-journey add-journey text-button">Add a journey</button>
                 </div>
             </fieldset>
 
@@ -86,7 +86,7 @@
                 <div class="js-day__journeys" data-day="sun"></div>
 
                 <div>
-                    <button class="js-add-journey add-journey text-button">Add a journey</button>
+                    <button type="button" class="js-add-journey add-journey text-button">Add a journey</button>
                 </div>
             </fieldset>
 
@@ -100,12 +100,26 @@
                         <div class="label is-hidden--mobile">Journey</div>
                         <label class="js-journey journey">
                             <div class="label is-hidden">From</div>
-                            <input type="text" data-name="from" placeholder="Station Name" class="js-autocomplete-station" />
+                            <div class="journey__input">
+                                <input type="text" data-name="from" placeholder="Station Name" class="js-autocomplete-station" />
+                                <div class="spinner">
+                                  <div class="bounce1"></div>
+                                  <div class="bounce2"></div>
+                                  <div class="bounce3"></div>
+                                </div>
+                            </div>
                         </label>
                         <span class="journey-to">to</span>
                         <label class="js-journey journey">
                             <div class="label is-hidden">to</div>
-                            <input type="text" data-name="to" placeholder="Station Name" class="js-autocomplete-station" />
+                            <div class="journey__input">
+                                <input type="text" data-name="to" placeholder="Station Name" class="js-autocomplete-station" />
+                                <div class="spinner">
+                                  <div class="bounce1"></div>
+                                  <div class="bounce2"></div>
+                                  <div class="bounce3"></div>
+                                </div>
+                            </div>
                         </label>
                     </div>
                     <label class="touch-in"  data-if="weekday">
@@ -128,7 +142,7 @@
 
                 <div class="remove-button">
                     <div class="label">Remove</div>
-                    <button class="js-remove-journey day-remove text-button">
+                    <button type="button" class="js-remove-journey day-remove text-button">
                         <span class="is-hidden">Remove journey</span>
                     </button>
                 </div>
@@ -136,7 +150,7 @@
         </script>
 
         <script type="text/html" class="js-autocomplete-template">
-            <div class="js-result">
+            <div class="js-result result">
                 <span class="js-result__name"></span>
             </div>
         </script>
