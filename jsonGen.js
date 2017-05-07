@@ -1,19 +1,19 @@
 var fs = require('fs');
 var fetch = require('node-fetch');
 var lines = [
-  // "bakerloo",
-  // "central",
-  // "circle",
-  // "district",
-  // "hammersmith-city",
-  // "jubilee",
-  // "metropolitan",
-  // "northern",
-  // "piccadilly",
-  // "victoria",
-  // "waterloo-city",
+  "bakerloo",
+  "central",
+  "circle",
+  "district",
+  "hammersmith-city",
+  "jubilee",
+  "metropolitan",
+  "northern",
+  "piccadilly",
+  "victoria",
+  "waterloo-city",
   "london-overground",
-  // "dlr",
+  "dlr",
 ];
 
 function findZone(arr) {
@@ -60,7 +60,7 @@ function processResultSet(resultSet) {
 function toObj(stations) {
   return stations.reduce(function (obj, result) {
     var resultClone = Object.assign({}, result);
-    delete resultClone.napTan;
+    // delete resultClone.napTan;
     obj[result.napTan] = resultClone;
     return obj;
   }, {});

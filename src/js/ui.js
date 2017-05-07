@@ -1,5 +1,9 @@
 import $ from 'jquery';
 import debounce from 'lodash/debounce';
+import Fuse from 'fuse.js';
+
+let stationResults = null;
+let stationFuse = null;
 
 // TODO: Refactor labels to not contain Divs
 
@@ -117,6 +121,8 @@ export default function ui() {
 
       // Get the form data as an array of Objects
       const data = $(e.target).serializeArray();
+
+      console.log(data);
     });
 
     // Station autocomplete
@@ -154,6 +160,33 @@ export default function ui() {
       };
     })();
 
+    var loadResults = function() {
+      if (stationResults) return Promise.resolve();
+
+      return fetch('/data/tmp/stationResults.json')
+        .then(resp => resp.json())
+        .then(resp => {
+          stationResults = Object.keys(resp).map(naptan => resp[naptan]);
+
+          stationFuse = new Fuse(stationResults, {
+            keys: ['name']
+          });
+
+          return Promise.resolve();
+        });
+    };
+
+    // $.ajax('/data/tmp/stationResults.json').done(function(result) {
+    //   stationResults = result;
+    //   console.log(stationResults);
+    // });
+
+    // const fuse = new Fuse(stationList, {
+    //   keys: {
+
+    //   }
+    // });
+
     var updateResults = function(e) {
       const $target = $(e.currentTarget);
       const $journey = $target.closest('.js-journey');
@@ -163,16 +196,10 @@ export default function ui() {
       $target.attr('data-val', val);
 
       if (val.length > 2) {
-        $.ajax(`https://api.tfl.gov.uk/Stoppoint/Search/${val}?modes=tube,dlr,overground`, {
-          beforeSend: () => {
-            $journey.addClass('journey__input--is-searching');
-          },
-        }).done((result) => {
-          console.log('recieved');
+        loadResults().then(() => {
           $journey.removeClass('journey__input--is-searching');
 
-          // TODO have the API limit results
-          const matches = result.matches.slice(0, 3);
+          const matches = stationFuse.search(val).slice(0, 5);
 
           // Clear old results
           clearResults($journey);
@@ -182,8 +209,8 @@ export default function ui() {
             // Append the built results to the parent
             $journey.append($results);
           } 
-
         });
+
       } else {
         // Clear old results
         clearResults($journey);
