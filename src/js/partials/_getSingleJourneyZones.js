@@ -46,11 +46,13 @@ export default function getSingleJourneyZones(from, to, stations) {
 		var zonesFromDualStations = filterZonesByNumber(2, allZones); //NB this is an array within an array
 		var finalMaxZone = null;
 		var finalMinZone = null;
+		var isDualZoneOverlap = false;
 
 		if (zonesFromSingleStations.length === 0) { //for dual zones to dual zones **ASSUMING CAN ONLY TRAVEL FROM THE SAME DUAL ZONES (2/3 to 2/3 and not 2/3 to 3/4)**
 			finalMaxZone = minNum(flatten(zonesFromDualStations));
 			finalMinZone = minNum(flatten(zonesFromDualStations));
-		//**NEED TO ADD A FLAG HERE to say that it is dual to dual zone & what zones (so that can manipulate and pick zones from closest to weekly capped zone rather than min zone)
+			isDualZoneOverlap = true;
+		//**Flag done (to say that it is dual to dual zone & what zones (so that can manipulate and pick zones from closest to weekly capped zone rather than min zone))
 		} else {
 			zonesFromSingleStations = flatten(filterZonesByNumber(1, allZones));
 			
@@ -76,8 +78,10 @@ export default function getSingleJourneyZones(from, to, stations) {
 		}
 
 		return {
-			dualZoneOverlap: dualZones.length > 0 ? true : false,
-			zones: [finalMinZone, finalMaxZone]
+			dualZoneOverlap: isDualZoneOverlap,
+			zones: [finalMinZone, finalMaxZone],
+			start: allZones[0],
+			end: allZones[allZones.length - 1],
 		};
 	});
 }
