@@ -59,7 +59,8 @@ export default function oysterDayTotal(day, options = {}, data = {}) {
     if (maxTravelcard) {
       singleFare = extensionFares({
         zones: b.zones,
-        type: b.type,
+        // type: b.type,
+        type: journeyType,
         minTravelcard,
         maxTravelcard
       }, singleFares);

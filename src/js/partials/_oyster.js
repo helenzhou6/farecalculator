@@ -33,6 +33,7 @@ export default function oyster(days, data) {
 			},
 			data,
 		})
+
 	};
 	// 2. For each possible weekly cap
 	const capsResultPre = weeklyCaps.map((weekCap) => {

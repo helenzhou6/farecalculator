@@ -7,7 +7,7 @@
  * @description Uses the napTan ID to figure out what zone that station is in via station.json
  */
 export function getZones(napTan, stations) {
-  return stations[napTan].zones;
+  return stations[napTan] ? stations[napTan].zones : [];
 }
 
 /**

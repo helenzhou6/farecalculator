@@ -9,7 +9,8 @@ import {
 	getZones,
 	filterZonesByNumber,
 	minNum,
-	maxNum
+	maxNum,
+	getDifference
 } from '../utility/_utility';
 
 export default function getSingleJourneyZones(from, to, stations) {
@@ -74,6 +75,9 @@ export default function getSingleJourneyZones(from, to, stations) {
 			finalMinZone = minNum([singleMin].concat(dualZones));
 		}
 
-		return [finalMinZone, finalMaxZone];
+		return {
+			dualZoneOverlap: dualZones.length > 0 ? true : false,
+			zones: [finalMinZone, finalMaxZone]
+		};
 	});
 }

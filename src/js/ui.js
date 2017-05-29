@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import debounce from 'lodash/debounce';
 import Fuse from 'fuse.js';
+import results from './app.js';
 
 let stationResults = null;
 let stationFuse = null;
@@ -44,23 +45,55 @@ export default function ui() {
       return $day.find('.js-day__journey').length;
     };
 
-    var numberFields = function ($form) {
-      const $journeys = $days.find('.js-day__journey');
+    var processJourneys = function ($form) {
+      const data = [];
+      loadResults().then(() => {
+        $days.each((i, day) => {
+          const dayData = [];
+          const $journeys = $(day).find('.js-day__journey');
 
-      $journeys.each((journeyNum, journey) => {
-        const $journey = $(journey);
-        const $inputs = $journey.find('input, select');
-        const dataDay = $journey.data('day');
+          $journeys.each((journeyNum, journey) => {
+            const $journey = $(journey);
+            const $inputs = $journey.find('input, select');
+            const dataDay = $journey.data('day');
 
-        $inputs.each((inputNum, input) => {
-          const $input = $(input);
-          const name = $input.data('name');
+            const journeyData = {};
 
-          if (!name) return;
+            $inputs.each((inputNum, input) => {
+              const $input = $(input);
+              const name = $input.data('name');
 
-          $input.attr('name', dataDay + '-' + (journeyNum + 1) + '-' + name);
+              if (!name) return;
+
+              if ($input.hasClass('js-autocomplete-station')) {
+                if (!$input.val()) return;
+             
+                const station = stationResults.find(station => station.name === $input.val());
+                journeyData[name] = station.ics;
+
+              } else {
+                journeyData[name] = $input.val();
+              }
+
+              // $input.attr('name', dataDay + '-' + (journeyNum + 1) + '-' + name);
+            });
+
+            console.log(journeyData);
+
+            if (journeyData.from && journeyData.to) {
+              dayData.push(journeyData);
+            }
+            
+          });
+
+
+
+          // debugger;
+
+          data.push(dayData);
         });
       });
+      return data;
     };
 
     $days.each((i, day) => {
@@ -114,15 +147,31 @@ export default function ui() {
     const $form = $('.js-form');
 
     $form.on('submit', (e) => {
-      e.preventDefault();
+      e.preventDefault();     
 
       // Re-number the fields
-      numberFields($form);
+      const data = {
+        oysterCard: {
+          label: $form.find('[name="oyster-card"] option:selected').text(),
+          val: $form.find('[name="oyster-card"]').val(),
+        },
+        discountCard: {
+          label: $form.find('[name="discount-card"] option:selected').text(),
+          val: $form.find('[name="discount-card"]').val(),
+        },
+        journeys: processJourneys($form),
+      };
+
+      // results(data);
+
+      results(data).then(response => {
+
+        // response
+        console.log('THIS IS THE RESP:', JSON.stringify(response))
+      });
 
       // Get the form data as an array of Objects
-      const data = $(e.target).serializeArray();
-
-      console.log(data);
+      // const data = $(e.target).serializeArray();
     });
 
     // Station autocomplete

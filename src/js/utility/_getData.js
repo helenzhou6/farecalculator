@@ -27,7 +27,7 @@ var fetchStationsData = (function() {
 			return Promise.resolve(data);
 		}
 
-		return fetch('/data/stations.json').then(function(resp) {
+		return fetch('/data/tmp/stationResults.json').then(function(resp) {
 			data = resp.json();
 			return data;
 		});
