@@ -15,6 +15,7 @@ export default function ui() {
   $(document).ready(function () {
     const maxJourneys = 3;
     const $days = $('.js-day');
+    const $errorBox = $('.js-errors');
 
     var addJourney = (function () {
       const $dayTemplate = $($.parseHTML($.trim($('.js-journey-template').html())));
@@ -43,13 +44,60 @@ export default function ui() {
       };
     }());
 
-    var countJourneys = function ($day) {
+    var countDayJourneys = function ($day) {
       return $day.find('.js-day__journey').length;
+    };
+
+    var countAllJourneys = function() {
+      return $('.js-day__journey').length;
+    };
+
+    var markError = function ($journeyInput, hasError) {
+      $journeyInput[hasError ? 'addClass' : 'removeClass']('journey__input--has-error');
+    };
+
+    var removeErrors = function() {
+      $errorBox.html('');
+      $('.js-day__journey-errors').remove();
+    };
+
+    var removeEmptyJourneys = function() {
+      const $journeys = $('.js-day__journey');
+
+      $journeys.each((i, journey) => {
+        const $journey = $(journey);
+        const $from = $journey.find('input[data-name="from"]');
+        const $to = $journey.find('input[data-name="to"]');
+
+        if (!$from.val() && !$to.val()) {
+          $journey.remove();
+        }
+      });
+    };
+
+    var addGlobalError = function(message) {
+      $errorBox.html(`<p>${message}</p>`);
     };
 
     var processJourneys = function ($form) {
       const data = [];
-      loadResults().then(() => {
+
+      // A flag so we can check at the end if there have been any errors
+      let hasErrors = false;
+
+      // Handles an error during a journey
+      function journeyError($journeyInput, message, errorArray) {
+        // Sets the global flag
+        hasErrors = true;
+        // Marks the input as having an error
+        markError($journeyInput, true);
+        // Adds the error message to the journey array
+        errorArray.push(message);
+        // Return true so we can just return journeyError to break the loop
+        return true;
+      }
+
+      return loadResults().then(() => {
         $days.each((i, day) => {
           const dayData = [];
           const $journeys = $(day).find('.js-day__journey');
@@ -57,41 +105,67 @@ export default function ui() {
           $journeys.each((journeyNum, journey) => {
             const $journey = $(journey);
             const $inputs = $journey.find('input, select');
-            const dataDay = $journey.data('day');
+
+            // const dataDay = $journey.data('day');
 
             const journeyData = {};
+
+            // An array of all the errors produced during the journey processing
+            const journeyErrors = [];
 
             $inputs.each((inputNum, input) => {
               const $input = $(input);
               const name = $input.data('name');
+              const val = $input.val();
 
-              if (!name) return;
-
-              if ($input.hasClass('js-autocomplete-station')) {
-                if (!$input.val()) return;
-             
-                const station = stationResults.find(station => station.name === $input.val());
-                journeyData[name] = station.ics;
-
-              } else {
-                journeyData[name] = $input.val();
+              // If the input is empty...
+              if (!val) {
+                return journeyError($input.closest('.journey__input'), 'To and from must be filled out.', journeyErrors);
               }
 
-              // $input.attr('name', dataDay + '-' + (journeyNum + 1) + '-' + name);
+              if ($input.hasClass('js-autocomplete-station')) {
+                const station = stationResults.find(station => station.name === val);
+
+                // If we can't find the matching station...
+                if (!station) {
+                  // ...add an error and return true to break to the next loop
+                  return journeyError($input.closest('.journey__input'), `'${val}' is not a valid station name.`, journeyErrors);
+                }
+
+                journeyData[name] = station.ics;
+              } else {
+                journeyData[name] = val;
+              }
             });
 
-            // console.log(journeyData);
+            // If we have errors for the journey
+            if (journeyErrors.length) {
+              // Remove duplicates
+              const filteredErrors = journeyErrors.filter((message, i) => (
+                journeyErrors.indexOf(message) === i
+              ));
 
-            if (journeyData.from && journeyData.to) {
-              dayData.push(journeyData);
+              // Add the error messages
+              $journey.prepend(`
+                <div class="js-day__journey-errors">
+                    <h4>Errors:</h4>
+                    <ul>
+                      ${filteredErrors.map(error => `<li>${error}</li>`).join('')}
+                    </ul>
+                </div>
+              `);
             }
-            
+
+            dayData.push(journeyData);
           });
 
           data.push(dayData);
         });
+
+        // If we had any errors, return null, otherwise return the data
+        return hasErrors ? null : data;
       });
-      return data;
+
     };
 
     $days.each((i, day) => {
@@ -109,7 +183,7 @@ export default function ui() {
         e.preventDefault();
 
         // How many would there be if we added one?
-        const nextCount = countJourneys($day) + 1;
+        const nextCount = countDayJourneys($day) + 1;
 
         // Have we reached the max?
         if (nextCount <= maxJourneys) {
@@ -145,33 +219,65 @@ export default function ui() {
     const $form = $('.js-form');
 
     $form.on('submit', (e) => {
-      e.preventDefault();     
+      e.preventDefault();
 
-      loading();
+      // Remove any existing errors
+      removeErrors();
 
-      // Re-number the fields
-      const data = {
-        oysterCard: {
-          label: $form.find('[name="oyster-card"] option:selected').text(),
-          val: $form.find('[name="oyster-card"]').val(),
-        },
-        discountCard: {
-          label: $form.find('[name="discount-card"] option:selected').text(),
-          val: $form.find('[name="discount-card"]').val(),
-        },
-        journeys: processJourneys($form),
-      };
+      loading(true);
 
-      // results(data);
+      // Clear out any empty journeys
+      removeEmptyJourneys();
 
-      glue(data).then(response => {
-        // response
-        console.log('THIS IS THE RESP:', JSON.stringify(response))
-        resultsPage(response);
+      // If we have no journeys at all
+      if (!countAllJourneys()) {
+        addGlobalError('Empty you idiot');
+
+        loading(false);
+
+        // Don't bother continuing
+        return;
+      }
+
+      const journeyPromise = processJourneys($form);
+
+      journeyPromise.then((journeys) => {
+        // journeyPromise will return null if there was an error
+        if (!journeys) {
+          addGlobalError('There are issues with your form');
+
+          // If there was an error, hide the loading screen
+          loading(false);
+          // And exit out, as we have no data to process
+          return;
+        }
+
+        // Re-number the fields
+        const data = {
+          oysterCard: {
+            label: $form.find('[name="oyster-card"] option:selected').text(),
+            val: $form.find('[name="oyster-card"]').val(),
+          },
+          discountCard: {
+            label: $form.find('[name="discount-card"] option:selected').text(),
+            val: $form.find('[name="discount-card"]').val(),
+          },
+          journeys,
+        };
+
+        // results(data);
+
+        glue(data).then(response => {
+          // response
+          console.log('THIS IS THE RESP:', JSON.stringify(response))
+          resultsPage(response);
+        });
+
+        // Get the form data as an array of Objects
+        // const data = $(e.target).serializeArray();
       });
 
-      // Get the form data as an array of Objects
-      // const data = $(e.target).serializeArray();
+
     });
 
     // Station autocomplete
@@ -270,6 +376,8 @@ export default function ui() {
       const $target = $(e.currentTarget);
       const $journey = $target.closest('.js-journey');
 
+      $journey.find('.journey__input').removeClass('journey__input--has-error');
+
       hideResults($journey, show);
     };
 
@@ -349,7 +457,7 @@ export default function ui() {
 
     var fillResult = function($target, moveOn) {
       // const $target = $(e.currentTarget);
-      const stationName = $target.find('.js-result__name').html();
+      const stationName = $target.find('.js-result__name').text();
       const $journey = $target.closest('.js-journey');
       const $input = $journey.find('.js-autocomplete-station');
 

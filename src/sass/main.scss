@@ -444,6 +444,10 @@ h3 {
     }
 }
 
+.journey__input--has-error {
+    background: red;
+}
+
 .journey__input--is-searching {
     .spinner {
         opacity: 1;
