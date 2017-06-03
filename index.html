@@ -25,7 +25,7 @@
             <div class="card-selection clearfix">
                 <label class="card">
                     <div class="label">Oyster card</div>
-                    <div class="custom-select">
+                    <div class="custom-select js-oyster-card-select">
                         <select name="oyster-card"> 
                             <option value="adult">Adult</option>
                             <option value="student">Apprentice</option>
@@ -36,8 +36,8 @@
                 </label>
                 <label class="card">
                     <div class="label">Discount card</div>
-                    <div class="custom-select">
-                        <select name="discount-card" class="discount-card">
+                    <div class="custom-select js-discount-card-select">
+                        <select id="discount-card" name="discount-card" class="discount-card">
                             <option value="none">None</option>
                             <option value="child-jobless">Job Centre</option>
                             <option value="disabled">Disabled Persons</option>
@@ -70,6 +70,33 @@
                 </div>
             </fieldset>
 
+            <fieldset class="js-day day" data-day="weekday">
+                <legend><h3>Wednesday</h3></legend>
+
+                <div class="js-day__journeys" data-day="tue"></div>
+
+                <div>
+                    <button type="button" class="js-add-journey add-journey text-button">Add a journey</button>
+                </div>
+            </fieldset>
+            <fieldset class="js-day day" data-day="weekday">
+                <legend><h3>Thursday</h3></legend>
+
+                <div class="js-day__journeys" data-day="tue"></div>
+
+                <div>
+                    <button type="button" class="js-add-journey add-journey text-button">Add a journey</button>
+                </div>
+            </fieldset>
+            <fieldset class="js-day day" data-day="weekday">
+                <legend><h3>Friday</h3></legend>
+
+                <div class="js-day__journeys" data-day="tue"></div>
+
+                <div>
+                    <button type="button" class="js-add-journey add-journey text-button">Add a journey</button>
+                </div>
+            </fieldset>
             <fieldset class="js-day day" data-day="weekend">
                 <legend><h3>Saturday</h3></legend>
 
@@ -148,6 +175,51 @@
                 </div>
             </fieldset>
         </script>
+
+        <section class="results-page is-not-displayed">
+
+            <h2 id="results-page__title">Calculated best weekly fares</h2><a href="#disclaimer" class="results-astrix astrix">*</a>
+
+
+
+            <div class="clearfix results__table">
+                <div class="results__section results__contactless">
+                    <h4 class="results__title">Contactless</h4>
+                    <div class="result__output">
+                        <span class="price">£</span><span class="result__price contactless__price"></span>
+                        <div class="result__caption">with automatic weekly capping</div>
+                    </div>
+                </div>
+
+                <div class="results__section results__oyster">
+                    <h4 class="results__title"><span class="results__oyster-card"></span> Oyster Card<span class="results__oyster-discount"></span></h4>
+                    <div class="result__output oyster__weekly">
+                        <span class="price">£</span><span class="result__price oyster__weekly-price"></span>
+                        <div class="result__caption">with <span class="oyster-travelcard">no</span> weekly Travelcard applied</div>
+                    </div>
+                    <div class="result__output oyster__monthly">
+                        <span class="price">£</span><span class="result__price oyster__monthly-price"></span>
+                        <div class="result__caption">with <span class="oyster-travelcard">no</span> monthly Travelcard applied</div>
+                    </div>
+                </div>
+            </div>
+            <div class="results__disclaimer" id="disclaimer">
+                <a href="#results-page__title" class="astrix">*</a> Whilst every effort is made to ensure that fares calculated on this site are correct, we can’t guarantee that all of them are accurate. More information here [icon]
+            </div>
+        </section>
+
+        <div class="loading is-not-displayed">
+            We are processing your data
+            <span class="spinner">
+              <div class="bounce1"></div>
+              <div class="bounce2"></div>
+              <div class="bounce3"></div>
+            </span>
+        </div>
+
+        <div class="edit-journeys is-not-displayed">
+            <span class="is-orange"><</span> Edit your journeys
+        </div>
 
         <script type="text/html" class="js-autocomplete-template">
             <div class="js-result result">

@@ -12,7 +12,7 @@
 import {
 	getFare,
 	minNum,
-} from '../utility/_utility';
+} from '../../utility/_utility';
 
 export default function splitOrFullFare(
 	minChargedZone, maxSingle,

@@ -1,7 +1,9 @@
 import $ from 'jquery';
 import debounce from 'lodash/debounce';
 import Fuse from 'fuse.js';
-import results from './app.js';
+import glue from './_glue.js';
+import loading from './_loading';
+import resultsPage from './_resultsPage';
 
 let stationResults = null;
 let stationFuse = null;
@@ -78,17 +80,13 @@ export default function ui() {
               // $input.attr('name', dataDay + '-' + (journeyNum + 1) + '-' + name);
             });
 
-            console.log(journeyData);
+            // console.log(journeyData);
 
             if (journeyData.from && journeyData.to) {
               dayData.push(journeyData);
             }
             
           });
-
-
-
-          // debugger;
 
           data.push(dayData);
         });
@@ -149,6 +147,8 @@ export default function ui() {
     $form.on('submit', (e) => {
       e.preventDefault();     
 
+      loading();
+
       // Re-number the fields
       const data = {
         oysterCard: {
@@ -164,10 +164,10 @@ export default function ui() {
 
       // results(data);
 
-      results(data).then(response => {
-
+      glue(data).then(response => {
         // response
         console.log('THIS IS THE RESP:', JSON.stringify(response))
+        resultsPage(response);
       });
 
       // Get the form data as an array of Objects
@@ -377,8 +377,6 @@ export default function ui() {
           $input.blur();
         }
       }
- 
-
     };
 
     // Load autocomplete results
@@ -395,5 +393,43 @@ export default function ui() {
       e.preventDefault();
       fillResult($(e.currentTarget), true);
     });
+
+    // THE UI TO NOT ALLOW CERTAIN OYSTER CARDS WITH OTHER RAILCARDS
+    $('.js-oyster-card-select').change(function() {
+      var discountCard = $('.js-discount-card-select');
+      discountCard.find('option:disabled').prop('disabled', '');
+      $(this).find('option:disabled').prop('disabled', '');
+      $('#discount-card').prop('disabled', false);
+      $('.js-discount-card-select').removeClass('is-disabled');
+
+      var selectedOyster = $(this).find("option:selected").val();
+
+      if (selectedOyster === 'student') {
+        discountCard.find('option[value="child-jobless"]').prop('disabled', true);
+      } else if (selectedOyster === 'child-jobless') {
+        $('#discount-card').prop('disabled', true); // NEED MAKE A CLASS FOR THIS
+        $('.js-discount-card-select').addClass('is-disabled');
+      }
+    });
+
+    $('.js-discount-card-select').change(function() {
+      var oysterCard = $('.js-oyster-card-select');
+
+      oysterCard.find('option:disabled').prop('disabled', '');
+      $(this).find('option:disabled').prop('disabled', '');
+
+      var selectedDiscount = $(this).find("option:selected").val();
+
+      if (selectedDiscount === 'railcard') {
+        oysterCard.find('option[value="child-jobless"]').prop('disabled', true);
+      } else if (selectedDiscount === 'child-jobless') {
+        oysterCard.find('option[value="student"]').prop('disabled', true);
+        oysterCard.find('option[value="child-jobless"]').prop('disabled', true);
+      } else if (selectedDiscount === 'disabled') {
+        oysterCard.find('option[value="child-jobless"]').prop('disabled', true);
+      }
+    });
+
+
   });
 }

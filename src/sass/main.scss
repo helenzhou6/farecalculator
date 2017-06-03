@@ -51,11 +51,10 @@
     }
 }
 
-
 // Our CSS
 
-.hide {
-    display: none;
+input {
+    line-height: 1.2;
 }
 
 $accent: #f59f00;
@@ -176,6 +175,7 @@ select {
         border-radius: 0;
     }
 }
+
 
 h3 {
     font-size: 1.1rem;
@@ -528,4 +528,131 @@ fieldset {
     border: none;
     padding: 0;
     margin: 0;
+}
+
+// THE RESULTS PAGE
+
+.results__title {
+    text-transform: uppercase;
+    margin: 0;
+    border-bottom: 2px solid rgba(255,255,255, 0.5);
+    padding: 1.5em 2.5em;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.results__section {
+    border: 2px solid white;
+}
+
+.result__output {
+    padding: 1em 2em 2em;
+    text-align: center;
+}
+
+.result__price {
+    font-size: 3em;
+    font-weight: 400;
+    margin-left: 0.1em;
+}
+
+.price {
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
+.results__contactless {
+    margin-bottom: 1em;
+
+    @include media(1000px){
+        float: left;
+        width: 33.333%;
+        margin-bottom: 0;
+        border-right: none;
+    }
+}
+
+.results__oyster {
+    @include media(1000px){
+        float: left;
+        width: 66.666%;
+    }
+}
+
+.result__caption {
+    margin-top: 0.5em;
+    font-size: 0.9em;
+}
+
+.oyster__monthly {
+    border-top: 2px dashed rgba(255,255,255, 0.4);
+    @include media(1000px){
+        float: left;
+        width: 50%;
+        border-top: none;
+    }
+}
+
+.oyster__weekly {
+    @include media(1000px){
+        float: left;
+        width: 50%;
+        border-right: 2px solid white;
+    }
+}
+
+.results__disclaimer {
+    margin-top: 1em;
+    max-width: 30rem;
+    font-size: 0.8em;
+}
+
+#results-page__title {
+    font-size: 1.5em;
+    text-decoration: underline;
+    display: inline-block;
+    margin-bottom: 0.5em;
+}
+
+.results-astrix {
+    font-size: 1.5em;
+    margin-left: 0.1em;
+}
+
+.edit-journeys {
+    cursor: pointer;
+    margin-top: 3em;
+}
+
+.results__table {
+    @include media(1000px) {
+        display: flex;
+    }
+}
+
+.astrix {
+    color: $accent;
+    text-decoration: none;
+}
+
+// UTILITY
+
+.is-not-displayed {
+    display: none;
+}
+
+.hide {
+    display: none;
+}
+
+.is-disabled {
+    opacity: 0.4;
+    cursor: default;
+    &:after {
+        color: rgba(255,255,255,1);
+    }
+}
+
+.is-orange {
+    color: $accent;
 }

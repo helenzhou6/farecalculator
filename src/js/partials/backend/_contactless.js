@@ -13,7 +13,7 @@
   minNum,
   getFare,
   round,
-} from './../utility/_utility';
+} from './../../utility/_utility';
 
 import conDayTotal from './_contactlessDayTotal';
 import weekTotal from './_weekTotal';
@@ -50,3 +50,4 @@ export default function contactless(days, data) {
   return round(
   		(minNum(final.concat([noWeekly]))), 2);
 }
+

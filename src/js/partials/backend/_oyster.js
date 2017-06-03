@@ -15,7 +15,7 @@
   minNum,
   getFare,
   round,
-} from './../utility/_utility';
+} from './../../utility/_utility';
 
 import oysterDayTotal from './_oysterDayTotal';
 import oysterMonthly from './_oysterMonthly';
@@ -60,7 +60,7 @@ export default function oyster(days, data) {
 
 	return {
 		cap: cheapest,
-		weeklyValue,
+		weeklyValue: weeklyValue,
 		monthlyValue: oysterMonthly(cheapest, weeklyValue, data),
 	};
 }

@@ -20,7 +20,7 @@
   round,
   types,
   dualZone,
-} from './../utility/_utility';
+} from './../../utility/_utility';
 
 import extensionFares from './_extensionFares';
 

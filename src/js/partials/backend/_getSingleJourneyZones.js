@@ -3,7 +3,7 @@
 // Need to make it so that it generates it after each journey
 
  //Off-peak fares apply at all other times and if you travel from a station outside Zone 1 to a station in Zone 1 between 16:00 and 19:00, Mondays to Fridays 
-import getData from '../utility/_getData';
+import getData from '../../utility/_getData';
 import {
 	flatten,
 	getZones,
@@ -11,7 +11,7 @@ import {
 	minNum,
 	maxNum,
 	getDifference
-} from '../utility/_utility';
+} from '../../utility/_utility';
 
 export default function getSingleJourneyZones(from, to, stations) {
 	return getData.journey(from, to).then(function(journey) {

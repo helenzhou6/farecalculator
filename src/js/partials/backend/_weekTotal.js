@@ -21,7 +21,7 @@
  //SHOULD MAP OVER JSON TO FIND THE ZONES WITH OFF PEAK DISCOUNT rather than add 4, 5 and 6
  import {
   getFare,
-} from './../utility/_utility';
+} from './../../utility/_utility';
 
 import oysterDayTotal from './_oysterDayTotal';
 import conDayTotal from './_contactlessDayTotal';

@@ -14,7 +14,7 @@ import {
 	getFare,
 	maxNum,
 	isWithin,
-} from '../utility/_utility';
+} from '../../utility/_utility';
 
 import splitOrFullFare from './_splitOrFullFare';
 

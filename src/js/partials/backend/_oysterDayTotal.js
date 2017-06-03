@@ -18,7 +18,7 @@ import {
   types,
   dualZone,
   isWithin,
-} from './../utility/_utility';
+} from './../../utility/_utility';
 
 import extensionFares from './_extensionFares';
 

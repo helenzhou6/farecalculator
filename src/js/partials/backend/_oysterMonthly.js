@@ -11,7 +11,7 @@ import { getFare,
 			round,
 			getDifference,
 			keyToJourney,
-		 } from './../utility/_utility';
+		 } from './../../utility/_utility';
 
 export default function oysterMonthly(cap, weeklyValue, data) {
 	if (cap !== "noCap") {
