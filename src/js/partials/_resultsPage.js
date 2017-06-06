@@ -28,11 +28,4 @@ export default function resultsPage(response) {
 	if(response.oyster.cap !== 'noCap'){
 		$('.oyster-travelcard').html('a ' + response.oyster.cap);
 	}
-
-	$('.edit-journeys').click(function(e){
-		e.preventDefault();
-		$('.js-form').removeClass('is-not-displayed');
-		$('.results-page').addClass('is-not-displayed');
-		$('.edit-journeys').addClass('is-not-displayed');
-	});
 }

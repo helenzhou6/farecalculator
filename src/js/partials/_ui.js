@@ -76,7 +76,7 @@ export default function ui() {
     };
 
     var addGlobalError = function(message) {
-      $errorBox.html(`<p>${message}</p>`);
+      $errorBox.html(`<p class="errors__text">${message}</p>`);
     };
 
     var processJourneys = function ($form) {
@@ -120,7 +120,7 @@ export default function ui() {
 
               // If the input is empty...
               if (!val) {
-                return journeyError($input.closest('.journey__input'), 'To and from must be filled out.', journeyErrors);
+                return journeyError($input.closest('.journey__input'), 'Looks like an incomplete journey.', journeyErrors);
               }
 
               if ($input.hasClass('js-autocomplete-station')) {
@@ -147,8 +147,7 @@ export default function ui() {
 
               // Add the error messages
               $journey.prepend(`
-                <div class="js-day__journey-errors">
-                    <h4>Errors:</h4>
+                <div class="js-day__journey-errors errors__text">
                     <ul>
                       ${filteredErrors.map(error => `<li>${error}</li>`).join('')}
                     </ul>
@@ -231,7 +230,7 @@ export default function ui() {
 
       // If we have no journeys at all
       if (!countAllJourneys()) {
-        addGlobalError('Empty you idiot');
+        addGlobalError('Oops, it looks like you havent entered any journeys.');
 
         loading(false);
 
@@ -244,7 +243,7 @@ export default function ui() {
       journeyPromise.then((journeys) => {
         // journeyPromise will return null if there was an error
         if (!journeys) {
-          addGlobalError('There are issues with your form');
+          addGlobalError('There are issues with your form, please scroll for details.');
 
           // If there was an error, hide the loading screen
           loading(false);
@@ -504,40 +503,52 @@ export default function ui() {
 
     // THE UI TO NOT ALLOW CERTAIN OYSTER CARDS WITH OTHER RAILCARDS
     $('.js-oyster-card-select').change(function() {
-      var discountCard = $('.js-discount-card-select');
+      const discountCard = $('.js-discount-card-select');
+
+      // Removes any existing disabled 
       discountCard.find('option:disabled').prop('disabled', '');
       $(this).find('option:disabled').prop('disabled', '');
-      $('#discount-card').prop('disabled', false);
-      $('.js-discount-card-select').removeClass('is-disabled');
 
-      var selectedOyster = $(this).find("option:selected").val();
+      $('#discount-card').prop('disabled', false);
+      discountCard.removeClass('is-disabled');
+
+      const selectedOyster = $(this).find("option:selected").val();
 
       if (selectedOyster === 'student') {
         discountCard.find('option[value="child-jobless"]').prop('disabled', true);
       } else if (selectedOyster === 'child-jobless') {
         $('#discount-card').prop('disabled', true); // NEED MAKE A CLASS FOR THIS
-        $('.js-discount-card-select').addClass('is-disabled');
+        discountCard.addClass('is-disabled');
       }
     });
 
     $('.js-discount-card-select').change(function() {
-      var oysterCard = $('.js-oyster-card-select');
+      const oysterCard = $('.js-oyster-card-select');
+      const childOysterCard = oysterCard.find('option[value="child-jobless"]');
 
       oysterCard.find('option:disabled').prop('disabled', '');
       $(this).find('option:disabled').prop('disabled', '');
 
-      var selectedDiscount = $(this).find("option:selected").val();
+      const selectedDiscount = $(this).find("option:selected").val();
 
       if (selectedDiscount === 'railcard') {
-        oysterCard.find('option[value="child-jobless"]').prop('disabled', true);
+        childOysterCard.prop('disabled', true);
       } else if (selectedDiscount === 'child-jobless') {
         oysterCard.find('option[value="student"]').prop('disabled', true);
-        oysterCard.find('option[value="child-jobless"]').prop('disabled', true);
+        childOysterCard.prop('disabled', true);
       } else if (selectedDiscount === 'disabled') {
-        oysterCard.find('option[value="child-jobless"]').prop('disabled', true);
+        childOysterCard.prop('disabled', true);
       }
     });
 
+
+    $('.edit-journeys').click(function(e){
+      e.preventDefault();
+      $('.js-form').removeClass('is-not-displayed');
+      $('.results-page').addClass('is-not-displayed');
+      $('.edit-journeys').addClass('is-not-displayed');
+      $('.loading').addClass('is-not-displayed');
+    });
 
   });
 }
