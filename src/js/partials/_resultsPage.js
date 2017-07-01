@@ -11,6 +11,7 @@ export default function resultsPage(response) {
   $innerFinal.css({ transform: transform });
   $loadingBar.addClass('loading-bar--is-finished');
 
+	// after loading bar animation completed
 	setTimeout(function(){
 		$('.loading').addClass('is-not-displayed');
 		$('.results-page').removeClass('is-not-displayed');

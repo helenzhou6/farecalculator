@@ -113,6 +113,13 @@ export default function ui() {
             // An array of all the errors produced during the journey processing
             const journeyErrors = [];
 
+						const $from = $journey.find('input[data-name="from"]');
+						const $to = $journey.find('input[data-name="to"]');
+
+						if ($from.val() === $to.val()) {
+							journeyError($journey.find('.journey__input'), 'Stations cannot be the same.', journeyErrors);
+						}
+
             $inputs.each((inputNum, input) => {
               const $input = $(input);
               const name = $input.data('name');
@@ -268,7 +275,7 @@ export default function ui() {
 
         glue(data).then(response => {
           // response
-          console.log('THIS IS THE RESP:', JSON.stringify(response))
+          // console.log('THIS IS THE RESP:', JSON.stringify(response))
           resultsPage(response);
         });
 
@@ -391,7 +398,7 @@ export default function ui() {
       const $journey = $input.closest('.js-journey');
       const $currentlySelected = $journey.find('.result--is-active');
 
-      // TODO: simplify the function (duplication)
+      // TO DO: simplify the function (duplication)
 
       switch (charCode) {
         case 38:
@@ -541,7 +548,6 @@ export default function ui() {
       }
     });
 
-
     $('.edit-journeys').click(function(e){
       e.preventDefault();
       $('.js-form').removeClass('is-not-displayed');
@@ -549,6 +555,5 @@ export default function ui() {
       $('.edit-journeys').addClass('is-not-displayed');
       $('.loading').addClass('is-not-displayed');
     });
-
   });
 }

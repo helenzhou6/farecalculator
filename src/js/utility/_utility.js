@@ -11,7 +11,7 @@ export function getZones(napTan, stations) {
 }
 
 /**
- * filters a nested array based on its length 
+ * filters a nested array based on its length
  * @function
  * @param {number} num - either 1 (for single zone) or 2 (dual zone)
  * @param {nested array} zones - the nested array of arrays (of zones)
@@ -137,8 +137,8 @@ export const getFare = (key, type, caps) => {
  * Determines if a numeric is within two targets (minTarget and maxTarget)
  * @function
  * @param {number} target - target value to compare against
- * @param {number} minTarget - the minTarget (usually the minTravelcard) 
- * @param {number} maxTarget - the minTarget (usually the maxTravelcard) 
+ * @param {number} minTarget - the minTarget (usually the minTravelcard)
+ * @param {number} maxTarget - the minTarget (usually the maxTravelcard)
  * @description
  */
 
