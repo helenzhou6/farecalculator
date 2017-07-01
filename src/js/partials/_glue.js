@@ -20,7 +20,6 @@ import conDayTotal from './backend/_contactlessDayTotal';
  * THIS IS THE FUNCTION THAT GLUES IT ALL TOGETHER
  */
 export default function glue(form) {
-  // console.log(form);
 
   return getData.stations().then(function (stations) {
     const daysWithJourneys = form.journeys.filter(j => j.length > 0);
@@ -56,7 +55,6 @@ export default function glue(form) {
     });
 
     return Promise.all(dayPromises).then(days => {
-      // console.log(days);
 
       // TO DO: Should this happen way ahead of time? Probably not now...
       return getData.fares().then(fareData => {

@@ -35,7 +35,7 @@ export default function ui() {
         });
 
         // Add to the DOM
-        // TODO: Should we strucutre this to append to journey input?
+        // TO DO: Should we strucutre this to append to journey input?
         // $journeys.find('.journey__input');
         $newTemplate.appendTo($journeys);
 
@@ -304,7 +304,7 @@ export default function ui() {
           const $result = $resultTemplate.clone();
           const $resultName = $result.find('.js-result__name');
 
-          // TODO: Add mode, but must filter out the Bus
+          // TO DO: Add mode, but must filter out the Bus
           $resultName.html(match.name);
 
           $container.append($result);
