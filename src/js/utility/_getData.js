@@ -1,3 +1,5 @@
+import dateGen from './_dateGen';
+
 /**
  * Gets fares.json file
  */
@@ -34,9 +36,16 @@ var fetchStationsData = (function() {
 	}
 }());
 
+
 //Fetches the json file from TFL API
 var fetchJourneyData = function(from, to) {
-	return fetch('https://api.tfl.gov.uk/journey/journeyresults/' + from + '/to/' + to + '?app_id=8acd79a9&app_key=d433a2d6d9a9c8e8b1b4a6dd4371c69b').then(function(e) {
+
+// —> time is especially important (need to be very far in future) since when tube improvement works everything breaks.
+//  zones are based on travel on a friday about a month in advance.
+	return fetch('https://api.tfl.gov.uk/journey/journeyresults/' + from + '/to/' + to
+	+ '?app_id=8acd79a9&app_key=d433a2d6d9a9c8e8b1b4a6dd4371c69b'
+	+ '?date=' + dateGen() + '&time=1300&mode=overground%2Ctube%2Cdlr'
+	).then(function(e) {
 		return e.json();
 	});
 };

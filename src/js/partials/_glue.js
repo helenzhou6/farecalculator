@@ -38,7 +38,7 @@ export default function glue(form) {
         return journeys.map((j, i) => {
 
             // Off-peak fares apply at all other times and if you travel from a station outside Zone 1
-            //-- to a station in Zone 1 between 16:00 and 19:00, Mondays to Fridays 
+            //-- to a station in Zone 1 between 16:00 and 19:00, Mondays to Fridays
             // if afternoon selected && start zone != 1 && end zone = 1 -> change type from afternoon to OffPeak
             // OR if unselected journeyType (i.e. weekend where offPeak by default) -- set to OffPeak
             var journeyType = day[i].touchin;
@@ -58,7 +58,7 @@ export default function glue(form) {
     return Promise.all(dayPromises).then(days => {
       // console.log(days);
 
-      // TODO: Should this happen way ahead of time? Probably not now...
+      // TO DO: Should this happen way ahead of time? Probably not now...
       return getData.fares().then(fareData => {
 
         let dataOyster = fareData.adult;

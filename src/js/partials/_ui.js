@@ -362,7 +362,7 @@ export default function ui() {
             const $results = buildResults(matches);
             // Append the built results to the parent
             $journey.append($results);
-          } 
+          }
         });
 
       } else {
@@ -399,7 +399,7 @@ export default function ui() {
           if ($currentlySelected.length !== 0) {
               const $previous = $currentlySelected.prev();
               $currentlySelected.removeClass('result--is-active');
-              
+
               if ($previous.length !== 0) {
                 $previous.addClass('result--is-active');
               } else {
@@ -417,7 +417,7 @@ export default function ui() {
           if ($currentlySelected.length !== 0) {
               const $next = $currentlySelected.next();
               $currentlySelected.removeClass('result--is-active');
-              
+
               if ($next.length !== 0) {
                 $next.addClass('result--is-active');
               } else {
@@ -494,7 +494,7 @@ export default function ui() {
     $form.on('keydown', '.js-autocomplete-station', handleKeyPress);
 
     // Populate
-    // TODO: Mousedown the best way? Click fires too late and conflicts with blur
+    // -- TO DO: Mousedown the best way? Click fires too late and conflicts with blur
     // http://stackoverflow.com/questions/19079264/blur-event-is-triggered-instead-of-click
     $form.on('mousedown', '.js-result', (e) => {
       e.preventDefault();
@@ -505,7 +505,7 @@ export default function ui() {
     $('.js-oyster-card-select').change(function() {
       const discountCard = $('.js-discount-card-select');
 
-      // Removes any existing disabled 
+      // Removes any existing disabled
       discountCard.find('option:disabled').prop('disabled', '');
       $(this).find('option:disabled').prop('disabled', '');
 
