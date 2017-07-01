@@ -1,6 +1,6 @@
-import weekTotal from './../../src/js/partials/_weekTotal';
-import conDayTotal from './../../src/js/partials/_contactlessDayTotal';
-import oysterDayTotal from './../../src/js/partials/_oysterDayTotal';
+import weekTotal from './../../src/js/partials/backend/_weekTotal';
+import conDayTotal from './../../src/js/partials/backend/_contactlessDayTotal';
+import oysterDayTotal from './../../src/js/partials/backend/_oysterDayTotal';
 
 const data = {
 	"dailyCaps": {
@@ -423,7 +423,7 @@ const days = [
       type: "anytime",
     },
   ],
- 
+
 ];
 
 const days2 = [
@@ -1017,7 +1017,7 @@ const days2 = [
       type: "offPeak",
     },
   ],
- 
+
 ];
 
 const none = [
@@ -1058,7 +1058,7 @@ const none = [
       type: "offPeak",
     },
   ],
- 
+
 ];
 
   describe('week Total', () => {
@@ -1073,7 +1073,7 @@ const none = [
 			})
 		).toEqual(0);
     });
-    
+
     test('2', () => {
 	    expect(
 		    weekTotal(oysterDayTotal, days, {
@@ -1082,7 +1082,7 @@ const none = [
 		    })
 		).toEqual(42.5);
     });
-    
+
     test('3', () => {
 	    expect(
 		    weekTotal(oysterDayTotal, days2, {
@@ -1091,7 +1091,7 @@ const none = [
 		    })
 		).toEqual(63.7);
     });
-    
+
     test('4', () => {
       expect(
         weekTotal(oysterDayTotal, days3, {

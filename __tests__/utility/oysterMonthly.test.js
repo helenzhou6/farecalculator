@@ -1,4 +1,4 @@
-import oysterMonthly from './../../src/js/partials/_oysterMonthly';
+import oysterMonthly from './../../src/js/partials/backend/_oysterMonthly';
 
 const data = {
 	"dailyCaps": {

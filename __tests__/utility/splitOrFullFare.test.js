@@ -1,4 +1,4 @@
-import splitOrFullFare from './../../src/js/partials/_splitOrFullFare';
+import splitOrFullFare from './../../src/js/partials/backend/_splitOrFullFare';
 
 test('gets whichever is cheapest: split 2 singles or full fare', () => {
   const singleFares = {

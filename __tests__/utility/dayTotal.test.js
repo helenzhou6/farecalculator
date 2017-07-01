@@ -1,7 +1,7 @@
 // NEED MORE
-import oysterDayTotal from './../../src/js/partials/_oysterDayTotal';
-import conDayTotal from './../../src/js/partials/_contactlessDayTotal';
-  
+import oysterDayTotal from './../../src/js/partials/backend/_oysterDayTotal';
+import conDayTotal from './../../src/js/partials/backend/_contactlessDayTotal';
+
   const singleFares = {
     "1-1": {
       "anytime": 2.4,
@@ -676,7 +676,7 @@ const afternon2 = [
         minTravelcard: 2,
         maxTravelcard: 4,
        }, {
-          
+
           dailyCaps, //JSON
           singleFares
         })).toEqual({
@@ -706,7 +706,7 @@ const afternon2 = [
           journeysZ6,
         {
        }, {
-          
+
           dailyCaps, //JSON
           singleFares
         })).toEqual({
@@ -722,7 +722,7 @@ const afternon2 = [
         minTravelcard: 1,
         maxTravelcard: 4,
        }, {
-         
+
           dailyCaps, //JSON
           singleFares
         })).toEqual({
@@ -752,7 +752,7 @@ const afternon2 = [
         minTravelcard: 3,
         maxTravelcard: 4,
        }, {
-          
+
           dailyCaps, //JSON
           singleFares
         })).toEqual({
@@ -767,7 +767,7 @@ const afternon2 = [
         minTravelcard: 3,
         maxTravelcard: 4,
        }, {
-          
+
           dailyCaps, //JSON
           singleFares
         })).toEqual({
@@ -783,7 +783,7 @@ const afternon2 = [
         minTravelcard: 3,
         maxTravelcard: 4,
        }, {
-          
+
           dailyCaps, //JSON
           singleFares
         })).toEqual({value: 0,
@@ -798,7 +798,7 @@ const afternon2 = [
         minTravelcard: 4,
         maxTravelcard: 5,
        }, {
-          
+
           dailyCaps, //JSON
           singleFares
         })).toEqual({
@@ -812,7 +812,7 @@ const afternon2 = [
           offPeakRefund,
         {
        }, {
-          
+
           dailyCaps, //JSON
           singleFares
         })).toEqual({
@@ -949,7 +949,7 @@ describe('Contactless Day Total', () => {
         minTravelcard: 2,
         maxTravelcard: 4,
        }, {
-          
+
           dailyCaps, //JSON
           singleFares
         })).toEqual({
@@ -978,7 +978,7 @@ describe('Contactless Day Total', () => {
           journeysZ6,
         {
        }, {
-          
+
           dailyCaps, //JSON
           singleFares
         })).toEqual({
@@ -994,7 +994,7 @@ describe('Contactless Day Total', () => {
         minTravelcard: 1,
         maxTravelcard: 4,
        }, {
-         
+
           dailyCaps, //JSON
           singleFares
         })).toEqual({
@@ -1022,7 +1022,7 @@ describe('Contactless Day Total', () => {
         minTravelcard: 3,
         maxTravelcard: 4,
        }, {
-          
+
           dailyCaps, //JSON
           singleFares
         })).toEqual({
@@ -1037,7 +1037,7 @@ describe('Contactless Day Total', () => {
         minTravelcard: 3,
         maxTravelcard: 4,
        }, {
-          
+
           dailyCaps, //JSON
           singleFares
         })).toEqual({
@@ -1052,7 +1052,7 @@ describe('Contactless Day Total', () => {
         minTravelcard: 3,
         maxTravelcard: 4,
        }, {
-          
+
           dailyCaps, //JSON
           singleFares
         })).toEqual({value: 0,
@@ -1066,7 +1066,7 @@ describe('Contactless Day Total', () => {
         minTravelcard: 4,
         maxTravelcard: 5,
        }, {
-          
+
           dailyCaps, //JSON
           singleFares
         })).toEqual({
@@ -1079,7 +1079,7 @@ describe('Contactless Day Total', () => {
           offPeakRefund,
         {
        }, {
-          
+
           dailyCaps, //JSON
           singleFares
         })).toEqual({

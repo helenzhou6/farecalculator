@@ -1,5 +1,5 @@
 // NEED TO ADD OFF PEAK
-import extensionFares from './../../src/js/partials/_extensionFares';
+import extensionFares from './../../src/js/partials/backend/_extensionFares';
   const singleFares = {
     "1-1": {
       "anytime": 2.4,

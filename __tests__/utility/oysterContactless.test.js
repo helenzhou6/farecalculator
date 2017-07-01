@@ -1,6 +1,6 @@
-import oyster from './../../src/js/partials/_oyster';
-import contactless from './../../src/js/partials/_contactless';
-import weekTotal from './../../src/js/partials/_weekTotal';
+import oyster from './../../src/js/partials/backend/_oyster';
+import contactless from './../../src/js/partials/backend/_contactless';
+import weekTotal from './../../src/js/partials/backend/_weekTotal';
 
 const data = {
 	"dailyCaps": {
@@ -551,7 +551,7 @@ const days = [
       type: "offPeak",
     },
   ],
- 
+
 ];
 const days2 = [
   [
@@ -833,7 +833,7 @@ const days2 = [
       type: "offPeak",
     },
   ],
- 
+
 ];
 
 const days3 =[
@@ -851,16 +851,16 @@ const days3 =[
       dualZoneOverlap: false,
       type: "offPeak",
     },
-   
+
   ],
   [
-     
+
     {
       zones: [3, 4],
       dualZoneOverlap: false,
       type: "offPeak",
     },
-    
+
   ],
   [
      {
@@ -873,10 +873,10 @@ const days3 =[
       dualZoneOverlap: false,
       type: "offPeak",
     },
-    
+
   ],
   [
-  
+
     {
       zones: [3, 4],
       dualZoneOverlap: false,
@@ -903,7 +903,7 @@ const days3 =[
     },
 
   ],
- 
+
 ];
 
 const days4 = [
@@ -921,22 +921,22 @@ const days4 = [
       dualZoneOverlap: false,
       type: "offPeak",
     },
-   
+
   ],
   [
-     
+
     {
       zones: [3, 4],
       dualZoneOverlap: false,
       type: "offPeak",
     },
-    
+
   ],
   [
-    
+
   ],
   [
-  
+
     {
       zones: [3, 4],
       dualZoneOverlap: false,
@@ -963,7 +963,7 @@ const days4 = [
     },
 
   ],
- 
+
 ];
 describe('oyster', () => {
     test('1', () => {
