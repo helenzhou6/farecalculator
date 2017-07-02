@@ -152,14 +152,16 @@ export default function ui() {
                 journeyErrors.indexOf(message) === i
               ));
 
+							addErrorBox($journey, filteredErrors);
+
               // Add the error messages
-              $journey.prepend(`
-                <div class="js-day__journey-errors errors__text">
-                    <ul>
-                      ${filteredErrors.map(error => `<li>${error}</li>`).join('')}
-                    </ul>
-                </div>
-              `);
+              // $journey.prepend(`
+              //   <div class="js-day__journey-errors errors__text">
+              //       <ul>
+              //         ${filteredErrors.map(error => `<li>${error}</li>`).join('')}
+              //       </ul>
+              //   </div>
+              // `);
             }
 
             dayData.push(journeyData);
@@ -273,10 +275,46 @@ export default function ui() {
 
         // results(data);
 
+				// console.log(data);
+
         glue(data).then(response => {
+
+					// console.log(response);
+
+					if (response.errors.length) {
+						console.log(response.errors);
+						showForm();
+
+
+						response.errors.forEach(error => {
+
+							// console.log($journeyElems.length);
+
+
+
+							const $daysWithJourneys = $('.js-day').filter((i, jsday) => {
+								return countDayJourneys($(jsday)) > 0;
+							});
+
+
+							const $errorDay = $($daysWithJourneys[error.dayNum]);
+							const $errorJourney = $($errorDay.find('.js-day__journey')[error.journeyNum]);
+
+							if ($errorJourney.length > -1) {
+								addErrorBox($errorJourney, [error.desc]);
+
+								$errorJourney.find('.journey__input').each((i, input) => {
+									markError($(input), true);
+								});
+							}
+						});
+					} else {
+						resultsPage(response);
+					}
+
           // response
           // console.log('THIS IS THE RESP:', JSON.stringify(response))
-          resultsPage(response);
+          // resultsPage(response);
         });
 
         // Get the form data as an array of Objects
@@ -377,6 +415,23 @@ export default function ui() {
         clearResults($journey);
       }
     };
+
+		var addErrorBox = function($elem, errors) {
+			$elem.prepend(`
+				<div class="js-day__journey-errors errors__text">
+						<ul>
+							${errors.map(error => `<li>${error}</li>`).join('')}
+						</ul>
+				</div>
+			`);
+		};
+
+		var showForm = function() {
+			$('.js-form').removeClass('is-not-displayed');
+			$('.results-page').addClass('is-not-displayed');
+			$('.edit-journeys').addClass('is-not-displayed');
+			$('.loading').addClass('is-not-displayed');
+		};
 
     var handleFocus = function(e, show) {
       const $target = $(e.currentTarget);
@@ -550,10 +605,7 @@ export default function ui() {
 
     $('.edit-journeys').click(function(e){
       e.preventDefault();
-      $('.js-form').removeClass('is-not-displayed');
-      $('.results-page').addClass('is-not-displayed');
-      $('.edit-journeys').addClass('is-not-displayed');
-      $('.loading').addClass('is-not-displayed');
+			showForm();
     });
   });
 }

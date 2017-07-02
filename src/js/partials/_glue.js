@@ -24,18 +24,13 @@ export default function glue(form) {
   return getData.stations().then(function (stations) {
     const daysWithJourneys = form.journeys.filter(j => j.length > 0);
 
-    const dayPromises = daysWithJourneys.map(day => {
-      const journeyPromises = [];
-
-      day.map(j => {
-        const jPromise = getSingleJourneyZones(j.from, j.to, stations);
-        journeyPromises.push(jPromise);
-        return jPromise;
+    const dayPromises = daysWithJourneys.map((day, x) => {
+      const journeyPromises = day.map(j => {
+        return getSingleJourneyZones(j.from, j.to, stations);
       });
 
       return Promise.all(journeyPromises).then(journeys => {
         return journeys.map((j, i) => {
-
             // Off-peak fares apply at all other times and if you travel from a station outside Zone 1
             //-- to a station in Zone 1 between 16:00 and 19:00, Mondays to Fridays
             // if afternoon selected && start zone != 1 && end zone = 1 -> change type from afternoon to OffPeak
@@ -49,12 +44,34 @@ export default function glue(form) {
               zones: j.zones,
               dualZoneOverlap: j.dualZoneOverlap,
               type: journeyType,
+							errors: j.errors.map(er => Object.assign({}, er, {
+								journeyNum: i,
+								dayNum: x,
+							}))
             };
         });
       });
     });
 
+		// console.log(dayPromises);
+
     return Promise.all(dayPromises).then(days => {
+
+			// console.log(days);
+
+			// console.log(days);
+
+			// console.log(days);
+
+			var allErrors = days.reduce((ar, day) => (
+    		ar.concat(day)
+  		), []).reduce((ar, journey) => (
+    		ar.concat(journey.errors)
+  		), []);
+
+			// console.log(allErrors);
+			// debugger;
+
 
       // TO DO: Should this happen way ahead of time? Probably not now...
       return getData.fares().then(fareData => {
@@ -81,6 +98,7 @@ export default function glue(form) {
           contactless: contactless(days, fareData.adult),
           oysterCard: form.oysterCard.label,
           discountCard: form.discountCard.label,
+					errors: allErrors
         };
 
       });

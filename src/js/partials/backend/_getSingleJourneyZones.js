@@ -2,7 +2,7 @@
 // stations is the .json file from fetchStationsData() function
 // Need to make it so that it generates it after each journey
 
- //Off-peak fares apply at all other times and if you travel from a station outside Zone 1 to a station in Zone 1 between 16:00 and 19:00, Mondays to Fridays 
+ //Off-peak fares apply at all other times and if you travel from a station outside Zone 1 to a station in Zone 1 between 16:00 and 19:00, Mondays to Fridays
 import getData from '../../utility/_getData';
 import {
 	flatten,
@@ -15,20 +15,28 @@ import {
 
 export default function getSingleJourneyZones(from, to, stations) {
 	return getData.journey(from, to).then(function(journey) {
+		var errors = [];
 		var journey = journey.journeys[0]; // selecting only the first journey from the API
 		var legs = journey.legs; //To look at each leg of the journey
+
+		if (legs.every(leg => leg.mode.id === 'walking')) {
+			errors.push({
+				desc: 'This journey is within walking distance. Please remove.',
+			});
+		}
+
 
 		// The array of zones associated with all stations of that journey
 		var allZones = flatten(legs.map(function(leg) {
 			var tempZones = [];
 
 			//Gets the zones of the departurePoints and adds them to allZones array
-			if (leg.departurePoint && leg.departurePoint.naptanId) { 
+			if (leg.departurePoint && leg.departurePoint.naptanId) {
 				tempZones.push(getZones(leg.departurePoint.naptanId, stations));
 			}
 
 			//Gets the zones of the StopPoint and adds them to allZones array
-			if (leg.path.stopPoints && leg.path.stopPoints.length > 0) { 
+			if (leg.path.stopPoints && leg.path.stopPoints.length > 0) {
 				leg.path.stopPoints.forEach(function(stopPoint) {
 					if (stopPoint.id) {
 						tempZones.push(getZones(stopPoint.id, stations));
@@ -55,13 +63,13 @@ export default function getSingleJourneyZones(from, to, stations) {
 		//**Flag done (to say that it is dual to dual zone & what zones (so that can manipulate and pick zones from closest to weekly capped zone rather than min zone))
 		} else {
 			zonesFromSingleStations = flatten(filterZonesByNumber(1, allZones));
-			
+
 
 			//Calculates the max and min Zones of all the zones that are from stations without any dual zones.
 			var singleMax = maxNum(zonesFromSingleStations);
 			var singleMin = minNum(zonesFromSingleStations);
 
-			//For each zonesFromDualStations: picks the most appropriate zone and appends to dualZones array 
+			//For each zonesFromDualStations: picks the most appropriate zone and appends to dualZones array
 			// --> Going from 2/3 to 2/3 —> charges same single 2, 3 or 2-3 (1.70) but should pick zone based on weekly (could be 3) or cap (always smallest: 2)
 			var dualZones = zonesFromDualStations.map(function(z) {
 				return z.reduce(function(a, b) {
@@ -82,6 +90,7 @@ export default function getSingleJourneyZones(from, to, stations) {
 			zones: [finalMinZone, finalMaxZone],
 			start: allZones[0],
 			end: allZones[allZones.length - 1],
+			errors,
 		};
 	});
 }

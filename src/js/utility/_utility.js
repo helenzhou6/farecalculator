@@ -67,6 +67,8 @@ export function getDifference(a, b) {
  * @description
  */
 export function flatten(arr) {
+	if (arr.length < 2) return arr;
+
   return arr.reduce(function(a, b) {
     return a.concat(b);
   });
@@ -130,6 +132,8 @@ export function keysToJourney(weeklyCaps) {
 export const getFare = (key, type, caps) => {
   const fare = caps[key.constructor === Array ? journeyToKey(key) : zoneToJourney(key)];
 
+	if (!fare) return 0;
+	
   return type ? fare[type] : fare;
 };
 
