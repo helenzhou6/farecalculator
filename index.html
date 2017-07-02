@@ -13,11 +13,11 @@
     </head>
     <body class="clearfix">
 
-        <div class="logo">
-            <img class="logo__icon" src="src/img/tfl.svg" />
-            <h1 class="logo__text">Oyster and Contactless Weekly Fare Calculator</h1>
+        <div class="heading">
+            <img class="heading__icon" src="src/img/tfl.svg" />
+            <h1 class="heading__caption">Oyster and Contactless Weekly Fare Calculator</h1>
         </div>
-        <div class="intro">
+        <div class="intro-text">
             <p>This fare calculator aims to calculate the best weekly fares (using either contactless or an oyster card) for travel between most tube, DLR and London Overground stations within zones 1-9.</p>
         </div>
 
@@ -54,70 +54,70 @@
                 </label>
             </div>
 
-            <fieldset class="js-day day" data-day="weekday">
-                <legend><h3>Monday</h3></legend>
+            <fieldset class="js-day day-section" data-day="weekday">
+                <legend><h3 class="day__title">Monday</h3></legend>
 
                 <div class="js-day__journeys" data-day="mon"></div>
 
                 <div>
-                    <button type="button" class="js-add-journey add-journey text-button">Add a journey</button>
+                    <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
                 </div>
             </fieldset>
 
-            <fieldset class="js-day day" data-day="weekday">
-                <legend><h3>Tuesday</h3></legend>
+            <fieldset class="js-day day-section" data-day="weekday">
+                <legend><h3 class="day__title">Tuesday</h3></legend>
 
                 <div class="js-day__journeys" data-day="tue"></div>
 
                 <div>
-                    <button type="button" class="js-add-journey add-journey text-button">Add a journey</button>
+                    <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
                 </div>
             </fieldset>
 
-            <fieldset class="js-day day" data-day="weekday">
-                <legend><h3>Wednesday</h3></legend>
+            <fieldset class="js-day day-section" data-day="weekday">
+                <legend><h3 class="day__title">Wednesday</h3></legend>
 
                 <div class="js-day__journeys" data-day="tue"></div>
 
                 <div>
-                    <button type="button" class="js-add-journey add-journey text-button">Add a journey</button>
+                    <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
                 </div>
             </fieldset>
-            <fieldset class="js-day day" data-day="weekday">
-                <legend><h3>Thursday</h3></legend>
+            <fieldset class="js-day day-section" data-day="weekday">
+                <legend><h3 class="day__title">Thursday</h3></legend>
 
                 <div class="js-day__journeys" data-day="tue"></div>
 
                 <div>
-                    <button type="button" class="js-add-journey add-journey text-button">Add a journey</button>
+                    <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
                 </div>
             </fieldset>
-            <fieldset class="js-day day" data-day="weekday">
-                <legend><h3>Friday</h3></legend>
+            <fieldset class="js-day day-section" data-day="weekday">
+                <legend><h3 class="day__title">Friday</h3></legend>
 
                 <div class="js-day__journeys" data-day="tue"></div>
 
                 <div>
-                    <button type="button" class="js-add-journey add-journey text-button">Add a journey</button>
+                    <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
                 </div>
             </fieldset>
-            <fieldset class="js-day day" data-day="weekend">
-                <legend><h3>Saturday</h3></legend>
+            <fieldset class="js-day day-section" data-day="weekend">
+                <legend><h3 class="day__title">Saturday</h3></legend>
 
                 <div class="js-day__journeys" data-day="sat"></div>
 
                 <div>
-                    <button type="button" class="js-add-journey add-journey text-button">Add a journey</button>
+                    <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
                 </div>
             </fieldset>
 
-            <fieldset class="js-day day" data-day="weekend">
-                <legend><h3>Sunday</h3></legend>
+            <fieldset class="js-day day-section" data-day="weekend">
+                <legend><h3 class="day__title">Sunday</h3></legend>
 
                 <div class="js-day__journeys" data-day="sun"></div>
 
                 <div>
-                    <button type="button" class="js-add-journey add-journey text-button">Add a journey</button>
+                    <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
                 </div>
             </fieldset>
 
@@ -125,11 +125,11 @@
         </form>
 
         <script type="text/html" class="js-journey-template">
-            <fieldset class="js-day__journey day-journey">
-                <div class="clearfix journey-touchin">
-                    <div class="each-journey">
+            <fieldset class="js-day__journey day__journey">
+                <div class="clearfix journey__stationsntouchin">
+                    <div class="journey__stations">
                         <div class="label is-hidden--mobile">Journey</div>
-                        <label class="js-journey journey">
+                        <label class="js-journey journey__station">
                             <div class="label is-hidden">From</div>
                             <div class="journey__input">
                                 <input type="text" data-name="from" placeholder="Station Name" class="js-autocomplete-station" />
@@ -140,8 +140,8 @@
                                 </div>
                             </div>
                         </label>
-                        <span class="journey-to">to</span>
-                        <label class="js-journey journey">
+                        <span class="journey__tolabel">to</span>
+                        <label class="js-journey journey__station">
                             <div class="label is-hidden">to</div>
                             <div class="journey__input">
                                 <input type="text" data-name="to" placeholder="Station Name" class="js-autocomplete-station" />
@@ -153,7 +153,7 @@
                             </div>
                         </label>
                     </div>
-                    <label class="touch-in"  data-if="weekday">
+                    <label class="journey__touchin"  data-if="weekday">
                         <div class="label">Time of touch in</div>
                         <div class="custom-select">
                             <select data-name="touchin">
@@ -165,15 +165,15 @@
                             </select>
                         </div>
                     </label>
-                    <div class="touch-in" data-if="weekend">
+                    <div class="journey__touchin" data-if="weekend">
                         <div class="label">Time of touch in</div>
                         <div class="weekend-touchin">Anytime</div>
                     </div>
                 </div>
 
-                <div class="remove-button">
+                <div class="day__remove">
                     <div class="label">Remove</div>
-                    <button type="button" class="js-remove-journey day-remove text-button">
+                    <button type="button" class="js-remove-journey journey__remove text-button">
                         <span class="is-hidden">Remove journey</span>
                     </button>
                 </div>
