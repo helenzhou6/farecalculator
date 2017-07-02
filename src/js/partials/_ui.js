@@ -71,7 +71,7 @@ export default function ui() {
         const $to = $journey.find('input[data-name="to"]');
 
         if (!$from.val() && !$to.val()) {
-          $journey.remove();
+          removeJourney($journey);
         }
       });
     };
@@ -169,6 +169,16 @@ export default function ui() {
 
     };
 
+    const checkNoJourneys = function($day){
+      // How many journeys are there?
+      const count = countDayJourneys($day);
+
+      // If we're not full, re-enable the add button
+      if (count < maxJourneys) {
+        $day.find('.js-add-journey').attr('disabled', false);
+      }
+    };
+
     $days.each((i, day) => {
       const $day = $(day);
       const $addBtn = $day.find('.js-add-journey');
@@ -200,21 +210,24 @@ export default function ui() {
         // numberFields($('form'));
       });
 
+
+
       // Remove a journey
       $day.on('click', '.js-remove-journey', (e) => {
 
         e.preventDefault();
-        $(e.currentTarget).closest('.js-day__journey').remove();
-
-        // How many journeys are there?
-        const count = countDayJourneys($day);
-
-        // If we're not full, re-enable the add button
-        if (count < maxJourneys) {
-          $addBtn.attr('disabled', false);
-        }
+        removeJourney($(e.currentTarget).closest('.js-day__journey'));
       });
     });
+
+    var removeJourney = function($journey) {
+      checkNoJourneys($journey.closest('.js-day'));
+      $journey.remove();
+    };
+
+    // var updateAddBtnVisibility = function() {
+    //
+    // };
 
     // Form submit
     const $form = $('.js-form');
@@ -243,7 +256,6 @@ export default function ui() {
 
         const journeyPromise = processJourneys($form);
 
-        $('.js-test')[0].test = 5;
 
         journeyPromise.then((journeys) => {
           // journeyPromise will return null if there was an error
