@@ -220,89 +220,92 @@ export default function ui() {
     const $form = $('.js-form');
 
     $form.on('submit', (e) => {
-      e.preventDefault();
+      try {
+        e.preventDefault();
 
-      // Remove any existing errors
-      removeErrors();
+        // Remove any existing errors
+        removeErrors();
 
-      loading(true);
+        loading(true);
 
-      // Clear out any empty journeys
-      removeEmptyJourneys();
+        // Clear out any empty journeys
+        removeEmptyJourneys();
 
-      // If we have no journeys at all
-      if (!countAllJourneys()) {
-        addGlobalError('Oops, it looks like you havent entered any journeys.');
+        // If we have no journeys at all
+        if (!countAllJourneys()) {
+                                   addGlobalError('Oops, it looks like you havent entered any journeys.');
 
-        loading(false);
+                                   loading(false);
 
-        // Don't bother continuing
-        return;
+                                   // Don't bother continuing
+                                   return;
+                                   }
+
+        const journeyPromise = processJourneys($form);
+
+        $('.js-test')[0].test = 5;
+
+        journeyPromise.then((journeys) => {
+          // journeyPromise will return null if there was an error
+          if (!journeys) {
+            addGlobalError('There are issues with your form, please scroll for details.');
+
+            // If there was an error, hide the loading screen
+            loading(false);
+            // And exit out, as we have no data to process
+            return;
+          }
+
+          // Re-number the fields
+          const data = {
+            oysterCard: {
+              label: $form.find('[name="oyster-card"] option:selected').text(),
+              val: $form.find('[name="oyster-card"]').val(),
+            },
+            discountCard: {
+              label: $form.find('[name="discount-card"] option:selected').text(),
+              val: $form.find('[name="discount-card"]').val(),
+            },
+            journeys,
+          };
+
+          glue(data).then(response => {
+            if (response.errors.length) {
+              console.log(response.errors);
+              showForm();
+
+              response.errors.forEach(error => {
+
+                const $daysWithJourneys = $('.js-day').filter((i, jsday) => {
+                  return countDayJourneys($(jsday)) > 0;
+                });
+
+
+                const $errorDay = $($daysWithJourneys[error.dayNum]);
+                const $errorJourney = $($errorDay.find('.js-day__journey')[error.journeyNum]);
+
+                if ($errorJourney.length > -1) {
+                  addErrorBox($errorJourney, [error.desc]);
+
+                  $errorJourney.find('.journey__input').each((i, input) => {
+                    markError($(input), true);
+                  });
+                }
+              });
+            } else {
+              resultsPage(response);
+            }
+
+            // response
+            console.log('THIS IS THE RESP:', JSON.stringify(response))
+          })
+
+          // Get the form data as an array of Objects
+          // const data = $(e.target).serializeArray();
+        }).catch(handleGenericError);
+      } catch(e) {
+        handleGenericError(e);
       }
-
-      const journeyPromise = processJourneys($form);
-
-      journeyPromise.then((journeys) => {
-        // journeyPromise will return null if there was an error
-        if (!journeys) {
-          addGlobalError('There are issues with your form, please scroll for details.');
-
-          // If there was an error, hide the loading screen
-          loading(false);
-          // And exit out, as we have no data to process
-          return;
-        }
-
-        // Re-number the fields
-        const data = {
-          oysterCard: {
-            label: $form.find('[name="oyster-card"] option:selected').text(),
-            val: $form.find('[name="oyster-card"]').val(),
-          },
-          discountCard: {
-            label: $form.find('[name="discount-card"] option:selected').text(),
-            val: $form.find('[name="discount-card"]').val(),
-          },
-          journeys,
-        };
-
-        glue(data).then(response => {
-					if (response.errors.length) {
-						console.log(response.errors);
-						showForm();
-
-						response.errors.forEach(error => {
-
-							const $daysWithJourneys = $('.js-day').filter((i, jsday) => {
-								return countDayJourneys($(jsday)) > 0;
-							});
-
-
-							const $errorDay = $($daysWithJourneys[error.dayNum]);
-							const $errorJourney = $($errorDay.find('.js-day__journey')[error.journeyNum]);
-
-							if ($errorJourney.length > -1) {
-								addErrorBox($errorJourney, [error.desc]);
-
-								$errorJourney.find('.journey__input').each((i, input) => {
-									markError($(input), true);
-								});
-							}
-						});
-					} else {
-						resultsPage(response);
-					}
-
-          // response
-          console.log('THIS IS THE RESP:', JSON.stringify(response))
-
-        });
-
-        // Get the form data as an array of Objects
-        // const data = $(e.target).serializeArray();
-      });
-
-
     });
 
     // Station autocomplete
@@ -401,6 +404,16 @@ export default function ui() {
 			$('.edit-journeys').addClass('is-not-displayed');
 			$('.loading').addClass('is-not-displayed');
 		};
+
+		var handleGenericError = (function() {
+		    const defaultMessage = 'Looks like there was a problem... shoot me an <a href="mailto:helen.zhou6@gmail.com">email</a>?';
+
+		    return function(e) {
+		      console.error(e);
+          addGlobalError(e ? e.message : defaultMessage);
+          showForm();
+        };
+    }());
 
     var handleFocus = function(e, show) {
       const $target = $(e.currentTarget);
@@ -581,5 +594,6 @@ export default function ui() {
       e.preventDefault();
 			showForm();
     });
+
   });
 }

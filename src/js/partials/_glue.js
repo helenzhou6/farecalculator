@@ -20,11 +20,13 @@ import conDayTotal from './backend/_contactlessDayTotal';
  * THIS IS THE FUNCTION THAT GLUES IT ALL TOGETHER
  */
 export default function glue(form) {
-
   return getData.stations().then(function (stations) {
     const daysWithJourneys = form.journeys.filter(j => j.length > 0);
 
+    throw new Error('Nope inside a promise...');
+
     const dayPromises = daysWithJourneys.map((day, x) => {
+
       const journeyPromises = day.map(j => {
         return getSingleJourneyZones(j.from, j.to, stations);
       });
@@ -96,8 +98,7 @@ export default function glue(form) {
 
     })
 
-  });
-
+  })
 }
 
 
