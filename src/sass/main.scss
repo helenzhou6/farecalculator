@@ -7,6 +7,7 @@
 .spinner {
   width: 35px;
   text-align: center;
+	padding-left: .5em;
 }
 
 .spinner > div {
@@ -28,6 +29,33 @@
 .spinner .bounce2 {
   -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
+}
+
+.journey__input {
+    position: relative;
+
+    .spinner {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: all .4s;
+
+        > div {
+            animation-play-state: paused;
+        }
+    }
+}
+
+.journey__input--is-searching {
+    .spinner {
+        opacity: 1;
+
+        > div {
+            animation-play-state: running;
+        }
+    }
 }
 
 @-webkit-keyframes sk-bouncedelay {
@@ -143,7 +171,6 @@ input[type="text"] {
     background-color: transparent;
     border: none;
     border-radius: 0;
-    apperance: none;
     border-bottom: 2px solid white;
     padding: .6em 0 .5em 0;
     width: 100%;
@@ -438,33 +465,6 @@ h3 {
     }
 }
 
-.journey__input {
-    position: relative;
-
-    .spinner {
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        opacity: 0;
-        transition: all .4s;
-
-        > div {
-            animation-play-state: paused;
-        }
-    }
-}
-
-.journey__input--is-searching {
-    .spinner {
-        opacity: 1;
-
-        > div {
-            animation-play-state: running;
-        }
-    }
-}
-
 .each-journey {
     @include media(1000px) {
         float: left;
@@ -493,7 +493,7 @@ h3 {
 
     @include media(1000px) {
         display: block;
-        line-height: calc(3.15em + 2px);
+        line-height: calc(2.65em + 2px);
         float: left;
         width: 8%;
         text-align: center;
@@ -693,6 +693,7 @@ fieldset {
         height: 1em;
         display: block;
         background-image: url('../img/warning.svg');
+				background-size: 100% 100%;
     }
     input {
         border-color: #e8590c;
