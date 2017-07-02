@@ -26,11 +26,11 @@
         </div>
 
         <form action="" autocomplete="off" name="" class="js-form">
-            <div class="card-selection clearfix">
-                <label class="card">
+            <div class="discount-section clearfix">
+                <label class="discount__card">
                     <div class="label">Oyster card</div>
                     <div class="custom-select js-oyster-card-select">
-                        <select name="oyster-card">
+                        <select id="oyster-card" name="oyster-card">
                             <option value="adult">Adult</option>
                             <option value="student">Apprentice</option>
                             <option value="student">18+ Student</option>
@@ -38,10 +38,10 @@
                         </select>
                     </div>
                 </label>
-                <label class="card">
+                <label class="discount__card">
                     <div class="label">Discount card</div>
                     <div class="custom-select js-discount-card-select">
-                        <select id="discount-card" name="discount-card" class="discount-card">
+                        <select id="discount-card" name="discount-card">
                             <option value="none">None</option>
                             <option value="child-jobless">Job Centre</option>
                             <option value="disabled">Disabled Persons</option>
@@ -121,7 +121,7 @@
                 </div>
             </fieldset>
 
-            <button type="submit" class="submit card">Submit</button>
+            <button type="submit" class="submit discount__card">Submit</button>
         </form>
 
         <script type="text/html" class="js-journey-template">
@@ -184,8 +184,6 @@
 
             <h2 id="results-page__title">Calculated best weekly fares</h2><a href="#disclaimer" class="results-astrix astrix">*</a>
 
-
-
             <div class="clearfix results__table">
                 <div class="results__section results__contactless">
                     <h4 class="results__title">Contactless</h4>
@@ -219,11 +217,6 @@
 					</div>
           <div class="loading__text">
                 We are processing your data...
-<!--             <span class="spinner">
-              <div class="bounce1"></div>
-              <div class="bounce2"></div>
-              <div class="bounce3"></div>
-            </span> -->
           </div>
         </div>
 

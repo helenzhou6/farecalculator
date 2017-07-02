@@ -29,7 +29,7 @@ $text: white;
 *,
 *:before,
 *:after {
-    border: 1px solid pink;
+    // border: 1px solid pink;
   	box-sizing: border-box;
 }
 
@@ -160,7 +160,7 @@ input[type="text"] {
 
 // FOR SEARCHING STATIONS DROP DOWN
 .completion-results {
-    background-color: transparent; //#1A34FF; //6778FF
+    background-color: #1A34FF; //#1A34FF; //6778FF
     position: absolute;
     top: 100%;
     margin-top: -3px;
@@ -221,13 +221,14 @@ input[type="text"] {
 }
 
 // OYSTER/DISCOUNT CARD SELECTION
-.card-selection {
+.discount-section {
     @include media(600px) {
         width: 100%;
     }
 }
 
-.card {
+// Discount card also used for submit button
+.discount__card {
     @include media(600px) {
         float: left;
         width: 48%;
