@@ -4,6 +4,7 @@ import Fuse from 'fuse.js';
 import glue from './_glue.js';
 import loading from './_loading';
 import resultsPage from './_resultsPage';
+import getData from './../utility/_getData';
 
 let stationResults = null;
 let stationFuse = null;
@@ -342,8 +343,7 @@ export default function ui() {
     var loadResults = function() {
       if (stationResults) return Promise.resolve();
 
-      return fetch('/data/tmp/stationResults.json')
-        .then(resp => resp.json())
+      return getData.stations()
         .then(resp => {
           stationResults = Object.keys(resp).map(naptan => resp[naptan]);
 

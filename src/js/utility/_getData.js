@@ -1,3 +1,4 @@
+import moize from 'moize';
 import dateGen from './_dateGen';
 
 /**
@@ -29,17 +30,17 @@ var fetchStationsData = (function() {
 			return Promise.resolve(data);
 		}
 
-		return fetch('/data/tmp/stationResults.json').then(function(resp) {
-			data = resp.json();
-			return data;
-		});
+		return fetch('/data/tmp/stationResults.json')
+			.then(function(resp) {
+        data = resp.json();
+        return data;
+      });
 	}
 }());
 
 
 //Fetches the json file from TFL API
-var fetchJourneyData = function(from, to) {
-
+var fetchJourneyData = moize(function(from, to) {
 // —> time is especially important (need to be very far in future) since when tube improvement works everything breaks.
 //  zones are based on travel on a friday about a month in advance.
 	return fetch('https://api.tfl.gov.uk/journey/journeyresults/' + from + '/to/' + to
@@ -48,7 +49,12 @@ var fetchJourneyData = function(from, to) {
 	).then(function(e) {
 		return e.json();
 	});
-};
+}, {
+  serialize: true,
+  serializer: function(args) {
+    return Array.from(args).sort(function (a, b) { return a - b; }).join('-');
+	}
+});
 
 export default {
 	fares: fetchFareData,
