@@ -534,15 +534,15 @@ export default function ui() {
 
     // THE UI TO NOT ALLOW CERTAIN OYSTER CARDS WITH OTHER RAILCARDS
 		const removeDisabled = function(card, $this) {
+			// Removes any existing disabled
 			card.find('option:disabled').prop('disabled', '');
-			$this.find('option:disabled').prop('disabled', '');
 		};
 
     $('.js-oyster-card-select').change(function() {
       const $discountCard = $('.js-discount-card-select');
 			const $discountCardInput = $('#discount-card');
-      // Removes any existing disabled
-      removeDisabled($discountCard, $(this));
+
+      removeDisabled($discountCard);
 
       $discountCardInput.prop('disabled', false);
       $discountCard.removeClass('is-disabled');
@@ -561,7 +561,7 @@ export default function ui() {
       const $oysterCard = $('.js-oyster-card-select');
       const childOysterCard = $oysterCard.find('option[value="child-jobless"]');
 
-			removeDisabled($oysterCard, $(this));
+			removeDisabled($oysterCard);
 
       const selectedDiscount = $(this).find("option:selected").val();
 
