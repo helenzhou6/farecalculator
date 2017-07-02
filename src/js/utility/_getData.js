@@ -8,7 +8,7 @@ var fetchFareData = (function () {
 
 	return function() {
 		if (data) {
-			console.log('oh! we are getting the cached data!');
+			// console.log('oh! we are getting the cached data!');
 			return Promise.resolve(data);
 		}
 
@@ -25,7 +25,7 @@ var fetchStationsData = (function() {
 
 	return function() {
 		if (data) {
-			console.log('oh! we are getting the cached data!');
+			// console.log('oh! we are getting the cached data!');
 			return Promise.resolve(data);
 		}
 

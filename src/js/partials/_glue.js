@@ -53,15 +53,7 @@ export default function glue(form) {
       });
     });
 
-		// console.log(dayPromises);
-
     return Promise.all(dayPromises).then(days => {
-
-			// console.log(days);
-
-			// console.log(days);
-
-			// console.log(days);
 
 			var allErrors = days.reduce((ar, day) => (
     		ar.concat(day)
@@ -69,27 +61,25 @@ export default function glue(form) {
     		ar.concat(journey.errors)
   		), []);
 
-			// console.log(allErrors);
-			// debugger;
-
-
       // TO DO: Should this happen way ahead of time? Probably not now...
       return getData.fares().then(fareData => {
 
         let dataOyster = fareData.adult;
+				let oysterCardVal = form.oysterCard.val;
+				let discountCardVal = form.discountCard.val;
 
-        if (form.oysterCard.val == 'adult' && form.discountCard.val == 'child-jobless' ||
-            form.oysterCard.val == 'child-jobless' && form.discountCard.val == 'none' ) {
+        if (oysterCardVal == 'adult' && discountCardVal == 'child-jobless' ||
+            oysterCardVal == 'child-jobless' && discountCardVal == 'none' ) {
           dataOyster = fareData.halfOff;
-        } else if (form.oysterCard.val == 'adult' && form.discountCard.val == 'railcard') {
+        } else if (oysterCardVal == 'adult' && discountCardVal == 'railcard') {
           dataOyster = Object.assign({}, fareData.adult, fareData.thirdOffPeakPAYG);
-        } else if (form.oysterCard.val == 'adult' && form.discountCard.val == 'disabled') {
+        } else if (oysterCardVal == 'adult' && discountCardVal == 'disabled') {
           dataOyster = Object.assign({}, fareData.adult, fareData.thirdAnytimePAYG);
-        } else if (form.oysterCard.val == 'student' && form.discountCard.val == 'none') {
+        } else if (oysterCardVal == 'student' && discountCardVal == 'none') {
           dataOyster = Object.assign({}, fareData.adult, fareData.thirdTravelcards);
-        } else if (form.oysterCard.val == 'student' && form.discountCard.val == 'railcard') {
+        } else if (oysterCardVal == 'student' && discountCardVal == 'railcard') {
           dataOyster = Object.assign({}, fareData.thirdOffPeakPAYG, fareData.thirdTravelcards);
-        } else if (form.oysterCard.val == 'student' && form.discountCard.val == 'disabled') {
+        } else if (oysterCardVal == 'student' && discountCardVal == 'disabled') {
           dataOyster = Object.assign({}, fareData.thirdAnytimePAYG, fareData.thirdTravelcards);
         }
 

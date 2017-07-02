@@ -154,14 +154,6 @@ export default function ui() {
 
 							addErrorBox($journey, filteredErrors);
 
-              // Add the error messages
-              // $journey.prepend(`
-              //   <div class="js-day__journey-errors errors__text">
-              //       <ul>
-              //         ${filteredErrors.map(error => `<li>${error}</li>`).join('')}
-              //       </ul>
-              //   </div>
-              // `);
             }
 
             dayData.push(journeyData);
@@ -209,12 +201,12 @@ export default function ui() {
 
       // Remove a journey
       $day.on('click', '.js-remove-journey', (e) => {
-        // console.log('remove!!!');
+
         e.preventDefault();
         $(e.currentTarget).closest('.js-day__journey').remove();
 
         // How many journeys are there?
-        const count = countJourneys($day);
+        const count = countDayJourneys($day);
 
         // If we're not full, re-enable the add button
         if (count < maxJourneys) {
@@ -273,24 +265,12 @@ export default function ui() {
           journeys,
         };
 
-        // results(data);
-
-				// console.log(data);
-
         glue(data).then(response => {
-
-					// console.log(response);
-
 					if (response.errors.length) {
 						console.log(response.errors);
 						showForm();
 
-
 						response.errors.forEach(error => {
-
-							// console.log($journeyElems.length);
-
-
 
 							const $daysWithJourneys = $('.js-day').filter((i, jsday) => {
 								return countDayJourneys($(jsday)) > 0;
@@ -313,8 +293,8 @@ export default function ui() {
 					}
 
           // response
-          // console.log('THIS IS THE RESP:', JSON.stringify(response))
-          // resultsPage(response);
+          console.log('THIS IS THE RESP:', JSON.stringify(response))
+
         });
 
         // Get the form data as an array of Objects
@@ -349,7 +329,7 @@ export default function ui() {
           const $result = $resultTemplate.clone();
           const $resultName = $result.find('.js-result__name');
 
-          // TO DO: Add mode, but must filter out the Bus
+
           $resultName.html(match.name);
 
           $container.append($result);
@@ -374,17 +354,6 @@ export default function ui() {
           return Promise.resolve();
         });
     };
-
-    // $.ajax('/data/tmp/stationResults.json').done(function(result) {
-    //   stationResults = result;
-    //   console.log(stationResults);
-    // });
-
-    // const fuse = new Fuse(stationList, {
-    //   keys: {
-
-    //   }
-    // });
 
     var updateResults = function(e) {
       const $target = $(e.currentTarget);
@@ -564,39 +533,42 @@ export default function ui() {
     });
 
     // THE UI TO NOT ALLOW CERTAIN OYSTER CARDS WITH OTHER RAILCARDS
+		const removeDisabled = function(card, $this) {
+			card.find('option:disabled').prop('disabled', '');
+			$this.find('option:disabled').prop('disabled', '');
+		};
+
     $('.js-oyster-card-select').change(function() {
-      const discountCard = $('.js-discount-card-select');
-
+      const $discountCard = $('.js-discount-card-select');
+			const $discountCardInput = $('#discount-card');
       // Removes any existing disabled
-      discountCard.find('option:disabled').prop('disabled', '');
-      $(this).find('option:disabled').prop('disabled', '');
+      removeDisabled($discountCard, $(this));
 
-      $('#discount-card').prop('disabled', false);
-      discountCard.removeClass('is-disabled');
+      $discountCardInput.prop('disabled', false);
+      $discountCard.removeClass('is-disabled');
 
       const selectedOyster = $(this).find("option:selected").val();
 
       if (selectedOyster === 'student') {
-        discountCard.find('option[value="child-jobless"]').prop('disabled', true);
+        $discountCard.find('option[value="child-jobless"]').prop('disabled', true);
       } else if (selectedOyster === 'child-jobless') {
-        $('#discount-card').prop('disabled', true); // NEED MAKE A CLASS FOR THIS
-        discountCard.addClass('is-disabled');
+        $discountCardInput.prop('disabled', true);
+        $discountCard.addClass('is-disabled');
       }
     });
 
     $('.js-discount-card-select').change(function() {
-      const oysterCard = $('.js-oyster-card-select');
-      const childOysterCard = oysterCard.find('option[value="child-jobless"]');
+      const $oysterCard = $('.js-oyster-card-select');
+      const childOysterCard = $oysterCard.find('option[value="child-jobless"]');
 
-      oysterCard.find('option:disabled').prop('disabled', '');
-      $(this).find('option:disabled').prop('disabled', '');
+			removeDisabled($oysterCard, $(this));
 
       const selectedDiscount = $(this).find("option:selected").val();
 
       if (selectedDiscount === 'railcard') {
         childOysterCard.prop('disabled', true);
       } else if (selectedDiscount === 'child-jobless') {
-        oysterCard.find('option[value="student"]').prop('disabled', true);
+        $oysterCard.find('option[value="student"]').prop('disabled', true);
         childOysterCard.prop('disabled', true);
       } else if (selectedDiscount === 'disabled') {
         childOysterCard.prop('disabled', true);
