@@ -1077,7 +1077,7 @@ const none = [
     test('2', () => {
 	    expect(
 		    weekTotal(oysterDayTotal, days, {
-		      false,
+		      options: false,
 		      data,
 		    })
 		).toEqual(42.5);
@@ -1086,7 +1086,7 @@ const none = [
     test('3', () => {
 	    expect(
 		    weekTotal(oysterDayTotal, days2, {
-		      false,
+		      options: false,
 		      data,
 		    })
 		).toEqual(63.7);
@@ -1095,7 +1095,7 @@ const none = [
     test('4', () => {
       expect(
         weekTotal(oysterDayTotal, days3, {
-          false,
+          options: false,
           data,
         })
     ).toEqual(64.5);
@@ -1104,7 +1104,7 @@ const none = [
     test('5', () => {
       expect(
         weekTotal(oysterDayTotal, none, {
-          false,
+          options: false,
           data,
         })
     ).toEqual(9.5);
@@ -1113,7 +1113,7 @@ const none = [
     test('6', () => {
       expect(
         weekTotal(conDayTotal, none, {
-          false,
+          options: false,
           data,
         })
     ).toEqual(8.5);
@@ -1122,7 +1122,7 @@ const none = [
     test('7', () => {
       expect(
         weekTotal(conDayTotal, days3, {
-          false,
+          options: false,
           data,
         })
     ).toEqual(61.5);

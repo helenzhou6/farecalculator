@@ -20,6 +20,7 @@ import conDayTotal from './backend/_contactlessDayTotal';
  * THIS IS THE FUNCTION THAT GLUES IT ALL TOGETHER
  */
 export default function glue(form) {
+	console.log('THIS IS THE INPUT:', JSON.stringify(form));
   return getData.stations().then(function (stations) {
     const daysWithJourneys = form.journeys.filter(j => j.length > 0);
 

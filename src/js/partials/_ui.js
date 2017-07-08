@@ -309,7 +309,7 @@ export default function ui() {
             }
 
             // response
-            console.log('THIS IS THE RESP:', JSON.stringify(response))
+            console.log('THIS IS THE RESP:', JSON.stringify(response));
           })
 
           // Get the form data as an array of Objects

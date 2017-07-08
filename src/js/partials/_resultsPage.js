@@ -40,5 +40,4 @@ export default function resultsPage(response) {
 			$('.oyster-travelcard').html('a ' + response.oyster.cap);
 		}
 	}, 200);
-	results();
 }
