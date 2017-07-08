@@ -161,6 +161,18 @@ input[type="text"] {
 		position: relative;
 }
 
+.heading__logo {
+		cursor: pointer;
+}
+
+.heading__nav {
+
+}
+
+.nav__link {
+	float: right;
+}
+
 .heading__caption {
 		display: inline-block;
     vertical-align: middle;
@@ -728,7 +740,7 @@ a {
 // FOOTER
 
 .footer {
-		font-size: .5em;
+		font-size: .6em;
 		margin-bottom: 1rem;
     @include media(500px) {
         margin-top: 4rem;
