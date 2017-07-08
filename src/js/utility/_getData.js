@@ -13,7 +13,7 @@ var fetchFareData = (function () {
 			return Promise.resolve(data);
 		}
 
-		return fetch('http://localhost:3000/data/fares.json').then(function(resp) {
+		return fetch('/data/fares.json').then(function(resp) {
 			data = resp.json();
 			return data;
 		});
@@ -30,7 +30,7 @@ var fetchStationsData = (function() {
 			return Promise.resolve(data);
 		}
 
-		return fetch('http://localhost:3000/data/tmp/stationResults.json')
+		return fetch('/data/tmp/stationResults.json')
 			.then(function(resp) {
         data = resp.json();
         return data;
