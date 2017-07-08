@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -13,10 +13,10 @@
     </head>
     <body class="clearfix">
 
-        <div class="heading">
+        <header class="heading">
             <img class="heading__icon" src="src/img/tfl.svg" />
             <h1 class="heading__caption">Oyster and Contactless Weekly Fare Calculator</h1>
-        </div>
+        </header>
         <div class="intro-text">
             <p>This fare calculator aims to calculate the best weekly fares (using either contactless or an oyster card) for travel between most tube, DLR and London Overground stations within zones 1-9.</p>
         </div>
@@ -25,7 +25,7 @@
 
         </div>
 
-        <form action="" autocomplete="off" name="" class="js-form">
+        <form action="" autocomplete="off" name="" class="js-form clearfix">
             <div class="discount-section clearfix">
                 <label class="discount__card">
                     <div class="label">Oyster card</div>
@@ -133,11 +133,6 @@
                             <div class="label is-hidden">From</div>
                             <div class="journey__input">
                                 <input type="text" data-name="from" placeholder="Station Name" class="js-autocomplete-station" />
-                                <div class="spinner">
-                                  <div class="bounce1"></div>
-                                  <div class="bounce2"></div>
-                                  <div class="bounce3"></div>
-                                </div>
                             </div>
                         </label>
                         <span class="journey__tolabel">to</span>
@@ -145,11 +140,6 @@
                             <div class="label is-hidden">to</div>
                             <div class="journey__input">
                                 <input type="text" data-name="to" placeholder="Station Name" class="js-autocomplete-station" />
-                                <div class="spinner">
-                                  <div class="bounce1"></div>
-                                  <div class="bounce2"></div>
-                                  <div class="bounce3"></div>
-                                </div>
                             </div>
                         </label>
                     </div>
@@ -210,7 +200,7 @@
             </div>
         </section>
 
-        <div class="loading is-not-displayed">
+        <section class="loading is-not-displayed">
 					<div class="loading-bar">
 					  <div class="loading__inner loading__inner--main"></div>
 					  <div class="loading__inner loading__inner--final"></div>
@@ -218,17 +208,21 @@
           <div class="loading__text">
                 We are processing your data...
           </div>
-        </div>
+        </section>
 
         <div class="edit-journeys is-not-displayed">
             <span class="is-orange"><</span> Edit your journeys
         </div>
 
         <script type="text/html" class="js-autocomplete-template">
-            <div class="js-result result">
+            <section class="js-result result">
                 <span class="js-result__name"></span>
-            </div>
+            </section>
         </script>
+
+				<footer class="footer">
+					<span>Made by <a href="https://www.helenzhou.co.uk/" target="_blank">Helen Zhou</a> 2017. All rights reserved.</span>
+				</footer>
 
         <script src="/dist/js/app.js"></script>
     </body>

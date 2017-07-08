@@ -4,24 +4,33 @@ import Fuse from 'fuse.js';
 import glue from './_glue.js';
 import loading from './_loading';
 import resultsPage from './_resultsPage';
+import cardSelection from './_cardSelection';
 import getData from './../utility/_getData';
 
 let stationResults = null;
 let stationFuse = null;
 
-// TODO: Refactor labels to not contain Divs
+// TO DO: Refactor labels to not contain Divs
 
 export default function ui() {
 
-  $(document).ready(function () {
+  $(document).ready(function() {
+		cardSelection();
+
+		// JAVASCRIPT ADDS/REMOVES JOURNEYS
     const maxJourneys = 6;
     const $days = $('.js-day');
     const $errorBox = $('.js-errors');
 
-    var addJourney = (function () {
+		const removeJourney = function ($journey) {
+			checkNoJourneys($journey.closest('.js-day'));
+			$journey.remove();
+		};
+
+    const addJourney = (function() {
       const $dayTemplate = $($.parseHTML($.trim($('.js-journey-template').html())));
 
-      return function ($journeys, dayType) {
+      return function($journeys, dayType) {
         const $newTemplate = $dayTemplate.clone();
         const $ifs = $newTemplate.find('[data-if]');
         $newTemplate.attr('data-day', $journeys.data('day'));
@@ -45,24 +54,15 @@ export default function ui() {
       };
     }());
 
-    var countDayJourneys = function ($day) {
+    const countDayJourneys = function($day) {
       return $day.find('.js-day__journey').length;
     };
 
-    var countAllJourneys = function() {
+    const countAllJourneys = function() {
       return $('.js-day__journey').length;
     };
 
-    var markError = function ($journeyInput, hasError) {
-      $journeyInput[hasError ? 'addClass' : 'removeClass']('journey__input--has-error');
-    };
-
-    var removeErrors = function() {
-      $errorBox.html('');
-      $('.js-day__journey-errors').remove();
-    };
-
-    var removeEmptyJourneys = function() {
+    const removeEmptyJourneys = function() {
       const $journeys = $('.js-day__journey');
 
       $journeys.each((i, journey) => {
@@ -76,11 +76,21 @@ export default function ui() {
       });
     };
 
-    var addGlobalError = function(message) {
+		// error handling
+    const addGlobalError = function(message) {
       $errorBox.html(`<p class="errors__text">${message}</p>`);
     };
 
-    var processJourneys = function ($form) {
+		const markError = function($journeyInput, hasError) {
+			$journeyInput[hasError ? 'addClass' : 'removeClass']('journey__input--has-error');
+		};
+
+		const removeErrors = function() {
+			$errorBox.html('');
+			$('.js-day__journey-errors').remove();
+		};
+
+    const processJourneys = function($form) {
       const data = [];
 
       // A flag so we can check at the end if there have been any errors
@@ -114,12 +124,12 @@ export default function ui() {
             // An array of all the errors produced during the journey processing
             const journeyErrors = [];
 
-						const $from = $journey.find('input[data-name="from"]');
-						const $to = $journey.find('input[data-name="to"]');
+            const $from = $journey.find('input[data-name="from"]');
+            const $to = $journey.find('input[data-name="to"]');
 
-						if ($from.val() === $to.val()) {
-							journeyError($journey.find('.journey__input'), 'Stations cannot be the same.', journeyErrors);
-						}
+            if ($from.val() === $to.val()) {
+              journeyError($journey.find('.journey__input'), 'Stations cannot be the same.', journeyErrors);
+            }
 
             $inputs.each((inputNum, input) => {
               const $input = $(input);
@@ -153,7 +163,7 @@ export default function ui() {
                 journeyErrors.indexOf(message) === i
               ));
 
-							addErrorBox($journey, filteredErrors);
+              addErrorBox($journey, filteredErrors);
 
             }
 
@@ -169,12 +179,11 @@ export default function ui() {
 
     };
 
-    const checkNoJourneys = function($day){
+    const checkNoJourneys = function ($day) {
       // How many journeys are there?
       const count = countDayJourneys($day);
-
       // If we're not full, re-enable the add button
-      if (count < maxJourneys) {
+      if (count <= maxJourneys) {
         $day.find('.js-add-journey').attr('disabled', false);
       }
     };
@@ -210,20 +219,12 @@ export default function ui() {
         // numberFields($('form'));
       });
 
-
-
       // Remove a journey
       $day.on('click', '.js-remove-journey', (e) => {
-
         e.preventDefault();
         removeJourney($(e.currentTarget).closest('.js-day__journey'));
       });
     });
-
-    var removeJourney = function($journey) {
-      checkNoJourneys($journey.closest('.js-day'));
-      $journey.remove();
-    };
 
     // var updateAddBtnVisibility = function() {
     //
@@ -246,22 +247,21 @@ export default function ui() {
 
         // If we have no journeys at all
         if (!countAllJourneys()) {
-                                   addGlobalError('Oops, it looks like you havent entered any journeys.');
+          addGlobalError('Oops, it looks like you havent entered any journeys.');
+          $(window).scrollTop(0);
+          loading(false);
 
-                                   loading(false);
-
-                                   // Don't bother continuing
-                                   return;
-                                   }
+          // Don't bother continuing
+          return;
+        }
 
         const journeyPromise = processJourneys($form);
-
 
         journeyPromise.then((journeys) => {
           // journeyPromise will return null if there was an error
           if (!journeys) {
             addGlobalError('There are issues with your form, please scroll for details.');
-
+            $(window).scrollTop(0);
             // If there was an error, hide the loading screen
             loading(false);
             // And exit out, as we have no data to process
@@ -315,19 +315,17 @@ export default function ui() {
           // Get the form data as an array of Objects
           // const data = $(e.target).serializeArray();
         }).catch(handleGenericError);
-      } catch(e) {
+      } catch (e) {
         handleGenericError(e);
       }
     });
 
-    // Station autocomplete
-    // https://api.tfl.gov.uk/Stoppoint/Search/Bow?modes=tube,dlr
-
-    var clearResults = function($journey) {
+		// DISPLAYING THE RESULTS of the station autocomplete
+    const clearResults = function($journey) {
       $journey.find('.js-completion-results').remove();
     };
 
-    var hideResults = function($journey, hide) {
+    const hideResults = function($journey, hide) {
       $journey.find('.js-completion-results')[hide ? 'addClass' : 'removeClass']('hide');
 
       // Restore value from data attribute
@@ -335,7 +333,7 @@ export default function ui() {
       $input.val($input.attr('data-val'));
     };
 
-    var buildResults = (function() {
+    const buildResults = (function() {
       const $resultTemplate = $($.parseHTML($.trim($('.js-autocomplete-template').html())));
 
       return (matches) => {
@@ -355,7 +353,7 @@ export default function ui() {
       };
     })();
 
-    var loadResults = function() {
+    const loadResults = function() {
       if (stationResults) return Promise.resolve();
 
       return getData.stations()
@@ -370,7 +368,7 @@ export default function ui() {
         });
     };
 
-    var updateResults = function(e) {
+    const updateResults = function(e) {
       const $target = $(e.currentTarget);
       const $journey = $target.closest('.js-journey');
       const val = $target.val();
@@ -393,41 +391,41 @@ export default function ui() {
             $journey.append($results);
           }
         });
-
       } else {
         // Clear old results
         clearResults($journey);
       }
     };
 
-		var addErrorBox = function($elem, errors) {
-			$elem.prepend(`
+    const addErrorBox = function($elem, errors) {
+      $elem.prepend(`
 				<div class="js-day__journey-errors errors__text">
 						<ul>
 							${errors.map(error => `<li>${error}</li>`).join('')}
 						</ul>
 				</div>
 			`);
-		};
+    };
 
-		var showForm = function() {
-			$('.js-form').removeClass('is-not-displayed');
-			$('.results-page').addClass('is-not-displayed');
-			$('.edit-journeys').addClass('is-not-displayed');
-			$('.loading').addClass('is-not-displayed');
-		};
+    const showForm = function (){
+      $(window).scrollTop(0);
+      $('.js-form').removeClass('is-not-displayed');
+      $('.results-page').addClass('is-not-displayed');
+      $('.edit-journeys').addClass('is-not-displayed');
+      $('.loading').addClass('is-not-displayed');
+    };
 
-		var handleGenericError = (function() {
-		    const defaultMessage = 'Looks like there was a problem... shoot me an <a href="mailto:helen.zhou6@gmail.com">email</a>?';
+    const handleGenericError = (function() {
+      const defaultMessage = 'Looks like there was a problem... shoot me an <a href="mailto:helen.zhou6@gmail.com">email</a>?';
 
-		    return function(e) {
-		      console.error(e);
-          addGlobalError(e ? e.message : defaultMessage);
-          showForm();
-        };
+      return function(e) {
+        console.error(e);
+        addGlobalError(e ? e.message : defaultMessage);
+        showForm();
+      };
     }());
 
-    var handleFocus = function(e, show) {
+    const handleFocus = function(e, show) {
       const $target = $(e.currentTarget);
       const $journey = $target.closest('.js-journey');
 
@@ -436,7 +434,7 @@ export default function ui() {
       hideResults($journey, show);
     };
 
-    var handleKeyPress = function(e) {
+    const handleKeyPress = function(e) {
       const charCode = e.keyCode ? e.keyCode : e.which;
 
       // Only run the rest if it's one of our three keys
@@ -453,16 +451,16 @@ export default function ui() {
         case 38:
           e.preventDefault();
           if ($currentlySelected.length !== 0) {
-              const $previous = $currentlySelected.prev();
-              $currentlySelected.removeClass('result--is-active');
+            const $previous = $currentlySelected.prev();
+            $currentlySelected.removeClass('result--is-active');
 
-              if ($previous.length !== 0) {
-                $previous.addClass('result--is-active');
-              } else {
-                 $input.val($input.attr('data-val'));
-              }
+            if ($previous.length !== 0) {
+              $previous.addClass('result--is-active');
+            } else {
+              $input.val($input.attr('data-val'));
+            }
           } else {
-              $journey.find('.js-result').last().addClass('result--is-active');
+            $journey.find('.js-result').last().addClass('result--is-active');
           }
 
           fillResult($journey.find('.result--is-active'), false);
@@ -471,16 +469,16 @@ export default function ui() {
         case 40:
           e.preventDefault();
           if ($currentlySelected.length !== 0) {
-              const $next = $currentlySelected.next();
-              $currentlySelected.removeClass('result--is-active');
+            const $next = $currentlySelected.next();
+            $currentlySelected.removeClass('result--is-active');
 
-              if ($next.length !== 0) {
-                $next.addClass('result--is-active');
-              } else {
-                $journey.find('.js-result').first().addClass('result--is-active')
-              }
+            if ($next.length !== 0) {
+              $next.addClass('result--is-active');
+            } else {
+              $journey.find('.js-result').first().addClass('result--is-active')
+            }
           } else {
-              $journey.find('.js-result').first().addClass('result--is-active');
+            $journey.find('.js-result').first().addClass('result--is-active');
           }
 
           fillResult($journey.find('.result--is-active'), false);
@@ -498,19 +496,15 @@ export default function ui() {
       }
     };
 
-    // var selectResult = function($result) {
-    //   $result.addClass('result--is-active');
-    // };
-
     const handleMouseover = function(e) {
-        const $result = $(e.currentTarget);
-        const $journey = $result.closest('.js-journey');
-        const $currentlySelected = $journey.find('.result--is-active');
-        $currentlySelected.removeClass('result--is-active');
-        $result.addClass('result--is-active');
+      const $result = $(e.currentTarget);
+      const $journey = $result.closest('.js-journey');
+      const $currentlySelected = $journey.find('.result--is-active');
+      $currentlySelected.removeClass('result--is-active');
+      $result.addClass('result--is-active');
     };
 
-    var fillResult = function($target, moveOn) {
+    const fillResult = function($target, moveOn) {
       // const $target = $(e.currentTarget);
       const stationName = $target.find('.js-result__name').text();
       const $journey = $target.closest('.js-journey');
@@ -557,55 +551,9 @@ export default function ui() {
       fillResult($(e.currentTarget), true);
     });
 
-    // THE UI TO NOT ALLOW CERTAIN OYSTER CARDS WITH OTHER RAILCARDS
-		// Caches the DOM elements
-		const $discountCard = $('.js-discount-card-select');
-		const $discountCardInput = $('#discount-card');
-		const $oysterCard = $('.js-oyster-card-select');
-		const $childOysterCard = $oysterCard.find('option[value="child-jobless"]');
-		const $childDiscountCard = $discountCard.find('option[value="child-jobless"]');
-		const $studentOysterCard = $oysterCard.find('option[value="student"]');
-
-		// Removes any existing elements disabled
-		const removeDisabled = function(card, $this) {
-			card.find('option:disabled').prop('disabled', '');
-		};
-
-    $('.js-oyster-card-select').change(function() {
-			const selectedOyster = $(this).find("option:selected").val();
-
-      removeDisabled($discountCard);
-
-      $discountCardInput.prop('disabled', false);
-      $discountCard.removeClass('is-disabled');
-
-      if (selectedOyster === 'student') {
-        $childDiscountCard.prop('disabled', true);
-      } else if (selectedOyster === 'child-jobless') {
-        $discountCardInput.prop('disabled', true);
-        $discountCard.addClass('is-disabled');
-      }
-    });
-
-    $('.js-discount-card-select').change(function() {
-			const selectedDiscount = $(this).find("option:selected").val();
-
-			removeDisabled($oysterCard);
-
-      if (selectedDiscount === 'railcard') {
-        $childOysterCard.prop('disabled', true);
-      } else if (selectedDiscount === 'child-jobless') {
-        $studentOysterCard.prop('disabled', true);
-        $childOysterCard.prop('disabled', true);
-      } else if (selectedDiscount === 'disabled') {
-        $childOysterCard.prop('disabled', true);
-      }
-    });
-
-    $('.edit-journeys').click(function(e){
-      e.preventDefault();
+		$('.edit-journeys').click(function(e) {
+			e.preventDefault();
 			showForm();
-    });
-
-  });
+		});
+	});
 }

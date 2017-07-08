@@ -1,8 +1,8 @@
 # farecalculator
-Calculates the cheapest weekly London PAYG fares for inputted journeys.
+Calculates the cheapest weekly fare for inputted tube, overground and dlr journeys.
 
 ## INTRO
-This fare calculator aims to calculate the best weekly fares (using either contactless or an oyster card and whether or not a monthly travel card should be applied) for travel between tube, DLR and London Overground stations within zones 1-9. It also takes into account railcard / oyster type discounts. Journeys must be in chronological order. Days are defined from 4:30am until 4:29am. Although every effort is made to ensure that fares calculated on this site are correct, we can’t guarantee that all of them are accurate; more details are found here (scroll down to Disclaimer section for more details).
+This fare calculator aims to calculate the best weekly fares (using either contactless or an oyster card and whether or not a monthly travel card should be applied) for travel between tube, DLR and London Overground stations within zones 1-9. It also takes into account railcard / oyster type discounts. Journeys must be in chronological order. Days are defined from 4:30am until 4:29am. Although every effort is made to ensure that fares calculated are correct, we can’t guarantee that all of them are accurate; more details are found in the Disclaimer section below.
 
 ## GENERAL INFORMATION
 
@@ -12,6 +12,7 @@ Oyster cards are used to store pay as you go credit, and bought weekly, monthly 
 ### Contactless
 Contactless payment charges adult-rate pay as you go fares. You can benefit from automatic daily and weekly (Monday to Sunday) capping; just use the same card, mobile phone or contactless device for all your travel. With contactless, you are charged the cheapest combination of zonal cap(s) and extension fare(s).
 
+### Contactless vs Oyster
 Although oyster cards and contactless charge the same adult-rate single fares, you may be charged a different fare for multiple journeys. This video demonstrates the difference: http://londonist.com/2016/06/oyster-fares-and-contactless-not-always-the-same-price. This fare calculator tries to replicate the method that oyster and contactless uses to calculate fares, and generates the total week fare for your journeys. This can help you decide whether you are better off using an oyster card (with a weekly or monthly travel card and/or discount cards applied to it) or contactless.
 
 ## HOW THE APPLICATION WORKS

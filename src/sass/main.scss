@@ -45,21 +45,22 @@ button {
 }
 
 body {
+		position: relative;
     color: white;
     font-family: ff-tisa-sans-web-pro;
     font-weight: 700;
     margin: 1.2rem;
 
     @include media(500px) {
-        margin: 4rem;
+        margin: 4rem 4rem 0 4rem;
     }
 
     @include media(700px){
-        margin: 7rem;
+        margin: 7rem 7rem 0 7rem;
     }
 
     @include media(1000px) {
-        margin: 6rem auto;
+        margin: 6rem auto 0;
         max-width: 57rem;
     }
 }
@@ -73,42 +74,6 @@ ul {
   content: "";
   display: table;
   clear: both;
-}
-
-// Spinkit SPINNER
-// http://tobiasahlin.com/spinkit/
-.spinner {
-  width: 35px;
-  text-align: center;
-	padding-left: .5em;
-	position: absolute;
-	right: 0;
-	top: 65%;
-	transform: translateY(-50%);
-	opacity: 0;
-	transition: all .4s;
-}
-
-.spinner > div {
-  width: 9px;
-  height: 9px;
-  background-color: white;
-
-  border-radius: 100%;
-  display: inline-block;
-  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-	animation-play-state: paused;
-}
-
-.spinner .bounce1 {
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
-}
-
-.spinner .bounce2 {
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
 }
 
 .journey__input {
@@ -201,6 +166,7 @@ input[type="text"] {
     vertical-align: middle;
 		text-transform: uppercase;
 		font-size: .9rem;
+		letter-spacing: .03em;
 }
 
 .intro-text {
@@ -624,7 +590,8 @@ fieldset {
     border-bottom: 2px solid rgba(255,255,255, 0.5);
     padding: 1.5em 2.5em;
     text-align: center;
-    font-size: 0.8em;
+    font-size: .8em;
+		letter-spacing: .03em;
 }
 
 .results__section {
@@ -666,8 +633,8 @@ fieldset {
 }
 
 .result__caption {
-    margin-top: 0.5em;
-    font-size: 0.9em;
+    margin-top: .5em;
+    font-size: .8em;
 }
 
 .oyster__monthly {
@@ -721,8 +688,62 @@ fieldset {
     text-decoration: none;
 }
 
-// UTILITY
+// INFORMATION PAGE
+a {
+	color: white;
+	text-decoration: underline;
+	text-decoration-color: $accent;
+	&:visited {
+		color: white;
+	}
+}
 
+.main__title {
+	font-size: 1.5em;
+  text-decoration: underline;
+  display: inline-block;
+  margin-bottom: 0.5em;
+}
+
+.main__subtitle{
+	text-decoration: underline;
+}
+
+.main__text{
+	// font-weight: 400;
+	 max-width: 30rem;
+}
+
+.disclaimer__list {
+	list-style-type: disc;
+
+	li {
+		margin: .4em 0;
+	}
+	ul {
+		list-style-type: circle;
+	}
+}
+
+// FOOTER
+
+.footer {
+		font-size: .5em;
+		margin-bottom: 1rem;
+    @include media(500px) {
+        margin-top: 4rem;
+    }
+
+    @include media(700px){
+        margin-top: 7rem;
+    }
+
+    @include media(1000px) {
+        margin-top: 6rem;
+    }
+}
+
+// UTILITY
 .is-not-displayed {
     display: none;
 }

@@ -91,12 +91,8 @@ export default function glue(form) {
           discountCard: form.discountCard.label,
 					errors: allErrors
         };
-
       });
-
-
     })
-
   })
 }
 
