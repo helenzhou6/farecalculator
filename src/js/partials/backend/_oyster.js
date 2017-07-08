@@ -8,9 +8,9 @@
  * @description calculates whether it is cheapest to have a weekly travelcard or none
  */
 
- import {
+import {
   keysToJourney,
-	keyToJourney,
+  keyToJourney,
   getFare,
   round,
 } from './../../utility/_utility';
@@ -20,52 +20,54 @@ import oysterCapPre from './_oysterCapPre';
 import weekTotal from './_weekTotal';
 
 export default function oyster(days, data) {
-	const weeklyCaps = keysToJourney(data.weeklyCaps);
+  const weeklyCaps = keysToJourney(data.weeklyCaps);
 
-	// 1. If no weekly cap is passed in
-	const noCapResult = {
-		'noCap': weekTotal(oysterDayTotal, days, {
-			options: {
-				minTravelcard: false,
-				maxTravelcard: false,
-			},
-			data,
-		})
-	};
+  // 1. If no weekly cap is passed in
+  const noCapResult = {
+    'noCap': weekTotal(oysterDayTotal, days, {
+      options: {
+        minTravelcard: false,
+        maxTravelcard: false,
+      },
+      data,
+    })
+  };
 
-// WEEKLY CAPS AND MONTHLY CAPS NEED TO HAVE THE SAME 1-2 ETC.
+  // WEEKLY CAPS AND MONTHLY CAPS NEED TO HAVE THE SAME 1-2 ETC TRAVELCARD ZONES.
 
-// 2a) for each possible travelcard key (e.g. 1,2 and 3.4 etc) -- works out extension fares essentially
-const calculatedData = oysterCapPre(days, data);
-// 2b) Loops over each travelcard key and adds the fare for the travelcard
-const weeklyCap = calculatedData.map(eachCap => {
-	const valKey = Object.keys(eachCap)[0];
-	return { [valKey]: eachCap[valKey] + getFare(keyToJourney(valKey), false, data.weeklyCaps) };
-});
-console.log(weeklyCap);
-const monthlyCap = calculatedData.map(eachCap =>{
-	const valKey = Object.keys(eachCap)[0];
-	return { [valKey]: eachCap[valKey] + ((getFare(keyToJourney(valKey), false, data.monthlyCaps) * 12) / 52) };
-});
+  // 2a) for each possible travelcard key (e.g. 1,2 and 3.4 etc) -- works out extension fares essentially
+  const calculatedData = oysterCapPre(days, data);
+  // 2b) Loops over each travelcard key and adds the fare for the travelcard
+  const weeklyCap = calculatedData.map(eachCap => {
+    const valKey = Object.keys(eachCap)[0];
+    return {
+      [valKey]: eachCap[valKey] + getFare(keyToJourney(valKey), false, data.weeklyCaps)
+    };
+  });
+  const monthlyCap = calculatedData.map(eachCap => {
+    const valKey = Object.keys(eachCap)[0];
+    return {
+      [valKey]: eachCap[valKey] + ((getFare(keyToJourney(valKey), false, data.monthlyCaps) * 12) / 52)
+    };
+  });
 
 
-const cheapest = function(capType){
-	// Adds noCap and each weekly cap object into one object of all possible weekly total fares
-	const allCaps = Object.assign({}, noCapResult, ...capType);
+  const calCheapest = function(capType) {
+    // Adds noCap and each weekly cap object into one object of all possible weekly total fares
+    const allCaps = Object.assign({}, noCapResult, ...capType);
 
-	// Loops this object to find the cheapest week total
-	const cheapest = Object.keys(allCaps).reduce((a, b) => allCaps[a] < allCaps[b] ? a : b);
-console.log(cheapest);
-	// Returns object: the cheapest weekly cap associated and the cheapest weekly total (rounded to 2 dp)
-	const weeklyValue = round((allCaps[cheapest]), 2);
-	return {
-		cap: cheapest,
-		weeklyValue,
-	}
-};
+    // Loops this object to find the cheapest week total
+    const cheapestCap = Object.keys(allCaps).reduce((a, b) => allCaps[a] < allCaps[b] ? a : b);
+    // Returns object: the cheapest weekly cap associated and the cheapest weekly total (rounded to 2 dp)
+    const weeklyValue = round((allCaps[cheapestCap]), 2);
+    return {
+      cap: cheapestCap,
+      weeklyValue,
+    }
+  };
 
-	return {
-		'weeklyCap': cheapest(weeklyCap),
-		'monthlyCap': cheapest(monthlyCap),
-	};
+  return {
+    'weeklyCap': calCheapest(weeklyCap),
+    'monthlyCap': calCheapest(monthlyCap),
+  };
 }

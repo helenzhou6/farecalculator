@@ -1,10 +1,10 @@
 /**
- * Calculates the cheapest weekly cap (based on monthly or weekly)
+ * Loops over all the possible caps (ASSUMING WEEKLY AND MONTHLY HAVE THE SAME CAPS e.g. 1-2 etc), and Calculates extension fares
  * @function
  * @param {object days} complex object containing array of days,
       and within each day an object for each journey
  * @param {data object} of dailyCaps (JSON file), singleFares (JSON file link)
- * @returns {number} - the cheapest weekly charge rounded to 2 dp
+ * @returns {number} - complex object containing e.g. 1-2: extension fare
  * @description
  */
 

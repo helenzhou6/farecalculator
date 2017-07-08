@@ -14,7 +14,7 @@ let stationFuse = null;
 export default function ui() {
 
   $(document).ready(function () {
-    const maxJourneys = 3;
+    const maxJourneys = 6;
     const $days = $('.js-day');
     const $errorBox = $('.js-errors');
 
