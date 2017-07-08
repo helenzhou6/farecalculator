@@ -970,35 +970,55 @@ describe('oyster', () => {
 	    expect(
 	        oyster(days, data)
     		).toEqual({
-    			cap: '2-4',
-          weeklyValue: 39.3,
-          monthlyValue: 36.21});
+	 			 'weeklyCap' : {
+	 				 "cap":"2-4",
+	 				 "weeklyValue":39.3,
+	 			 },
+	 		   "monthlyCap":{
+	 						"cap":"3-6",
+	 						"weeklyValue":36.08,
+	 				}});
       });
 
     test('2', () => {
 	    expect(
 	        oyster(days2, data)
     		).toEqual({
-    			cap: '3-6',
-          weeklyValue: 39.8,
-          monthlyValue: 36.08});
+	 			 'weeklyCap' : {
+	 				 "cap":"3-6",
+	 				 "weeklyValue":39.8,
+	 			 },
+	 		   "monthlyCap":{
+	 						"cap":"3-6",
+	 						"weeklyValue":36.08,
+	 				}});
       });
 
      test('3', () => {
 	    expect(
 	        oyster(days3, data)
     		).toEqual({
-          cap: 'noCap',
-          weeklyValue: 19.9,
-          monthlyValue: false});
+	 			 'weeklyCap' : {
+	 				 "cap":"noCap",
+	 				 "weeklyValue":19.9,
+	 			 },
+	 		   "monthlyCap":{
+	 						"cap":"noCap",
+	 						"weeklyValue":19.9,
+	 				}});
       });
     test('4', () => {
 	    expect(
 	        oyster(days4, data)
     		).toEqual({
-    			cap: 'noCap',
-          weeklyValue: 15.3,
-          monthlyValue: false});
+	 			 'weeklyCap' : {
+	 				 "cap":"noCap",
+	 				 "weeklyValue":15.3,
+	 			 },
+	 		   "monthlyCap":{
+	 						"cap":"noCap",
+	 						"weeklyValue":15.3,
+	 				}});
       });
 });
 

@@ -7,28 +7,58 @@
  * @description
  */
 
-import { getFare,
-			round,
-			getDifference,
-			keyToJourney,
-		 } from './../../utility/_utility';
+ import {
+  journeyToKey,
+  keysToJourney,
+  maxNum,
+  minNum,
+  getFare,
+  round,
+} from './../../utility/_utility';
 
-export default function oysterMonthly(cap, weeklyValue, data) {
-	if (cap !== "noCap") {
+	 import oysterDayTotal from './_oysterDayTotal';
+	 import weekTotal from './_weekTotal';
 
+export default function oysterMonthly(days, data) {
 		// Monthly is based on each calendar month: *12 months / 52 weeks
 		// Calculates the cost of the week cap based on the monthly cap
-		const weekFromMonthly = ((getFare(keyToJourney(cap), false, data.monthlyCaps)) * 12 ) / 52;
+		const monthlyCaps = keysToJourney(data.monthlyCaps);
 
-		// Gets the difference between the week cap from weekly caps and the week cap from monthly cap (a discount)
-		const discount = getDifference(
-							weekFromMonthly,
-							(getFare(keyToJourney(cap), false, data.weeklyCaps))
-						);
+		// 1. If no monthly cap is passed in
+		const noCapResult = {
+			'noCap': weekTotal(oysterDayTotal, days, {
+				options: {
+					minTravelcard: false,
+					maxTravelcard: false,
+				},
+				data,
+			})
 
-		// Applies the discount to the oyster week total of that week
-		return round((weeklyValue - discount), 2);
-	} else {
-		return false;
-	}
+		};
+		// 2. For each possible weekly cap
+		const capsResultPre = monthlyCaps.map((monthCap) => {
+			const weekTotl = weekTotal(oysterDayTotal, days, {
+				options: {
+					minTravelcard: minNum(monthCap),
+					maxTravelcard: maxNum(monthCap),
+				},
+				data,
+			});
+			// Returns an object: the weekly cap associated and the week total (with weekly cap added)
+			return {
+				[journeyToKey(monthCap)]: weekTotl + ((getFare(monthCap, false, data.monthlyCaps) * 12) / 52),
+			};
+		});
+
+		// Adds noCap and each weekly cap object into one object of all possible weekly total fares
+		const allCaps = Object.assign({}, noCapResult, ...capsResultPre);
+		// Loops this object to find the cheapest week total
+		const cheapest = Object.keys(allCaps).reduce((a, b) => allCaps[a] < allCaps[b] ? a : b);
+
+		// Returns object: the cheapest weekly cap associated and the cheapest weekly total (rounded to 2 dp)
+		return {
+			cap: cheapest,
+			weeklyValue: round((allCaps[cheapest]), 2)
+		};
+
 };

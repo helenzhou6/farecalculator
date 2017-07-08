@@ -16,13 +16,8 @@ export default function resultsPage(response) {
 		$('.loading').addClass('is-not-displayed');
 		$('.results-page').removeClass('is-not-displayed');
 
-		var oysterWeekly = response.oyster.weeklyValue.toFixed(2);
-		var oysterMonthly = null;
-		if(response.oyster.monthlyValue) {
-			oysterMonthly = response.oyster.monthlyValue.toFixed(2);
-		} else {
-			oysterMonthly = oysterWeekly;
-		}
+		var oysterWeekly = response.oyster.weeklyCap.weeklyValue.toFixed(2);
+		var oysterMonthly = response.oyster.monthlyCap.weeklyValue.toFixed(2);
 
 		$('.contactless__price').html(oysterWeekly);
 		$('.oyster__weekly-price').html(oysterWeekly);
@@ -35,9 +30,18 @@ export default function resultsPage(response) {
 			$('.results__oyster-discount').html('  +  ' + response.discountCard + ' Discount Card');
 		}
 
+		// if(response.oyster.weeklyCap.cap !== 'noCap'){
+		// 	$('.oyster-weekly-travelcard').html('a ' + response.oyster.weeklyCap.cap);
+		// }
+		// if(response.oyster.monthlyCap.cap !== 'noCap'){
+		// 	$('.oyster-monthly-travelcard').html('a ' + response.oyster.monthlyCap.cap);
+		// }
 
-		if(response.oyster.cap !== 'noCap'){
-			$('.oyster-travelcard').html('a ' + response.oyster.cap);
-		}
+		['weekly', 'monthly'].forEach(type => {
+			if(response.oyster[`${type}Cap`].cap !== 'noCap'){
+				$(`.oyster-${type}-travelcard`).html('a ' + response.oyster[`${type}Cap`].cap);
+			}
+		});
+
 	}, 200);
 }

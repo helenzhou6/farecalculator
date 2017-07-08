@@ -35,10 +35,15 @@ test('simple journeys', () => {
 
 	const expectedResult = 	{
 	   "oyster":{
-	      "cap":"noCap",
-	      "weeklyValue":4.4,
-	      "monthlyValue":false
-	   	},
+			 'weeklyCap' : {
+				 "cap":"noCap",
+				 "weeklyValue":4.4,
+			 },
+		   "monthlyCap":{
+						"cap":"noCap",
+						"weeklyValue":4.4,
+				},
+		},
 	   "contactless":4.4,
 	   "oysterCard":"Adult",
 	   "discountCard":"None",

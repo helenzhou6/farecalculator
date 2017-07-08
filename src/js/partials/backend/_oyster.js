@@ -54,13 +54,15 @@ export default function oyster(days, data) {
 	const allCaps = Object.assign({}, noCapResult, ...capsResultPre);
 	// Loops this object to find the cheapest week total
 	const cheapest = Object.keys(allCaps).reduce((a, b) => allCaps[a] < allCaps[b] ? a : b);
-	
+
 	// Returns object: the cheapest weekly cap associated and the cheapest weekly total (rounded to 2 dp)
 	const weeklyValue = round((allCaps[cheapest]), 2);
 
 	return {
-		cap: cheapest,
-		weeklyValue: weeklyValue,
-		monthlyValue: oysterMonthly(cheapest, weeklyValue, data),
+		weeklyCap: {
+			cap: cheapest,
+			weeklyValue: weeklyValue,
+		},
+		monthlyCap: oysterMonthly(days, data)
 	};
 }
