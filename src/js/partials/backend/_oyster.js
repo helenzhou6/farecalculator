@@ -9,16 +9,14 @@
  */
 
  import {
-  journeyToKey,
   keysToJourney,
-  maxNum,
-  minNum,
+	keyToJourney,
   getFare,
   round,
 } from './../../utility/_utility';
 
 import oysterDayTotal from './_oysterDayTotal';
-import oysterMonthly from './_oysterMonthly';
+import oysterCapPre from './_oysterCapPre';
 import weekTotal from './_weekTotal';
 
 export default function oyster(days, data) {
@@ -33,36 +31,41 @@ export default function oyster(days, data) {
 			},
 			data,
 		})
-
 	};
-	// 2. For each possible weekly cap
-	const capsResultPre = weeklyCaps.map((weekCap) => {
-		const weekTotl = weekTotal(oysterDayTotal, days, {
-			options: {
-				minTravelcard: minNum(weekCap),
-				maxTravelcard: maxNum(weekCap),
-			},
-			data,
-		});
-		// Returns an object: the weekly cap associated and the week total (with weekly cap added)
-		return {
-			[journeyToKey(weekCap)]: weekTotl + getFare(weekCap, false, data.weeklyCaps),
-		};
-	});
 
+// WEEKLY CAPS AND MONTHLY CAPS NEED TO HAVE THE SAME 1-2 ETC.
+
+// 2a) for each possible travelcard key (e.g. 1,2 and 3.4 etc) -- works out extension fares essentially
+const calculatedData = oysterCapPre(days, data);
+// 2b) Loops over each travelcard key and adds the fare for the travelcard
+const weeklyCap = calculatedData.map(eachCap => {
+	const valKey = Object.keys(eachCap)[0];
+	return { [valKey]: eachCap[valKey] + getFare(keyToJourney(valKey), false, data.weeklyCaps) };
+});
+console.log(weeklyCap);
+const monthlyCap = calculatedData.map(eachCap =>{
+	const valKey = Object.keys(eachCap)[0];
+	return { [valKey]: eachCap[valKey] + ((getFare(keyToJourney(valKey), false, data.monthlyCaps) * 12) / 52) };
+});
+
+
+const cheapest = function(capType){
 	// Adds noCap and each weekly cap object into one object of all possible weekly total fares
-	const allCaps = Object.assign({}, noCapResult, ...capsResultPre);
+	const allCaps = Object.assign({}, noCapResult, ...capType);
+
 	// Loops this object to find the cheapest week total
 	const cheapest = Object.keys(allCaps).reduce((a, b) => allCaps[a] < allCaps[b] ? a : b);
-
+console.log(cheapest);
 	// Returns object: the cheapest weekly cap associated and the cheapest weekly total (rounded to 2 dp)
 	const weeklyValue = round((allCaps[cheapest]), 2);
+	return {
+		cap: cheapest,
+		weeklyValue,
+	}
+};
 
 	return {
-		weeklyCap: {
-			cap: cheapest,
-			weeklyValue: weeklyValue,
-		},
-		monthlyCap: oysterMonthly(days, data)
+		'weeklyCap': cheapest(weeklyCap),
+		'monthlyCap': cheapest(monthlyCap),
 	};
 }

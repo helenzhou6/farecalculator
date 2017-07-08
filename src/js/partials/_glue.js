@@ -12,7 +12,7 @@ import extensionFares from './backend/_extensionFares';
 import oyster from './backend/_oyster';
 import contactless from './backend/_contactless';
 import weekTotal from './backend/_weekTotal';
-import oysterMonthly from './backend/_oysterMonthly';
+import oysterCapPre from './backend/_oysterCapPre';
 import oysterDayTotal from './backend/_oysterDayTotal';
 import conDayTotal from './backend/_contactlessDayTotal';
 
