@@ -80,16 +80,6 @@ ul {
     position: relative;
 }
 
-.journey__input--is-searching {
-    .spinner {
-        opacity: 1;
-
-        > div {
-            animation-play-state: running;
-        }
-    }
-}
-
 // INPUTS
 input[type="text"] {
 		line-height: 1.2;
@@ -162,7 +152,9 @@ input[type="text"] {
 }
 
 .heading__logo {
+	  margin-top: -.5em;
 		cursor: pointer;
+		float: left;
 }
 
 .heading__nav {
@@ -171,6 +163,7 @@ input[type="text"] {
 
 .nav__link {
 	float: right;
+	margin-left: 2em;
 }
 
 .heading__caption {

@@ -378,7 +378,6 @@ export default function ui() {
 
       if (val.length > 2) {
         loadResults().then(() => {
-          $journey.removeClass('journey__input--is-searching');
 
           const matches = stationFuse.search(val).slice(0, 5);
 
