@@ -1,7 +1,6 @@
 require('isomorphic-fetch');
 import glue from './../../src/js/partials/_glue';
 
-
 test('simple journeys', () => {
 
 	const fData = {
@@ -53,5 +52,4 @@ test('simple journeys', () => {
 	 expect.assertions(1);
 
 	 return glue(fData, 'http://localhost:3000').then(r => expect(r).toEqual(expectedResult));
-
 });

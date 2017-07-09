@@ -1,6 +1,9 @@
 import moize from 'moize';
 import dateGen from './_dateGen';
 
+// We need an absolute URL when we run tests
+const url = (process && process.env.NODE_ENV === 'test') ? 'http://localhost:3000' : '';
+
 /**
  * Gets fares.json file
  */
@@ -13,7 +16,7 @@ const fetchFareData = (() => {
       return Promise.resolve(data);
     }
 
-    return fetch('http://localhost:3000/data/fares.json').then((resp) => {
+    return fetch(`${url}/data/fares.json`).then((resp) => {
       data = resp.json();
       return data;
     });
@@ -30,7 +33,7 @@ const fetchStationsData = (() => {
       return Promise.resolve(data);
     }
 
-    return fetch('http://localhost:3000/data/tmp/stationResults.json')
+    return fetch(`${url}/data/tmp/stationResults.json`)
       .then((resp) => {
         data = resp.json();
         return data;
