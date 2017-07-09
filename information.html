@@ -9,24 +9,36 @@
         <link rel="stylesheet" href="dist/css/main.css">
 				<link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
 				<link rel="icon" href="/favicon.png" type="image/x-icon">
-        <script src="https://use.typekit.net/kjz3vlq.js"></script>
-        <script>try{Typekit.load({ async: true });}catch(e){}</script>
+				<script>
+  (function(d) {
+    var config = {
+      kitId: 'kjz3vlq',
+      scriptTimeout: 3000,
+      async: true
+    },
+    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  })(document);
+</script>
     </head>
-    <body class="clearfix">
+    <body class="clearfix is-invisible">
 			<header class="heading clearfix">
 					<div class="heading__logo">
-						<a href="index.html" class="heading__link">
-							<img class="heading__icon" src="src/img/tfl.svg" />
+						<a href="/" class="heading__link">
+							<img class="icon heading__icon" src="src/img/tfl.svg" />
 							<h1 class="heading__caption">TFL Weekly Fare Calculator</h1>
 						</a>
 					</div>
 					<div class="heading__nav">
 						<ul>
 							<li class="nav__link">
-								<a href="index.html" class="is-inactive-link">Form</a>
+								<a href="/">
+									<img class="icon" src="src/img/form.svg" /><span>Calculator</span>
+								</a>
 							</li>
-							<li class="nav__link">
-								<a href="information.html">Information</a>
+							<li class="nav__link is-active-link">
+								<a href="information.html">
+										<img class="icon" src="src/img/info.svg" /><span>Information</span>
+								</a>
 							</li>
 						</ul>
 					</div>
@@ -56,7 +68,7 @@
 					</p>
 				</section>
 
-				<section id="main__disclaimer">
+				<section id="disclaimer" class="main__disclaimer">
 					<h2 class="main__title">Disclaimer</h2>
 					<p class="main__text">
 						Whilst every effort is made to ensure that fares calculated on this site are correct, we can’t guarantee that all of them are accurate. The following are known issues that could cause fare discrepancies, or ways to achieve a cheaper weekly fare that the fare calculator does not take into account:
@@ -100,7 +112,7 @@
 						</li>
 					</ul>
 					<p class="main__text">
-						<br />Notice any other discrepancies? Email them to us <a href="mailto:contaact@helenzhou.co.uk?Subject=TFL%20error" target="_top">here</a>.
+						<br />Notice any other discrepancies? Email them to us <a href="mailto:contact@helenzhou.co.uk?Subject=TFL%20error" target="_top">here</a>.
 					</p>
 				</section>
 			</main>

@@ -15,6 +15,7 @@ let stationFuse = null;
 export default function ui() {
 
   $(document).ready(function() {
+		$('body').removeClass('is-invisible');
 		cardSelection();
 
 		// JAVASCRIPT ADDS/REMOVES JOURNEYS
@@ -408,6 +409,7 @@ export default function ui() {
     };
 
     const showForm = function (){
+			window.location = "";
       $(window).scrollTop(0);
       $('.js-form').removeClass('is-not-displayed');
       $('.results-page').addClass('is-not-displayed');

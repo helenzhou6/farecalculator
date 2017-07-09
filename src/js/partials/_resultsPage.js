@@ -27,9 +27,9 @@ export default function resultsPage(response) {
     $('.results__oyster-card').html(response.oysterCard);
 
     if (response.discountCard === '16-25 Railcard' || response.discountCard === 'Senior Railcard') {
-      $('.results__oyster-discount').html('  +  ' + response.discountCard);
+      $('.results__oyster-discount').html('<span class="span-padding">+</span><img class="icon" src="src/img/discount-card.svg" />' + response.discountCard);
     } else if (response.discountCard !== 'None') {
-      $('.results__oyster-discount').html('  +  ' + response.discountCard + ' Discount Card');
+      $('.results__oyster-discount').html('<span class="span-padding">+</span><img class="icon" src="src/img/discount-card.svg" />' + response.discountCard + ' Discount Card');
     }
 
     ['weekly', 'monthly'].forEach(type => {
