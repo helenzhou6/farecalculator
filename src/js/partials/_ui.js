@@ -30,7 +30,7 @@ export default function ui() {
     const addJourney = (function() {
       const $dayTemplate = $($.parseHTML($.trim($('.js-journey-template').html())));
 
-      return function($journeys, dayType) {
+      return function($journeys, dayType, focus) {
         const $newTemplate = $dayTemplate.clone();
         const $ifs = $newTemplate.find('[data-if]');
         $newTemplate.attr('data-day', $journeys.data('day'));
@@ -48,9 +48,10 @@ export default function ui() {
         // TO DO: Should we strucutre this to append to journey input?
         // $journeys.find('.journey__input');
         $newTemplate.appendTo($journeys);
-
-        // Focus the first element
-        $newTemplate.find('input').first().focus();
+				if(focus) {
+					// Focus the first element
+	        $newTemplate.find('input').first().focus();
+				}
       };
     }());
 
@@ -208,7 +209,7 @@ export default function ui() {
         // Have we reached the max?
         if (nextCount <= maxJourneys) {
           // Nope, add a journey
-          addJourney($journeys, dayType);
+          addJourney($journeys, dayType, true);
 
           // If we're on the cuttoff, disable the button
           if (nextCount === maxJourneys) {
