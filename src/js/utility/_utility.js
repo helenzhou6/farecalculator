@@ -19,9 +19,9 @@ export function getZones(napTan, stations) {
  * @description - zones refers to global allZones / used to filter the station zones by the number of zones it has (dual zone or single zone)
  */
 export function filterZonesByNumber(num, zones) {
-  return zones.filter(function(zone) {
-    return zone.length === num;
-  });
+  return zones.filter((zone) => (
+    zone.length === num
+  ));
 }
 
 /**
@@ -34,9 +34,9 @@ export function filterZonesByNumber(num, zones) {
  Loops through the array of zones and applies the operator
  */
 function compareNumbers(arrayNumbers, operator) {
-  return arrayNumbers.reduce(function(a, b) {
-    return operator(a, b);
-  });
+  return arrayNumbers.reduce((a, b) => (
+    operator(a, b)
+  ));
 }
 
 export function maxNum(arrayZones) {
@@ -56,7 +56,6 @@ export function minNum(arrayZones) {
  */
 export function getDifference(a, b) {
   return Math.abs(a - b);
-  // return a - b;
 }
 
 /**
@@ -67,11 +66,9 @@ export function getDifference(a, b) {
  * @description
  */
 export function flatten(arr) {
-	// if (arr.length < 2) return arr; -- TO DO MAKES AN ERROR (Mile End to Holborn & Mile End to Bow)
-
-  return arr.reduce(function(a, b) {
-    return a.concat(b);
-  });
+  return arr.reduce((a, b) => (
+    a.concat(b)
+  ));
 }
 
 /**
@@ -131,9 +128,6 @@ export function keysToJourney(weeklyCaps) {
 
 export const getFare = (key, type, caps) => {
   const fare = caps[key.constructor === Array ? journeyToKey(key) : zoneToJourney(key)];
-
-	// if (!fare) return 0;  -- TO DO MAKES AN ERROR (Mile End to Holborn & Mile End to Bow)
-
   return type ? fare[type] : fare;
 };
 
@@ -145,8 +139,7 @@ export const getFare = (key, type, caps) => {
  * @param {number} maxTarget - the minTarget (usually the maxTravelcard)
  * @description
  */
-
- export const isWithin = (minTarget, value, maxTarget) => (minTarget <= value && value <= maxTarget)
+export const isWithin = (minTarget, value, maxTarget) => (minTarget <= value && value <= maxTarget);
 
 /**
  * Rounds a number to however many decimal places specified
@@ -156,7 +149,7 @@ export const getFare = (key, type, caps) => {
  * @description
  */
 export function round(value, decimals) {
-   return Number(`${Math.round(`${value}e${decimals}`)}e-${decimals}`);
+  return Number(`${Math.round(`${value}e${decimals}`)}e-${decimals}`);
 }
 
 /**
@@ -171,25 +164,9 @@ export function types(type) {
   if (type === 'early') {
     return 'offPeak';
   } else if (type === 'afternoon') {
-    return'anytime';
-  } else {
-    return type;
+    return 'anytime';
   }
+
+  return type;
 }
 
-/**
- * Deals with handlnig early/afternoon type journeys (see below) - so can adjust to offpeak or anytime to work out single fare
- * @function
- * @param {type} - the journey type for that: either targeted by b.type in oysterDayTotal or journey.type for contactlessDayTotal
- * @description
- // early type = single fare is off peak but only limited by/counts towards anytime daily cap
-// afternoon type = single fare is peak but limited by/counts towards off peak too
- */
-export function dualZones(dualZoneOverlap, zones) {
-  if (dualZoneOverlap === true &&
-    (((minNum(zones)) + 1) >= minTravelcard) &&
-    (((maxNum(zones)) + 1) <= maxTravelcard)
-    ) {
-    return 0;
-  }
-}

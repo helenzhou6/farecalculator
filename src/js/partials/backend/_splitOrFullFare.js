@@ -10,22 +10,22 @@
  */
 
 import {
-	getFare,
-	minNum,
+  getFare,
+  minNum,
 } from '../../utility/_utility';
 
 export default function splitOrFullFare(
-	minChargedZone, maxSingle,
-	minTravelcard, maxTravelcard,
-	singleFares, type) {
-	return minNum([
-		// The full fare (disregarding any travelcards)
-		getFare([minChargedZone, maxSingle], type, singleFares),
+  minChargedZone, maxSingle,
+  minTravelcard, maxTravelcard,
+  singleFares, type) {
+  return minNum([
+    // The full fare (disregarding any travelcards)
+    getFare([minChargedZone, maxSingle], type, singleFares),
 
-		// The fare between minCharged Zone and minTravelcard + 1 - charges the front
-		(getFare([minChargedZone, (minTravelcard - 1)], type, singleFares)
-		// The fare between maxTravelcard + 1 and maxSingle - charges the back
-			+ getFare([(maxTravelcard + 1), maxSingle], type, singleFares)
-		)
-	]);
+    // The fare between minCharged Zone and minTravelcard + 1 - charges the front
+    (getFare([minChargedZone, (minTravelcard - 1)], type, singleFares)
+      // The fare between maxTravelcard + 1 and maxSingle - charges the back
+      + getFare([(maxTravelcard + 1), maxSingle], type, singleFares)
+    ),
+  ]);
 }

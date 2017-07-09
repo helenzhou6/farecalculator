@@ -38,6 +38,7 @@
     "watch:js": "webpack -w",
     "watch:all": "parallelshell 'npm run watch:images' 'npm run watch:css' 'npm run watch:js'",
     "test": "jest",
+    "test:watch": "jest --watch",
     "precommit": "jest"
   },
   "devDependencies": {

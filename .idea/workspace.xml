@@ -13,49 +13,24 @@
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileColors">
+    <fileColor scope="Non-Project Files (Material Default)" color="2E3C43" />
+    <fileColor scope="Non-Project Files (Material Darker)" color="323232" />
+    <fileColor scope="Non-Project Files (Material Lighter)" color="eae8e8" />
+    <fileColor scope="Non-Project Files (Material Palenight)" color="2f2e43" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="_utility.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/utility/_utility.js">
+      <file leaf-file-name="_ui.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/partials/_ui.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2530">
-              <caret line="110" column="48" lean-forward="false" selection-start-line="110" selection-start-column="48" selection-end-line="110" selection-end-column="48" />
+            <state relative-caret-position="659">
+              <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
               <folding>
-                <marker date="1496488310000" expanded="true" signature="348:408" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="410:899" ph="/** filters a nested array based on its length ...*/" />
-                <marker date="1496488310000" expanded="true" signature="948:1028" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="987:1024" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="1030:1458" ph="/** Compares Numbers ...*/" />
-                <marker date="1496488310000" expanded="true" signature="1507:1589" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="1553:1585" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="1626:1676" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="1713:1763" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="1765:1987" ph="/** Get difference between 2 numbers ...*/" />
-                <marker date="1496488310000" expanded="true" signature="2024:2072" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="2074:2259" ph="/** Flattens a nested array ...*/" />
-                <marker date="1496488310000" expanded="true" signature="2289:2359" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="2326:2355" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="2361:2595" ph="/** Sort an array of 2 zones chronologically and adds '-' ...*/" />
-                <marker date="1496488310000" expanded="true" signature="2634:2672" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="2674:2879" ph="/** Preloads start zone as 1 and changes to 1-x for JSON file reading ...*/" />
-                <marker date="1496488310000" expanded="true" signature="2916:2953" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="2955:3106" ph="/** Turns &quot;1-2&quot; into [1, 2] ...*/" />
-                <marker date="1496488310000" expanded="true" signature="3141:3202" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="3204:3431" ph="/** Gets keys from weeklyCaps, maps over them to generate array ...*/" />
-                <marker date="1496488310000" expanded="true" signature="3475:3544" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="3546:3882" ph="/** Gets the fare ...*/" />
-                <marker date="1496488310000" expanded="true" signature="3928:4056" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="4059:4378" ph="/** Determines if a numeric is within two targets (minTarget and maxTarget) ...*/" />
-                <marker date="1496488310000" expanded="true" signature="4482:4699" ph="/** Rounds a number to however many decimal places specified ...*/" />
-                <marker date="1496488310000" expanded="true" signature="4739:4814" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="4816:5286" ph="/** Deals with handlnig early/afternoon type journeys (see below) - so can adjust to offpeak or anytime to work out single fare ...*/" />
-                <marker date="1496488310000" expanded="true" signature="5315:5456" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="5341:5368" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="5400:5426" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="5432:5454" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="5458:5928" ph="/** Deals with handlnig early/afternoon type journeys (see below) - so can adjust to offpeak or anytime to work out single fare ...*/" />
-                <marker date="1496488310000" expanded="true" signature="5979:6135" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="6114:6133" ph="{...}" />
+                <element signature="e#0#23#0" expanded="true" />
+                <element signature="e#846#1675#0" expanded="false" />
+                <marker date="1499613901000" expanded="true" signature="3777:3871" ph="..." />
+                <marker date="1499613901000" expanded="true" signature="3788:3860" ph="..." />
               </folding>
             </state>
           </provider>
@@ -64,85 +39,101 @@
       <file leaf-file-name="jsonGen.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jsonGen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+            <state relative-caret-position="294">
+              <caret line="81" column="3" lean-forward="false" selection-start-line="81" selection-start-column="3" selection-end-line="81" selection-end-column="3" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_ui.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/js/partials/_ui.js">
+      <file leaf-file-name="information.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/information.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="463" column="24" lean-forward="false" selection-start-line="463" selection-start-column="24" selection-end-line="463" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-                <element signature="e#497#1285#0" expanded="false" />
-                <element signature="e#1334#1392#0" expanded="false" />
-                <element signature="e#1433#1483#0" expanded="false" />
-                <element signature="e#5272#6592#0" expanded="false" />
-                <marker date="1496495278000" expanded="true" signature="4788:4982" ph="..." />
-                <marker date="1496495278000" expanded="true" signature="4850:4868" ph="..." />
-                <marker date="1496495278000" expanded="true" signature="4850:4874" ph="..." />
-                <marker date="1496495278000" expanded="true" signature="4850:4959" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_loading.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/partials/_loading.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state relative-caret-position="529">
+              <caret line="23" column="32" lean-forward="false" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="stationResults.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/tmp/stationResults.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="94" lean-forward="false" selection-start-line="0" selection-start-column="94" selection-end-line="0" selection-end-column="94" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="92">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_getData.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/utility/_getData.js">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1081">
-              <caret line="47" column="1" lean-forward="false" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
+            <state relative-caret-position="1037">
+              <caret line="66" column="20" lean-forward="false" selection-start-line="66" selection-start-column="20" selection-end-line="66" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sass/main.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="501">
+              <caret line="234" column="0" lean-forward="false" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_oysterCapPre.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/partials/backend/_oysterCapPre.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1496488310000" expanded="true" signature="420:688" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="460:686" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="773:966" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="939:962" ph="{...}" />
-                <marker date="1496488310000" expanded="true" signature="984:1068" ph="{&quot;fares&quot;: fetchFareData...}" />
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#439#535#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="extensionFares.test.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/__tests__/utility/extensionFares.test.js">
+      <file leaf-file-name="_oysterDayTotal.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/partials/backend/_oysterDayTotal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4462">
-              <caret line="194" column="10" lean-forward="false" selection-start-line="194" selection-start-column="10" selection-end-line="194" selection-end-column="10" />
-              <folding />
+            <state relative-caret-position="1633">
+              <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#640#744#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_splitOrFullFare.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/partials/backend/_splitOrFullFare.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="713">
+              <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#554#616#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_weekTotal.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/partials/backend/_weekTotal.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="733">
+              <caret line="34" column="14" lean-forward="false" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#948#1002#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -151,16 +142,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>consginle</find>
-      <find>conSingle</find>
-      <find>conMaxZon</find>
-      <find>c</find>
-      <find>consol</find>
-      <find>consoln</find>
-      <find>minTravelcard &lt;= maxSingle &amp;&amp; maxSingle &lt;= maxTravelcard)</find>
-      <find>minChar</find>
-      <find>differe</find>
-      <find>oyster</find>
       <find>max</find>
       <find>compare</find>
       <find>extensionFares</find>
@@ -169,13 +150,34 @@
       <find>maxZoneSoFar</find>
       <find>dailyCap</find>
       <find>maxChargedZones</find>
-      <find>js-day__journey</find>
       <find>js-remove-journey</find>
+      <find>stationRe</find>
+      <find>get</find>
+      <find>thr</find>
+      <find>throw</find>
+      <find>.</find>
+      <find>.test</find>
+      <find>m</find>
+      <find>checkNoJourneys</find>
+      <find>+ 1</find>
+      <find>js-day__journey</find>
+      <find>removeEmptyJourneys</find>
+      <find>show</find>
+      <find>showF</find>
+      <find>showForm</find>
+      <find>==</find>
+      <find>d</find>
+      <find>du</find>
+      <find>dual</find>
+      <find>dualZ</find>
+      <find>dualZones</find>
+      <find>maxTravelcard</find>
     </findStrings>
     <replaceStrings>
       <replace>extensionFaresGap</replace>
       <replace>dailyCap</replace>
       <replace>maxChargedZone</replace>
+      <replace>===</replace>
     </replaceStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -189,17 +191,33 @@
         <option value="$PROJECT_DIR$/__tests__/utility/splitOrFullFare.test.js" />
         <option value="$PROJECT_DIR$/__tests__/utility/extensionFares.test.js" />
         <option value="$PROJECT_DIR$/src/js/partials/_extensionFares.js" />
-        <option value="$PROJECT_DIR$/src/js/app.js" />
         <option value="$PROJECT_DIR$/data/fares.json" />
-        <option value="$PROJECT_DIR$/src/js/utility/_utility.js" />
         <option value="$PROJECT_DIR$/src/js/partials/_oysterDayTotal.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/data/tmp/stationResults.json" />
         <option value="$PROJECT_DIR$/jsonGen.js" />
-        <option value="$PROJECT_DIR$/src/sass/main.scss" />
-        <option value="$PROJECT_DIR$/src/js/partials/_loading.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/js/partials/_ui.js" />
+        <option value="$PROJECT_DIR$/src/js/partials/_autocomplete.js" />
+        <option value="$PROJECT_DIR$/src/js/partials/_cardSelection.js" />
+        <option value="$PROJECT_DIR$/src/js/partials/_glue.js" />
+        <option value="$PROJECT_DIR$/src/js/partials/_loading.js" />
+        <option value="$PROJECT_DIR$/src/js/partials/_resultsPage.js" />
+        <option value="$PROJECT_DIR$/src/js/partials/_showForm.js" />
+        <option value="$PROJECT_DIR$/src/js/utility/_dateGen.js" />
+        <option value="$PROJECT_DIR$/src/js/utility/_utility.js" />
+        <option value="$PROJECT_DIR$/src/js/partials/backend/_contactless.js" />
+        <option value="$PROJECT_DIR$/src/js/partials/backend/_contactlessDayTotal.js" />
+        <option value="$PROJECT_DIR$/src/js/partials/backend/_extensionFares.js" />
+        <option value="$PROJECT_DIR$/src/js/utility/_getData.js" />
+        <option value="$PROJECT_DIR$/src/js/partials/backend/_getSingleJourneyZones.js" />
+        <option value="$PROJECT_DIR$/src/js/partials/backend/_oyster.js" />
+        <option value="$PROJECT_DIR$/src/js/partials/backend/_oysterDayTotal.js" />
+        <option value="$PROJECT_DIR$/src/js/partials/backend/_splitOrFullFare.js" />
+        <option value="$PROJECT_DIR$/src/js/partials/backend/_weekTotal.js" />
+        <option value="$PROJECT_DIR$/src/sass/main.scss" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/information.html" />
+        <option value="$PROJECT_DIR$/src/js/app.js" />
       </list>
     </option>
   </component>
@@ -221,7 +239,7 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1457" />
+    <option name="width" value="1438" />
     <option name="height" value="1339" />
   </component>
   <component name="ProjectView">
@@ -239,6 +257,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -249,6 +270,28 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="FareCalculator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FareCalculator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FareCalculator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sass" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main.scss" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NestingTreeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -300,50 +343,6 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utility" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FareCalculator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FareCalculator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="partials" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FareCalculator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FareCalculator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -377,11 +376,40 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FareCalculator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FareCalculator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="__tests__" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utility" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FareCalculator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FareCalculator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="__tests__" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -389,12 +417,16 @@
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.selected.package.standard" value="" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -671,6 +703,19 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
     <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -701,14 +746,15 @@
       <workItem from="1487499204211" duration="48904000" />
       <workItem from="1492791203043" duration="6000" />
       <workItem from="1496488332249" duration="6933000" />
+      <workItem from="1499613913938" duration="3991000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68374000" />
+    <option name="totallyTimeSpent" value="80132000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1457" height="1339" extended-state="0" />
+    <frame x="0" y="23" width="1438" height="1339" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -718,7 +764,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11942347" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22044507" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -761,131 +807,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/js/ui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1633">
-          <caret line="71" column="69" lean-forward="false" selection-start-line="71" selection-start-column="69" selection-end-line="71" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/fares.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/stations.json" />
-    <entry file="file://$PROJECT_DIR$/src/js/utility/_utility.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1265">
-          <caret line="55" column="2" lean-forward="false" selection-start-line="55" selection-start-column="2" selection-end-line="55" selection-end-column="2" />
-          <folding>
-            <marker date="1496488310000" expanded="true" signature="348:408" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="410:899" ph="/** filters a nested array based on its length ...*/" />
-            <marker date="1496488310000" expanded="true" signature="948:1028" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="987:1024" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="1030:1458" ph="/** Compares Numbers ...*/" />
-            <marker date="1496488310000" expanded="true" signature="1507:1589" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="1553:1585" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="1626:1676" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="1713:1763" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="1765:1987" ph="/** Get difference between 2 numbers ...*/" />
-            <marker date="1496488310000" expanded="true" signature="2024:2072" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="2074:2259" ph="/** Flattens a nested array ...*/" />
-            <marker date="1496488310000" expanded="true" signature="2289:2359" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="2326:2355" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="2361:2595" ph="/** Sort an array of 2 zones chronologically and adds '-' ...*/" />
-            <marker date="1496488310000" expanded="true" signature="2634:2672" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="2674:2879" ph="/** Preloads start zone as 1 and changes to 1-x for JSON file reading ...*/" />
-            <marker date="1496488310000" expanded="true" signature="2916:2953" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="2955:3106" ph="/** Turns &quot;1-2&quot; into [1, 2] ...*/" />
-            <marker date="1496488310000" expanded="true" signature="3141:3202" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="3204:3431" ph="/** Gets keys from weeklyCaps, maps over them to generate array ...*/" />
-            <marker date="1496488310000" expanded="true" signature="3475:3544" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="3546:3882" ph="/** Gets the fare ...*/" />
-            <marker date="1496488310000" expanded="true" signature="3928:4056" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="4059:4378" ph="/** Determines if a numeric is within two targets (minTarget and maxTarget) ...*/" />
-            <marker date="1496488310000" expanded="true" signature="4482:4699" ph="/** Rounds a number to however many decimal places specified ...*/" />
-            <marker date="1496488310000" expanded="true" signature="4739:4814" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="4816:5286" ph="/** Deals with handlnig early/afternoon type journeys (see below) - so can adjust to offpeak or anytime to work out single fare ...*/" />
-            <marker date="1496488310000" expanded="true" signature="5315:5456" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="5341:5368" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="5400:5426" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="5432:5454" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="5458:5928" ph="/** Deals with handlnig early/afternoon type journeys (see below) - so can adjust to offpeak or anytime to work out single fare ...*/" />
-            <marker date="1496488310000" expanded="true" signature="5979:6135" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="6114:6133" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/ui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/getZones.test.js" />
-    <entry file="file://$PROJECT_DIR$/src/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/app-min.js" />
-    <entry file="file://$PROJECT_DIR$/src/js/main-min.js" />
-    <entry file="file://$PROJECT_DIR$/__tests__/getZones.test.js" />
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="13" column="18" lean-forward="false" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/partials/_extensionFaresGap.js" />
     <entry file="file://$PROJECT_DIR$/__tests__/utility/maxNum.test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -916,35 +842,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/__tests__/utility/getSingleFare.test.js" />
     <entry file="file://$PROJECT_DIR$/__tests__/utility/getDailyCap.test.js" />
-    <entry file="file://$PROJECT_DIR$/src/js/partials/_getSingleJourneyZones.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="14" column="40" lean-forward="false" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/partials/_splitOrFullFare.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/ui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/ui-min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/partials/_getSingleJourneyZones.js" />
+    <entry file="file://$PROJECT_DIR$/src/js/partials/_splitOrFullFare.js" />
+    <entry file="file://$PROJECT_DIR$/src/js/ui.js" />
+    <entry file="file://$PROJECT_DIR$/src/js/ui-min.js" />
     <entry file="file://$PROJECT_DIR$/data/stations.json" />
     <entry file="file://$PROJECT_DIR$/__tests__/utility/getZones.test.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -960,25 +861,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="759">
-          <caret line="73" column="35" lean-forward="false" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/__tests__/utility/splitOrFullFare.test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="713">
           <caret line="31" column="2" lean-forward="false" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/utility/extensionFares.test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4462">
-          <caret line="194" column="10" lean-forward="false" selection-start-line="194" selection-start-column="10" selection-end-line="194" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -996,73 +882,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/partials/_extensionFares.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/utility/_utility.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2530">
-          <caret line="110" column="48" lean-forward="false" selection-start-line="110" selection-start-column="48" selection-end-line="110" selection-end-column="48" />
-          <folding>
-            <marker date="1496488310000" expanded="true" signature="348:408" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="410:899" ph="/** filters a nested array based on its length ...*/" />
-            <marker date="1496488310000" expanded="true" signature="948:1028" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="987:1024" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="1030:1458" ph="/** Compares Numbers ...*/" />
-            <marker date="1496488310000" expanded="true" signature="1507:1589" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="1553:1585" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="1626:1676" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="1713:1763" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="1765:1987" ph="/** Get difference between 2 numbers ...*/" />
-            <marker date="1496488310000" expanded="true" signature="2024:2072" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="2074:2259" ph="/** Flattens a nested array ...*/" />
-            <marker date="1496488310000" expanded="true" signature="2289:2359" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="2326:2355" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="2361:2595" ph="/** Sort an array of 2 zones chronologically and adds '-' ...*/" />
-            <marker date="1496488310000" expanded="true" signature="2634:2672" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="2674:2879" ph="/** Preloads start zone as 1 and changes to 1-x for JSON file reading ...*/" />
-            <marker date="1496488310000" expanded="true" signature="2916:2953" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="2955:3106" ph="/** Turns &quot;1-2&quot; into [1, 2] ...*/" />
-            <marker date="1496488310000" expanded="true" signature="3141:3202" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="3204:3431" ph="/** Gets keys from weeklyCaps, maps over them to generate array ...*/" />
-            <marker date="1496488310000" expanded="true" signature="3475:3544" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="3546:3882" ph="/** Gets the fare ...*/" />
-            <marker date="1496488310000" expanded="true" signature="3928:4056" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="4059:4378" ph="/** Determines if a numeric is within two targets (minTarget and maxTarget) ...*/" />
-            <marker date="1496488310000" expanded="true" signature="4482:4699" ph="/** Rounds a number to however many decimal places specified ...*/" />
-            <marker date="1496488310000" expanded="true" signature="4739:4814" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="4816:5286" ph="/** Deals with handlnig early/afternoon type journeys (see below) - so can adjust to offpeak or anytime to work out single fare ...*/" />
-            <marker date="1496488310000" expanded="true" signature="5315:5456" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="5341:5368" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="5400:5426" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="5432:5454" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="5458:5928" ph="/** Deals with handlnig early/afternoon type journeys (see below) - so can adjust to offpeak or anytime to work out single fare ...*/" />
-            <marker date="1496488310000" expanded="true" signature="5979:6135" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="6114:6133" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/partials/_oysterDayTotal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2024">
-          <caret line="108" column="0" lean-forward="false" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/partials/_oyster.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/partials/_extensionFares.js" />
+    <entry file="file://$PROJECT_DIR$/src/js/partials/_oysterDayTotal.js" />
+    <entry file="file://$PROJECT_DIR$/src/js/partials/_oyster.js" />
     <entry file="file://$PROJECT_DIR$/__tests__/utility/dayTotal.test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1070,13 +892,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/partials/_contactlessDayTotal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/partials/_contactlessDayTotal.js" />
     <entry file="file://$PROJECT_DIR$/data/tmp/.gitkeep">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1087,88 +903,279 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/partials/_contactless.js" />
     <entry file="file://$PROJECT_DIR$/data/tmp/stationResults.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="94" lean-forward="false" selection-start-line="0" selection-start-column="94" selection-end-line="0" selection-end-column="94" />
+          <caret line="0" column="53" lean-forward="false" selection-start-line="0" selection-start-column="53" selection-end-line="0" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/utility/extensionFares.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="201" column="6" lean-forward="false" selection-start-line="201" selection-start-column="6" selection-end-line="201" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/utility/_getData.js">
+    <entry file="file://$PROJECT_DIR$/.eslintrc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1081">
-          <caret line="47" column="1" lean-forward="false" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
+        <state relative-caret-position="23">
+          <caret line="1" column="17" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/partials/_cardSelection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
           <folding>
-            <marker date="1496488310000" expanded="true" signature="420:688" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="460:686" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="773:966" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="939:962" ph="{...}" />
-            <marker date="1496488310000" expanded="true" signature="984:1068" ph="{&quot;fares&quot;: fetchFareData...}" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jsonGen.js">
+    <entry file="file://$PROJECT_DIR$/src/js/partials/_glue.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+        <state relative-caret-position="207">
+          <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/partials/_resultsPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="6" lean-forward="false" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/partials/_contactless.js">
+    <entry file="file://$PROJECT_DIR$/src/js/partials/_showForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="345">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sass/main.scss">
+    <entry file="file://$PROJECT_DIR$/src/js/utility/_dateGen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="635" column="0" lean-forward="true" selection-start-line="635" selection-start-column="0" selection-end-line="635" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="506">
+          <caret line="22" column="32" lean-forward="false" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/partials/_loading.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state relative-caret-position="161">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/partials/_autocomplete.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="82" column="20" lean-forward="false" selection-start-line="82" selection-start-column="20" selection-end-line="82" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#254#466#0" expanded="false" />
+            <element signature="e#501#2357#0" expanded="false" />
+            <element signature="e#1039#1342#0" expanded="false" />
+            <element signature="e#2393#2659#0" expanded="false" />
+            <element signature="e#2704#3610#0" expanded="false" />
+            <element signature="e#3706#3765#0" expanded="false" />
+            <element signature="e#3810#4048#0" expanded="false" />
+            <element signature="e#4081#4561#0" expanded="false" />
+            <element signature="e#4592#4829#0" expanded="false" />
+            <element signature="e#4863#5529#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/partials/backend/_contactless.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1196">
+          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#418#518#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/partials/backend/_contactlessDayTotal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1959">
+          <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#883#992#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/utility/_utility.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="141" column="13" lean-forward="false" selection-start-line="141" selection-start-column="13" selection-end-line="141" selection-end-column="13" />
+          <folding>
+            <marker date="1499616444000" expanded="true" signature="410:459" ph="/** filters a nested array based on its length ...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/utility/_getData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="49" column="29" lean-forward="false" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#176#280#0" expanded="false" />
+            <element signature="e#355#407#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/partials/backend/_extensionFares.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1023">
+          <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#802#876#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/partials/backend/_getSingleJourneyZones.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="905">
+          <caret line="82" column="8" lean-forward="false" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="8" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#410#455#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/partials/backend/_oyster.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1115">
+          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#465#544#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/partials/backend/_oysterCapPre.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#439#535#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/partials/backend/_oysterDayTotal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1633">
+          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#640#744#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/partials/backend/_splitOrFullFare.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="713">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#554#616#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/partials/backend/_weekTotal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="733">
+          <caret line="34" column="14" lean-forward="false" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#948#1002#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/partials/_ui.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="659">
+          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#846#1675#0" expanded="false" />
+            <marker date="1499613901000" expanded="true" signature="3777:3871" ph="..." />
+            <marker date="1499613901000" expanded="true" signature="3788:3860" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sass/main.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="234" column="0" lean-forward="false" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+        <state relative-caret-position="1037">
+          <caret line="66" column="20" lean-forward="false" selection-start-line="66" selection-start-column="20" selection-end-line="66" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/partials/_ui.js">
+    <entry file="file://$PROJECT_DIR$/jsonGen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="463" column="24" lean-forward="false" selection-start-line="463" selection-start-column="24" selection-end-line="463" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#497#1285#0" expanded="false" />
-            <element signature="e#1334#1392#0" expanded="false" />
-            <element signature="e#1433#1483#0" expanded="false" />
-            <element signature="e#5272#6592#0" expanded="false" />
-            <marker date="1496495278000" expanded="true" signature="4788:4982" ph="..." />
-            <marker date="1496495278000" expanded="true" signature="4850:4868" ph="..." />
-            <marker date="1496495278000" expanded="true" signature="4850:4874" ph="..." />
-            <marker date="1496495278000" expanded="true" signature="4850:4959" ph="..." />
-          </folding>
+        <state relative-caret-position="294">
+          <caret line="81" column="3" lean-forward="false" selection-start-line="81" selection-start-column="3" selection-end-line="81" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/information.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="23" column="32" lean-forward="false" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>

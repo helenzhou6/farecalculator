@@ -1,132 +1,132 @@
 <!doctype html>
 <html class="no-js" lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Weekly Fare Calculator</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="dist/css/main.css">
-				<link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
-				<link rel="icon" href="/favicon.png" type="image/x-icon">
-				<script>
-  (function(d) {
-    var config = {
-      kitId: 'kjz3vlq',
-      scriptTimeout: 3000,
-      async: true
-    },
-    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-  })(document);
-</script>
-    </head>
-    <body class="clearfix is-invisible">
-			<header class="heading clearfix">
-					<div class="heading__logo">
-						<a href="/" class="heading__link">
-							<img class="icon heading__icon" src="src/img/tfl.svg" />
-							<h1 class="heading__caption">TFL Weekly Fare Calculator</h1>
-						</a>
-					</div>
-					<div class="heading__nav">
-						<ul>
-							<li class="nav__link">
-								<a href="/">
-									<img class="icon" src="src/img/form.svg" /><span>Calculator</span>
-								</a>
-							</li>
-							<li class="nav__link is-active-link">
-								<a href="information.html">
-										<img class="icon" src="src/img/info.svg" /><span>Information</span>
-								</a>
-							</li>
-						</ul>
-					</div>
-			</header>
-			<div class="intro-text">
-					<p>This fare calculator aims to calculate the best weekly fares (using either contactless or an oyster card) for travel between most tube, DLR and London Overground stations within zones 1-9.</p>
-			</div>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Weekly Fare Calculator</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="dist/css/main.css">
+	<link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+	<link rel="icon" href="/favicon.png" type="image/x-icon">
+	<script>
+      (function(d) {
+        var config = {
+            kitId: 'kjz3vlq',
+            scriptTimeout: 3000,
+            async: true
+          },
+          h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+	</script>
+</head>
+<body class="clearfix is-invisible">
+<header class="heading clearfix">
+	<div class="heading__logo">
+		<a href="/" class="heading__link">
+			<img class="icon heading__icon" src="src/img/tfl.svg" />
+			<h1 class="heading__caption">TFL Weekly Fare Calculator</h1>
+		</a>
+	</div>
+	<div class="heading__nav">
+		<ul>
+			<li class="nav__link">
+				<a href="/">
+					<img class="icon" src="src/img/form.svg" /><span>Calculator</span>
+				</a>
+			</li>
+			<li class="nav__link is-active-link">
+				<a href="information.html">
+					<img class="icon" src="src/img/info.svg" /><span>Information</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</header>
+<div class="intro-text">
+	<p>This fare calculator aims to calculate the best weekly fares (using either contactless or an oyster card) for travel between most tube, DLR and London Overground stations within zones 1-9.</p>
+</div>
 
-			<main class="main">
-				<section id="main__general">
-					<h2 class="main__title">General Information</h2>
-					<h3 class="main__subtitle">Oyster Cards</h3>
-					<p class="main__text">
-						Oyster cards are used to store pay as you go credit, and bought weekly, monthly and annual travel cards. Certain types of oyster cards and certain discount cards that can be applied to the oyster allow for discounted travel. The oyster card charges each journey in isolation, and automatically stops charging you once you reach the appropriate daily cap for the zones used. If a travel card has been applied and you travel outside of the zones covered by the travel card, you are charged an extension fare.
-					</p>
-					<h3 class="main__subtitle">Contactless</h3>
-					<p class="main__text">
-						Contactless payment charges adult-rate pay as you go fares. You can benefit from automatic daily and weekly (Monday to Sunday) capping; just use the same card, mobile phone or contactless device for all your travel. With contactless, you are charged the cheapest combination of zonal cap(s) and extension fare(s).
-					</p>
-					<h3 class="main__subtitle">Contactless vs Oyster</h3>
-					<p class="main__text">
-						Although oyster cards and contactless charge the same adult-rate single fares, you may be charged a different fare for multiple journeys. <a href="http://londonist.com/2016/06/oyster-fares-and-contactless-not-always-the-same-price" target="_blank">This video</a> demonstrates the difference well. This fare calculator tries to replicate the method that oyster and contactless uses to calculate fares, and generates the total week fare for your journeys. This can help you decide whether you are better off using an oyster card (with a weekly or monthly travel card and/or discount cards applied to it) or contactless.
-					</p>
-					<h3 class="main__subtitle">Using the fare calculator</h3>
-					<p class="main__text">
-						Please note the fare calculator only takes into account travel on the tube, DLR and London Overground. It may be cheaper to walk or take the bus. Please ensure journeys are in chronological order. Days are defined from 4:30am until 4:29am.
-					</p>
-				</section>
+<main class="main">
+	<section id="main__general">
+		<h2 class="main__title">General Information</h2>
+		<h3 class="main__subtitle">Oyster Cards</h3>
+		<p class="main__text">
+			Oyster cards are used to store pay as you go credit, and bought weekly, monthly and annual travel cards. Certain types of oyster cards and certain discount cards that can be applied to the oyster allow for discounted travel. The oyster card charges each journey in isolation, and automatically stops charging you once you reach the appropriate daily cap for the zones used. If a travel card has been applied and you travel outside of the zones covered by the travel card, you are charged an extension fare.
+		</p>
+		<h3 class="main__subtitle">Contactless</h3>
+		<p class="main__text">
+			Contactless payment charges adult-rate pay as you go fares. You can benefit from automatic daily and weekly (Monday to Sunday) capping; just use the same card, mobile phone or contactless device for all your travel. With contactless, you are charged the cheapest combination of zonal cap(s) and extension fare(s).
+		</p>
+		<h3 class="main__subtitle">Contactless vs Oyster</h3>
+		<p class="main__text">
+			Although oyster cards and contactless charge the same adult-rate single fares, you may be charged a different fare for multiple journeys. <a href="http://londonist.com/2016/06/oyster-fares-and-contactless-not-always-the-same-price" target="_blank">This video</a> demonstrates the difference well. This fare calculator tries to replicate the method that oyster and contactless uses to calculate fares, and generates the total week fare for your journeys. This can help you decide whether you are better off using an oyster card (with a weekly or monthly travel card and/or discount cards applied to it) or contactless.
+		</p>
+		<h3 class="main__subtitle">Using the fare calculator</h3>
+		<p class="main__text">
+			Please note the fare calculator only takes into account travel on the tube, DLR and London Overground. It may be cheaper to walk or take the bus. Please ensure journeys are in chronological order. Days are defined from 4:30am until 4:29am.
+		</p>
+	</section>
 
-				<section id="disclaimer" class="main__disclaimer">
-					<h2 class="main__title">Disclaimer</h2>
-					<p class="main__text">
-						Whilst every effort is made to ensure that fares calculated on this site are correct, we can’t guarantee that all of them are accurate. The following are known issues that could cause fare discrepancies, or ways to achieve a cheaper weekly fare that the fare calculator does not take into account:
-					</p>
-					<ul class="main__text disclaimer__list">
-						<li>
-							Automatic refund payments are given to all off-peak pay as you go customers who repeatedly reach a Zones 1-4 or Zones 1-6 daily cap, but only travel at off-peak times for:
-							<ul>
-								<li>
-									Two or more days in a single week (from Monday to Sunday), or
-								</li>
-								<li>
-									Four or more days in a fortnight, or
-								</li>
-								<li>
-									Eight or more days in four weeks
-								</li>
-							</ul>
-							If you are eligible for an automatic refund, it is automatically applied from the Friday of the following week. However, this fare calculator calculates any automatic refund(s) and deducts it from the week total immediately.
-						</li>
-						<li>
-							Some journeys,  irrespective of the route taken, are automatically charged to include Zone 1 and capping reflects this. However, some journeys could be cheaper based on the route taken (such as avoiding Zone 1) and you have touched your card on the pink card readers when changing platforms. The fare calculator is based on the first default journey generated from the TFL journey planner, and does not take into account any cheaper alternate routes. The best way to check whether there are any cheaper alternate routes for your journey would be to use the <a href="https://tfl.gov.uk/fares-and-payments/fares/single-fare-finder" target="_blank">TFL Single Fare Finder here</a>.
-						</li>
-						<li>
-							The weekly cost of a monthly travel card is based on the following formula: the cost of the (monthly travel card * 12) / 52. This may not be completely accurate since monthly travel cards last the number of days in the month in which they start.
-						</li>
-						<li>
-							Weekly, monthly and annual travel cards start from 00:01 on the start date to 04:29 on the day after the expiry date shown. Daily caps however, operate between 04:30 until 04:29 of the following morning. Therefore it may be cheaper to buy the weekly travel card if you are travelling a lot between 00:01 and 04:30.
-						</li>
-						<li>
-							There are instances when using the oyster is not always the best option; find more details <a href="http://www.oyster-rail.org.uk/when-not-to-use-oyster/" target="_blank">here</a>. It may also be cheaper to combine paper tickets and PAYG (see <a href="http://www.oyster-rail.org.uk/mixing-oyster-and-paper-tickets/" target="_blank">here</a>.)
-						</li>
-						<li>
-							The costs of each journey is based on a journey made in about a month in advance, and assumes the cost of the journey from a to b is the same as b to a. Therefore possible travel disruptions during this time and other factors could make the cost of the journey less accurate.
-						</li>
-						<li>
-							There are some journeys that are exceptions to the usual daily cap and single fares. For example travel between Euston (national rail station) and Watford Junction before 9:30 (and travel in the opposite direction between 16:00 and 19:00) are charged off-peak fares. There are also a number of earlier starts to the off-peak cap at the extremities of the PAYG area (for example North of Headstone Lane, details <a href="https://tfl.gov.uk/fares-and-payments/what-are-ca#on-this-page-2" target="_blank">here</a>). These have not been accounted for.
-						</li>
-						<li>
-							The calculations rely on the TFL Journey Planner API - which may not always be accurate. For example, it may be cheaper to walk between two stations (such as between Aldgate Underground Station and Tower Hill Underground Station), however the API returns a 1 minute tube journey by default. Always make sure all your journeys are cost-worthy by checking them against the <a href="https://tfl.gov.uk/plan-a-journey/" target="_blank">TFL Journey Planner here</a>, and remember it may be cheaper to walk or take the bus.
-						</li>
-					</ul>
-					<p class="main__text">
-						<br />Notice any other discrepancies? Email them to us <a href="mailto:contact@helenzhou.co.uk?Subject=TFL%20error" target="_top">here</a>.
-					</p>
-				</section>
-			</main>
+	<section id="disclaimer" class="main__disclaimer">
+		<h2 class="main__title">Disclaimer</h2>
+		<p class="main__text">
+			Whilst every effort is made to ensure that fares calculated on this site are correct, we can’t guarantee that all of them are accurate. The following are known issues that could cause fare discrepancies, or ways to achieve a cheaper weekly fare that the fare calculator does not take into account:
+		</p>
+		<ul class="main__text disclaimer__list">
+			<li>
+				Automatic refund payments are given to all off-peak pay as you go customers who repeatedly reach a Zones 1-4 or Zones 1-6 daily cap, but only travel at off-peak times for:
+				<ul>
+					<li>
+						Two or more days in a single week (from Monday to Sunday), or
+					</li>
+					<li>
+						Four or more days in a fortnight, or
+					</li>
+					<li>
+						Eight or more days in four weeks
+					</li>
+				</ul>
+				If you are eligible for an automatic refund, it is automatically applied from the Friday of the following week. However, this fare calculator calculates any automatic refund(s) and deducts it from the week total immediately.
+			</li>
+			<li>
+				Some journeys,  irrespective of the route taken, are automatically charged to include Zone 1 and capping reflects this. However, some journeys could be cheaper based on the route taken (such as avoiding Zone 1) and you have touched your card on the pink card readers when changing platforms. The fare calculator is based on the first default journey generated from the TFL journey planner, and does not take into account any cheaper alternate routes. The best way to check whether there are any cheaper alternate routes for your journey would be to use the <a href="https://tfl.gov.uk/fares-and-payments/fares/single-fare-finder" target="_blank">TFL Single Fare Finder here</a>.
+			</li>
+			<li>
+				The weekly cost of a monthly travel card is based on the following formula: the cost of the (monthly travel card * 12) / 52. This may not be completely accurate since monthly travel cards last the number of days in the month in which they start.
+			</li>
+			<li>
+				Weekly, monthly and annual travel cards start from 00:01 on the start date to 04:29 on the day after the expiry date shown. Daily caps however, operate between 04:30 until 04:29 of the following morning. Therefore it may be cheaper to buy the weekly travel card if you are travelling a lot between 00:01 and 04:30.
+			</li>
+			<li>
+				There are instances when using the oyster is not always the best option; find more details <a href="http://www.oyster-rail.org.uk/when-not-to-use-oyster/" target="_blank">here</a>. It may also be cheaper to combine paper tickets and PAYG (see <a href="http://www.oyster-rail.org.uk/mixing-oyster-and-paper-tickets/" target="_blank">here</a>.)
+			</li>
+			<li>
+				The costs of each journey is based on a journey made in about a month in advance, and assumes the cost of the journey from a to b is the same as b to a. Therefore possible travel disruptions during this time and other factors could make the cost of the journey less accurate.
+			</li>
+			<li>
+				There are some journeys that are exceptions to the usual daily cap and single fares. For example travel between Euston (national rail station) and Watford Junction before 9:30 (and travel in the opposite direction between 16:00 and 19:00) are charged off-peak fares. There are also a number of earlier starts to the off-peak cap at the extremities of the PAYG area (for example North of Headstone Lane, details <a href="https://tfl.gov.uk/fares-and-payments/what-are-ca#on-this-page-2" target="_blank">here</a>). These have not been accounted for.
+			</li>
+			<li>
+				The calculations rely on the TFL Journey Planner API - which may not always be accurate. For example, it may be cheaper to walk between two stations (such as between Aldgate Underground Station and Tower Hill Underground Station), however the API returns a 1 minute tube journey by default. Always make sure all your journeys are cost-worthy by checking them against the <a href="https://tfl.gov.uk/plan-a-journey/" target="_blank">TFL Journey Planner here</a>, and remember it may be cheaper to walk or take the bus.
+			</li>
+		</ul>
+		<p class="main__text">
+			<br />Notice any other discrepancies? Email them to us <a href="mailto:contact@helenzhou.co.uk?Subject=TFL%20error" target="_top">here</a>.
+		</p>
+	</section>
+</main>
 
-			<footer class="footer">
-				<span>Made by <a href="https://github.com/helenzhou6" target="_blank">Helen Zhou</a> 2017. All rights reserved.</span>
-			</footer>
+<footer class="footer">
+	<span>Made by <a href="https://github.com/helenzhou6" target="_blank">Helen Zhou</a> 2017. All rights reserved.</span>
+</footer>
 
-			<!-- <script type="text/html" class="js-autocomplete-template">
-					<div class="js-result result">
-							<span class="js-result__name"></span>
-					</div>
-			</script> -->
+<!-- <script type="text/html" class="js-autocomplete-template">
+        <div class="js-result result">
+                <span class="js-result__name"></span>
+        </div>
+</script> -->
 
-			<script src="/dist/js/app.js"></script>
-		</body>
+<script src="/dist/js/app.js"></script>
+</body>
 </html>

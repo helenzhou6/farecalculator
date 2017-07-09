@@ -7,7 +7,7 @@ export default function autocomplete($form) {
   let stationFuse;
 
   // FUNCTIONS
-  const handleFocus = function(e, show) {
+  const handleFocus = (e, show) => {
     const $target = $(e.currentTarget);
     const $journey = $target.closest('.js-journey');
 
@@ -16,7 +16,7 @@ export default function autocomplete($form) {
     hideResults($journey, show);
   };
 
-  const handleKeyPress = function(e) {
+  const handleKeyPress = (e) => {
     const charCode = e.keyCode ? e.keyCode : e.which;
 
     // Only run the rest if it's one of our three keys
@@ -75,10 +75,12 @@ export default function autocomplete($form) {
         e.preventDefault();
         hideResults($journey, true);
         break;
+      default:
+        break;
     }
   };
 
-  const handleMouseover = function(e) {
+  const handleMouseover = (e) => {
     const $result = $(e.currentTarget);
     const $journey = $result.closest('.js-journey');
     const $currentlySelected = $journey.find('.result--is-active');
@@ -86,7 +88,7 @@ export default function autocomplete($form) {
     $result.addClass('result--is-active');
   };
 
-  const fillResult = function($target, moveOn) {
+  const fillResult = ($target, moveOn) => {
     // const $target = $(e.currentTarget);
     const stationName = $target.find('.js-result__name').text();
     const $journey = $target.closest('.js-journey');
@@ -119,11 +121,11 @@ export default function autocomplete($form) {
   };
 
   // DISPLAYING THE RESULTS of the station autocomplete
-  const clearResults = function($journey) {
+  const clearResults = ($journey) => {
     $journey.find('.js-completion-results').remove();
   };
 
-  const hideResults = function($journey, hide) {
+  const hideResults = ($journey, hide) => {
     $journey.find('.js-completion-results')[hide ? 'addClass' : 'removeClass']('hide');
 
     // Restore value from data attribute
@@ -131,7 +133,7 @@ export default function autocomplete($form) {
     $input.val($input.attr('data-val'));
   };
 
-  const buildResults = (function() {
+  const buildResults = (() => {
     const $resultTemplate = $($.parseHTML($.trim($('.js-autocomplete-template').html())));
 
     return (matches) => {
@@ -141,9 +143,7 @@ export default function autocomplete($form) {
         const $result = $resultTemplate.clone();
         const $resultName = $result.find('.js-result__name');
 
-
         $resultName.html(match.name);
-
         $container.append($result);
       });
 
@@ -151,20 +151,20 @@ export default function autocomplete($form) {
     };
   })();
 
-  const initFuse = function() {
+  const initFuse = () => {
     if (stationFuse) return Promise.resolve();
 
     return getData.stationsByNaptan()
-      .then(resp => {
+      .then((resp) => {
         stationFuse = new Fuse(resp, {
-          keys: ['name']
+          keys: ['name'],
         });
 
         return Promise.resolve();
       });
   };
 
-  const updateResults = function(e) {
+  const updateResults = (e) => {
     const $target = $(e.currentTarget);
     const $journey = $target.closest('.js-journey');
     const val = $target.val();
@@ -192,19 +192,22 @@ export default function autocomplete($form) {
     }
   };
 
-  // Load autocomplete results
-  $form.on('input', '.js-autocomplete-station', debounce(updateResults, 200));
-  $form.on('blur', '.js-autocomplete-station', e => handleFocus(e, true));
-  $form.on('focus', '.js-autocomplete-station', e => handleFocus(e, false));
-  $form.on('mouseover', '.js-result', e => handleMouseover(e));
-  $form.on('keydown', '.js-autocomplete-station', handleKeyPress);
+  const bindUIEvents = () => {
+    // Load autocomplete results
+    $form.on('input', '.js-autocomplete-station', debounce(updateResults, 200));
+    $form.on('blur', '.js-autocomplete-station', e => handleFocus(e, true));
+    $form.on('focus', '.js-autocomplete-station', e => handleFocus(e, false));
+    $form.on('mouseover', '.js-result', e => handleMouseover(e));
+    $form.on('keydown', '.js-autocomplete-station', handleKeyPress);
 
-  // Populate
-  // -- TO DO: Mousedown the best way? Click fires too late and conflicts with blur
-  // http://stackoverflow.com/questions/19079264/blur-event-is-triggered-instead-of-click
-  $form.on('mousedown', '.js-result', (e) => {
-    e.preventDefault();
-    fillResult($(e.currentTarget), true);
-  });
+    // Populate
+    // -- TO DO: Mousedown the best way? Click fires too late and conflicts with blur
+    // http://stackoverflow.com/questions/19079264/blur-event-is-triggered-instead-of-click
+    $form.on('mousedown', '.js-result', (e) => {
+      e.preventDefault();
+      fillResult($(e.currentTarget), true);
+    });
+  };
 
+  bindUIEvents();
 }

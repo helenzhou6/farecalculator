@@ -1,256 +1,254 @@
 <!doctype html>
 <html class="no-js" lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Weekly Fare Calculator</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="dist/css/main.css">
-				<link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
-				<link rel="icon" href="/favicon.png" type="image/x-icon">
-				<script>
-  (function(d) {
-    var config = {
-      kitId: 'kjz3vlq',
-      scriptTimeout: 3000,
-      async: true
-    },
-    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-  })(document);
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Weekly Fare Calculator</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="dist/css/main.css">
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+    <script>
+      (function(d) {
+        var config = {
+            kitId: 'kjz3vlq',
+            scriptTimeout: 3000,
+            async: true
+          },
+          h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+    </script>
+</head>
+<body class="clearfix is-invisible">
+
+<header class="heading clearfix">
+    <div class="heading__logo">
+        <a href="/" class="heading__link">
+            <img class="icon heading__icon" src="src/img/tfl.svg" />
+            <h1 class="heading__caption">TFL Weekly Fare Calculator</h1>
+        </a>
+    </div>
+    <div class="heading__nav">
+        <ul>
+            <li class="nav__link is-active-link">
+                <a href="/">
+                    <img class="icon" src="src/img/form.svg" /><span>Calculator</span>
+                </a>
+            </li>
+            <li class="nav__link">
+                <a href="information.html">
+                    <img class="icon" src="src/img/info.svg" /><span>Information</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="intro-text">
+    <p>This fare calculator aims to calculate the best weekly fares (using either contactless or an oyster card) for travel between most tube, DLR and London Overground stations within zones 1-9.</p>
+</div>
+
+<div class="js-errors"></div>
+
+<form action="" autocomplete="off" name="" class="js-form clearfix">
+    <div class="discount-section clearfix">
+        <label class="discount__card">
+            <span class="discount__label label">Oyster card</span>
+            <span class="custom-select js-oyster-card-select">
+                <select id="oyster-card" name="oyster-card">
+                    <option value="adult">Adult</option>
+                    <option value="student">Apprentice</option>
+                    <option value="student">18+ Student</option>
+                    <option value="child-jobless">16+ Zip</option>
+                </select>
+            </span>
+        </label>
+        <label class="discount__card">
+            <span class="discount__label label">Discount card</span>
+            <span class="custom-select js-discount-card-select">
+                <select id="discount-card" name="discount-card">
+                    <option value="none">None</option>
+                    <option value="child-jobless">Job Centre</option>
+                    <option value="disabled">Disabled Persons</option>
+                    <option value="railcard">16-25 Railcard</option>
+                    <option value="railcard">HM Forces</option>
+                    <option value="railcard">Senior Railcard</option>
+                    <option value="railcard">Gold card</option>
+                </select>
+            </span>
+        </label>
+    </div>
+
+    <fieldset class="js-day day-section" data-day="weekday">
+        <legend><h3 class="day__title">Monday</h3></legend>
+
+        <div class="js-day__journeys" data-day="mon"></div>
+
+        <div>
+            <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
+        </div>
+    </fieldset>
+
+    <fieldset class="js-day day-section" data-day="weekday">
+        <legend><h3 class="day__title">Tuesday</h3></legend>
+
+        <div class="js-day__journeys" data-day="tue"></div>
+
+        <div>
+            <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
+        </div>
+    </fieldset>
+
+    <fieldset class="js-day day-section" data-day="weekday">
+        <legend><h3 class="day__title">Wednesday</h3></legend>
+
+        <div class="js-day__journeys" data-day="tue"></div>
+
+        <div>
+            <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
+        </div>
+    </fieldset>
+    <fieldset class="js-day day-section" data-day="weekday">
+        <legend><h3 class="day__title">Thursday</h3></legend>
+
+        <div class="js-day__journeys" data-day="tue"></div>
+
+        <div>
+            <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
+        </div>
+    </fieldset>
+    <fieldset class="js-day day-section" data-day="weekday">
+        <legend><h3 class="day__title">Friday</h3></legend>
+
+        <div class="js-day__journeys" data-day="tue"></div>
+
+        <div>
+            <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
+        </div>
+    </fieldset>
+    <fieldset class="js-day day-section" data-day="weekend">
+        <legend><h3 class="day__title">Saturday</h3></legend>
+
+        <div class="js-day__journeys" data-day="sat"></div>
+
+        <div>
+            <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
+        </div>
+    </fieldset>
+
+    <fieldset class="js-day day-section" data-day="weekend">
+        <legend><h3 class="day__title">Sunday</h3></legend>
+
+        <div class="js-day__journeys" data-day="sun"></div>
+
+        <div>
+            <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
+        </div>
+    </fieldset>
+
+    <button type="submit" class="submit discount__card">Submit</button>
+</form>
+
+<script type="text/html" class="js-journey-template">
+    <fieldset class="js-day__journey day__journey">
+        <div class="clearfix journey__stationsntouchin">
+            <div class="journey__stations">
+                <div class="label is-hidden--mobile">Journey</div>
+                <label class="js-journey journey__station">
+                    <span class="label is-hidden">From</span>
+                    <span class="journey__input">
+                        <input type="text" data-name="from" placeholder="Station Name" class="js-autocomplete-station" />
+                    </span>
+                </label>
+                <span class="journey__tolabel">to</span>
+                <label class="js-journey journey__station">
+                    <span class="label is-hidden">to</span>
+                    <span class="journey__input">
+                        <input type="text" data-name="to" placeholder="Station Name" class="js-autocomplete-station" />
+                    </span>
+                </label>
+            </div>
+            <label class="journey__touchin"  data-if="weekday">
+                <span class="label">Time of touch in</span>
+                <span class="custom-select">
+                    <select data-name="touchin">
+                        <option value="early">04:30 - 06:30</option>
+                        <option value="anytime">06:30 - 09:30</option>
+                        <option value="offPeak">09:30 - 16:00</option>
+                        <option value="afternoon">16:00 - 19:00</option>
+                        <option value="offPeak">19:00 - 04:30</option>
+                    </select>
+                </span>
+            </label>
+            <div class="journey__touchin" data-if="weekend">
+                <div class="label">Time of touch in</div>
+                <div class="weekend-touchin">Anytime</div>
+            </div>
+        </div>
+
+        <div class="day__remove">
+            <div class="label">Remove</div>
+            <button type="button" class="js-remove-journey journey__remove text-button">
+                <span class="is-hidden">Remove journey</span>
+            </button>
+        </div>
+    </fieldset>
 </script>
-    </head>
-    <body class="clearfix is-invisible">
 
-        <header class="heading clearfix">
-						<div class="heading__logo">
-							<a href="/" class="heading__link">
-								<img class="icon heading__icon" src="src/img/tfl.svg" />
-								<h1 class="heading__caption">TFL Weekly Fare Calculator</h1>
-							</a>
-						</div>
-						<div class="heading__nav">
-							<ul>
-								<li class="nav__link is-active-link">
-									<a href="/">
-										<img class="icon" src="src/img/form.svg" /><span>Calculator</span>
-									</a>
-								</li>
-								<li class="nav__link">
-									<a href="information.html">
-											<img class="icon" src="src/img/info.svg" /><span>Information</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-        </header>
-        <div class="intro-text">
-            <p>This fare calculator aims to calculate the best weekly fares (using either contactless or an oyster card) for travel between most tube, DLR and London Overground stations within zones 1-9.</p>
+<section class="results-page is-not-displayed">
+
+    <h2 class="results-page__title">Calculated best weekly fares</h2><span class="results-astrix astrix">*</span>
+
+    <div class="clearfix results__table">
+        <div class="results__section results__contactless">
+            <h4 class="results__title"><img class="icon" src="src/img/contactless.svg" />Contactless</h4>
+            <div class="result__output">
+                <span class="price">£</span><span class="result__price contactless__price"></span>
+                <div class="result__caption">with automatic weekly capping</div>
+            </div>
         </div>
 
-        <div class="js-errors">
-
+        <div class="results__section results__oyster">
+            <h4 class="results__title"><img class="icon" src="src/img/oyster-card.svg" /><span class="results__oyster-card"></span> Oyster Card<span class="results__oyster-discount"></span></h4>
+            <div class="result__output oyster__weekly">
+                <span class="price">£</span><span class="result__price oyster__weekly-price"></span>
+                <div class="result__caption">with <span class="oyster-weekly-travelcard">no</span> weekly Travelcard applied</div>
+            </div>
+            <div class="result__output oyster__monthly">
+                <span class="price">£</span><span class="result__price oyster__monthly-price"></span>
+                <div class="result__caption">with <span class="oyster-monthly-travelcard">no</span> monthly Travelcard applied</div>
+            </div>
         </div>
+    </div>
+    <div class="results__disclaimer">
+        <span class="astrix">*</span> Whilst every effort is made to ensure that fares calculated on this site are correct, we can’t guarantee that all of them are accurate. More information <a href="information.html#disclaimer">here</a>.
+    </div>
+</section>
 
-        <form action="" autocomplete="off" name="" class="js-form clearfix">
-            <div class="discount-section clearfix">
-                <label class="discount__card">
-                    <h2 class="discount__label label">Oyster card</h2>
-                    <div class="custom-select js-oyster-card-select">
-                        <select id="oyster-card" name="oyster-card">
-                            <option value="adult">Adult</option>
-                            <option value="student">Apprentice</option>
-                            <option value="student">18+ Student</option>
-                            <option value="child-jobless">16+ Zip</option>
-                        </select>
-                    </div>
-                </label>
-                <label class="discount__card">
-                    <h2 class="discount__label label">Discount card</h2>
-                    <div class="custom-select js-discount-card-select">
-                        <select id="discount-card" name="discount-card">
-                            <option value="none">None</option>
-                            <option value="child-jobless">Job Centre</option>
-                            <option value="disabled">Disabled Persons</option>
-                            <option value="railcard">16-25 Railcard</option>
-                            <option value="railcard">HM Forces</option>
-                            <option value="railcard">Senior Railcard</option>
-                            <option value="railcard">Gold card</option>
-                        </select>
-                    </div>
-                </label>
-            </div>
+<section class="loading is-not-displayed">
+    <div class="loading-bar">
+        <div class="loading__inner loading__inner--main"></div>
+        <div class="loading__inner loading__inner--final"></div>
+    </div>
+    <div class="loading__text">
+        We are processing your data...
+    </div>
+</section>
 
-            <fieldset class="js-day day-section" data-day="weekday">
-                <legend><h3 class="day__title">Monday</h3></legend>
+<div class="edit-journeys is-not-displayed">
+    <span class="is-orange"><</span> Edit your journeys
+</div>
 
-                <div class="js-day__journeys" data-day="mon"></div>
+<script type="text/html" class="js-autocomplete-template">
+    <section class="js-result result">
+        <span class="js-result__name"></span>
+    </section>
+</script>
 
-                <div>
-                    <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
-                </div>
-            </fieldset>
+<footer class="footer">
+    <span>Made by <a href="https://github.com/helenzhou6" target="_blank">Helen Zhou</a> 2017. All rights reserved.</span>
+</footer>
 
-            <fieldset class="js-day day-section" data-day="weekday">
-                <legend><h3 class="day__title">Tuesday</h3></legend>
-
-                <div class="js-day__journeys" data-day="tue"></div>
-
-                <div>
-                    <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
-                </div>
-            </fieldset>
-
-            <fieldset class="js-day day-section" data-day="weekday">
-                <legend><h3 class="day__title">Wednesday</h3></legend>
-
-                <div class="js-day__journeys" data-day="tue"></div>
-
-                <div>
-                    <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
-                </div>
-            </fieldset>
-            <fieldset class="js-day day-section" data-day="weekday">
-                <legend><h3 class="day__title">Thursday</h3></legend>
-
-                <div class="js-day__journeys" data-day="tue"></div>
-
-                <div>
-                    <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
-                </div>
-            </fieldset>
-            <fieldset class="js-day day-section" data-day="weekday">
-                <legend><h3 class="day__title">Friday</h3></legend>
-
-                <div class="js-day__journeys" data-day="tue"></div>
-
-                <div>
-                    <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
-                </div>
-            </fieldset>
-            <fieldset class="js-day day-section" data-day="weekend">
-                <legend><h3 class="day__title">Saturday</h3></legend>
-
-                <div class="js-day__journeys" data-day="sat"></div>
-
-                <div>
-                    <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
-                </div>
-            </fieldset>
-
-            <fieldset class="js-day day-section" data-day="weekend">
-                <legend><h3 class="day__title">Sunday</h3></legend>
-
-                <div class="js-day__journeys" data-day="sun"></div>
-
-                <div>
-                    <button type="button" class="js-add-journey journey__add text-button">Add a journey</button>
-                </div>
-            </fieldset>
-
-            <button type="submit" class="submit discount__card">Submit</button>
-        </form>
-
-        <script type="text/html" class="js-journey-template">
-            <fieldset class="js-day__journey day__journey">
-                <div class="clearfix journey__stationsntouchin">
-                    <div class="journey__stations">
-                        <div class="label is-hidden--mobile">Journey</div>
-                        <label class="js-journey journey__station">
-                            <div class="label is-hidden">From</div>
-                            <div class="journey__input">
-                                <input type="text" data-name="from" placeholder="Station Name" class="js-autocomplete-station" />
-                            </div>
-                        </label>
-                        <span class="journey__tolabel">to</span>
-                        <label class="js-journey journey__station">
-                            <div class="label is-hidden">to</div>
-                            <div class="journey__input">
-                                <input type="text" data-name="to" placeholder="Station Name" class="js-autocomplete-station" />
-                            </div>
-                        </label>
-                    </div>
-                    <label class="journey__touchin"  data-if="weekday">
-                        <div class="label">Time of touch in</div>
-                        <div class="custom-select">
-                            <select data-name="touchin">
-                                <option value="early">04:30 - 06:30</option>
-                                <option value="anytime">06:30 - 09:30</option>
-                                <option value="offPeak">09:30 - 16:00</option>
-                                <option value="afternoon">16:00 - 19:00</option>
-                                <option value="offPeak">19:00 - 04:30</option>
-                            </select>
-                        </div>
-                    </label>
-                    <div class="journey__touchin" data-if="weekend">
-                        <div class="label">Time of touch in</div>
-                        <div class="weekend-touchin">Anytime</div>
-                    </div>
-                </div>
-
-                <div class="day__remove">
-                    <div class="label">Remove</div>
-                    <button type="button" class="js-remove-journey journey__remove text-button">
-                        <span class="is-hidden">Remove journey</span>
-                    </button>
-                </div>
-            </fieldset>
-        </script>
-
-        <section class="results-page is-not-displayed">
-
-            <h2 class="results-page__title">Calculated best weekly fares</h2><span class="results-astrix astrix">*</span>
-
-            <div class="clearfix results__table">
-                <div class="results__section results__contactless">
-                    <h4 class="results__title"><img class="icon" src="src/img/contactless.svg" />Contactless</h4>
-                    <div class="result__output">
-                        <span class="price">£</span><span class="result__price contactless__price"></span>
-                        <div class="result__caption">with automatic weekly capping</div>
-                    </div>
-                </div>
-
-                <div class="results__section results__oyster">
-                    <h4 class="results__title"><img class="icon" src="src/img/oyster-card.svg" /><span class="results__oyster-card"></span> Oyster Card<span class="results__oyster-discount"></span></h4>
-                    <div class="result__output oyster__weekly">
-                        <span class="price">£</span><span class="result__price oyster__weekly-price"></span>
-                        <div class="result__caption">with <span class="oyster-weekly-travelcard">no</span> weekly Travelcard applied</div>
-                    </div>
-                    <div class="result__output oyster__monthly">
-                        <span class="price">£</span><span class="result__price oyster__monthly-price"></span>
-                        <div class="result__caption">with <span class="oyster-monthly-travelcard">no</span> monthly Travelcard applied</div>
-                    </div>
-                </div>
-            </div>
-            <div class="results__disclaimer">
-                <span class="astrix">*</span> Whilst every effort is made to ensure that fares calculated on this site are correct, we can’t guarantee that all of them are accurate. More information <a href="information.html#disclaimer">here</a>.
-            </div>
-        </section>
-
-        <section class="loading is-not-displayed">
-					<div class="loading-bar">
-					  <div class="loading__inner loading__inner--main"></div>
-					  <div class="loading__inner loading__inner--final"></div>
-					</div>
-          <div class="loading__text">
-                We are processing your data...
-          </div>
-        </section>
-
-        <div class="edit-journeys is-not-displayed">
-            <span class="is-orange"><</span> Edit your journeys
-        </div>
-
-        <script type="text/html" class="js-autocomplete-template">
-            <section class="js-result result">
-                <span class="js-result__name"></span>
-            </section>
-        </script>
-
-				<footer class="footer">
-					<span>Made by <a href="https://github.com/helenzhou6" target="_blank">Helen Zhou</a> 2017. All rights reserved.</span>
-				</footer>
-
-        <script src="/dist/js/app.js"></script>
-    </body>
+<script src="/dist/js/app.js"></script>
+</body>
 </html>

@@ -13,17 +13,14 @@ import {
   minNum,
   maxNum,
   getFare,
-  zoneToJourney,
   round,
   types,
-  dualZone,
   isWithin,
 } from './../../utility/_utility';
 
 import extensionFares from './_extensionFares';
 
 export default function oysterDayTotal(day, options = {}, data = {}) {
-
   const {
     minTravelcard,
     maxTravelcard,
@@ -35,11 +32,11 @@ export default function oysterDayTotal(day, options = {}, data = {}) {
     singleFares,
   } = data;
 
-  const dayTotal = day.reduce(function (a, b) {
+  const dayTotal = day.reduce((a, b) => {
     let currentTotal;
 
     // Types function deals with early/afternoon peak/offpeak handling
-    let journeyType = types(b.type);
+    const journeyType = types(b.type);
     let singleFare = getFare(b.zones, journeyType, singleFares);
 
     // Takes the numbers from the previous loop
@@ -62,7 +59,7 @@ export default function oysterDayTotal(day, options = {}, data = {}) {
         // type: b.type,
         type: journeyType,
         minTravelcard,
-        maxTravelcard
+        maxTravelcard,
       }, singleFares);
       
       // Dual zone to dual zone journeys dealt with, if travelcard also passed (free if dual zones are within travelcard zones)
@@ -76,7 +73,7 @@ export default function oysterDayTotal(day, options = {}, data = {}) {
       // Removes any overlap between weekly travelcard and maxSingle
       // I.e. Compares total against daily cap of minSingle to minTravelcard - 1 rather than maxSingle
       if (minTravelcard > 1 && (isWithin((minTravelcard - 1), maxZone, maxTravelcard))) {
-        maxZone = minTravelcard - 1; 
+        maxZone = minTravelcard - 1;
       }
     }
 

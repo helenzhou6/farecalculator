@@ -7,7 +7,7 @@
  * @description calculates whether it is cheapest to have a weekly travelcard or none
  */
 
- import {
+import {
   keysToJourney,
   maxNum,
   minNum,
@@ -19,35 +19,35 @@ import conDayTotal from './_contactlessDayTotal';
 import weekTotal from './_weekTotal';
 
 export default function contactless(days, data) {
-	const weeklyCaps = keysToJourney(data.weeklyCaps);
+  const weeklyCaps = keysToJourney(data.weeklyCaps);
 
   // 1. For each possible weekly cap
   // returns the array of each weekly cap total week fare
- 	const final = weeklyCaps.map((weekCap) => {
-      const total = weekTotal(conDayTotal, days, {
-        options: {
-          minTravelcard: minNum(weekCap),
-          maxTravelcard: maxNum(weekCap),
-        },
-        data,
-      });
-      return total + getFare(weekCap, false, data.weeklyCaps);
+  const final = weeklyCaps.map((weekCap) => {
+    const total = weekTotal(conDayTotal, days, {
+      options: {
+        minTravelcard: minNum(weekCap),
+        maxTravelcard: maxNum(weekCap),
+      },
+      data,
     });
+    return total + getFare(weekCap, false, data.weeklyCaps);
+  });
 
   // 2. If no weekly cap is passed in
-  // Gets the fare for the cheapest daily cap (or no daily cap) when no weekly travelcards are passed in
-  // returns a number
+  // Gets the fare for the cheapest daily cap (or no daily cap)
+  // when no weekly travelcards are passed in returns a number
   const noWeekly = weekTotal(conDayTotal, days, {
-        options: {
-          minTravelcard: false,
-          maxTravelcard: false,
-        },
-	  	data,
-	  });
+    options: {
+      minTravelcard: false,
+      maxTravelcard: false,
+    },
+    data,
+  });
 
   // Returns a number: cheapest total weekly fare on contactless (rounded to 2 dp)
   // -- by appending the noWeekly number to the final array and finding the smallest number
   return round(
-  		(minNum(final.concat([noWeekly]))), 2);
+    (minNum(final.concat([noWeekly]))), 2);
 }
 

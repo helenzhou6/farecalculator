@@ -12,15 +12,16 @@ export default function cardSelection() {
   const $studentOysterCard = $oysterCard.find('option[value="student"]');
 
   // Removes any existing elements disabled
-  const removeDisabled = function(card, $this) {
+  const removeDisabled = (card) => {
     card.find('option:disabled').prop('disabled', '');
-  }
+  };
 
-  $('.js-oyster-card-select').change(function() {
-    const selectedOyster = $(this).find("option:selected").val();
+  $oysterCard.change(function() {
+    const selectedOyster = $(this).find('option:selected').val();
     removeDisabled($discountCard);
     $discountCardInput.prop('disabled', false);
     $discountCard.removeClass('is-disabled');
+
     if (selectedOyster === 'student') {
       $childDiscountCard.prop('disabled', true);
     } else if (selectedOyster === 'child-jobless') {
@@ -29,9 +30,10 @@ export default function cardSelection() {
     }
 	});
 
-  $('.js-discount-card-select').change(function() {
-    const selectedDiscount = $(this).find("option:selected").val();
+  $discountCard.change(function() {
+    const selectedDiscount = $(this).find('option:selected').val();
     removeDisabled($oysterCard);
+
     if (selectedDiscount === 'railcard') {
       $childOysterCard.prop('disabled', true);
     } else if (selectedDiscount === 'child-jobless') {
