@@ -157,7 +157,7 @@ input[type="text"] {
 }
 
 .heading__logo {
-	  margin-top: -.5em;
+	  // margin-top: -.5em;
 		@include media(700px){
 			float: left;
 		}
@@ -735,7 +735,7 @@ fieldset {
     font-size: .8em;
 }
 
-#results-page__title {
+.results-page__title {
     font-size: 1.5em;
     display: inline-block;
     margin-bottom: 0.5em;

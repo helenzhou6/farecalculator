@@ -5,7 +5,7 @@ import resultsPage from './_resultsPage';
 import cardSelection from './_cardSelection';
 import getData from './../utility/_getData';
 import autocomplete from './_autocomplete';
-
+import showForm from './_showForm';
 
 // TO DO: Refactor labels to not contain Divs
 
@@ -333,16 +333,6 @@ export default function ui() {
         handleGenericError(e);
       }
     });
-
-    // SHOW FORM
-    const showForm = function() {
-      window.location = "";
-      $(window).scrollTop(0);
-      $('.js-form').removeClass('is-not-displayed');
-      $('.results-page').addClass('is-not-displayed');
-      $('.edit-journeys').addClass('is-not-displayed');
-      $('.loading').addClass('is-not-displayed');
-    };
 
     $('.edit-journeys').click(function(e) {
       e.preventDefault();

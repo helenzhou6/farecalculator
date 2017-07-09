@@ -1,6 +1,5 @@
 import $ from 'jquery';
 
-
 export default function resultsPage(response) {
 
   // deals with the loading bar
