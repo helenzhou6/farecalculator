@@ -198,6 +198,17 @@
 		"sC": 1,
 		"tS": 0
 		},
+	"\/apple-touch-icon.png": {
+		"ft": 32768,
+		"iS": 18224,
+		"oA": 0,
+		"oAP": "\/apple-touch-icon.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"\/data\/fares.json": {
 		"ft": 524288,
 		"oA": 1,
@@ -302,10 +313,27 @@
 		"oAP": "\/dist\/js\/yarn.lock",
 		"oF": 0
 		},
+	"\/favicon.png": {
+		"ft": 32768,
+		"iS": 1381,
+		"oA": 0,
+		"oAP": "\/favicon.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"\/index.html": {
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/index.html",
+		"oF": 0
+		},
+	"\/information.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/information.html",
 		"oF": 0
 		},
 	"\/jsonGen.js": {
@@ -330,6 +358,24 @@
 		"oF": 0,
 		"oO": 0,
 		"oS": 1
+		},
+	"\/README.md": {
+		"cS": 0,
+		"eF": 1,
+		"eL": 1,
+		"eLB": 0,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"oA": 0,
+		"oAP": "\/README.html",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
 		},
 	"\/src\/img\/tfl.svg": {
 		"ft": 2097152,
@@ -358,6 +404,15 @@
 		"oAP": "\/src\/js\/app-min.js",
 		"oF": 0,
 		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/js\/partials\/_cardSelection.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/js\/partials\/_cardSelection-min.js",
+		"oF": 0,
+		"sC": 1,
 		"tS": 0
 		},
 	"\/src\/js\/partials\/_glue.js": {
