@@ -1,5 +1,5 @@
 module.exports = {
-    entry: './src/js/app.js',
+    entry: ['whatwg-fetch', './src/js/app.js'],
     devtool: 'inline-source-map',
     module: {
         rules: [{

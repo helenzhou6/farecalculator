@@ -23,7 +23,8 @@
     "onchange": "^3.2.1",
     "parallelshell": "^2.0.0",
     "postcss-cli": "^3.0.0",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "whatwg-fetch": "^2.0.3"
   },
   "scripts": {
     "browsersync": "browser-sync start --server --files 'dist/js/*.js, dist/css/*.css, index.html'",
