@@ -38,6 +38,22 @@ var fetchStationsData = (function() {
 	}
 }());
 
+var fetchStationsDataByNaptan = (function() {
+	var data = null;
+
+	return function() {
+		if (data) {
+			// console.log('oh! we are getting the cached data!');
+			return Promise.resolve(data);
+		}
+
+		return fetchStationsData()
+			.then(function(resp) {
+        data = Object.keys(resp).map(naptan => resp[naptan]);
+        return data;
+      });
+	}
+}());
 
 //Fetches the json file from TFL API
 var fetchJourneyData = moize(function(from, to) {
@@ -59,5 +75,6 @@ var fetchJourneyData = moize(function(from, to) {
 export default {
 	fares: fetchFareData,
 	stations: fetchStationsData,
+	stationsByNaptan: fetchStationsDataByNaptan,
 	journey: fetchJourneyData,
 };
