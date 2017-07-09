@@ -45,15 +45,20 @@ button {
 }
 
 body {
+		min-height: 100vh;
+		display:: flex;
+		// min-height: 100vh;
+		flex-direction: column;
 		transition: all .4s;
 		position: relative;
     color: $text;
     font-family: ff-tisa-sans-web-pro, sans-serif;
     font-weight: 700;
-    margin: 1.2rem;
+    padding: 1.2rem;
+		margin: 0 auto;
 
     @include media(500px) {
-        margin: 4rem 4rem 0 4rem;
+        padding: 4rem 4rem 0 4rem;
     }
 
     @include media(700px){
@@ -61,13 +66,12 @@ body {
     }
 
     @include media(1000px) {
-        margin: 6rem auto 0;
+        padding: 6rem auto 0;
         max-width: 57rem;
     }
 }
 
 ul {
-    margin: 0 0 0 -2.5em;
     list-style: none;
 }
 
@@ -77,10 +81,9 @@ ul {
   clear: both;
 }
 
-.journey__input {
-    position: relative;
+main {
+	flex: 1;
 }
-
 // INPUTS
 input[type="text"] {
 		line-height: 1.2;
@@ -166,9 +169,16 @@ input[type="text"] {
 .heading__nav {
 	margin-top: 2rem;
 	text-align: center;
+
+	ul {
+		margin: 0 0 0 -2.5em;
+	}
+	@include media(700px){
+		margin-top: 0;
+	}
+
 	@include media(1000px){
 		text-align: left;
-		margin-top: 0;
 	}
 }
 
@@ -217,6 +227,7 @@ input[type="text"] {
 }
 
 .intro-text {
+	display: block;
 		margin-top: 2rem;
 		font-weight: 400;
     margin-bottom: 3rem;
@@ -564,6 +575,10 @@ fieldset {
     }
 }
 
+.journey__input {
+    position: relative;
+}
+
 .journey__input--has-error {
     position: relative;
 
@@ -590,7 +605,7 @@ fieldset {
   height: 1em;
   max-width: 30em;
   border: 2px solid $text;
-	margin: 3em 0 1em;
+	margin: 0 0 1em;
   overflow: hidden;
   position: relative;
 }
@@ -792,14 +807,14 @@ a {
 
 .main__text{
 	font-weight: 400;
-	 max-width: 30rem;
+	max-width: 30rem;
 }
 
 .disclaimer__list {
 	list-style-type: disc;
 
 	li {
-		margin: .4em 0;
+		margin: .4em 0 .4em -1em;
 	}
 	ul {
 		list-style-type: circle;
@@ -809,21 +824,21 @@ a {
 // FOOTER
 
 .footer {
-	font-weight: 400;
+		font-weight: 400;
 		font-size: .75em;
-		margin-top: 3rem;
+		margin-top: 4rem;
 
     @include media(500px) {
-        margin-top: 4rem;
+        // margin-top: 4rem;
 				margin-bottom: 1rem;
     }
 
     @include media(700px){
-        margin-top: 7rem;
+        // margin-top: 7rem;
     }
 
     @include media(1000px) {
-        margin-top: 6rem;
+        // margin-top: 6rem;
     }
 }
 
