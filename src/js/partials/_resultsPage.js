@@ -7,10 +7,11 @@ export default function resultsPage(response) {
   const $innerFinal = $loadingBar.find('.loading__inner--final');
   const transform = getComputedStyle($innerMain[0]).transform;
   const $resultOysterDiscount = $('.results__oyster-discount');
+	const $spanAdd = $('.span-padding');
+	const $resultsOysterDiscount = $('.results__oyster-discount');
 
   const updateDiscountTxt = (cardTxt) => {
     $resultOysterDiscount.html(`
-        <span class="span-padding">+</span>
         <img class="icon" src="src/img/discount-card.svg" />
         ${cardTxt}
     `);
@@ -33,12 +34,16 @@ export default function resultsPage(response) {
     $('.contactless__price').html(oysterWeekly);
     $('.oyster__weekly-price').html(oysterWeekly);
     $('.oyster__monthly-price').html(oysterMonthly);
-    $('.results__oyster-card').html(response.oysterCard);
+    $('.results__oyster-card').html(`<img class="icon" src="src/img/oyster-card.svg" />${response.oysterCard} Oyster Card`);
 
     if (response.discountCard === '16-25 Railcard' || response.discountCard === 'Senior Railcard') {
       updateDiscountTxt(response.discountCard);
+			$spanAdd.removeClass('hide');
+			$resultsOysterDiscount.removeClass('hide');
     } else if (response.discountCard !== 'None') {
       updateDiscountTxt(`${response.discountCard} Discount Card`);
+			$spanAdd.removeClass('hide');
+			$resultsOysterDiscount.removeClass('hide');
     }
 
     ['weekly', 'monthly'].forEach((type) => {

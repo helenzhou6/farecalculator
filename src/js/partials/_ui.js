@@ -334,8 +334,13 @@ export default function ui() {
       }
     });
 
+	const $spanAdd = $('.span-padding');
+	const $resultsOysterDiscount = $('.results__oyster-discount');
     $('.edit-journeys').click(function(e) {
+
       e.preventDefault();
+			$spanAdd.addClass('hide');
+			$resultsOysterDiscount.addClass('hide');
       showForm();
     });
   });
