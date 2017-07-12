@@ -2,15 +2,16 @@
 // Turns todays date into the 1st of 2 months in the future
 // --> Sets the date to the nearest friday
 
-export default function dateGen() {
-  // Adds padding if single digit
-  function padding(digit) {
-    if (digit < 10){
-      return `0 ${digit}`;
-    }
+// Adds padding if single digit
+function padding(digit) {
+	if (digit < 10){
+		return `0${digit}`;
+	}
 
-    return digit.toString();
-  }
+	return digit.toString();
+}
+
+export default function dateGen() {
 
   const date = new Date();
 

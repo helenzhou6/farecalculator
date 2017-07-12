@@ -63,7 +63,7 @@ const fetchJourneyData = moize((from, to) => (
   // —> time is especially important (need to be very far in future)
   // since when tube improvement works everything breaks.
   // zones are based on travel on a friday about a month in advance.
-  fetch(`https://api.tfl.gov.uk/journey/journeyresults/${from}/to/${to}?app_id=8acd79a9&app_key=d433a2d6d9a9c8e8b1b4a6dd4371c69b?date=${dateGen()}&time=1300&mode=overground%2Ctube%2Cdlr`)
+  fetch(`https://api.tfl.gov.uk/journey/journeyresults/${from}/to/${to}?app_id=8acd79a9&app_key=d433a2d6d9a9c8e8b1b4a6dd4371c69b&date=${dateGen()}&time=1300&mode=overground%2Ctube%2Cdlr`)
     .then(e => e.json())
 ), {
   serialize: true,
